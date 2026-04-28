@@ -1,0 +1,14 @@
+{
+  "name": "qm-bra-ket-course",
+  "version": "1.0.0",
+  "description": "QM Bra-Ket Notation course build system",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  },
+  "scripts": {
+    "build-all": "python3 build_all.py",
+    "build-l01-full": "node shared/build_lecture_full.js --data build/L01/lecture_content.json --out build/L01/L01_full.pptx --formulas build/L01/formulas",
+    "build-l01-concepts": "node L01/build_concept_slides.js --data build/L01/lecture_content.json --diag build/L01/diagrams --frm build/L01/formulas --out build/L01/L01_concepts.pptx",
+    "merge-l01": "python3 tools/merge_pptx.py"
+  }
+}

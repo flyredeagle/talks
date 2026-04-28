@@ -1,0 +1,939 @@
+==============================================
+Lecture 9
+==============================================
+
+Proceeding to **Lecture 9** ✅ — and I will **include partial trace as a preview** (not full open‑systems theory yet; that comes in Lecture 11, but we’ll use partial trace here to compute subsystem statistics and illustrate entanglement).
+
+Below is the **complete Lecture 9 artifact package** in the **same standardized format** as Lectures 1–8:
+
+*   ✅ Narrative + derivations (**LaTeX source; student/instructor toggle**)
+*   ✅ Slides (**Beamer LaTeX + PowerPoint outline**)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra practice sheet + homework sheet (**LaTeX**)
+*   ✅ Simple + complex projects
+*   ✅ Well-defined + open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (each: Problem → Suggestions → Advanced suggestions → Detailed solutions)
+
+***
+
+# **Lecture 9 — Composite Systems, Tensor Products, Entanglement + Partial Trace (preview)**
+
+### Dirac (abstract) ↔ Matrix/Kronecker ↔ Reduced state (partial trace preview)
+
+## 90‑minute pacing
+
+*   **0–15:** Why composite systems require tensor products; joint measurements
+*   **15–35:** Tensor product states and bases; inner products; operators $$A\otimes I$$
+*   **35–55:** Entanglement vs product states; Bell states; measurement correlations
+*   **55–75:** Density matrices for pure states; **partial trace preview**; reduced states
+*   **75–90:** Local expectation values via reduced state; Schmidt decomposition preview (conceptual)
+
+## Core outcomes
+
+Students can:
+
+1.  Build composite state spaces: $$\mathcal H_{AB}=\mathcal H_A\otimes\mathcal H_B$$
+2.  Compute inner products and amplitudes in product bases
+3.  Distinguish product states from entangled states
+4.  Compute reduced states using **partial trace (preview)** and use them for local measurement statistics
+5.  Translate between Dirac notation, matrix/Kronecker product, and density matrix forms
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Dirac:** *The Principles of Quantum Mechanics* — composite systems, transformation viewpoint
+*   **Sakurai & Napolitano:** *Modern Quantum Mechanics* — composite systems, spin correlations (often via Stern–Gerlach / two-particle systems)
+*   **Nielsen & Chuang** (supplementary but excellent for tensor products, partial trace, density matrices) — used here as “preview” reference
+
+## Tiered references (suggested)
+
+*   **HS:** qualitative idea of “two systems = more possibilities”
+*   **BegUG:** tensor products and Kronecker products (linear algebra)
+*   **AdvUG:** Schmidt decomposition concept, entanglement criterion, partial trace mechanics
+*   **MSc:** reduced states, entanglement entropy, POVMs on subsystems
+*   **PhD:** algebraic structure, purification, operator algebras preview (optional)
+
+## Historical anchors
+
+*   **EPR (1935):** correlations and “complete description” debate
+*   **Schrödinger (1935):** coined “entanglement” and emphasized its novelty
+*   **von Neumann (1932):** density matrices and composite systems formalism
+*   **Bell (1964):** nonclassical correlations (later conceptual anchor; not required today)
+
+## Expansion hooks
+
+*   Partial trace + mixed states → **Lecture 11** (density operators fully)
+*   Spin singlet and rotations → **Lecture 10** (SU(2), spin measurements)
+*   Measurement update on subsystems → **Lecture 7** + **Lecture 11**
+*   Rigorous infinite-dimensional tensor products → (optional advanced add-on)
+
+***
+
+# B) Learning tiers (Lecture 9 add-ons)
+
+## HS
+
+*   Composite outcomes: if A has 2 outcomes and B has 2 outcomes → joint has 4 outcomes
+*   Correlation vs causation intuition; qualitative entanglement
+
+## BegUG
+
+*   Tensor product basis $$|i\rangle\otimes|j\rangle$$
+*   Inner products factor: $$\langle a,b|c,d\rangle=\langle a|c\rangle\langle b|d\rangle$$
+*   Product vs entangled states by factorization
+
+## AdvUG
+
+*   Reduced density matrix via partial trace
+*   Demonstrate Bell state reduced state is maximally mixed
+*   Schmidt decomposition (computational examples)
+
+## MSc
+
+*   Entanglement entropy $$S(\rho_A)$$ for pure bipartite states
+*   Measurements on subsystems as POVMs acting locally
+
+## PhD
+
+*   Purification theorem statement; uniqueness up to unitary on ancilla
+*   Operational meaning of partial trace as “discarding” degrees of freedom; instrument formalism preview
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as `L09_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Dirac $\leftrightarrow$ Kronecker $\leftrightarrow$ Partial trace preview}
+
+\title{Lecture 9: Composite Systems, Entanglement, and Partial Trace (Preview)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: Why tensor products? joint measurements and joint outcomes
+\item 15--35: Tensor product basis; inner products; local operators $A\otimes I$
+\item 35--55: Entanglement vs product states; Bell states; correlations
+\item 55--75: Density matrix of pure states; reduced state via partial trace (preview)
+\item 75--90: Local statistics from reduced state; Schmidt decomposition preview
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Construct composite states in $\mathcal H_A\otimes\mathcal H_B$ and compute amplitudes in product bases.
+\item Distinguish product vs entangled states; compute correlations.
+\item Compute reduced density matrices using partial trace and use them to predict local measurement outcomes.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Composite systems and tensor products}
+If system $A$ has Hilbert space $\mathcal H_A$ and system $B$ has $\mathcal H_B$, the composite system is described by
+\[
+\mathcal H_{AB}=\mathcal H_A\otimes\mathcal H_B.
+\]
+A product basis is $\{|i\rangle_A\otimes|j\rangle_B\}$, often abbreviated $|i\rangle|j\rangle$.
+
+\subsection{Inner products factorize on product states}
+For product kets $|a\rangle|b\rangle$ and $|c\rangle|d\rangle$,
+\[
+(\langle a|\langle b|)(|c\rangle|d\rangle)=\langle a|c\rangle\,\langle b|d\rangle.
+\]
+
+\section{Local operators}
+An operator acting only on $A$ is represented as $\hat A\otimes I_B$.
+Similarly, acting only on $B$ is $I_A\otimes \hat B$.
+On a product state,
+\[
+(\hat A\otimes I)(|a\rangle|b\rangle)=(\hat A|a\rangle)|b\rangle.
+\]
+
+\begin{warnbox}
+\textbf{Pitfall:} $(\hat A\otimes \hat B)(|a\rangle|b\rangle)=(\hat A|a\rangle)\otimes(\hat B|b\rangle)$, not $(\hat A\hat B)|ab\rangle$.
+Tensor products are not ordinary multiplication.
+\end{warnbox}
+
+\section{Entanglement}
+A pure state $|\Psi\rangle\in\mathcal H_A\otimes\mathcal H_B$ is \emph{separable} if it can be written as
+\[
+|\Psi\rangle=|\psi\rangle_A\otimes|\phi\rangle_B.
+\]
+Otherwise it is \emph{entangled}.
+Example (Bell state):
+\[
+|\Phi^+\rangle=\frac{1}{\sqrt2}(|00\rangle+|11\rangle).
+\]
+No choice of single-system kets $|\psi\rangle,|\phi\rangle$ reproduces these joint amplitudes by factorization.
+
+\section{Density matrix and reduced state (partial trace preview)}
+For a pure state $|\Psi\rangle$, define
+\[
+\rho_{AB}=|\Psi\rangle\langle\Psi|.
+\]
+To describe statistics of measurements performed only on $A$, we use the reduced state
+\[
+\rho_A=\Tr_B(\rho_{AB}),
+\]
+the \emph{partial trace over $B$}. Operationally, this corresponds to ``ignoring'' or ``discarding'' system $B$.
+
+\subsection{Defining the partial trace}
+Let $\{|j\rangle_B\}$ be an orthonormal basis for $B$. Then
+\[
+\Tr_B(\rho_{AB})=\sum_j \left(I_A\otimes\langle j|\right)\rho_{AB}\left(I_A\otimes|j\rangle\right).
+\]
+This definition is basis-independent (a key property).
+
+\subsection{Local expectation values from reduced states}
+For any operator $A$ on system $A$,
+\[
+\langle A\otimes I\rangle_{\rho_{AB}}=\Tr\left(\rho_{AB}(A\otimes I)\right)=\Tr\left(\rho_A A\right).
+\]
+Thus $\rho_A$ contains all information needed to predict measurement statistics on $A$ alone.
+
+\subsection{Worked example: Bell state reduction}
+For $|\Phi^+\rangle$, one finds
+\[
+\rho_A=\frac12 I,\qquad \rho_B=\frac12 I,
+\]
+so each subsystem looks maximally mixed even though the joint state is pure and perfectly correlated.
+
+\section{Schmidt decomposition (preview)}
+Any bipartite pure state can be written as
+\[
+|\Psi\rangle=\sum_{k=1}^r \sqrt{\lambda_k}\,|u_k\rangle_A|v_k\rangle_B,
+\]
+where $\lambda_k\ge 0$, $\sum_k\lambda_k=1$, and $\{|u_k\rangle\}$, $\{|v_k\rangle\}$ are orthonormal.
+The state is entangled iff more than one $\lambda_k$ is nonzero. Reduced states satisfy
+\[
+\rho_A=\sum_k \lambda_k |u_k\rangle\langle u_k|,\qquad
+\rho_B=\sum_k \lambda_k |v_k\rangle\langle v_k|.
+\]
+
+\begin{mapbox}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Dirac} & \textbf{Matrix/Kronecker} & \textbf{Reduced state}\\ \midrule
+$|\psi\rangle\otimes|\phi\rangle$ & $\mathbf c\otimes \mathbf d$ & $\rho_A=\Tr_B\rho_{AB}$\\
+$A\otimes I$ & $A\otimes I$ (Kronecker) & $\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$\\
+Bell state $|\Phi^+\rangle$ & vector $(1,0,0,1)/\sqrt2$ & $\rho_A=I/2$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Emphasize: partial trace is a map $\rho_{AB}\mapsto\rho_A$ that preserves all local statistics.
+Stress basis-independence. Preview Lecture 11: density operators, mixed states, channels.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L09_notes_student.tex` and `L09_notes_instructor.tex`:
+
+```latex
+% L09_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L09_chapter}
+```
+
+```latex
+% L09_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L09_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck — `L09_slides_beamer.tex`
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 9: Composite Systems and Partial Trace (Preview)}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Tensor product}
+\[
+\mathcal H_{AB}=\mathcal H_A\otimes\mathcal H_B,\quad |ij\rangle=|i\rangle|j\rangle
+\]
+\[
+\langle a,b|c,d\rangle=\langle a|c\rangle\,\langle b|d\rangle
+\]
+\end{frame}
+
+\begin{frame}{Local operators}
+\[
+A \text{ on }A \Rightarrow A\otimes I,\quad B\text{ on }B \Rightarrow I\otimes B
+\]
+\end{frame}
+
+\begin{frame}{Entanglement}
+\[
+|\Phi^+\rangle=\frac{1}{\sqrt2}(|00\rangle+|11\rangle)
+\]
+Not factorizable into $|\psi\rangle\otimes|\phi\rangle$.
+\end{frame}
+
+\begin{frame}{Partial trace (preview)}
+\[
+\rho_{AB}=|\Psi\rangle\langle\Psi|,\quad \rho_A=\Tr_B(\rho_{AB})
+\]
+\[
+\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)
+\]
+\end{frame}
+
+\begin{frame}{Bell state reduction}
+\[
+\rho_A=\frac12 I,\quad \rho_B=\frac12 I
+\]
+Local randomness + perfect correlations.
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline — `L09_slides_ppt_outline.md`
+
+```md
+# Lecture 9: Composite Systems, Entanglement, Partial Trace (preview)
+
+## Slide 1 — Title
+- Tensor products and reduced states
+
+## Slide 2 — Why tensor product?
+- Joint outcomes = pairs
+- H_AB = H_A ⊗ H_B
+
+## Slide 3 — Product basis and amplitudes
+- |ij⟩ = |i⟩|j⟩
+- ⟨a,b|c,d⟩ = ⟨a|c⟩⟨b|d⟩
+
+## Slide 4 — Local operators
+- A on subsystem A: A ⊗ I
+- B on subsystem B: I ⊗ B
+
+## Slide 5 — Product vs entangled
+- Product: |ψ⟩|φ⟩
+- Entangled: not factorable (Bell states)
+
+## Slide 6 — Bell state example
+- |Φ+⟩=(|00⟩+|11⟩)/√2
+- Perfect correlations
+
+## Slide 7 — Density matrix + partial trace
+- ρ_AB=|Ψ⟩⟨Ψ|
+- ρ_A = Tr_B ρ_AB (discard B)
+
+## Slide 8 — Local statistics
+- Tr(ρ_AB(A⊗I)) = Tr(ρ_A A)
+- Bell state: ρ_A = I/2
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  Why isn’t the composite state space a direct sum but a tensor product?
+2.  What is a product basis and how do amplitudes in it correspond to joint probabilities?
+3.  What does it mean for a state to be separable vs entangled?
+4.  Why can an entangled state have locally random outcomes?
+5.  What is a “local operator” and why is it written $$A\otimes I$$?
+6.  What does partial trace represent operationally?
+7.  Why is $$\rho_A=\Tr_B(\rho_{AB})$$ basis-independent?
+8.  How does $$\rho_A$$ capture all statistics of measurements on subsystem $$A$$?
+9.  What is the Schmidt decomposition telling you physically?
+10. How does this preview connect to density matrices and channels (Lecture 11)?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+S1 Compute $$(\langle a|\otimes\langle b|)(|c\rangle\otimes|d\rangle)$$  
+S2 Expand a composite state in the product basis and compute joint probabilities  
+S3 Show $$(A\otimes I)(|a\rangle|b\rangle)=(A|a\rangle)|b\rangle$$  
+S4 Compute matrix/Kronecker representation of $$A\otimes I$$ for 2×2 $$A$$  
+S5 Decide if a given 2‑qubit state is separable (factorization test)  
+S6 For $$|\Phi^+\rangle$$, compute probability of outcomes $$00,01,10,11$$ in computational basis  
+S7 Construct $$\rho_{AB}=|\Psi\rangle\langle\Psi|$$ for a given $$|\Psi\rangle$$  
+S8 Partial trace preview: compute $$\rho_A=\Tr_B(\rho_{AB})$$ for $$|\Phi^+\rangle$$  
+S9 Use reduced state to compute local expectation $$\langle\sigma_z\otimes I\rangle$$ for Bell state  
+S10 Show that measuring only $$A$$ can be predicted either by $$\rho_{AB}$$ or $$\rho_A$$: $$\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$$ in a specific example
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+C1 Prove inner product factorization extends by linearity to arbitrary bipartite states  
+C2 Prove: $$\rho_A$$ is basis-independent (partial trace invariance)  
+C3 Prove: $$\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$$ (partial trace defining property)  
+C4 Schmidt decomposition (2‑qubit case): compute Schmidt coefficients and reduced eigenvalues  
+C5 (MSc/PhD) Show entanglement entropy $$S(\rho_A)$$ equals $$S(\rho_B)$$ for pure $$\rho_{AB}$$ (outline + example)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Two‑qubit correlation simulator”
+
+*   Generate random two-qubit states (normalized vectors in $$\mathbb C^4$$)
+*   Compute joint probabilities in various bases
+*   Identify separable vs entangled (simple criterion for pure states using Schmidt rank)
+*   Compute reduced density matrices and verify local statistics
+
+Deliverables: code + plots + 2–3 page write-up.
+
+## Complex Project (CPJ): “Partial trace and local tomography preview”
+
+*   Pick entangled and separable states
+*   Compute $$\rho_A,\rho_B$$, local expectation values of Pauli operators
+*   Show two distinct global states can share the same $$\rho_A$$ (information loss)
+*   Discuss operational meaning: local measurements cannot reconstruct global state
+
+Deliverables: 8–12 page report + appendix computations.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**Explain how Schrödinger’s notion of “entanglement” (1935) reframes the EPR correlations and why reduced states are essential to describe subsystems.**  
+(5–7 pages, include historical context + one full reduced-state computation)
+
+## Open-ended (ORQ)
+
+**Can one characterize “entanglement” operationally purely in terms of measurement statistics, without referencing tensor products explicitly?**  
+Write a proposal, include at least one candidate definition and a test scenario.
+
+***
+
+# J) Extra problem sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice — `L09_extra_practice.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 9 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (tensor products)}
+\begin{enumerate}
+\item Compute $(\langle 0|\otimes\langle 1|)(|0\rangle\otimes|1\rangle)$ and $(\langle 0|\otimes\langle 1|)(|1\rangle\otimes|0\rangle)$.
+\item For $A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$ compute $A\otimes I$ as a $4\times4$ matrix.
+\end{enumerate}
+
+\section*{Practice B (entanglement + reduced states)}
+\begin{enumerate}
+\item For $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$ compute $\rho_A$ and $\rho_B$.
+\item Show $\langle \sigma_z\otimes I\rangle=0$ for $|\Phi^+\rangle$.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework — `L09_homework.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 9 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S2) Expand a given two-qubit state and compute joint probabilities.
+\item (S5) Determine whether a given two-qubit pure state is separable.
+\item (S8) Compute $\rho_A=\Tr_B(\rho_{AB})$ for a Bell state.
+\item (S10) Verify $\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$ in an explicit example.
+\item (C3) Prove the partial-trace defining property $\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (C2) Basis-independence of partial trace.
+\item (C4) Schmidt decomposition for a two-qubit state.
+\item (C5) Entanglement entropy equality for pure bipartite states (outline + example).
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15 problems** (10 SPS + 5 CPS)
+
+Each packet is a complete mini-document with your required structure.
+
+> Copy into `L09_S1.tex` … `L09_C5.tex`.
+
+***
+
+## **S1 — Tensor product inner product**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L09-S1 Inner product on product states — Problem}
+Show $(\langle a|\otimes\langle b|)(|c\rangle\otimes|d\rangle)=\langle a|c\rangle\,\langle b|d\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Use the definition of tensor product action on linear functionals.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Verify bilinearity in each slot; check on basis vectors and extend by linearity.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+By definition of the tensor product of linear maps, $(f\otimes g)(u\otimes v)=f(u)g(v)$.
+Taking $f=\langle a|$, $g=\langle b|$, $u=|c\rangle$, $v=|d\rangle$ gives
+\[
+(\langle a|\otimes\langle b|)(|c\rangle\otimes|d\rangle)=\langle a|c\rangle\,\langle b|d\rangle.
+\]
+\end{document}
+```
+
+## **S2 — Expand state and compute joint probabilities**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-S2 Joint probabilities — Problem}
+Let $|\Psi\rangle=\frac{1}{\sqrt3}(|00\rangle+|01\rangle+|10\rangle)$ in the computational basis.
+Compute $P(00),P(01),P(10),P(11)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Probabilities are squared magnitudes of basis amplitudes.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Check normalization: sum of probabilities equals 1.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Amplitudes: $1/\sqrt3$ for $00,01,10$ and $0$ for $11$.
+Thus $P(00)=P(01)=P(10)=1/3$, $P(11)=0$. Sum $=1$.
+\end{document}
+```
+
+## **S3 — Local operator action**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L09-S3 Local operator — Problem}
+Show $(A\otimes I)(|a\rangle|b\rangle)=(A|a\rangle)|b\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use definition: $(A\otimes I)(u\otimes v)=(Au)\otimes(Iv)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Extend to superpositions by linearity.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+By definition of tensor product operators,
+\[
+(A\otimes I)(|a\rangle\otimes|b\rangle)=(A|a\rangle)\otimes(I|b\rangle)=(A|a\rangle)\otimes|b\rangle.
+\]
+\end{document}
+```
+
+## **S4 — Kronecker matrix of $$A\otimes I$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-S4 Kronecker product — Problem}
+Let $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$. Write $A\otimes I_2$ explicitly as a $4\times4$ matrix.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use block form: $A\otimes I=\begin{pmatrix}aI&bI\\cI&dI\end{pmatrix}$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Check action on basis $|00\rangle,|01\rangle,|10\rangle,|11\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+A\otimes I_2=
+\begin{pmatrix}
+a&0&b&0\\
+0&a&0&b\\
+c&0&d&0\\
+0&c&0&d
+\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S5 — Separable or entangled?**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-S5 Separable test — Problem}
+Decide if $|\Psi\rangle=\frac{1}{\sqrt2}(|00\rangle+|01\rangle)$ is separable. If yes, factor it.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Factor out $|0\rangle$ from the first qubit.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Rewrite as $|0\rangle\otimes(\cdots)$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+|\Psi\rangle=\frac{1}{\sqrt2}\left(|0\rangle\otimes|0\rangle+|0\rangle\otimes|1\rangle\right)
+=|0\rangle\otimes\frac{1}{\sqrt2}(|0\rangle+|1\rangle),
+\]
+so it is separable.
+\end{document}
+```
+
+## **S6 — Bell state joint probabilities**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-S6 Bell probabilities — Problem}
+For $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$, compute $P(00),P(01),P(10),P(11)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Read amplitudes in computational basis and square.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Note perfect correlation: only $00$ and $11$ occur.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$P(00)=P(11)=1/2$ and $P(01)=P(10)=0$.
+\end{document}
+```
+
+## **S7 — Density matrix from a pure state**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-S7 Build $\rho_{AB}$ — Problem}
+Let $|\Psi\rangle=\frac{1}{\sqrt3}(|00\rangle+|01\rangle+|10\rangle)$. Write $\rho_{AB}=|\Psi\rangle\langle\Psi|$ as a $4\times4$ matrix in the basis $(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write the state vector $\mathbf v=(1,1,1,0)^T/\sqrt3$.
+\item Compute $\rho=\mathbf v\mathbf v^\dagger$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Outer product yields matrix with entries $v_i v_j^*$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\mathbf v=\frac{1}{\sqrt3}(1,1,1,0)^T$. Then
+\[
+\rho=\mathbf v\mathbf v^\dagger=\frac{1}{3}\begin{pmatrix}
+1&1&1&0\\
+1&1&1&0\\
+1&1&1&0\\
+0&0&0&0
+\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S8 — Partial trace for Bell state**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L09-S8 Partial trace preview — Problem}
+Let $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$ and $\rho_{AB}=|\Phi^+\rangle\langle\Phi^+|$.
+Compute $\rho_A=\Tr_B(\rho_{AB})$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use basis $\{|0\rangle_B,|1\rangle_B\}$ and $\Tr_B(\rho)=\sum_{j}(I\otimes\langle j|)\rho(I\otimes|j\rangle)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Expand $\rho_{AB}$ as a sum of four outer products and trace term-by-term.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+First
+\[
+\rho_{AB}=\frac12\Big(|00\rangle\langle00|+|00\rangle\langle11|+|11\rangle\langle00|+|11\rangle\langle11|\Big).
+\]
+Trace over $B$ in basis $\{|0\rangle,|1\rangle\}$.
+Only terms with matching $B$ bra/ket survive:
+\[
+\Tr_B(|00\rangle\langle00|)=|0\rangle\langle0|,\quad
+\Tr_B(|11\rangle\langle11|)=|1\rangle\langle1|.
+\]
+Cross terms vanish because $\langle0|1\rangle=0$:
+\[
+\Tr_B(|00\rangle\langle11|)=0,\quad \Tr_B(|11\rangle\langle00|)=0.
+\]
+Thus
+\[
+\rho_A=\frac12\left(|0\rangle\langle0|+|1\rangle\langle1|\right)=\frac12 I.
+\]
+\end{document}
+```
+
+## **S9 — Local expectation via reduced state**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L09-S9 Local expectation — Problem}
+For Bell state $|\Phi^+\rangle$, compute $\langle\sigma_z\otimes I\rangle$ using $\rho_A$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\langle\sigma_z\otimes I\rangle=\Tr(\rho_A\sigma_z)$.
+\item For Bell state, $\rho_A=I/2$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Note $\Tr(\sigma_z)=0$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\langle\sigma_z\otimes I\rangle=\Tr(\rho_A\sigma_z)=\Tr\left(\frac12 I\,\sigma_z\right)=\frac12\Tr(\sigma_z)=0.
+\]
+\end{document}
+```
+
+## **S10 — Verify local statistics identity**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L09-S10 Partial trace property (example) — Problem}
+Let $\rho_{AB}=|\Phi^+\rangle\langle\Phi^+|$ and $A=\sigma_z$. Verify
+\[
+\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)
+\]
+by computing both sides.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\rho_A=I/2$ from S8 for RHS.
+\item For LHS, compute expectation of $\sigma_z$ on first qubit in Bell state.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Compute LHS using basis probabilities: outcomes $00$ and $11$ each with probability 1/2.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+RHS:
+\[
+\Tr(\rho_A\sigma_z)=\Tr((I/2)\sigma_z)=0.
+\]
+LHS: In $|\Phi^+\rangle$, first qubit is $0$ with prob $1/2$ and $1$ with prob $1/2$.
+Thus $\langle\sigma_z\otimes I\rangle=(+1)(1/2)+(-1)(1/2)=0$.
+Hence LHS = RHS = 0.
+\end{document}
+```
+
+***
+
+## **C1 — Extend factorization by linearity**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-C1 Bilinearity extension — Problem}
+Prove that the inner product on $\mathcal H_A\otimes\mathcal H_B$ defined on product states by
+$\langle a,b|c,d\rangle=\langle a|c\rangle\langle b|d\rangle$ extends uniquely by linearity to all finite superpositions.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use linearity in each argument and the distributive law.
+\item Define for $\sum_i u_i\otimes v_i$ and $\sum_j u'_j\otimes v'_j$ by double sum.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show well-definedness: the value does not depend on a particular decomposition once the tensor product is formed (outline-level).
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Let $|\Psi\rangle=\sum_i |u_i\rangle|v_i\rangle$ and $|\Phi\rangle=\sum_j |u'_j\rangle|v'_j\rangle$.
+Define
+\[
+\langle\Phi|\Psi\rangle := \sum_{i,j}\langle u'_j|u_i\rangle\langle v'_j|v_i\rangle,
+\]
+which is sesquilinear and matches the product rule on pure tensors. In finite-dimensional Hilbert spaces this is the standard construction and yields a valid inner product.
+\end{document}
+```
+
+## **C2 — Basis-independence of partial trace**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L09-C2 Basis-independence of partial trace — Problem}
+Show $\rho_A=\Tr_B(\rho_{AB})$ is independent of the orthonormal basis chosen for tracing over $B$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Let $\{|j\rangle\}$ and $\{|j'\rangle\}$ be ONBs related by a unitary $W$.
+\item Express $|j'\rangle=\sum_k W_{kj}|k\rangle$ and substitute.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use $\sum_j |j'\rangle\langle j'|=I$ and the cyclicity of trace in the $B$ slot.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Define $\Tr_B$ by $\Tr_B(X)=\sum_j (I\otimes\langle j|)X(I\otimes|j\rangle)$.
+If $|j'\rangle=W|j\rangle$ with unitary $W$, then
+\[
+\sum_{j'}(I\otimes\langle j'|)X(I\otimes|j'\rangle)
+=\sum_j (I\otimes\langle j|W^\dagger)X(I\otimes W|j\rangle)
+=\sum_j (I\otimes\langle j|)\,(I\otimes W^\dagger)X(I\otimes W)\,(I\otimes|j\rangle).
+\]
+But $(I\otimes W^\dagger)X(I\otimes W)$ is a unitary change of basis on subsystem $B$; tracing over $B$ removes dependence on that basis because $\sum_j |j\rangle\langle j|=I$ and the trace is invariant under unitary similarity on $B$. Hence the result is basis-independent.
+\end{document}
+```
+
+## **C3 — Defining property of partial trace**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L09-C3 Partial trace property — Problem}
+Prove that for any $\rho_{AB}$ and any operator $A$ on subsystem $A$,
+\[
+\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A),
+\quad \rho_A=\Tr_B(\rho_{AB}).
+\]
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use a basis $\{|j\rangle\}$ for $B$.
+\item Insert $I=\sum_j I\otimes|j\rangle\langle j|$ appropriately and use trace cyclicity.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Write $\Tr_{AB}=\Tr_A\circ\Tr_B$ and use the definition of $\Tr_B$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Let $\{|j\rangle\}$ be an ONB of $B$.
+By definition,
+\[
+\rho_A=\Tr_B(\rho_{AB})=\sum_j (I\otimes\langle j|)\rho_{AB}(I\otimes|j\rangle).
+\]
+Then
+\[
+\Tr(\rho_A A)=\Tr_A\!\left(\sum_j (I\otimes\langle j|)\rho_{AB}(I\otimes|j\rangle)\,A\right).
+\]
+Using $\Tr_{AB}(X)=\Tr_A\left(\sum_j (I\otimes\langle j|)X(I\otimes|j\rangle)\right)$, set $X=\rho_{AB}(A\otimes I)$:
+\[
+\Tr_{AB}(\rho_{AB}(A\otimes I))=\Tr_A\!\left(\sum_j (I\otimes\langle j|)\rho_{AB}(A\otimes I)(I\otimes|j\rangle)\right).
+\]
+Because $(A\otimes I)(I\otimes|j\rangle)=A\otimes|j\rangle$, this equals $\Tr(\rho_A A)$, proving the identity.
+\end{document}
+```
+
+## **C4 — Schmidt decomposition (2-qubit computation)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L09-C4 Schmidt decomposition — Problem}
+Let $|\Psi\rangle=\sqrt{0.8}\,|00\rangle+\sqrt{0.2}\,|11\rangle$.
+(i) Identify Schmidt coefficients.
+(ii) Compute $\rho_A$ and its eigenvalues.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item The state is already in Schmidt form with $|u_1\rangle=|0\rangle$, $|v_1\rangle=|0\rangle$ etc.
+\item Compute $\rho_{AB}=|\Psi\rangle\langle\Psi|$ then trace out $B$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Cross terms vanish in partial trace because $\langle0|1\rangle=0$ on $B$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+(i) Schmidt coefficients are $\lambda_1=0.8$, $\lambda_2=0.2$.
+(ii) $\rho_A=\Tr_B\rho_{AB}=0.8\,|0\rangle\langle0|+0.2\,|1\rangle\langle1|$.
+Eigenvalues are $0.8$ and $0.2$.
+\end{document}
+```
+
+## **C5 — Entanglement entropy equality (outline + example)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L09-C5 Entanglement entropy equality — Problem}
+For a pure bipartite state $\rho_{AB}=|\Psi\rangle\langle\Psi|$, outline why $S(\rho_A)=S(\rho_B)$ and verify for $|\Psi\rangle=\sqrt{0.8}|00\rangle+\sqrt{0.2}|11\rangle$.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Use Schmidt decomposition: reduced states share the same nonzero eigenvalues.
+\item Entropy depends only on eigenvalues.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item For the example, compute $S=-\sum_k \lambda_k\log\lambda_k$ using $\{0.8,0.2\}$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Schmidt decomposition implies $\rho_A=\sum_k \lambda_k |u_k\rangle\langle u_k|$ and $\rho_B=\sum_k \lambda_k |v_k\rangle\langle v_k|$ share the same eigenvalues $\{\lambda_k\}$ (plus zeros if dimensions differ). Thus $S(\rho_A)=S(\rho_B)$.
+Example: eigenvalues are $0.8,0.2$ so
+\[
+S(\rho_A)=-(0.8\log 0.8 + 0.2\log 0.2)=S(\rho_B).
+\]
+\end{document}
+```
+
+***
+
+## ✅ Next step: Lecture 10
+
+Lecture 10 will use this composite-system machinery to do **spin and SU(2)** cleanly (including two-spin singlet and measurement correlations). We can decide whether to embed Bell-inequality discussion there or keep it as an optional historical add-on.
+
+If you’re ready, say: **“Proceed to Lecture 10”** and tell me one preference:
+
+*   Should Lecture 10 include **two-spin singlet correlations** and a **short Bell inequality preview**, or keep Bell entirely separate/optional?

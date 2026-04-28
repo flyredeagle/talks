@@ -1,0 +1,909 @@
+=================================================
+Lecture 5
+=================================================
+Absolutely — here is **Lecture 5** with **explicit unification of Dirac (abstract), matrix, and wavefunction representations in the same lecture**, and **all standardized artifacts**:
+
+*   ✅ Narrative + derivations (LaTeX source; student/instructor toggle)
+*   ✅ Slides (Beamer LaTeX + PowerPoint outline)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra problem sheet + homework sheet (LaTeX)
+*   ✅ Simple + complex projects
+*   ✅ Well-defined + open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (Problem → Suggestions → Advanced suggestions → Detailed solutions)
+
+> **Standardization applied:** **10 SPS + 5 CPS**  
+> **Lecture theme:** “Insert identity / change basis / translate between representations”
+
+***
+
+# **Lecture 5 — Completeness, Change of Basis, and Unification of Representations**
+
+### Dirac (abstract) ↔ Matrix mechanics ↔ Wavefunction (continuous basis)
+
+***
+
+## 90‑minute pacing
+
+*   **0–15:** Why representations exist; “state is abstract, coordinates are basis-dependent”
+*   **15–35:** Completeness and inserting identity (discrete); coordinate vectors
+*   **35–55:** Change of basis as a unitary transformation; matrices and similarity transforms
+*   **55–75:** Continuous basis: $$\int |x\rangle\langle x|dx=\mathbb I$$; wavefunction as projection
+*   **75–90:** Operator kernels $$A(x,x')=\langle x|\hat A|x'\rangle$$; expectation values in $$x$$-rep; synthesis
+
+***
+
+## Core outcomes
+
+Students can:
+
+1.  Use completeness to expand states: $$|\psi\rangle=\sum_n|n\rangle\langle n|\psi\rangle$$ and $$|\psi\rangle=\int dx\,|x\rangle\langle x|\psi\rangle$$
+2.  Translate: abstract ket ↔ coefficient vector ↔ wavefunction
+3.  Perform unitary basis changes and compute transformed components
+4.  Translate operators: abstract operator ↔ matrix elements ↔ integral kernel
+5.  Compute inner products and expectation values in all three representations
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Dirac:** *The Principles of Quantum Mechanics* — transformation theory; completeness; basis changes
+*   **Sakurai & Napolitano:** *Modern Quantum Mechanics* — measurement bases, transformations, representation change
+
+## Tiered references (suggested)
+
+*   **HS:** coordinate systems / change of coordinates; basic vectors
+*   **BegUG:** linear algebra: change of basis, unitary matrices
+*   **AdvUG:** operator representations, kernels, Parseval/Plancherel analogies
+*   **MSc:** transformation theory viewpoint; unitary equivalence; distributions (preview)
+*   **PhD:** rigorous spectral theorem perspective; rigged Hilbert spaces (preview)
+
+## Historical anchors
+
+*   **Heisenberg (1925):** matrix mechanics as representation of observables
+*   **Schrödinger (1926):** wave mechanics (wavefunction representation)
+*   **Dirac (1927):** transformation theory unifying representations
+*   **von Neumann (1932):** formal equivalence of representations in Hilbert space
+
+## Expansion hooks
+
+*   Fourier transform and momentum basis → Lecture 6
+*   Similarity transforms and symmetries → Lecture 8 and Lecture 10
+*   Continuous spectra and distributions → Lecture 12
+
+***
+
+# B) Learning tiers (Lecture 5 add-ons)
+
+## HS
+
+*   Coordinate change analogy: same vector, different coordinate components
+
+## BegUG
+
+*   Unitary matrices as basis changes
+*   Component transforms $$c' = Uc$$
+
+## AdvUG
+
+*   Prove invariance of inner products under basis change
+*   Parseval identity via completeness
+
+## MSc
+
+*   Transformation kernels $$K(x,n)=\langle x|n\rangle$$
+*   Operator kernels and representation changes
+
+## PhD
+
+*   Where “$$|x\rangle$$” lives (generalized eigenvectors)
+*   Domain/measure subtleties (preview)
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as: `L05_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Unified dictionary: Dirac $\leftrightarrow$ Matrix $\leftrightarrow$ Wavefunction}
+
+\title{Lecture 5: Completeness, Change of Basis, and Unification of Representations}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: What is a representation? State vs coordinates
+\item 15--35: Discrete completeness; insert identity
+\item 35--55: Unitary change of basis; matrices and similarity
+\item 55--75: Continuous completeness; wavefunction as projection
+\item 75--90: Operator kernels; expectation values in $x$-rep; synthesis
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Expand states using $\sum_n|n\rangle\langle n|=\mathbb I$ and $\int dx\,|x\rangle\langle x|=\mathbb I$.
+\item Translate between $|\psi\rangle$, coefficient vectors $\{c_n\}$, and wavefunctions $\psi(x)=\langle x|\psi\rangle$.
+\item Translate operators: $A_{mn}=\langle m|\hat A|n\rangle$ and kernel $A(x,x')=\langle x|\hat A|x'\rangle$.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Motivation: same state, different representations}
+A quantum state is the abstract object $|\psi\rangle$. A \emph{representation} is obtained by choosing a basis and
+computing components. Different bases correspond to different measurement contexts.
+
+\begin{warnbox}
+Do not confuse the state with its coordinate list. The list changes when you change basis, even though the state
+does not.
+\end{warnbox}
+
+\section{Discrete basis: completeness and inserting identity}
+Let $\{|n\rangle\}$ be an orthonormal basis:
+\[
+\langle m|n\rangle=\delta_{mn},\qquad \sum_n |n\rangle\langle n|=\mathbb I.
+\]
+Insert the identity to expand any state:
+\[
+|\psi\rangle = \mathbb I|\psi\rangle = \sum_n |n\rangle\langle n|\psi\rangle.
+\]
+Define components (amplitudes in this basis):
+\[
+c_n=\langle n|\psi\rangle,\qquad |\psi\rangle=\sum_n c_n|n\rangle.
+\]
+
+\subsection{Inner product in components}
+Insert identity twice:
+\[
+\langle\phi|\psi\rangle
+=\sum_n \langle\phi|n\rangle\langle n|\psi\rangle
+=\sum_n \phi_n^*\,\psi_n.
+\]
+This is the coordinate formula for inner products.
+
+\section{Change of basis: unitary transformations}
+Let $\{|n\rangle\}$ and $\{|\alpha\rangle\}$ be orthonormal bases. Define the overlap matrix
+\[
+U_{\alpha n}=\langle \alpha|n\rangle.
+\]
+Then
+\[
+\psi_\alpha=\langle \alpha|\psi\rangle
+=\sum_n \langle \alpha|n\rangle \langle n|\psi\rangle
+=\sum_n U_{\alpha n}\,c_n.
+\]
+So, in vector form:
+\[
+\mathbf c^{(\alpha)} = U\,\mathbf c^{(n)}.
+\]
+Because both bases are orthonormal, $U$ is unitary.
+
+\section{Operators: abstract $\leftrightarrow$ matrix}
+Define matrix elements in basis $\{|n\rangle\}$:
+\[
+A_{mn}=\langle m|\hat A|n\rangle.
+\]
+Then for coefficient vectors $\mathbf c$,
+\[
+(\hat A|\psi\rangle)_m = \sum_n A_{mn}c_n,
+\]
+i.e. $\mathbf c' = A\mathbf c$.
+
+\subsection{Similarity under basis change}
+If $U$ changes basis, the matrix of the same abstract operator becomes
+\[
+A' = UAU^\dagger
+\quad\text{(convention: coefficients transform as } \mathbf c'=U\mathbf c\text{)}.
+\]
+
+\section{Continuous basis: wavefunctions as projections}
+Introduce position kets $|x\rangle$ (formal for now) satisfying completeness:
+\[
+\int_{-\infty}^{\infty} dx\,|x\rangle\langle x|=\mathbb I,
+\qquad \psi(x)=\langle x|\psi\rangle.
+\]
+Then expansion becomes
+\[
+|\psi\rangle=\int dx\,|x\rangle\psi(x).
+\]
+
+\subsection{Inner product in wavefunctions}
+Insert the continuous identity:
+\[
+\langle\phi|\psi\rangle
+=\int dx\,\langle\phi|x\rangle\langle x|\psi\rangle
+=\int dx\,\phi^*(x)\psi(x).
+\]
+
+\section{Operators in the $x$-representation: kernels}
+Define the kernel
+\[
+A(x,x')=\langle x|\hat A|x'\rangle.
+\]
+Then
+\[
+(\hat A\psi)(x)=\langle x|\hat A|\psi\rangle
+=\int dx'\,\langle x|\hat A|x'\rangle\langle x'|\psi\rangle
+=\int dx'\,A(x,x')\psi(x').
+\]
+Expectation values become
+\[
+\langle \hat A\rangle
+=\langle\psi|\hat A|\psi\rangle
+=\int dx\,dx'\,\psi^*(x)\,A(x,x')\,\psi(x').
+\]
+
+\begin{mapbox}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Abstract (Dirac)} & \textbf{Matrix basis }|n\rangle & \textbf{Wavefunction basis }|x\rangle\\ \midrule
+$|\psi\rangle$ & $c_n=\langle n|\psi\rangle$ & $\psi(x)=\langle x|\psi\rangle$\\
+$\mathbb I$ & $\sum_n|n\rangle\langle n|$ & $\int dx\,|x\rangle\langle x|$\\
+$\hat A$ & $A_{mn}=\langle m|\hat A|n\rangle$ & $A(x,x')=\langle x|\hat A|x'\rangle$\\
+$\hat A|\psi\rangle$ & $c'_m=\sum_n A_{mn}c_n$ & $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$\\
+$\langle\phi|\psi\rangle$ & $\sum_n \phi_n^*\psi_n$ & $\int dx\,\phi^*(x)\psi(x)$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Stress: (i) the state is the same object; (ii) representation is the choice of basis; (iii) the identity resolution
+is the engine that translates expressions between representations. Preview Lecture 6: momentum basis and Fourier transform.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L05_notes_student.tex` and `L05_notes_instructor.tex`:
+
+```latex
+% L05_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L05_chapter}
+```
+
+```latex
+% L05_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L05_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck (LaTeX)
+
+Copy as `L05_slides_beamer.tex`:
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 5: Completeness and Unified Representations}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Big idea}
+One state $|\psi\rangle$; many representations:
+\[
+c_n=\langle n|\psi\rangle,\qquad \psi(x)=\langle x|\psi\rangle
+\]
+\end{frame}
+
+\begin{frame}{Completeness (discrete and continuous)}
+\[
+\sum_n|n\rangle\langle n|=\mathbb I,
+\qquad
+\int dx\,|x\rangle\langle x|=\mathbb I
+\]
+\end{frame}
+
+\begin{frame}{Basis change}
+\[
+U_{\alpha n}=\langle \alpha|n\rangle,\quad
+\psi_\alpha = \sum_n U_{\alpha n}c_n
+\]
+\end{frame}
+
+\begin{frame}{Operators}
+Matrix elements:
+\[
+A_{mn}=\langle m|\hat A|n\rangle
+\Rightarrow c' = A c
+\]
+Kernel:
+\[
+A(x,x')=\langle x|\hat A|x'\rangle
+\Rightarrow (A\psi)(x)=\int dx'\,A(x,x')\psi(x')
+\]
+\end{frame}
+
+\begin{frame}{Expectation value in $x$-rep}
+\[
+\langle A\rangle=\int dx\,dx'\,\psi^*(x)A(x,x')\psi(x')
+\]
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline
+
+Copy as `L05_slides_ppt_outline.md`:
+
+```md
+# Lecture 5: Completeness & Unified Representations
+
+## Slide 1 — Title
+- One abstract state |ψ⟩; many representations
+
+## Slide 2 — Discrete representation
+- cn = ⟨n|ψ⟩
+- |ψ⟩ = Σn |n⟩cn
+- Σn |n⟩⟨n| = I
+
+## Slide 3 — Continuous (wavefunction) representation
+- ψ(x) = ⟨x|ψ⟩
+- |ψ⟩ = ∫ dx |x⟩ψ(x)
+- ∫ dx |x⟩⟨x| = I
+
+## Slide 4 — Inner products
+- ⟨φ|ψ⟩ = Σn φn* ψn
+- ⟨φ|ψ⟩ = ∫ dx φ*(x) ψ(x)
+
+## Slide 5 — Basis change
+- Uαn = ⟨α|n⟩
+- ψα = Σn Uαn cn
+- Unitary preserves norms
+
+## Slide 6 — Operators in matrices
+- Amn = ⟨m|A|n⟩
+- c' = A c
+
+## Slide 7 — Operators as kernels
+- A(x,x') = ⟨x|A|x'⟩
+- (Aψ)(x) = ∫ dx' A(x,x') ψ(x')
+
+## Slide 8 — Expectation values unified
+- ⟨A⟩ = ⟨ψ|A|ψ⟩ = c† A c = ∫∫ ψ*(x)A(x,x')ψ(x') dx dx'
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  What is the difference between a state and its representation?
+2.  What does it mean to “insert the identity” in bra–ket notation?
+3.  Why does $$\sum_n|n\rangle\langle n|$$ equal $$\mathbb I$$?
+4.  How do coefficients transform under a change of basis?
+5.  Why is the basis-change matrix unitary?
+6.  How do operator matrices transform under basis change?
+7.  What is $$\psi(x)=\langle x|\psi\rangle$$ conceptually?
+8.  What does the operator kernel $$A(x,x')$$ represent?
+9.  How do you compute $$\langle\phi|\psi\rangle$$ in discrete vs continuous representations?
+10. What are the dangers of treating $$|x\rangle$$ as a normal vector (preview)?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+S1 Expand a state using discrete completeness; compute components  
+S2 Compute inner product using identity insertion (discrete)  
+S3 Change of basis: compute new coefficients using $$U_{\alpha n}=\langle\alpha|n\rangle$$  
+S4 Show unitarity preserves normalization in a basis change  
+S5 Derive matrix multiplication rule using inserted identity  
+S6 Translate operator expectation value: $$\langle\psi|A|\psi\rangle\leftrightarrow c^\dagger A c$$  
+S7 Define wavefunction $$\psi(x)=\langle x|\psi\rangle$$ and expand ket $$|\psi\rangle=\int dx\,|x\rangle\psi(x)$$  
+S8 Derive $$\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$$ using continuous identity  
+S9 Derive action of operator in $$x$$-rep: $$(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$$  
+S10 Evaluate expectation value in $$x$$-rep: $$\langle A\rangle=\int dx\,dx'\,\psi^*(x)A(x,x')\psi(x')$$
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+C1 Prove basis change preserves inner products (unitary invariance)  
+C2 Prove operator similarity transform under basis change: $$A' = UAU^\dagger$$ (with fixed convention)  
+C3 Prove Parseval identity in discrete and continuous forms (sum/integral)  
+C4 Show that the transformation kernel $$K(x,n)=\langle x|n\rangle$$ acts like a unitary map: $$\int dx\,K^*(x,m)K(x,n)=\delta_{mn}$$  
+C5 (MSc/PhD) Discuss rigor: why $$|x\rangle$$ is generalized and what “kernel” means (structured essay)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Representation Translator”
+
+Build a small notebook/script that:
+
+*   takes a random normalized vector $$c\in\mathbb C^N$$
+*   applies a random unitary $$U$$ to produce $$c'=Uc$$
+*   verifies normalization and invariance of inner products
+*   includes a “wavefunction-like” transform using an arbitrary orthonormal transform matrix $$K$$ (discrete analog of $$\langle x|n\rangle$$)
+
+Deliverables: code + plots + brief report.
+
+## Complex Project (CPJ): “Operator in three representations”
+
+Choose a finite-dimensional operator $$A$$ (Hermitian):
+
+1.  Abstract description: $$\hat A$$
+2.  Matrix in basis $$|n\rangle$$: $$A_{mn}$$
+3.  Kernel in a “coordinate basis” $$|x_j\rangle$$: $$A(x_i,x_j)$$ (discrete coordinate grid)
+
+Explain how:
+
+*   vectors transform,
+*   operator transforms as similarity,
+*   expectation value stays invariant.
+
+Deliverables: 8–12 page report + appendix computations.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**How did Dirac’s 1927 transformation theory unify Heisenberg’s matrix mechanics and Schrödinger’s wave mechanics?**  
+Output: 4–6 pages, include at least 6 references (textbook + historical sources).
+
+## Open-ended (ORQ)
+
+**Can one reconstruct the need for unitary basis change purely from operational measurement principles?**  
+Write a proposal with assumptions and derived consequences.
+
+***
+
+# J) Extra Problem Sheet + Homework Sheet (LaTeX)
+
+## J1) Extra practice (`L05_extra_practice.tex`)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 5 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (discrete)}
+\begin{enumerate}
+\item Use $\sum_n|n\rangle\langle n|=I$ to expand $|\psi\rangle$ in basis $\{|n\rangle\}$.
+\item Given $U=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$ and $c=(1,0)^T$, compute $c'=Uc$.
+\item For $A=\begin{pmatrix}1&2\\2&0\end{pmatrix}$ and normalized $c$, compute $\langle A\rangle=c^\dagger A c$.
+\end{enumerate}
+
+\section*{Practice B (continuous preview)}
+\begin{enumerate}
+\item Starting from $\int dx\,|x\rangle\langle x|=I$, derive $\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+\item Define $A(x,x')$ and derive $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework (`L05_homework.tex`)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 5 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S2) Derive $\langle\phi|\psi\rangle=\sum_n \phi_n^*\psi_n$ using completeness.
+\item (S4) Show normalization is preserved under $c'=Uc$ when $U$ is unitary.
+\item (S8) Derive $\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+\item (S9) Derive $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$.
+\item (C2) Prove operator matrix transforms as $A'=UAU^\dagger$.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (S5) Derive matrix multiplication from identity insertions.
+\item (C4) Show $\int dx\,K^*(x,m)K(x,n)=\delta_{mn}$.
+\item (C5) Structured essay on rigor of $|x\rangle$.
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15 problems**
+
+Each packet follows: **Problem → Suggestions → Advanced suggestions → Detailed solution**.
+
+> For brevity in chat, I keep solutions concise but complete and checkable.
+
+***
+
+## **S1 — Discrete expansion via completeness**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S1 Discrete expansion — Problem}
+Let $\{|n\rangle\}$ be an ONB with $\sum_n|n\rangle\langle n|=I$. Show $|\psi\rangle=\sum_n |n\rangle\langle n|\psi\rangle$ and identify $c_n$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert $I$ in front of $|\psi\rangle$.
+\item Define $c_n=\langle n|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret $c_n$ as amplitude for outcome $n$ in that measurement basis.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$|\psi\rangle=I|\psi\rangle=\left(\sum_n|n\rangle\langle n|\right)|\psi\rangle=\sum_n|n\rangle\langle n|\psi\rangle$.
+Define $c_n=\langle n|\psi\rangle$, giving $|\psi\rangle=\sum_n c_n|n\rangle$.
+\end{document}
+```
+
+## **S2 — Inner product in components**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S2 Inner product (discrete) — Problem}
+Let $|\psi\rangle=\sum_n\psi_n|n\rangle$ and $|\phi\rangle=\sum_n\phi_n|n\rangle$. Prove $\langle\phi|\psi\rangle=\sum_n \phi_n^*\psi_n$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $\langle\phi|=\sum_n \phi_n^*\langle n|$.
+\item Multiply out and use $\langle n|m\rangle=\delta_{nm}$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Alternatively insert identity: $\langle\phi|\psi\rangle=\sum_n\langle\phi|n\rangle\langle n|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\phi|=\sum_n\phi_n^*\langle n|$. Then
+$\langle\phi|\psi\rangle=\sum_{n,m}\phi_n^*\psi_m\langle n|m\rangle=\sum_n\phi_n^*\psi_n$.
+\end{document}
+```
+
+## **S3 — Change of basis coefficients**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L05-S3 Basis change coefficients — Problem}
+Let $\{|n\rangle\}$ and $\{|\alpha\rangle\}$ be ONBs. Define $U_{\alpha n}=\langle\alpha|n\rangle$ and $c_n=\langle n|\psi\rangle$.
+Show $\psi_\alpha=\langle\alpha|\psi\rangle=\sum_n U_{\alpha n}c_n$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert $I=\sum_n|n\rangle\langle n|$ between $\langle\alpha|$ and $|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret $U$ as change-of-basis matrix between measurement contexts.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\psi_\alpha=\langle\alpha|\psi\rangle=\sum_n\langle\alpha|n\rangle\langle n|\psi\rangle=\sum_n U_{\alpha n}c_n$.
+\end{document}
+```
+
+## **S4 — Unitary preserves normalization**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L05-S4 Unitary preserves norm — Problem}
+Let $c' = Uc$ with $U^\dagger U=I$. Show $\sum_\alpha |c'_\alpha|^2=\sum_n |c_n|^2$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use vector notation: $\|c\|^2=c^\dagger c$.
+\item Compute $(Uc)^\dagger(Uc)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret as basis-independence of $\langle\psi|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\|c'\|^2=(Uc)^\dagger(Uc)=c^\dagger U^\dagger U c=c^\dagger c=\|c\|^2$.
+\end{document}
+```
+
+## **S5 — Matrix multiplication from completeness**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S5 Matrix product rule — Problem}
+Let $A_{mn}=\langle m|\hat A|n\rangle$ and $B_{mn}=\langle m|\hat B|n\rangle$ in ONB $\{|n\rangle\}$.
+Show $(AB)_{mn}=\sum_k A_{mk}B_{kn}$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $(AB)_{mn}=\langle m|\hat A\hat B|n\rangle$.
+\item Insert $I=\sum_k |k\rangle\langle k|$ between $\hat A$ and $\hat B$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Recognize the derivation of standard matrix multiplication from Dirac notation.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$(AB)_{mn}=\langle m|\hat A\hat B|n\rangle=\sum_k \langle m|\hat A|k\rangle\langle k|\hat B|n\rangle=\sum_k A_{mk}B_{kn}$.
+\end{document}
+```
+
+## **S6 — Expectation value: Dirac ↔ matrix**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L05-S6 Expectation value equivalence — Problem}
+Let $|\psi\rangle=\sum_n c_n|n\rangle$ and $A_{mn}=\langle m|\hat A|n\rangle$. Show
+$\langle\psi|\hat A|\psi\rangle=\sum_{mn} c_m^*A_{mn}c_n = c^\dagger A c$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Expand bras/kets and use bilinearity.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Insert identities on both sides of $\hat A$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\psi|=\sum_m c_m^*\langle m|$, so
+$\langle\psi|\hat A|\psi\rangle=\sum_{mn} c_m^*\langle m|\hat A|n\rangle c_n=\sum_{mn}c_m^*A_{mn}c_n=c^\dagger A c$.
+\end{document}
+```
+
+## **S7 — Wavefunction as projection**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S7 Wavefunction definition — Problem}
+Assume $\int dx\,|x\rangle\langle x|=I$. Define $\psi(x)=\langle x|\psi\rangle$ and show
+$|\psi\rangle=\int dx\,|x\rangle\psi(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert the identity in front of $|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret $\psi(x)$ as the coordinate of $|\psi\rangle$ in the position basis.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$|\psi\rangle=I|\psi\rangle=\int dx\,|x\rangle\langle x|\psi\rangle=\int dx\,|x\rangle\psi(x)$.
+\end{document}
+```
+
+## **S8 — Inner product as integral**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S8 Inner product (continuous) — Problem}
+Assume $\int dx\,|x\rangle\langle x|=I$. Show $\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert the identity between $\langle\phi|$ and $|\psi\rangle$.
+\item Use $\langle\phi|x\rangle=\phi^*(x)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Note the analogy to the discrete sum formula.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\phi|\psi\rangle=\int dx\,\langle\phi|x\rangle\langle x|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+\end{document}
+```
+
+## **S9 — Operator action as kernel integral**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S9 Operator kernel action — Problem}
+Define $A(x,x')=\langle x|\hat A|x'\rangle$. Show $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $(A\psi)(x)=\langle x|\hat A|\psi\rangle$.
+\item Insert $I=\int dx'|x'\rangle\langle x'|$ after $\hat A$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Emphasize the analogy with $c'=Ac$ in discrete bases.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$(A\psi)(x)=\langle x|\hat A|\psi\rangle=\int dx'\,\langle x|\hat A|x'\rangle\langle x'|\psi\rangle=\int dx'\,A(x,x')\psi(x')$.
+\end{document}
+```
+
+## **S10 — Expectation value as double integral**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-S10 Expectation value (kernel) — Problem}
+Show $\langle\psi|\hat A|\psi\rangle=\int dx\,dx'\,\psi^*(x)A(x,x')\psi(x')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert $I=\int dx\,|x\rangle\langle x|$ on both sides of $\hat A$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Compare to $c^\dagger A c$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\psi|\hat A|\psi\rangle=\int dx\,dx'\,\langle\psi|x\rangle\langle x|\hat A|x'\rangle\langle x'|\psi\rangle=\int dx\,dx'\,\psi^*(x)A(x,x')\psi(x')$.
+\end{document}
+```
+
+***
+
+## **C1 — Unitary invariance of inner products**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L05-C1 Inner product invariance — Problem}
+Let $c'=Uc$ and $\phi'=U\phi$ with $U^\dagger U=I$. Prove $(\phi')^\dagger c'=\phi^\dagger c$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Compute $(U\phi)^\dagger(Uc)=\phi^\dagger U^\dagger U c$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret as basis-independence of $\langle\phi|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$(\phi')^\dagger c'=(U\phi)^\dagger(Uc)=\phi^\dagger U^\dagger U c=\phi^\dagger c$.
+\end{document}
+```
+
+## **C2 — Similarity transform of operator matrices**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L05-C2 Operator transforms under basis change — Problem}
+Assume coefficient vectors transform as $c'=Uc$ when switching from basis $|n\rangle$ to $|\alpha\rangle$.
+Show that the matrix representing the same operator satisfies $A' = UAU^\dagger$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Require that applying the operator then changing basis equals changing basis then applying the new matrix:
+$c'_{\text{out}} = U(Ac)$ and also $c'_{\text{out}} = A'(Uc)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use equality for all $c$ to deduce $UA = A'U$ and hence $A'=UAU^\dagger$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+We demand representation consistency:
+\[
+c'_{\text{out}} = U(Ac) \quad\text{and}\quad c'_{\text{out}} = A'(Uc).
+\]
+Thus for all $c$, $UA c = A'U c$, so $UA = A'U$.
+Multiply on the right by $U^\dagger$: $UAU^\dagger = A'(UU^\dagger)=A'$.
+\end{document}
+```
+
+## **C3 — Parseval identity (discrete and continuous)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L05-C3 Parseval identities — Problem}
+Show (i) $\langle\psi|\psi\rangle=\sum_n|\langle n|\psi\rangle|^2$ and (ii) $\langle\psi|\psi\rangle=\int dx\,|\psi(x)|^2$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert discrete identity and continuous identity.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret both as “total probability = 1” in different measurement contexts.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+(i) $\langle\psi|\psi\rangle=\langle\psi|(\sum_n|n\rangle\langle n|)|\psi\rangle=\sum_n|\langle n|\psi\rangle|^2$.
+(ii) similarly $\langle\psi|\psi\rangle=\int dx\,\langle\psi|x\rangle\langle x|\psi\rangle=\int dx\,|\psi(x)|^2$.
+\end{document}
+```
+
+## **C4 — Kernel unitarity condition**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L05-C4 Transformation kernel orthonormality — Problem}
+Let $K(x,n)=\langle x|n\rangle$. Show that completeness and orthonormality imply
+\[
+\int dx\,K^*(x,m)K(x,n)=\delta_{mn}.
+\]
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Start from $\delta_{mn}=\langle m|n\rangle$.
+\item Insert $I=\int dx\,|x\rangle\langle x|$ between $\langle m|$ and $|n\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Recognize this as “columns of the transformation are orthonormal” in the continuous sense.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\delta_{mn}=\langle m|n\rangle=\int dx\,\langle m|x\rangle\langle x|n\rangle
+=\int dx\,K^*(x,m)K(x,n).
+\]
+\end{document}
+```
+
+## **C5 — Structured essay: rigor of $$|x\rangle$$ and kernels**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L05-C5 Rigor essay — Problem}
+Write a 1--2 page structured essay:
+\begin{enumerate}
+\item Why is $|x\rangle$ a ``generalized'' eigenvector rather than an element of $\mathcal H$?
+\item What does it mean to treat $A(x,x')$ as a kernel?
+\item Which manipulations in this lecture are formal and which are rigorous in $L^2(\mathbb R)$?
+\end{enumerate}
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Mention delta-normalization and distributions.
+\item Keep it conceptual; no measure theory required.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Preview rigged Hilbert space: $\Phi\subset\mathcal H\subset\Phi'$.
+\item Connect to why Lecture 12 exists.
+\end{itemize}
+
+\newpage\section*{Detailed solution (model outline)}
+A good answer should state:
+\begin{itemize}
+\item $|x\rangle$ is not square-integrable; it is delta-normalized and lives as a distributional object.
+\item Kernels encode operator action via integral transforms; bounded operators yield well-defined integral kernels in many contexts.
+\item Formal steps become rigorous in the framework of distributions / rigged Hilbert spaces; in $L^2$ the wavefunction is the true vector, and $|x\rangle$ is a generalized basis.
+\end{itemize}
+\end{document}
+```
+
+***
+
+# ✅ Next step: Lecture 6
+
+Since Lecture 5 unified wavefunction representation already, **Lecture 6** naturally becomes:
+
+*   continuous bases in detail: $$|x\rangle$$, $$|p\rangle$$, delta normalization
+*   explicit Fourier transform as basis change via $$\langle x|p\rangle$$
+*   operator representations $$x$$ and $$p$$ acting on wavefunctions
+
+When you’re ready, say: **“Proceed to Lecture 6”**, and I’ll generate the full artifact package with **10 SPS + 5 CPS + full packets** again.

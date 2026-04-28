@@ -1,0 +1,62 @@
+{
+  "C": {
+    "bg": "0A0E1A",
+    "bgCard": "111827",
+    "bgAlt": "131C2E",
+    "accent1": "6366F1",
+    "accent2": "A78BFA",
+    "accent3": "34D399",
+    "accent4": "F59E0B",
+    "accent5": "38BDF8",
+    "accent6": "FB7185",
+    "text": "F1F5F9",
+    "textSub": "94A3B8",
+    "textDim": "475569",
+    "divider": "1E2A3A",
+    "hs": "FCD34D",
+    "begug": "6EE7B7",
+    "advug": "93C5FD",
+    "msc": "C4B5FD",
+    "phd": "F87171"
+  },
+  "W": 13.3,
+  "H": 7.5,
+  "FONT_HEAD": "Calibri",
+  "FONT_BODY": "Calibri",
+  "LEVELS": [
+    [
+      "HS",
+      "FCD34D"
+    ],
+    [
+      "BegUG",
+      "6EE7B7"
+    ],
+    [
+      "AdvUG",
+      "93C5FD"
+    ],
+    [
+      "MSc",
+      "C4B5FD"
+    ],
+    [
+      "PhD",
+      "F87171"
+    ]
+  ],
+  "LECTURE_ACCENTS": [
+    "6366F1",
+    "A78BFA",
+    "34D399",
+    "F59E0B",
+    "38BDF8",
+    "FB7185",
+    "6366F1",
+    "34D399",
+    "A78BFA",
+    "F59E0B",
+    "38BDF8",
+    "FB7185"
+  ]
+}

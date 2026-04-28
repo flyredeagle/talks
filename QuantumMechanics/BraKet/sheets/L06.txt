@@ -1,0 +1,923 @@
+=============================================
+Lecture 6
+=============================================
+Proceeding to **Lecture 6** ✅ — here is the **complete Lecture 6 artifact package** in the same standardized format as Lectures 1–5, with:
+
+*   ✅ Narrative + derivations (**LaTeX source; student/instructor toggle**)
+*   ✅ Slides (**Beamer LaTeX + PowerPoint outline**)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra problem sheet + homework sheet (**LaTeX**)
+*   ✅ Simple & complex projects
+*   ✅ Well-defined & open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (each: Problem → Suggestions → Advanced suggestions → Detailed solution)
+
+> **Lecture 6 focus:** continuous bases $$|x\rangle,|p\rangle$$, delta normalization, completeness integrals, Fourier transform via $$\langle x|p\rangle$$, operator representations $$x$$ and $$p$$, and a first careful “rigor warning” (distributions).
+
+***
+
+# **Lecture 6 — Continuous Bases: $$|x\rangle$$, $$|p\rangle$$, Delta Functions, Fourier Transform**
+
+### Dirac (abstract) ↔ Matrix/Kernel ↔ Wavefunction representations (fully unified)
+
+## 90‑minute pacing
+
+*   **0–15:** Why continuous bases are “generalized”; measurement with continuous outcomes
+*   **15–35:** Position basis: $$\langle x|x'\rangle=\delta(x-x')$$, $$\int |x\rangle\langle x|dx=\mathbb I$$
+*   **35–55:** Momentum basis and overlap $$\langle x|p\rangle$$; derive Fourier transform relations
+*   **55–75:** Operator representations: $$\hat x$$ multiplication, $$\hat p=-i\hbar\partial_x$$
+*   **75–90:** Kernels $$A(x,x')$$, expectation values, commutator preview $$[\hat x,\hat p]=i\hbar$$
+
+## Core outcomes
+
+Students can:
+
+1.  Use continuous completeness to expand kets and compute inner products
+2.  Interpret $$\psi(x)=\langle x|\psi\rangle$$ and $$\phi(p)=\langle p|\psi\rangle$$ as coordinate representations
+3.  Derive Fourier transform relation using $$\langle x|p\rangle$$
+4.  Represent operators $$x$$ and $$p$$ in the $$x$$-representation
+5.  Compute expectation values in integral form and identify where delta/distributions are formal
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Dirac:** *The Principles of Quantum Mechanics* — generalized eigenkets, delta normalization, transformation theory
+*   **Sakurai & Napolitano:** *Modern Quantum Mechanics* — continuous spectra, $$x/p$$ representations, Fourier relations
+
+## Tiered references (suggested)
+
+*   **HS:** concept-only: continuous outcomes, probability density vs probability
+*   **BegUG:** Fourier transform basics; integrals; distributions at “delta as sifting” level
+*   **AdvUG:** careful delta manipulations; normalization conventions; operator kernels
+*   **MSc:** distributions formally; transformation kernels; Plancherel theorem intuition
+*   **PhD:** rigged Hilbert space; unbounded operators and domains
+
+## Historical anchors (for narrative/reading prompts)
+
+*   **Heisenberg (1925):** observables and transition structures (matrix mechanics)
+*   **Schrödinger (1926):** wave mechanics and $$\psi(x)$$
+*   **Dirac (1927):** transformation theory ($$\langle x|p\rangle$$ as kernel)
+*   **von Neumann (1932):** continuous spectra rigor and operator foundations
+
+## Expansion hooks
+
+*   Momentum operator and translations → Lecture 8 (time evolution) and Lecture 10 (rotations/spin)
+*   Continuous spectra rigor → Lecture 12 (rigged Hilbert spaces)
+*   Commutators and uncertainty → Lecture 7
+
+***
+
+# B) Learning tiers (Lecture 6 add-ons)
+
+## HS
+
+*   Probability density $$|\psi(x)|^2$$ vs probability in an interval
+*   “Continuous outcomes” intuition (no delta formalism)
+
+## BegUG
+
+*   Delta function as “sifting”: $$\int f(x)\delta(x-a)\,dx=f(a)$$
+*   Fourier transform basics
+
+## AdvUG
+
+*   Derive $$\hat p=-i\hbar\partial_x$$ from $$\langle x|p\rangle$$
+*   Understand normalization conventions $$\langle x|x'\rangle=\delta(x-x')$$
+
+## MSc
+
+*   Plancherel/Parseval as unitarity of Fourier transform
+*   Kernel viewpoint: transformations are integral operators
+
+## PhD
+
+*   Domains of $$x$$ and $$p$$; generalized eigenvectors $$|x\rangle,|p\rangle\notin\mathcal H$$
+*   Rigged Hilbert space preview: $$\Phi\subset \mathcal H\subset \Phi'$$
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as `L06_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Unified dictionary: Dirac $\leftrightarrow$ Wavefunctions $\leftrightarrow$ Kernels}
+
+\title{Lecture 6: Continuous Bases, Delta Functions, and Fourier Transform}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: Continuous outcomes and generalized bases
+\item 15--35: Position basis: $\langle x|x'\rangle=\delta(x-x')$, $\int |x\rangle\langle x|dx=I$
+\item 35--55: Momentum basis and $\langle x|p\rangle$; Fourier transform relations
+\item 55--75: Operator representations: $\hat x$ as multiplication, $\hat p=-i\hbar\partial_x$
+\item 75--90: Kernels $A(x,x')$; expectation values; commutator preview
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Use $\int dx\,|x\rangle\langle x|=I$ to derive $\psi(x)=\langle x|\psi\rangle$ and inner products.
+\item Derive Fourier transform between $\psi(x)$ and $\phi(p)=\langle p|\psi\rangle$ from $\langle x|p\rangle$.
+\item Derive $\hat p=-i\hbar\partial_x$ in the $x$-representation and compute expectation values.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Continuous outcomes and generalized bases}
+In many measurements (e.g. position), outcomes are continuous. We model this by a continuum of kets $|x\rangle$.
+These kets are \emph{generalized} eigenstates: they are not normalizable in the usual sense, and their overlaps
+involve the Dirac delta distribution.
+
+\begin{warnbox}
+$|x\rangle$ is not a normal element of $\mathcal H$ (it is delta-normalized). Treat it as a formal tool whose
+consistent use is justified later (rigged Hilbert spaces).
+\end{warnbox}
+
+\section{Position basis}
+Postulate (formal):
+\[
+\langle x|x'\rangle=\delta(x-x'),\qquad \int_{-\infty}^{\infty} dx\,|x\rangle\langle x| = I.
+\]
+Define the wavefunction:
+\[
+\psi(x)=\langle x|\psi\rangle.
+\]
+Then expansion follows by inserting identity:
+\[
+|\psi\rangle = \int dx\,|x\rangle\langle x|\psi\rangle = \int dx\,|x\rangle\,\psi(x).
+\]
+
+\subsection{Inner product}
+\[
+\langle\phi|\psi\rangle=\int dx\,\langle\phi|x\rangle\langle x|\psi\rangle
+=\int dx\,\phi^*(x)\psi(x).
+\]
+
+\section{Momentum basis and Fourier transform}
+Similarly define momentum kets $|p\rangle$ with
+\[
+\langle p|p'\rangle=\delta(p-p'),\qquad \int dp\,|p\rangle\langle p|=I,\qquad \phi(p)=\langle p|\psi\rangle.
+\]
+Choose the standard convention:
+\[
+\langle x|p\rangle = \frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}.
+\]
+Insert the momentum identity to relate representations:
+\[
+\psi(x)=\langle x|\psi\rangle=\int dp\,\langle x|p\rangle\langle p|\psi\rangle
+=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p).
+\]
+Similarly,
+\[
+\phi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int dx\,e^{-ipx/\hbar}\psi(x).
+\]
+Thus the change of basis between $x$ and $p$ is a Fourier transform.
+
+\section{Operators in the $x$-representation}
+\subsection{Position operator}
+Because $\hat x|x\rangle = x|x\rangle$, we get
+\[
+(\hat x\psi)(x)=\langle x|\hat x|\psi\rangle = x\langle x|\psi\rangle = x\psi(x).
+\]
+
+\subsection{Momentum operator}
+Because $\hat p|p\rangle = p|p\rangle$, we compute
+\[
+\langle x|\hat p|\psi\rangle = \int dp\,\langle x|p\rangle\,p\,\phi(p).
+\]
+Using $\langle x|p\rangle\propto e^{ipx/\hbar}$, note that $p e^{ipx/\hbar} = -i\hbar\,\partial_x e^{ipx/\hbar}$.
+Move $-i\hbar\partial_x$ outside the integral (formal):
+\[
+(\hat p\psi)(x) = -i\hbar\,\frac{d}{dx}\psi(x).
+\]
+
+\section{Kernels and expectation values}
+Define the kernel of an operator:
+\[
+A(x,x')=\langle x|\hat A|x'\rangle.
+\]
+Then
+\[
+(\hat A\psi)(x)=\int dx'\,A(x,x')\psi(x').
+\]
+Expectation value:
+\[
+\langle\hat A\rangle=\langle\psi|\hat A|\psi\rangle = \int dx\,dx'\,\psi^*(x)A(x,x')\psi(x').
+\]
+For $\hat x$, the kernel is $x\delta(x-x')$; for $\hat p$, it is $-i\hbar\,\partial_x\delta(x-x')$ (formal).
+
+\begin{mapbox}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Dirac} & \textbf{$x$-rep} & \textbf{$p$-rep}\\ \midrule
+$\psi(x)=\langle x|\psi\rangle$ & wavefunction & $\phi(p)=\langle p|\psi\rangle$\\
+$I=\int dx\,|x\rangle\langle x|$ & completeness & $I=\int dp\,|p\rangle\langle p|$\\
+$\langle x|p\rangle$ & kernel & Fourier phase\\
+$\hat x$ & $(x\psi)(x)$ & $i\hbar\,\partial_p\phi(p)$ (preview)\\
+$\hat p$ & $-i\hbar\partial_x\psi(x)$ & $(p\phi)(p)$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Emphasize that delta-normalized kets are formal objects; highlight where integration by parts is used to derive
+$\hat p=-i\hbar\partial_x$ and note boundary conditions assumptions. Preview commutator $[\hat x,\hat p]=i\hbar$
+and uncertainty (Lecture 7).
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L06_notes_student.tex` and `L06_notes_instructor.tex`:
+
+```latex
+% L06_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L06_chapter}
+```
+
+```latex
+% L06_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L06_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck (LaTeX)
+
+Copy as `L06_slides_beamer.tex`:
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 6: Continuous Bases and Fourier Transform}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Position basis}
+\[
+\langle x|x'\rangle=\delta(x-x'),\qquad \int dx\,|x\rangle\langle x|=I
+\]
+\[
+\psi(x)=\langle x|\psi\rangle,\qquad |\psi\rangle=\int dx\,|x\rangle\psi(x)
+\]
+\end{frame}
+
+\begin{frame}{Momentum basis and overlap}
+\[
+\langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}
+\]
+\[
+\psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p)
+\]
+\end{frame}
+
+\begin{frame}{Operators}
+\[
+(\hat x\psi)(x)=x\psi(x),\qquad (\hat p\psi)(x)=-i\hbar\frac{d}{dx}\psi(x)
+\]
+\end{frame}
+
+\begin{frame}{Kernel form}
+\[
+A(x,x')=\langle x|\hat A|x'\rangle,\qquad (A\psi)(x)=\int dx'\,A(x,x')\psi(x')
+\]
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline
+
+Copy as `L06_slides_ppt_outline.md`:
+
+```md
+# Lecture 6: Continuous Bases (|x>, |p>) and Fourier Transform
+
+## Slide 1 — Title
+- Continuous outcomes and generalized bases
+
+## Slide 2 — Position basis
+- <x|x'> = δ(x-x')
+- ∫ |x><x| dx = I
+- ψ(x) = <x|ψ>
+
+## Slide 3 — Inner product
+- <φ|ψ> = ∫ φ*(x) ψ(x) dx
+
+## Slide 4 — Momentum basis
+- <p|p'> = δ(p-p')
+- ∫ |p><p| dp = I
+- φ(p) = <p|ψ>
+
+## Slide 5 — Overlap kernel
+- <x|p> = (1/√(2πħ)) e^{ipx/ħ}
+
+## Slide 6 — Fourier relations
+- ψ(x) = (1/√(2πħ)) ∫ e^{ipx/ħ} φ(p) dp
+- φ(p) = (1/√(2πħ)) ∫ e^{-ipx/ħ} ψ(x) dx
+
+## Slide 7 — Operators in x-rep
+- x: (xψ)(x) = x ψ(x)
+- p: (pψ)(x) = -iħ ∂x ψ(x)
+
+## Slide 8 — Operator kernel
+- A(x,x') = <x|A|x'>
+- (Aψ)(x) = ∫ A(x,x') ψ(x') dx'
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  Why is position measurement modeled by a continuous basis?
+2.  What does $$\delta(x-x')$$ mean operationally (sifting)?
+3.  Why can’t $$|x\rangle$$ be normalized like discrete basis vectors?
+4.  What is $$\psi(x)$$ in Dirac language?
+5.  What does completeness $$\int |x\rangle\langle x|dx=I$$ accomplish?
+6.  Why is $$\langle x|p\rangle$$ an exponential?
+7.  How does the Fourier transform arise as a basis change?
+8.  Why does $$\hat x$$ act by multiplication in the $$x$$-representation?
+9.  How do we derive $$\hat p=-i\hbar\partial_x$$ and what assumptions enter?
+10. What is an operator kernel $$A(x,x')$$ and why is it useful?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+**S1** Use $$\int|x\rangle\langle x|dx=I$$ to derive $$|\psi\rangle=\int dx\,|x\rangle\psi(x)$$  
+**S2** Derive $$\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$$  
+**S3** Prove “sifting” identity $$\int dx\,f(x)\delta(x-a)=f(a)$$ (formal)  
+**S4** Show $$\int dx\,\delta(x-x')g(x)=g(x')$$  
+**S5** Given $$\langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}$$, derive Fourier pair between $$\psi(x)$$ and $$\phi(p)$$  
+**S6** Verify normalization consistency: if $$\int dx|\psi(x)|^2=1$$, then $$\int dp|\phi(p)|^2=1$$ (use Parseval result stated; proof in CPS)  
+**S7** Show $$(\hat x\psi)(x)=x\psi(x)$$  
+**S8** Derive $$(\hat p\psi)(x)=-i\hbar\partial_x\psi(x)$$ from $$\langle x|p\rangle$$  
+**S9** Show kernel action: $$(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$$  
+**S10** Compute $$\langle x\rangle=\int dx\,x|\psi(x)|^2$$ and $$\langle p\rangle=\int dp\,p|\phi(p)|^2$$ for a given example
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+**C1** Prove Parseval/Plancherel for the chosen $$\langle x|p\rangle$$ normalization: $$\int | \psi(x)|^2dx=\int |\phi(p)|^2dp$$  
+**C2** Derive $$\langle x|p\rangle$$ normalization by enforcing $$\langle p|p'\rangle=\delta(p-p')$$  
+**C3** Prove $$[\hat x,\hat p]=i\hbar$$ acting on a suitable class of wavefunctions  
+**C4** Show translation operator $$T(a)=e^{-ia\hat p/\hbar}$$ satisfies $$(T(a)\psi)(x)=\psi(x-a)$$ (formal)  
+**C5 (MSc/PhD)** Structured essay: what is “rigor” behind $$|x\rangle$$, delta functions, and integration by parts assumptions?
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Fourier Transform Lab”
+
+*   Choose 3 normalized wavefunctions (Gaussian, box, superposition of Gaussians)
+*   Numerically compute Fourier transform to momentum space
+*   Plot $$|\psi(x)|^2$$ and $$|\phi(p)|^2$$; verify normalization
+
+Deliverables: code + plots + 2-page explanation.
+
+## Complex Project (CPJ): “Operator representations and kernels”
+
+*   Implement $$\hat x$$ and $$\hat p$$ in $$x$$-space
+*   Verify commutator numerically on test functions
+*   Construct kernels $$x\delta(x-x')$$ and $$-i\hbar\partial_x\delta(x-x')$$ in discrete approximation and compare actions
+
+Deliverables: 8–12 page report + appendix.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**How did Dirac’s transformation theory explain the equivalence of Schrödinger wave mechanics and operator/matrix methods for continuous variables?**  
+(4–6 pages; must include explanation of $$\langle x|p\rangle$$ as a transformation kernel)
+
+## Open-ended (ORQ)
+
+**Can the canonical commutation relation $$[\hat x,\hat p]=i\hbar$$ be derived purely from operational measurement assumptions?**  
+Write a proposal with assumptions and consequences.
+
+***
+
+# J) Extra problem sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice (`L06_extra_practice.tex`)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 6 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (delta and completeness)}
+\begin{enumerate}
+\item Use $\int dx\,|x\rangle\langle x|=I$ to show $|\psi\rangle=\int dx\,|x\rangle\psi(x)$.
+\item Verify $\int dx\,\delta(x-a)f(x)=f(a)$ for $f(x)=x^2$.
+\item Show $\int dx\,\delta(x-x')g(x)=g(x')$.
+\end{enumerate}
+
+\section*{Practice B (Fourier and operators)}
+\begin{enumerate}
+\item Derive $\psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p)$.
+\item Show $(\hat p\psi)(x)=-i\hbar\partial_x\psi(x)$ assuming boundary terms vanish.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework (`L06_homework.tex`)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 6 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S2) Derive $\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+\item (S5) Derive Fourier relation between $\psi(x)$ and $\phi(p)$.
+\item (S8) Derive $(\hat p\psi)(x)=-i\hbar\partial_x\psi(x)$.
+\item (C1) Prove Parseval/Plancherel for the chosen normalization.
+\item (C3) Prove $[\hat x,\hat p]=i\hbar$ on a suitable function class.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (C4) Translation operator acts as shift.
+\item (C2) Derive normalization constant in $\langle x|p\rangle$.
+\item (C5) Essay on rigor and generalized eigenkets.
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15 problems** (10 SPS + 5 CPS)
+
+Each packet below is a complete mini-document: **Problem → Suggestions → Advanced → Detailed solution**.
+
+> Copy each block into separate files `L06_S1.tex` … `L06_C5.tex` as desired.
+
+***
+
+## **S1 — Expand ket in position basis**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L06-S1 Expansion in $x$-basis — Problem}
+Assume $\int dx\,|x\rangle\langle x|=I$. Define $\psi(x)=\langle x|\psi\rangle$ and show
+$|\psi\rangle=\int dx\,|x\rangle\psi(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert the identity in front of $|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret $\psi(x)$ as the coordinate of the abstract ket in the $x$ basis.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$|\psi\rangle=I|\psi\rangle=\int dx\,|x\rangle\langle x|\psi\rangle=\int dx\,|x\rangle\psi(x)$.
+\end{document}
+```
+
+## **S2 — Inner product as an integral**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L06-S2 Inner product — Problem}
+Assume $\int dx\,|x\rangle\langle x|=I$. Show $\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert the identity between $\langle\phi|$ and $|\psi\rangle$.
+\item Use $\langle\phi|x\rangle=\phi^*(x)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Compare to discrete formula $\sum_n \phi_n^*\psi_n$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\phi|\psi\rangle=\int dx\,\langle\phi|x\rangle\langle x|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+\end{document}
+```
+
+## **S3 — Delta “sifting”**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-S3 Sifting — Problem}
+Assuming the sifting property of $\delta$, evaluate $\int dx\,f(x)\delta(x-a)$ and state the result.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Recall $\delta(x-a)$ ``picks out'' the value at $x=a$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Mention that $\delta$ is a distribution, not an ordinary function.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+By definition of the Dirac delta distribution,
+\[
+\int_{-\infty}^{\infty} f(x)\delta(x-a)\,dx=f(a).
+\]
+\end{document}
+```
+
+## **S4 — Delta with shifted argument**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-S4 Delta action — Problem}
+Evaluate $\int dx\,\delta(x-x')g(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Treat $x'$ as a constant; apply sifting.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Explain why this is the continuum analog of $\sum_n \delta_{nn'}g_n=g_{n'}$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\int dx\,\delta(x-x')g(x)=g(x').
+\]
+\end{document}
+```
+
+## **S5 — Fourier relation from $$\langle x|p\rangle$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L06-S5 Fourier transform — Problem}
+Assume $\langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}$ and $I=\int dp\,|p\rangle\langle p|$.
+Show $\psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert $I$ in $\psi(x)=\langle x|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Identify $\phi(p)=\langle p|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\psi(x)=\langle x|\psi\rangle=\int dp\,\langle x|p\rangle\langle p|\psi\rangle
+=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p).
+\]
+\end{document}
+```
+
+## **S6 — Normalization consistency (stated)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-S6 Norm consistency — Problem}
+Assume Parseval/Plancherel holds for the chosen normalization. Show that if $\int dx|\psi(x)|^2=1$ then $\int dp|\phi(p)|^2=1$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\int dx|\psi(x)|^2=\int dp|\phi(p)|^2$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Note: the proof is asked in C1.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+By Parseval/Plancherel, $\int dx|\psi(x)|^2=\int dp|\phi(p)|^2$. If the left side equals 1, the right side equals 1.
+\end{document}
+```
+
+## **S7 — $$\hat x$$ acts by multiplication**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L06-S7 Position operator — Problem}
+Using $\hat x|x\rangle=x|x\rangle$, show $(\hat x\psi)(x)=x\psi(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Start from $(\hat x\psi)(x)=\langle x|\hat x|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Insert $I=\int dx'|x'\rangle\langle x'|$ if needed.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+(\hat x\psi)(x)=\langle x|\hat x|\psi\rangle=\langle x|x|\psi\rangle=x\langle x|\psi\rangle=x\psi(x).
+\]
+\end{document}
+```
+
+## **S8 — Derive $$\hat p=-i\hbar\partial_x$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L06-S8 Momentum operator — Problem}
+Assume $\langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}$ and $\phi(p)=\langle p|\psi\rangle$.
+Show $(\hat p\psi)(x)=-i\hbar\,\partial_x\psi(x)$ (formal).
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $(\hat p\psi)(x)=\langle x|\hat p|\psi\rangle=\int dp\,\langle x|p\rangle\,p\,\phi(p)$.
+\item Use $p e^{ipx/\hbar}=-i\hbar \partial_x e^{ipx/\hbar}$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Move $\partial_x$ outside the integral and recognize the remaining integral as $\psi(x)$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+(\hat p\psi)(x)=\int dp\,\langle x|p\rangle\,p\,\phi(p)
+=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,p\,e^{ipx/\hbar}\phi(p).
+\]
+Since $p e^{ipx/\hbar}=-i\hbar\partial_x e^{ipx/\hbar}$,
+\[
+(\hat p\psi)(x)= -i\hbar\,\partial_x\left(\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p)\right)
+=-i\hbar\,\partial_x\psi(x).
+\]
+\end{document}
+```
+
+## **S9 — Kernel action**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L06-S9 Kernel action — Problem}
+Let $A(x,x')=\langle x|\hat A|x'\rangle$. Show $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Start from $(A\psi)(x)=\langle x|\hat A|\psi\rangle$.
+\item Insert $I=\int dx'|x'\rangle\langle x'|$ after $\hat A$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Relate to discrete formula $c'_m=\sum_n A_{mn}c_n$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+(A\psi)(x)=\langle x|\hat A|\psi\rangle=\int dx'\,\langle x|\hat A|x'\rangle\langle x'|\psi\rangle
+=\int dx'\,A(x,x')\psi(x').
+\]
+\end{document}
+```
+
+## **S10 — Expectation values in $$x$$ and $$p$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-S10 Expectations — Problem}
+State the formulas for $\langle x\rangle$ and $\langle p\rangle$ in terms of $\psi(x)$ and $\phi(p)$, respectively.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use probability densities $|\psi(x)|^2$ and $|\phi(p)|^2$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Mention assumptions: normalized states and standard Born rule.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\langle x\rangle=\int dx\,x|\psi(x)|^2,\qquad \langle p\rangle=\int dp\,p|\phi(p)|^2.
+\]
+\end{document}
+```
+
+***
+
+## **C1 — Parseval/Plancherel proof**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-C1 Parseval/Plancherel — Problem}
+With $\psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p)$ and
+$\phi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int dx\,e^{-ipx/\hbar}\psi(x)$, prove
+\[
+\int dx\,|\psi(x)|^2=\int dp\,|\phi(p)|^2.
+\]
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $\int dx\,\psi^*(x)\psi(x)$ and substitute the Fourier forms.
+\item Use $\int dx\,e^{i(p-p')x/\hbar}=2\pi\hbar\,\delta(p-p')$ (distribution identity).
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Keep track of constants carefully; they cancel with $1/(2\pi\hbar)$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Start:
+\[
+\int dx\,|\psi(x)|^2=\int dx\,\psi^*(x)\psi(x).
+\]
+Insert Fourier forms:
+\[
+\psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp\,e^{ipx/\hbar}\phi(p),\quad
+\psi^*(x)=\frac{1}{\sqrt{2\pi\hbar}}\int dp'\,e^{-ip'x/\hbar}\phi^*(p').
+\]
+Thus
+\[
+\int dx\,|\psi(x)|^2=\frac{1}{2\pi\hbar}\int dp\,dp'\,\phi^*(p')\phi(p)\int dx\,e^{i(p-p')x/\hbar}.
+\]
+Use $\int dx\,e^{i(p-p')x/\hbar}=2\pi\hbar\,\delta(p-p')$:
+\[
+\int dx\,|\psi(x)|^2=\int dp\,dp'\,\phi^*(p')\phi(p)\delta(p-p')=\int dp\,|\phi(p)|^2.
+\]
+\end{document}
+```
+
+## **C2 — Normalize $$\langle x|p\rangle$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-C2 Normalization of $\langle x|p\rangle$ — Problem}
+Assume $\langle x|p\rangle=C\,e^{ipx/\hbar}$. Determine $C$ by requiring $\langle p|p'\rangle=\delta(p-p')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\langle p|p'\rangle=\int dx\,\langle p|x\rangle\langle x|p'\rangle$.
+\item Note $\langle p|x\rangle=\langle x|p\rangle^*$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use $\int dx\,e^{i(p'-p)x/\hbar}=2\pi\hbar\,\delta(p'-p)$.
+\item Solve $|C|^2(2\pi\hbar)=1$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Compute
+\[
+\langle p|p'\rangle=\int dx\,\langle p|x\rangle\langle x|p'\rangle
+=\int dx\,C^*e^{-ipx/\hbar}\,C e^{ip'x/\hbar}
+=|C|^2\int dx\,e^{i(p'-p)x/\hbar}.
+\]
+Using $\int dx\,e^{i(p'-p)x/\hbar}=2\pi\hbar\,\delta(p'-p)$ gives
+\[
+\langle p|p'\rangle = |C|^2(2\pi\hbar)\delta(p'-p).
+\]
+To match $\delta(p'-p)$, require $|C|^2(2\pi\hbar)=1$, hence
+\[
+C=\frac{1}{\sqrt{2\pi\hbar}} \quad \text{(choose positive real)}.
+\]
+\end{document}
+```
+
+## **C3 — Commutator $$[\hat x,\hat p]=i\hbar$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-C3 Canonical commutator — Problem}
+Using $(\hat x\psi)(x)=x\psi(x)$ and $(\hat p\psi)(x)=-i\hbar\partial_x\psi(x)$, show
+\[
+([\hat x,\hat p]\psi)(x)=i\hbar\,\psi(x)
+\]
+for sufficiently smooth $\psi$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Compute $(\hat x\hat p\psi)(x)$ and $(\hat p\hat x\psi)(x)$.
+\item Subtract.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use product rule: $\partial_x(x\psi)=\psi+x\partial_x\psi$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Compute:
+\[
+(\hat x\hat p\psi)(x)=x(-i\hbar\partial_x\psi(x))=-i\hbar x\psi'(x).
+\]
+Next
+\[
+(\hat p\hat x\psi)(x)=-i\hbar\partial_x(x\psi(x))=-i\hbar(\psi(x)+x\psi'(x)).
+\]
+Subtract:
+\[
+([\hat x,\hat p]\psi)(x)=(\hat x\hat p-\hat p\hat x)\psi
+=-i\hbar x\psi'(x)-\big[-i\hbar(\psi+x\psi')\big]=i\hbar\psi(x).
+\]
+\end{document}
+```
+
+## **C4 — Translation operator acts as shift**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L06-C4 Translation operator — Problem}
+Let $T(a)=e^{-ia\hat p/\hbar}$. Show formally that $(T(a)\psi)(x)=\psi(x-a)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\hat p=-i\hbar\partial_x$ so $-ia\hat p/\hbar = a\partial_x$.
+\item Recall $e^{a\partial_x}f(x)=f(x+a)$ (Taylor series).
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Expand $T(a)$ as a power series and apply to $\psi$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Using $\hat p=-i\hbar\partial_x$,
+\[
+T(a)=e^{-ia\hat p/\hbar}=e^{a\partial_x}.
+\]
+Apply as a series:
+\[
+(e^{a\partial_x}\psi)(x)=\sum_{n=0}^\infty \frac{a^n}{n!}\partial_x^n\psi(x)=\psi(x+a)
+\]
+(by Taylor’s theorem). With sign conventions, this yields the shift $(T(a)\psi)(x)=\psi(x-a)$ depending on the chosen exponent sign; with $e^{-ia\hat p/\hbar}$ the shift is to the right by $a$: $\psi(x-a)$.
+\end{document}
+```
+
+## **C5 — Essay on rigor**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L06-C5 Rigor and generalized kets — Problem}
+Write a 1--2 page structured essay:
+\begin{enumerate}
+\item Why are $|x\rangle$ and $|p\rangle$ not normalizable in $\mathcal H$?
+\item Where did we use ``formal'' steps (e.g., moving derivatives outside integrals)?
+\item What assumptions ensure boundary terms vanish when deriving $\hat p=-i\hbar\partial_x$?
+\end{enumerate}
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Mention delta-normalization and distributions.
+\item Mention smoothness/decay assumptions on $\psi$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Preview rigged Hilbert space: $\Phi\subset\mathcal H\subset\Phi'$.
+\item Mention domains of unbounded operators.
+\end{itemize}
+
+\newpage\section*{Detailed solution (model outline)}
+A good answer states:
+\begin{itemize}
+\item $|x\rangle$ and $|p\rangle$ correspond to delta-normalized objects; not square-integrable, so not in $\mathcal H=L^2(\mathbb R)$.
+\item The derivation of $\hat p=-i\hbar\partial_x$ uses distributional identities and exchanging differentiation/integration.
+\item Boundary terms vanish if $\psi$ decays sufficiently fast or satisfies appropriate boundary conditions; these are domain assumptions.
+\item Rigged Hilbert spaces provide a framework where $|x\rangle$ lives as a continuous linear functional.
+\end{itemize}
+\end{document}
+```
+
+***
+
+## ✅ Next step: Lecture 7
+
+Lecture 7 naturally follows with **measurement theory + commutators + uncertainty** (Robertson–Schrödinger), using the commutator result from C3.
+
+If you’re ready, say: **“Proceed to Lecture 7”** and tell me one preference:
+
+*   Should Lecture 7 include **POVMs** already as a preview, or keep it strictly **projective measurements + Lüders** and defer POVMs to later (or optional)?

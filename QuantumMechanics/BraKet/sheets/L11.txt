@@ -1,0 +1,957 @@
+================================
+Lecture 11
+================================
+Proceeding to **Lecture 11** ✅ — and I will include a **full quantum channel taxonomy** (**CPTP**, **Kraus**, and a **Choi matrix preview**) exactly as you asked, building directly on:
+
+*   Lecture 7 (POVMs + Kraus operators as instruments),
+*   Lecture 9 (partial trace preview),
+*   Lecture 10 (entanglement + reduced states).
+
+Below is the **complete Lecture 11 artifact package** in our standardized format:
+
+*   ✅ Narrative + derivations (**LaTeX source; student/instructor toggle**)
+*   ✅ Slides (**Beamer LaTeX + PowerPoint outline**)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra practice + Homework sheets (**LaTeX**)
+*   ✅ Simple & complex projects
+*   ✅ Well-defined & open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (each: Problem → Suggestions → Advanced suggestions → Detailed solution)
+
+***
+
+# **Lecture 11 — Density Operators, Mixed States, Partial Trace, and Quantum Channels (CPTP + Kraus + Choi preview)**
+
+### Dirac ↔ Matrix ↔ Operational channels/instruments
+
+## 90‑minute pacing
+
+*   **0–15:** Pure vs mixed states; ensembles; density operator definition (von Neumann)
+*   **15–35:** Expectation values via trace; purity; Bloch representation for qubits
+*   **35–55:** Partial trace (fully now); reduced states; entanglement/mixedness connection
+*   **55–75:** Quantum channels: CPTP maps, Kraus form, and measurement instruments
+*   **75–90:** **Choi matrix preview**: CP ↔ Choi positive; TP ↔ partial trace condition; examples
+
+## Core outcomes
+
+Students can:
+
+1.  Construct density matrices for pure and mixed states and compute $$\langle A\rangle=\Tr(\rho A)$$
+2.  Compute purity $$\Tr(\rho^2)$$, Bloch vector form, and interpret mixedness
+3.  Compute reduced states with partial trace and use them for local predictions
+4.  Model open-system evolution and generalized measurement as **CPTP maps** and **Kraus operators**
+5.  Use the **Choi matrix preview** to test complete positivity and trace preservation (small examples)
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Sakurai & Napolitano** — *Modern Quantum Mechanics*: density operators, measurement, open-system previews
+*   **Dirac** — *The Principles of Quantum Mechanics*: statistical ensembles and transformations (philosophy)
+*   **Nielsen & Chuang** (supplementary): channels, Kraus, Choi (excellent for this lecture)
+
+## Tiered references (suggested)
+
+*   **HS:** probability mixtures vs quantum superposition (conceptual)
+*   **BegUG:** matrices, trace, expectation values, basic partial trace
+*   **AdvUG:** Kraus maps, CP vs positivity, invariance under basis changes
+*   **MSc:** Choi–Jamiołkowski isomorphism, instruments, channel composition
+*   **PhD:** Stinespring dilation, Choi theorem, Lindblad/GKSL preview
+
+## Historical anchors
+
+*   **von Neumann (1932):** density operators and mathematical foundations of QM
+*   **Kraus (1971):** operator-sum representation (Kraus operators)
+*   **Stinespring (1955):** dilation theorem (CP maps from unitary+ancilla)
+*   **Choi (1975) / Jamiołkowski (1972):** Choi matrix and CP characterization
+*   **Lindblad (1976):** Markovian generator form (preview, optional)
+
+## Expansion hooks
+
+*   Full open-system dynamics and master equations → optional later module / advanced extension
+*   Tomography and channels → project expansions and QIT module
+*   Rigorous operator-domain subtleties → Lecture 12
+
+***
+
+# B) Learning tiers (Lecture 11 add-ons)
+
+## HS
+
+*   Mixture = “we don’t know which state” vs superposition = “amplitude combination”
+*   Density matrix as “table” encoding probabilities and coherences (qualitative)
+
+## BegUG
+
+*   Construct $$\rho=\sum_i p_i|\psi_i\rangle\langle\psi_i|$$
+*   Use trace rule $$\langle A\rangle=\Tr(\rho A)$$
+*   Partial trace in matrix form for small systems
+
+## AdvUG
+
+*   Kraus representation and trace preservation condition $$\sum_i M_i^\dagger M_i=I$$
+*   Channel vs measurement instrument; CP necessity for entangled inputs
+
+## MSc
+
+*   Choi matrix definition and CP test
+*   Kraus extraction from Choi (eigen-decomposition) preview
+*   Composition of channels and adjoint (Heisenberg picture of channels)
+
+## PhD
+
+*   Stinespring dilation and equivalence to Kraus
+*   CP vs positivity; complete positivity necessity
+*   Choi theorem statement with proof sketch; Lindblad generator preview
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as `L11_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Taxonomy: states $\rightarrow$ channels (CPTP) $\rightarrow$ Choi preview}
+
+\title{Lecture 11: Density Operators, Partial Trace, and Quantum Channels (Kraus + Choi preview)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: Pure vs mixed; ensembles; density matrix definition
+\item 15--35: Trace rule; purity; Bloch representation
+\item 35--55: Partial trace; reduced states; local statistics
+\item 55--75: Channels: CPTP maps; Kraus operators; instruments
+\item 75--90: Choi matrix preview: CP and TP tests; examples
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Use $\rho$ to compute $\langle A\rangle=\Tr(\rho A)$ and purity $\Tr(\rho^2)$.
+\item Compute reduced states $\rho_A=\Tr_B(\rho_{AB})$ and predict local measurements.
+\item Model dynamics/measurement as CPTP maps; use Kraus form; preview Choi test for CP/TP.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Density operators: pure and mixed}
+A pure state is $|\psi\rangle$ with density operator
+\[
+\rho=|\psi\rangle\langle\psi|.
+\]
+A mixed state (ensemble) is
+\[
+\rho=\sum_i p_i |\psi_i\rangle\langle\psi_i|,\quad p_i\ge0,\ \sum_i p_i=1.
+\]
+Different ensembles can produce the same $\rho$ (non-uniqueness of decomposition).
+
+\begin{warnbox}
+Mixture is not superposition: $\rho=\frac12(|0\rangle\langle0|+|1\rangle\langle1|)$ is not the same as
+$|\!+\rangle\langle+\!|$ even though both involve $|0\rangle,|1\rangle$.
+\end{warnbox}
+
+\section{Trace rule and purity}
+Expectation values:
+\[
+\langle A\rangle=\Tr(\rho A).
+\]
+Purity:
+\[
+\gamma=\Tr(\rho^2),\quad \gamma=1 \text{ for pure states, } \gamma<1 \text{ for mixed states}.
+\]
+
+\subsection{Bloch form (qubit)}
+Any qubit state can be written
+\[
+\rho=\frac12(I+\mathbf r\cdot\sigma),\quad |\mathbf r|\le 1.
+\]
+Then $\Tr(\rho^2)=\frac12(1+|\mathbf r|^2)$.
+
+\section{Partial trace and reduced states}
+For bipartite systems,
+\[
+\rho_A=\Tr_B(\rho_{AB}).
+\]
+Key property:
+\[
+\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A).
+\]
+Operational meaning: $\rho_A$ captures all statistics of measurements performed only on subsystem $A$.
+
+\section{Quantum channels: CPTP maps}
+Open-system dynamics and measurements (when outcomes are ignored) are described by linear maps
+\[
+\mathcal E:\rho\mapsto \mathcal E(\rho)
+\]
+that are:
+\begin{itemize}
+\item Completely positive (CP)
+\item Trace preserving (TP)
+\end{itemize}
+Such maps are called CPTP.
+
+\subsection{Kraus representation}
+A CPTP map admits an operator-sum form
+\[
+\mathcal E(\rho)=\sum_k M_k\rho M_k^\dagger,
+\quad \sum_k M_k^\dagger M_k = I.
+\]
+If outcomes $k$ are observed (instrument), then
+\[
+p_k=\Tr(M_k\rho M_k^\dagger),\qquad \rho_k=\frac{M_k\rho M_k^\dagger}{p_k}.
+\]
+
+\section{Choi matrix preview}
+Define the (unnormalized) maximally entangled ket $|\Omega\rangle=\sum_{j=1}^d |j\rangle\otimes|j\rangle$.
+The Choi matrix of $\mathcal E$ is
+\[
+J(\mathcal E) = (\mathcal E\otimes I)(|\Omega\rangle\langle\Omega|).
+\]
+Key facts (preview):
+\begin{itemize}
+\item $\mathcal E$ is CP iff $J(\mathcal E)\ge 0$.
+\item $\mathcal E$ is TP iff $\Tr_{\text{out}}(J(\mathcal E))=I_{\text{in}}$ (index conventions vary; we fix below in exercises).
+\end{itemize}
+
+\begin{mapbox}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Object} & \textbf{Condition / formula}\\ \midrule
+State $\rho$ & $\rho\ge0$, $\Tr\rho=1$\\
+Reduced state & $\rho_A=\Tr_B\rho_{AB}$\\
+Channel (CPTP) & $\mathcal E(\rho)=\sum_k M_k\rho M_k^\dagger$, $\sum_k M_k^\dagger M_k=I$\\
+Instrument & $p_k=\Tr(M_k\rho M_k^\dagger)$, $\rho_k=M_k\rho M_k^\dagger/p_k$\\
+Choi matrix & $J(\mathcal E)=(\mathcal E\otimes I)(|\Omega\rangle\langle\Omega|)$\\
+CP test & $J(\mathcal E)\ge0$\\
+TP test & partial trace condition on $J(\mathcal E)$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Emphasize CP necessity: positivity on $\rho$ alone is not enough; must preserve positivity when acting on part of an entangled state.
+For Choi preview, keep it computational in $d=2$ with a simple channel (depolarizing or amplitude damping).
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L11_notes_student.tex` and `L11_notes_instructor.tex`:
+
+```latex
+% L11_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L11_chapter}
+```
+
+```latex
+% L11_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L11_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck — `L11_slides_beamer.tex`
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 11: Density Operators and Quantum Channels (Kraus + Choi preview)}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Density matrix}
+\[
+\rho=|\psi\rangle\langle\psi|,\quad \rho=\sum_i p_i|\psi_i\rangle\langle\psi_i|
+\]
+\[
+\langle A\rangle=\Tr(\rho A),\quad \text{purity } \Tr(\rho^2)
+\]
+\end{frame}
+
+\begin{frame}{Partial trace}
+\[
+\rho_A=\Tr_B(\rho_{AB}),\quad \Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)
+\]
+\end{frame}
+
+\begin{frame}{CPTP channels and Kraus form}
+\[
+\mathcal E(\rho)=\sum_k M_k\rho M_k^\dagger,\quad \sum_k M_k^\dagger M_k=I
+\]
+\end{frame}
+
+\begin{frame}{Instruments (measurement outcomes)}
+\[
+p_k=\Tr(M_k\rho M_k^\dagger),\quad \rho_k=\frac{M_k\rho M_k^\dagger}{p_k}
+\]
+\end{frame}
+
+\begin{frame}{Choi preview}
+\[
+J(\mathcal E)=(\mathcal E\otimes I)(|\Omega\rangle\langle\Omega|)
+\]
+CP iff $J\ge0$. TP iff partial trace condition.
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline — `L11_slides_ppt_outline.md`
+
+```md
+# Lecture 11: Density Operators & Quantum Channels (CPTP, Kraus, Choi preview)
+
+## Slide 1 — Title
+- Mixed states, partial trace, channels
+
+## Slide 2 — Density matrices
+- pure: ρ=|ψ⟩⟨ψ|
+- mixed: ρ=Σ pi |ψi⟩⟨ψi|
+- non-unique ensembles → same ρ
+
+## Slide 3 — Trace rule
+- ⟨A⟩ = Tr(ρA)
+- purity Tr(ρ^2)
+
+## Slide 4 — Bloch form (qubit)
+- ρ = ½(I + r·σ), |r|≤1
+
+## Slide 5 — Partial trace
+- ρA = TrB(ρAB)
+- local stats: Tr(ρAB(A⊗I)) = Tr(ρA A)
+
+## Slide 6 — Quantum channels
+- open evolution / ignore outcome = map E(ρ)
+- CPTP: completely positive + trace-preserving
+
+## Slide 7 — Kraus representation
+- E(ρ)=Σk Mk ρ Mk†
+- Σk Mk†Mk=I
+
+## Slide 8 — Measurement instrument
+- pk = Tr(Mk ρ Mk†)
+- ρk = Mk ρ Mk† / pk
+
+## Slide 9 — Choi preview
+- J(E)=(E⊗I)(|Ω⟩⟨Ω|)
+- CP iff J≥0
+- TP iff partial trace condition on J
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  What’s the operational difference between a pure and mixed state?
+2.  Why can different ensembles represent the same density matrix?
+3.  Why is $$\langle A\rangle=\Tr(\rho A)$$ the correct expectation rule?
+4.  What does purity $$\Tr(\rho^2)$$ tell you physically?
+5.  Why does entanglement make reduced states mixed?
+6.  What is the partial trace doing operationally?
+7.  What is a quantum channel and why must it be CPTP for open dynamics?
+8.  Why is positivity alone not enough (why “complete” positivity)?
+9.  How do Kraus operators encode both probabilities and state updates?
+10. What is the Choi matrix and what does it test?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+S1 Build $$\rho$$ from a pure state $$|\psi\rangle$$ and verify $$\rho^2=\rho$$  
+S2 Build $$\rho$$ for a classical mixture and compute purity  
+S3 Compute $$\langle A\rangle=\Tr(\rho A)$$ for a 2×2 example  
+S4 Convert between Bloch vector $$\mathbf r$$ and $$\rho$$ for a qubit  
+S5 Compute partial trace $$\rho_A=\Tr_B(\rho_{AB})$$ for a 2-qubit state  
+S6 Verify $$\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$$ in a specific example  
+S7 Given Kraus operators, check trace preservation condition $$\sum_k M_k^\dagger M_k=I$$  
+S8 Apply a channel $$\mathcal E$$ (Kraus form) to a qubit state $$\rho$$  
+S9 Compute measurement probabilities and poststates from Kraus operators (instrument)  
+S10 Build the Choi matrix for a simple qubit channel (preview) and check TP by partial trace (preview)
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+C1 Prove trace rule equivalence: $$\langle\psi|A|\psi\rangle=\Tr(|\psi\rangle\langle\psi|A)$$ and extend to mixtures  
+C2 Prove partial trace basis-independence (formally)  
+C3 Show Kraus completeness implies CPTP: trace preservation + complete positivity (sketch CP via dilation)  
+C4 Choi preview theorem (computational): show CP ⇔ $$J(\mathcal E)\ge0$$ in $$d=2$$ using Kraus form  
+C5 Choi ↔ Kraus extraction preview: from eigen-decomposition of $$J$$ obtain Kraus operators (outline + small example)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Channel toolbox”
+
+Implement a small tool (Python/Matlab) that:
+
+*   accepts Kraus operators $$M_k$$
+*   checks CPTP condition $$\sum_k M_k^\dagger M_k=I$$
+*   applies channel to input $$\rho$$
+*   returns output $$\rho'$$, purity, Bloch vector (qubit)
+
+Deliverables: code + README + 3 channels (depolarizing, phase damping, amplitude damping).
+
+## Complex Project (CPJ): “Choi matrix diagnostics”
+
+For several channels:
+
+*   compute $$J(\mathcal E)$$ (qubit)
+*   verify CP by eigenvalues of $$J$$
+*   verify TP by partial trace constraint
+*   optionally reconstruct Kraus operators from $$J$$ (eigenvectors)
+*   compare with original Kraus form and discuss non-uniqueness
+
+Deliverables: 8–12 page report + plots + appendix.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**Trace the evolution from von Neumann’s density operator (1932) to Kraus (1971) and Choi (1975): how did “open-system dynamics” become CPTP maps?**  
+(6–8 pages; include at least one explicit channel example in Kraus and Choi forms)
+
+## Open-ended (ORQ)
+
+**Can “complete positivity” be derived purely operationally from consistency constraints on bipartite experiments?**  
+Write a proposal with a test scenario using entangled ancillas.
+
+***
+
+# J) Extra problem sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice — `L11_extra_practice.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 11 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (states)}
+\begin{enumerate}
+\item For $|\psi\rangle=(\sqrt{3}/2,1/2)^T$, compute $\rho$ and $\Tr(\rho^2)$.
+\item For $\rho=\frac12(|0\rangle\langle0|+|1\rangle\langle1|)$ compute purity.
+\end{enumerate}
+
+\section*{Practice B (partial trace)}
+\begin{enumerate}
+\item Compute $\rho_A$ for $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$.
+\end{enumerate}
+
+\section*{Practice C (channels)}
+\begin{enumerate}
+\item For depolarizing channel $\mathcal E(\rho)=(1-p)\rho + p I/2$, compute output purity for input pure state.
+\item Compute Choi matrix of identity channel and check conditions.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework — `L11_homework.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 11 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S2) Build a mixed state density matrix and compute purity.
+\item (S5) Compute a reduced state via partial trace.
+\item (S7) Verify Kraus completeness for a given channel.
+\item (S8) Apply a Kraus channel to a qubit state.
+\item (C3) Show Kraus completeness implies trace preservation and CP (sketch CP via dilation).
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (S10) Build a Choi matrix and check TP by partial trace.
+\item (C4) CP test via Choi positivity for a qubit channel.
+\item (C5) Kraus extraction from Choi (outline + example).
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15 problems** (10 SPS + 5 CPS)
+
+Each packet is a full mini-document: **Problem → Suggestions → Advanced suggestions → Detailed solution**.
+
+> Copy into `L11_S1.tex` … `L11_C5.tex`.
+
+***
+
+## **S1 — Pure-state density matrix and idempotence**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S1 Pure state density matrix — Problem}
+Let $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$ with $|\alpha|^2+|\beta|^2=1$.
+Compute $\rho=|\psi\rangle\langle\psi|$ and show $\rho^2=\rho$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $\rho$ as a $2\times2$ matrix using outer product.
+\item Multiply $\rho$ by itself.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use $|\psi\rangle\langle\psi|\psi\rangle\langle\psi| = |\psi\rangle(\langle\psi|\psi\rangle)\langle\psi|$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\rho=\begin{pmatrix}\alpha\\ \beta\end{pmatrix}(\alpha^*,\beta^*)
+=\begin{pmatrix}|\alpha|^2 & \alpha\beta^*\\ \beta\alpha^* & |\beta|^2\end{pmatrix}.
+\]
+Then
+\[
+\rho^2=(|\psi\rangle\langle\psi|)(|\psi\rangle\langle\psi|)
+=|\psi\rangle(\langle\psi|\psi\rangle)\langle\psi|=|\psi\rangle\langle\psi|=\rho,
+\]
+since $\langle\psi|\psi\rangle=1$.
+\end{document}
+```
+
+## **S2 — Mixed state and purity**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S2 Mixture purity — Problem}
+Let $\rho=p|0\rangle\langle0|+(1-p)|1\rangle\langle1|$ with $0\le p\le1$.
+Compute $\Tr(\rho^2)$ and interpret.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item $\rho=\mathrm{diag}(p,1-p)$.
+\item Square and take trace.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show purity is $1$ only at $p=0$ or $1$ and minimal at $p=1/2$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\rho=\begin{pmatrix}p&0\\0&1-p\end{pmatrix}$ so
+$\rho^2=\mathrm{diag}(p^2,(1-p)^2)$ and
+\[
+\Tr(\rho^2)=p^2+(1-p)^2=1-2p(1-p).
+\]
+This equals $1$ only for $p\in\{0,1\}$ (pure). It is minimal at $p=1/2$ giving $\Tr(\rho^2)=1/2$ (maximally mixed qubit).
+\end{document}
+```
+
+## **S3 — Trace rule computation**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L11-S3 Trace rule — Problem}
+Let $\rho=\begin{pmatrix}1/2&1/2\\1/2&1/2\end{pmatrix}$ and $A=\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$.
+Compute $\langle A\rangle=\Tr(\rho A)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Multiply $\rho A$ then take trace.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Recognize $\rho=|+\rangle\langle+|$ and reason physically.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\rho A=\begin{pmatrix}1/2&1/2\\1/2&1/2\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+=\begin{pmatrix}1/2&-1/2\\1/2&-1/2\end{pmatrix}.
+\]
+Trace is $1/2+(-1/2)=0$. Thus $\langle A\rangle=0$.
+\end{document}
+```
+
+## **S4 — Bloch vector ↔ density matrix**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L11-S4 Bloch representation — Problem}
+Let $\rho=\frac12(I+r_z\sigma_z)$. Write $\rho$ explicitly as a matrix and compute $\Tr(\rho^2)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item $\sigma_z=\mathrm{diag}(1,-1)$.
+\item Use $\Tr(\rho^2)=\frac12(1+r_z^2)$ for qubits or compute directly.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Check pure-state condition: $|r_z|=1$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\rho=\frac12\left(\begin{pmatrix}1&0\\0&1\end{pmatrix}+r_z\begin{pmatrix}1&0\\0&-1\end{pmatrix}\right)
+=\begin{pmatrix}\frac{1+r_z}{2}&0\\0&\frac{1-r_z}{2}\end{pmatrix}.
+\]
+Then
+\[
+\Tr(\rho^2)=\left(\frac{1+r_z}{2}\right)^2+\left(\frac{1-r_z}{2}\right)^2=\frac12(1+r_z^2).
+\]
+\end{document}
+```
+
+## **S5 — Partial trace for a 2‑qubit pure state**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S5 Partial trace — Problem}
+Let $|\Psi\rangle=\sqrt{0.8}|00\rangle+\sqrt{0.2}|11\rangle$ and $\rho_{AB}=|\Psi\rangle\langle\Psi|$.
+Compute $\rho_A=\Tr_B(\rho_{AB})$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Expand $\rho_{AB}$ into four terms and trace over $B$.
+\item Cross terms vanish due to $\langle0|1\rangle=0$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Recognize it is already in Schmidt form; reduced eigenvalues are $\{0.8,0.2\}$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\rho_{AB}=0.8|00\rangle\langle00|+\sqrt{0.16}|00\rangle\langle11|+\sqrt{0.16}|11\rangle\langle00|+0.2|11\rangle\langle11|.
+\]
+Trace over $B$:
+\[
+\Tr_B(|00\rangle\langle00|)=|0\rangle\langle0|,\quad
+\Tr_B(|11\rangle\langle11|)=|1\rangle\langle1|,
+\]
+cross terms vanish. Hence
+\[
+\rho_A=0.8|0\rangle\langle0|+0.2|1\rangle\langle1|=\begin{pmatrix}0.8&0\\0&0.2\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S6 — Verify local expectation identity**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S6 Local statistics identity — Problem}
+For $\rho_{AB}$ from S5 and $A=\sigma_z$, verify $\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\rho_A$ from S5.
+\item Compute RHS directly; interpret LHS as expectation of $\sigma_z$ on subsystem $A$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item LHS can be computed by weighted outcomes: $|0\rangle$ occurs with prob 0.8 and $|1\rangle$ with prob 0.2.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+RHS:
+\[
+\Tr(\rho_A\sigma_z)=0.8(1)+0.2(-1)=0.6.
+\]
+LHS: measurement of $\sigma_z$ on $A$ yields +1 with probability 0.8 and -1 with probability 0.2, so expectation is also 0.6. Hence equality holds.
+\end{document}
+```
+
+## **S7 — Kraus completeness check**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L11-S7 CPTP check — Problem}
+Given Kraus operators
+$M_0=\begin{pmatrix}1&0\\0&\sqrt{1-\gamma}\end{pmatrix}$,
+$M_1=\begin{pmatrix}0&\sqrt{\gamma}\\0&0\end{pmatrix}$,
+show $\sum_k M_k^\dagger M_k=I$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Compute $M_0^\dagger M_0$ and $M_1^\dagger M_1$.
+\item Add them.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Recognize amplitude damping channel completeness.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+M_0^\dagger M_0=\begin{pmatrix}1&0\\0&1-\gamma\end{pmatrix},\quad
+M_1^\dagger M_1=\begin{pmatrix}0&0\\0&\gamma\end{pmatrix}.
+\]
+Sum is $I$.
+\end{document}
+```
+
+## **S8 — Apply a Kraus channel**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S8 Apply channel — Problem}
+Apply the amplitude damping channel (Kraus operators from S7) to
+$\rho=\begin{pmatrix}0&0\\0&1\end{pmatrix}$ (excited state). Compute $\rho'=\sum_k M_k\rho M_k^\dagger$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Compute $M_0\rho M_0^\dagger$ and $M_1\rho M_1^\dagger$ separately.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret: excited decays to ground with probability $\gamma$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Compute:
+\[
+M_0\rho M_0^\dagger=\begin{pmatrix}1&0\\0&\sqrt{1-\gamma}\end{pmatrix}\begin{pmatrix}0&0\\0&1\end{pmatrix}\begin{pmatrix}1&0\\0&\sqrt{1-\gamma}\end{pmatrix}
+=\begin{pmatrix}0&0\\0&1-\gamma\end{pmatrix}.
+\]
+\[
+M_1\rho M_1^\dagger=\begin{pmatrix}0&\sqrt{\gamma}\\0&0\end{pmatrix}\begin{pmatrix}0&0\\0&1\end{pmatrix}\begin{pmatrix}0&0\\\sqrt{\gamma}&0\end{pmatrix}
+=\begin{pmatrix}\gamma&0\\0&0\end{pmatrix}.
+\]
+Sum:
+\[
+\rho'=\begin{pmatrix}\gamma&0\\0&1-\gamma\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S9 — Instrument probabilities and poststates**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S9 Instrument outcomes — Problem}
+For Kraus operators $M_0,M_1$ in S7 and input $\rho=|1\rangle\langle1|$, compute
+$p_k=\Tr(M_k\rho M_k^\dagger)$ and the conditional states $\rho_k$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use results from S8.
+\item Normalize each branch by $p_k$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item One outcome corresponds to “no jump”, the other to “jump” (optional interpretation).
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+From S8:
+$M_0\rho M_0^\dagger=\mathrm{diag}(0,1-\gamma)$ so $p_0=1-\gamma$ and $\rho_0=|1\rangle\langle1|$.
+Also $M_1\rho M_1^\dagger=\mathrm{diag}(\gamma,0)$ so $p_1=\gamma$ and $\rho_1=|0\rangle\langle0|$.
+\end{document}
+```
+
+## **S10 — Choi matrix preview (identity channel)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-S10 Choi matrix (preview) — Problem}
+For the identity channel $\mathcal I$ on a qubit, compute $J(\mathcal I)=(\mathcal I\otimes I)(|\Omega\rangle\langle\Omega|)$
+with $|\Omega\rangle=|00\rangle+|11\rangle$. Check that $J\ge0$ and that tracing over the output subsystem yields $I$ (up to normalization conventions).
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Identity channel does nothing, so $J=|\Omega\rangle\langle\Omega|$.
+\item $|\Omega\rangle\langle\Omega|$ is positive semidefinite.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Compute $\Tr_{\text{out}}(|\Omega\rangle\langle\Omega|)$ explicitly in the computational basis.
+\item Note: with unnormalized $|\Omega\rangle$, partial trace gives $I$ (not $I/d$).
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Since $\mathcal I$ is identity, $J=|\Omega\rangle\langle\Omega|$ which is PSD (rank-1 projector on an unnormalized vector).
+Compute partial trace over the first qubit (output) or second depending on convention; with $|\Omega\rangle=\sum_{j=0}^1 |jj\rangle$,
+\[
+\Tr_{\text{out}}(|\Omega\rangle\langle\Omega|)=\sum_{j=0}^1 |j\rangle\langle j|=I.
+\]
+Thus TP condition holds in the chosen convention.
+\end{document}
+```
+
+***
+
+## **C1 — Trace rule equivalence**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-C1 Trace rule equivalence — Problem}
+Prove $\langle\psi|A|\psi\rangle=\Tr(|\psi\rangle\langle\psi|A)$ and extend to mixtures $\rho=\sum_i p_i|\psi_i\rangle\langle\psi_i|$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use an orthonormal basis and compute trace as sum of diagonal entries.
+\item Use cyclicity of trace.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show $\Tr(|\psi\rangle\langle\psi|A)=\Tr(A|\psi\rangle\langle\psi|)=\langle\psi|A|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Using cyclicity, $\Tr(|\psi\rangle\langle\psi|A)=\Tr(A|\psi\rangle\langle\psi|)$.
+In any basis, $A|\psi\rangle\langle\psi|$ has trace equal to $\langle\psi|A|\psi\rangle$ (standard identity).
+For mixtures, linearity of trace gives
+\[
+\Tr(\rho A)=\sum_i p_i\Tr(|\psi_i\rangle\langle\psi_i|A)=\sum_i p_i\langle\psi_i|A|\psi_i\rangle.
+\]
+\end{document}
+```
+
+## **C2 — Partial trace basis-independence (formal)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L11-C2 Basis-independence — Problem}
+Give a formal argument that $\rho_A=\Tr_B(\rho_{AB})$ is independent of the orthonormal basis used to trace over $B$.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Use that different ONBs are related by a unitary.
+\item Use invariance of trace under unitary similarity on subsystem $B$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Argue via defining property: $\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$ uniquely determines $\rho_A$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+One argument: $\rho_A$ is uniquely defined by the identity $\Tr(\rho_{AB}(A\otimes I))=\Tr(\rho_A A)$ for all $A$.
+Since the left side is basis-free, $\rho_A$ is basis-free.
+Equivalently, switching the trace basis by a unitary on $B$ leaves the trace unchanged.
+\end{document}
+```
+
+## **C3 — Kraus completeness ⇒ CPTP (TP + CP sketch)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L11-C3 Kraus completeness implies CPTP — Problem}
+Let $\mathcal E(\rho)=\sum_k M_k\rho M_k^\dagger$ with $\sum_k M_k^\dagger M_k=I$.
+Show $\Tr(\mathcal E(\rho))=\Tr(\rho)$ and give a short argument why $\mathcal E$ is completely positive.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use cyclicity: $\Tr(M\rho M^\dagger)=\Tr(\rho M^\dagger M)$.
+\item For CP: argue positivity of $\sum_k (M_k\otimes I) X (M_k^\dagger\otimes I)$ when $X\ge0$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Mention Stinespring dilation as an alternative CP argument.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Trace preservation:
+\[
+\Tr(\mathcal E(\rho))=\sum_k \Tr(M_k\rho M_k^\dagger)=\sum_k \Tr(\rho M_k^\dagger M_k)
+=\Tr\left(\rho\sum_k M_k^\dagger M_k\right)=\Tr(\rho).
+\]
+Complete positivity: for any ancilla space, define $(\mathcal E\otimes I)(X)=\sum_k (M_k\otimes I)X(M_k^\dagger\otimes I)$.
+If $X\ge0$ then each term is positive and the sum is positive, so $\mathcal E$ is CP.
+\end{document}
+```
+
+## **C4 — CP test via Choi positivity (qubit, Kraus-built)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L11-C4 Choi positivity (computational preview) — Problem}
+Let $\mathcal E(\rho)=\sum_k M_k\rho M_k^\dagger$.
+Show $J(\mathcal E)=\sum_k (M_k\otimes I)|\Omega\rangle\langle\Omega|(M_k^\dagger\otimes I)$ is positive semidefinite.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use: if $X\ge0$ then $KXK^\dagger\ge0$.
+\item $|\Omega\rangle\langle\Omega|\ge0$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Conclude: sum of PSD matrices is PSD; hence $J\ge0$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$|\Omega\rangle\langle\Omega|$ is PSD. For each $k$, $(M_k\otimes I)|\Omega\rangle\langle\Omega|(M_k^\dagger\otimes I)$ is of the form $KXK^\dagger$ with $X\ge0$, hence PSD. Sum of PSD operators is PSD, so $J(\mathcal E)\ge0$.
+\end{document}
+```
+
+## **C5 — Kraus extraction from Choi (preview)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L11-C5 Kraus from Choi (preview) — Problem}
+Outline how to obtain Kraus operators from a Choi matrix $J(\mathcal E)$:
+(i) diagonalize $J=\sum_\ell \lambda_\ell |v_\ell\rangle\langle v_\ell|$ with $\lambda_\ell\ge0$,
+(ii) reshape each $|v_\ell\rangle$ into a matrix $V_\ell$,
+(iii) set $M_\ell=\sqrt{\lambda_\ell}\,V_\ell$.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Recall vectorization: $\mathrm{vec}(M)=\sum_{ij} M_{ij}|i\rangle|j\rangle$.
+\item $|\Omega\rangle=\sum_i |i\rangle|i\rangle$ relates vec to action on half of maximally entangled state.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Verify that $J=\sum_\ell \mathrm{vec}(M_\ell)\mathrm{vec}(M_\ell)^\dagger$.
+\item Show this implies $\mathcal E(\rho)=\sum_\ell M_\ell\rho M_\ell^\dagger$.
+\end{itemize}
+
+\newpage\section*{Detailed solution (model outline)}
+Since $J\ge0$, diagonalize it: $J=\sum_\ell \lambda_\ell |v_\ell\rangle\langle v_\ell|$ with $\lambda_\ell\ge0$.
+Define $|w_\ell\rangle=\sqrt{\lambda_\ell}|v_\ell\rangle$. Each $|w_\ell\rangle$ can be reshaped into a matrix $M_\ell$ via $\mathrm{vec}(M_\ell)=|w_\ell\rangle$.
+Then $J=\sum_\ell \mathrm{vec}(M_\ell)\mathrm{vec}(M_\ell)^\dagger$.
+By the Choi--Jamio\l{}kowski correspondence, this yields $\mathcal E(\rho)=\sum_\ell M_\ell\rho M_\ell^\dagger$ (Kraus form).
+\end{document}
+```
+
+***
+
+## ✅ Next step: Lecture 12
+
+Lecture 12 will close the course with the promised **mathematical foundations**:
+
+*   rigged Hilbert spaces, distributions, generalized eigenvectors
+*   self-adjointness vs Hermitian, operator domains
+*   spectral measures; safe Dirac manipulation rules
+
+If you’re ready, say: **“Proceed to Lecture 12”** and tell me whether you want Lecture 12 to be:
+
+*   **physics-rigor (practical rules + examples)** or
+*   **math-forward (more functional analysis)** while still teachable.

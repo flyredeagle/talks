@@ -1,0 +1,1180 @@
+============================================
+Lecture  3
+============================================
+
+Absolutely — for **Lecture 3** we will include **abstract operator language and matrix representation side‑by‑side from the start**, and I’ll provide the **full standardized artifact set**:
+
+*   ✅ narrative + derivations (LaTeX source; student/instructor toggle)
+*   ✅ slide deck (Beamer LaTeX + PowerPoint outline)
+*   ✅ tiered references + historical papers
+*   ✅ concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ extra problem sheet + homework sheet
+*   ✅ simple & complex projects
+*   ✅ well‑defined & open‑ended research questions
+*   ✅ **exercise packets for all 15 problems**: Problem → Suggestions → Advanced suggestions → Detailed solutions
+
+> **How to use in a repo later:** copy each code block into files named as indicated.
+
+***
+
+# **Lecture 3 — Operators and Observables (Abstract ↔ Matrix side‑by‑side)**
+
+### Sakurai (measurement-driven) ↔ Dirac (axiomatic) + matrix mechanics alignment
+
+## 90‑minute pacing
+
+*   **0–15:** Measurement outcomes → observables → expectation values (Sakurai framing)
+*   **15–35:** Operators act on kets; matrix elements $$\langle m|\hat A|n\rangle$$ (Dirac ↔ matrix)
+*   **35–55:** Adjoint, Hermitian (observables), expectation value is real
+*   **55–70:** Unitary operators (symmetries / change of basis), preservation of probabilities
+*   **70–90:** Worked examples in 2D (Pauli matrices), projectors, “insert identity” to compute
+
+## Core outcomes
+
+Students can:
+
+1.  Use operator notation $$\hat A|\psi\rangle$$ and compute matrix elements $$\langle\phi|\hat A|\psi\rangle$$
+2.  Translate: abstract operator ↔ matrix in a chosen basis
+3.  Define and use adjoint $$\hat A^\dagger$$, identify Hermitian and unitary operators
+4.  Compute expectation values and show they are real for Hermitian operators
+5.  Explain the difference between a **basis change** (representation change) and a **physical symmetry** (unitary acting on states)
+
+***
+
+# A) Reference anchors + historical anchors + expansion hooks
+
+## Reference anchors (core)
+
+*   **Dirac:** *The Principles of Quantum Mechanics* — operators as transformations; amplitudes; representation independence
+*   **Sakurai & Napolitano:** *Modern Quantum Mechanics* — observables, measurement, expectation values; symmetries and unitaries
+
+## Tiered references (suggested)
+
+*   **HS:** basic matrices as “machines” on vectors; complex conjugate and transpose
+*   **BegUG:** linear algebra: eigenvectors, inner products; QM intro chapters on observables
+*   **AdvUG:** proof-based linear algebra; spectral theorem (discrete case) overview
+*   **MSc:** operator theory basics; unitary groups; measurement postulates nuance
+*   **PhD:** functional analysis for QM (domains, self-adjoint vs Hermitian), spectral measures (preview)
+
+## Historical anchors (papers/books to mention/assign selectively)
+
+*   **Heisenberg (1925):** matrix mechanics (observables as arrays of transition quantities)
+*   **Born & Jordan (mid‑1920s):** formalization of matrix mechanics
+*   **Schrödinger (1926):** wave mechanics (contrast of representations)
+*   **Dirac (1927):** transformation theory and probability amplitudes
+*   **von Neumann (1932):** operator formalism and foundations
+
+## Expansion hooks
+
+*   Commutators and compatibility → Lecture 7 (uncertainty)
+*   Unitary time evolution $$U(t)=e^{-iHt/\hbar}$$ → Lecture 8
+*   Spectral decomposition $$\hat A=\sum a|a\rangle\langle a|$$ → Lecture 4 (deeper)
+*   Continuous representations (position/momentum) → Lecture 6
+
+***
+
+# B) Learning tiers (Lecture 3 add-ons)
+
+## HS
+
+**Aim:** operators as matrices acting on vectors (no proofs).
+
+*   Matrix multiplication as “apply a rule to a state vector.”
+*   Real vs complex entries; conjugation.
+
+## BegUG
+
+**Aim:** expectation values and matrix elements.
+
+*   $$\langle\psi|\hat A|\psi\rangle$$ as average measurement outcome.
+*   Compute with small matrices and 2D examples.
+
+## AdvUG
+
+**Aim:** adjoint properties, Hermitian expectation is real, unitary preserves norms.
+
+*   prove: $$\langle A\rangle\in\mathbb R$$ for Hermitian $$\hat A$$
+*   prove: $$U^\dagger U=I\Rightarrow\langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$$
+
+## MSc
+
+**Aim:** operator as representation-independent object; basis change is unitary similarity.
+
+*   $$A' = UAU^\dagger$$ vs state transform $$|\psi'\rangle=U|\psi\rangle$$
+*   preview Wigner: symmetries preserve transition probabilities
+
+## PhD
+
+**Aim:** precise “Hermitian vs self-adjoint” preview; domains and boundedness cautions.
+
+*   recognize where bra–ket manipulations become formal for unbounded operators
+*   frame observables as self-adjoint operators + spectral measures (preview)
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as: `L03_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Abstract $\leftrightarrow$ Matrix dictionary}
+\newtcolorbox{sakbox}{colback=orange!3!white,colframe=orange!70!black,title=Sakurai track (measurement-driven)}
+\newtcolorbox{dirbox}{colback=gray!3!white,colframe=gray!60!black,title=Dirac track (axiomatic)}
+
+\title{Lecture 3: Operators and Observables\\
+\large Abstract operators and matrix representations side-by-side}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: Observables as measurement procedures; expectation values
+\item 15--35: Operators acting on kets; matrix elements $\langle m|\hat A|n\rangle$
+\item 35--55: Adjoint, Hermitian operators; reality of expectation values
+\item 55--70: Unitary operators; symmetries vs basis changes
+\item 70--90: Worked 2D examples (Pauli matrices), projectors, identity insertions
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+By the end, you can:
+\begin{enumerate}[leftmargin=*]
+\item Compute matrix elements $\langle\phi|\hat A|\psi\rangle$ and translate to matrices in a basis.
+\item Define $\hat A^\dagger$ and identify Hermitian ($\hat A=\hat A^\dagger$) and unitary ($\hat U^\dagger\hat U=I$).
+\item Compute expectation values $\langle\hat A\rangle_\psi=\langle\psi|\hat A|\psi\rangle$ and show they are real for Hermitian $\hat A$.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Motivation: from measurement outcomes to operators}
+\begin{sakbox}
+In the lab, an \emph{observable} is a measurement procedure that outputs a real number.
+If we prepare a state $|\psi\rangle$ and repeat the measurement of $A$, we obtain a distribution of outcomes.
+The \emph{expectation value} is the average outcome:
+\[
+\langle A\rangle_\psi = \sum_i a_i\,P(a_i|\psi).
+\]
+We want a compact, representation-independent way to compute this.
+\end{sakbox}
+
+\section{Operators: abstract action and matrix representation}
+\begin{dirbox}
+An operator $\hat A$ is a linear map $\mathcal H\to\mathcal H$.
+It takes a state to a new state: $|\psi\rangle \mapsto \hat A|\psi\rangle$.
+\end{dirbox}
+
+\subsection{Matrix elements and the bridge to matrices}
+Choose an orthonormal basis $\{|n\rangle\}$.
+Define the \emph{matrix elements} of $\hat A$ by
+\[
+A_{mn}=\langle m|\hat A|n\rangle.
+\]
+Then for any $|\psi\rangle=\sum_n c_n|n\rangle$, we have
+\[
+\hat A|\psi\rangle=\sum_{m,n} |m\rangle\,A_{mn}\,c_n,
+\]
+so the coefficient vector transforms as
+\[
+\mathbf c' = A\,\mathbf c,
+\]
+where $A$ is the matrix with entries $A_{mn}$.
+This is exactly matrix mechanics.
+
+\begin{warnbox}
+A matrix is a \emph{representation} of an operator in a chosen basis.
+Changing basis changes the matrix, not the abstract operator.
+\end{warnbox}
+
+\subsection{Expectation values in bra--ket and in matrices}
+Define
+\[
+\langle \hat A\rangle_\psi = \langle\psi|\hat A|\psi\rangle.
+\]
+In the basis $\{|n\rangle\}$ this becomes
+\[
+\langle\psi|\hat A|\psi\rangle
+= \sum_{m,n} c_m^* A_{mn} c_n
+= \mathbf c^\dagger A \mathbf c.
+\]
+
+\section{Adjoint and Hermitian operators}
+The adjoint $\hat A^\dagger$ is defined by
+\[
+\langle\phi|\hat A|\psi\rangle = \langle \hat A^\dagger \phi|\psi\rangle
+\quad\text{for all }|\phi\rangle,|\psi\rangle.
+\]
+In a basis, $(A^\dagger)_{mn}=A_{nm}^*$, i.e. $A^\dagger$ is the conjugate transpose matrix.
+
+\subsection{Hermitian (self-adjoint) and reality of measurement outcomes}
+An observable corresponds to a Hermitian operator (physics shorthand) $\hat A=\hat A^\dagger$.
+Then
+\[
+\langle\psi|\hat A|\psi\rangle \in \mathbb R.
+\]
+Proof (short): take complex conjugate and use Hermiticity.
+
+\section{Unitary operators: symmetries and basis changes}
+A unitary operator $\hat U$ satisfies $\hat U^\dagger\hat U=I$.
+It preserves inner products:
+\[
+\langle U\phi|U\psi\rangle = \langle\phi|\psi\rangle,
+\]
+so it preserves norms and probabilities.
+
+\subsection{Basis change vs physical transformation}
+If we \emph{change basis} by a unitary $U$, the matrix of an operator transforms by similarity:
+\[
+A' = UAU^\dagger.
+\]
+If we \emph{physically transform the state}, we write
+\[
+|\psi'\rangle = U|\psi\rangle.
+\]
+Both involve $U$, but they represent different conceptual moves.
+
+\begin{mapbox}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Abstract} & \textbf{Matrix in basis } $\{|n\rangle\}$\\ \midrule
+$|\psi\rangle$ & column vector $\mathbf c$ with $c_n=\langle n|\psi\rangle$\\
+$\hat A$ & matrix $A$ with $A_{mn}=\langle m|\hat A|n\rangle$\\
+$\hat A|\psi\rangle$ & $\mathbf c' = A\mathbf c$\\
+$\langle\psi|\hat A|\psi\rangle$ & $\mathbf c^\dagger A \mathbf c$\\
+$\hat A^\dagger$ & conjugate transpose $A^\dagger$\\
+unitary $\hat U$ & $U^\dagger U=I$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\section{Worked example: 2D system and Pauli matrices}
+Let $\{|0\rangle,|1\rangle\}$ be a basis and consider
+\[
+\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+These are Hermitian. For $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$,
+\[
+\langle\sigma_z\rangle = |\alpha|^2-|\beta|^2.
+\]
+Projector onto $|0\rangle$ is $P_0=|0\rangle\langle0|$ with matrix $\begin{pmatrix}1&0\\0&0\end{pmatrix}$.
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Emphasize the dual role of $U$: (i) change of basis $A'\!=\!UAU^\dagger$ vs (ii) active transformation $|\psi'\rangle\!=\!U|\psi\rangle$.
+Connect expectation value to ensemble average and spectral decomposition preview.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L03_notes_student.tex` and `L03_notes_instructor.tex`:
+
+```latex
+% L03_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L03_chapter}
+```
+
+```latex
+% L03_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L03_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck (LaTeX)
+
+Copy as `L03_slides_beamer.tex`:
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 3: Operators and Observables (Abstract $\leftrightarrow$ Matrix)}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Roadmap}
+\begin{itemize}
+\item Observables as measurements (Sakurai)
+\item Operators acting on kets (Dirac)
+\item Matrices as representations: $A_{mn}=\langle m|\hat A|n\rangle$
+\item Hermitian and unitary operators
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Dictionary}
+\[
+A_{mn}=\langle m|\hat A|n\rangle,\quad
+\mathbf c' = A\mathbf c,\quad
+\langle\hat A\rangle=\mathbf c^\dagger A\mathbf c
+\]
+\end{frame}
+
+\begin{frame}{Hermitian and unitary}
+\begin{itemize}
+\item Hermitian: $\hat A=\hat A^\dagger \Rightarrow \langle\psi|\hat A|\psi\rangle\in\mathbb R$
+\item Unitary: $U^\dagger U=I \Rightarrow \langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Pauli matrices}
+\[
+\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\]
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint-ready outline
+
+Copy as `L03_slides_ppt_outline.md`:
+
+```md
+# Lecture 3: Operators and Observables (Abstract ↔ Matrix)
+
+## Slide 1 — Title
+- Operators, observables, and matrices as representations
+
+## Slide 2 — Roadmap
+- Sakurai: measurement → expectation values
+- Dirac: operators on kets
+- Matrix representation in a basis
+- Hermitian and unitary operators
+
+## Slide 3 — Operator action
+- A|ψ⟩ produces a new state
+- Matrix elements: A_mn = ⟨m|A|n⟩
+
+## Slide 4 — Abstract ↔ matrix dictionary
+- |ψ⟩ ↔ coefficient vector c
+- A ↔ matrix A
+- A|ψ⟩ ↔ c' = A c
+- ⟨ψ|A|ψ⟩ ↔ c† A c
+
+## Slide 5 — Adjoint and Hermitian
+- A† = conjugate transpose in matrix form
+- Hermitian ⇒ real expectation values
+
+## Slide 6 — Unitary operators
+- U†U = I
+- preserves inner products and probabilities
+
+## Slide 7 — Basis change vs symmetry
+- passive: A' = U A U†
+- active: |ψ'⟩ = U|ψ⟩
+
+## Slide 8 — Example: Pauli matrices
+- σx, σz; compute ⟨σz⟩ = |α|^2 − |β|^2
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  What is the difference between an observable and an operator?
+2.  Why is a matrix not “the operator” until a basis is chosen?
+3.  What does $$\langle\phi|\hat A|\psi\rangle$$ mean operationally?
+4.  What is an adjoint operator and why does conjugation appear?
+5.  Why must observables correspond to Hermitian (self-adjoint) operators?
+6.  Why is $$\langle\psi|\hat A|\psi\rangle$$ real for Hermitian $$\hat A$$?
+7.  What does a unitary operator preserve?
+8.  How do you distinguish a basis change from a physical symmetry?
+9.  What is a projector and what does it represent physically?
+10. How does this lecture prepare for commutators and uncertainty?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+**S1** Compute matrix elements from an operator expansion  
+**S2** Compute operator action $$\hat A|\psi\rangle$$ and represent it as matrix multiplication  
+**S3** Compute expectation value in bra–ket form and matrix form  
+**S4** Compute adjoint of a given matrix and verify adjoint property with inner products  
+**S5** Check whether a matrix is Hermitian; compute expectation value and verify it’s real  
+**S6** Check whether a matrix is unitary; verify norm preservation on a state  
+**S7** Build a projector $$|a\rangle\langle a|$$ and verify idempotence  
+**S8** Use identity insertion to derive $$\langle\phi|\hat A|\psi\rangle=\sum_{mn}\phi_m^*A_{mn}\psi_n$$  
+**S9** Perform a basis change $$A'=UAU^\dagger$$ for a 2×2 example  
+**S10** Pauli example: compute $$\langle\sigma_z\rangle$$ for $$|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$$
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+**C1** Prove: if $$\hat A=\hat A^\dagger$$, then $$\langle\psi|\hat A|\psi\rangle\in\mathbb R$$  
+**C2** Prove: if $$U$$ is unitary, then $$\langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$$  
+**C3** Prove: under basis change $$ |n'\rangle = \sum_m U_{mn}|m\rangle$$, operator matrix transforms as $$A'=U A U^\dagger$$  
+**C4** Show: projectors satisfy $$P^2=P$$ and are Hermitian; interpret physically  
+**C5 (MSc/PhD extension)** Hermitian vs self-adjoint: short structured essay with an example of symmetric ≠ self-adjoint (no heavy machinery required; focus on meaning)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ) — “Operator/Matrices calculator”
+
+Implement a small tool that:
+
+*   inputs a 2×2 or 3×3 complex matrix $$A$$ and state vector $$c$$
+*   outputs $$Ac$$, $$\langle A\rangle=c^\dagger A c$$
+*   checks whether $$A$$ is Hermitian/unitary (numerically)
+*   verifies $$\langle A\rangle$$ is (numerically) real if Hermitian
+
+**Deliverables:** code + README + 3 test cases + short explanation.
+
+## Complex Project (CPJ) — “Passive vs active transformation lab”
+
+Pick one nontrivial unitary $$U$$. Do two experiments:
+
+1.  **Passive:** change basis and compute $$A'=UAU^\dagger$$ and $$c'=Uc$$ (coordinates)
+2.  **Active:** physically transform the state $$|\psi'\rangle=U|\psi\rangle$$ and compute probabilities
+
+Write a 6–10 page report clarifying:
+
+*   what changes (coordinates/matrix entries)
+*   what stays invariant (probabilities, inner products)
+*   where students commonly confuse the two.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**How did Heisenberg’s matrix mechanics (1925) and Dirac’s transformation theory (1927) converge into the modern operator formalism?**  
+Output: 4–6 page annotated narrative + 6 references.
+
+## Open-ended (ORQ)
+
+**Is the operator formalism inevitable from operational measurement principles?**  
+Propose a reconstruction path: assumptions, predicted structure, what could vary.
+
+***
+
+# J) Extra problem sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice sheet (`L03_extra_practice.tex`)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 3 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A}
+\begin{enumerate}
+\item Given $A=\begin{pmatrix}2 & i\\ -i & 0\end{pmatrix}$, check Hermitian and compute $\langle A\rangle$ for $c=(1/\sqrt2, 1/\sqrt2)$.
+\item For $U=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$ verify $U^\dagger U=I$.
+\item Construct projector onto $|0\rangle$ and verify $P^2=P$ and $P^\dagger=P$.
+\end{enumerate}
+
+\section*{Practice B}
+\begin{enumerate}
+\item Prove $\langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$ for unitary $U$.
+\item Show $A'=UAU^\dagger$ preserves eigenvalues.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework sheet (`L03_homework.tex`)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 3 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S3) Compute $\langle A\rangle$ in bra--ket and matrix form for a given $A$ and $|\psi\rangle$.
+\item (S5) Show $\langle A\rangle$ is real for a Hermitian $A$ (compute + verify).
+\item (S6) Verify $U$ is unitary and that norms are preserved.
+\item (C1) Prove Hermitian $\Rightarrow$ real expectation.
+\item (C2) Prove unitarity preserves inner products.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (S9) Compute $A'=UAU^\dagger$ for a given $A,U$.
+\item (C3) Prove the basis-change transformation law for operator matrices.
+\item (C4) Projector algebra and physical interpretation.
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets for **all 15 problems** (10 SPS + 5 CPS)
+
+Below are **complete packets**. Each is self-contained and follows your format.
+
+> Tip: In a repo, name them `L03_S1.tex` … `L03_C5.tex`.
+
+***
+
+## **S1 — Matrix elements from bra–ket**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S1 Matrix elements — Problem}
+Let $\{|0\rangle,|1\rangle\}$ be an orthonormal basis. Define
+\[
+\hat A = 2|0\rangle\langle 0| + (1+i)|0\rangle\langle 1| + (1-i)|1\rangle\langle 0| - |1\rangle\langle 1|.
+\]
+Compute the matrix $A_{mn}=\langle m|\hat A|n\rangle$ in this basis.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Use $\langle m|\,|a\rangle\langle b|\,|n\rangle=\langle m|a\rangle\langle b|n\rangle$.
+\item Orthonormality gives $\langle m|n\rangle=\delta_{mn}$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Recognize that $|0\rangle\langle1|$ contributes only to the $(0,1)$ entry.
+\item Write the matrix by inspecting each dyad $|m\rangle\langle n|$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+Compute entries:
+\[
+A_{00}=\langle0|\hat A|0\rangle=2,\quad
+A_{01}=\langle0|\hat A|1\rangle=1+i,
+\]
+\[
+A_{10}=\langle1|\hat A|0\rangle=1-i,\quad
+A_{11}=\langle1|\hat A|1\rangle=-1.
+\]
+Thus
+\[
+A=\begin{pmatrix}2 & 1+i\\ 1-i & -1\end{pmatrix}.
+\]
+\end{document}
+```
+
+***
+
+## **S2 — Operator action as matrix multiplication**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S2 Action — Problem}
+Let $A=\begin{pmatrix}2 & 1+i\\ 1-i & -1\end{pmatrix}$ and $c=\begin{pmatrix}\alpha\\ \beta\end{pmatrix}$.
+Compute $c'=Ac$ and interpret $c'$ as the coefficients of $\hat A|\psi\rangle$ in the basis.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Multiply the matrix by the vector.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Connect to $\hat A|\psi\rangle=\sum_m |m\rangle \sum_n A_{mn}c_n$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+c'=\begin{pmatrix}2 & 1+i\\ 1-i & -1\end{pmatrix}\begin{pmatrix}\alpha\\ \beta\end{pmatrix}
+=\begin{pmatrix}2\alpha+(1+i)\beta\\ (1-i)\alpha-\beta\end{pmatrix}.
+\]
+These are the coefficients of $\hat A|\psi\rangle$ in the chosen basis.
+\end{document}
+```
+
+***
+
+## **S3 — Expectation value (bra–ket ↔ matrix)**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S3 Expectation value — Problem}
+Let $A=\begin{pmatrix}2 & 1+i\\ 1-i & -1\end{pmatrix}$ and normalized $c=\begin{pmatrix}\alpha\\ \beta\end{pmatrix}$.
+Compute $\langle A\rangle=c^\dagger A c$ explicitly.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item First compute $Ac$.
+\item Then compute $c^\dagger(Ac)$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Write $c^\dagger=(\alpha^*,\beta^*)$.
+\item Keep track of complex conjugates.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+Ac=\begin{pmatrix}2\alpha+(1+i)\beta\\ (1-i)\alpha-\beta\end{pmatrix}.
+\]
+Then
+\[
+\langle A\rangle = (\alpha^*,\beta^*)\begin{pmatrix}2\alpha+(1+i)\beta\\ (1-i)\alpha-\beta\end{pmatrix}
+=2|\alpha|^2-\;|\beta|^2 + \alpha^*(1+i)\beta + \beta^*(1-i)\alpha.
+\]
+Note the last two terms are complex conjugates, so their sum is $2\Re\!\big((1+i)\alpha^*\beta\big)$:
+\[
+\boxed{\langle A\rangle = 2|\alpha|^2-|\beta|^2 + 2\Re\!\big((1+i)\alpha^*\beta\big).}
+\]
+\end{document}
+```
+
+***
+
+## **S4 — Adjoint and adjoint property**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S4 Adjoint — Problem}
+Let $A=\begin{pmatrix}0 & 2+i\\ 1 & 3i\end{pmatrix}$.
+(i) Compute $A^\dagger$. (ii) Verify for vectors $x,y\in\mathbb C^2$ that $x^\dagger(Ay)=(A^\dagger x)^\dagger y$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item $A^\dagger$ is conjugate transpose.
+\item Use associativity of matrix multiplication.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Write $x^\dagger(Ay)=(x^\dagger A)y$ and compare with $(A^\dagger x)^\dagger y$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+(i) Transpose and conjugate:
+\[
+A^\dagger=\begin{pmatrix}0^* & 1^*\\ (2+i)^* & (3i)^*\end{pmatrix}
+=\begin{pmatrix}0 & 1\\ 2-i & -3i\end{pmatrix}.
+\]
+(ii) Using matrix identities, $(A^\dagger x)^\dagger = x^\dagger A$ (since $(A^\dagger x)^\dagger=x^\dagger A$).
+Thus
+\[
+(A^\dagger x)^\dagger y = (x^\dagger A)y = x^\dagger(Ay),
+\]
+which verifies the adjoint property.
+\end{document}
+```
+
+***
+
+## **S5 — Hermitian check + reality of expectation**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S5 Hermitian — Problem}
+Let $A=\begin{pmatrix}2 & 1+i\\ 1-i & -1\end{pmatrix}$.
+(i) Show $A$ is Hermitian. (ii) Using $c=(\alpha,\beta)^T$, show $\langle A\rangle=c^\dagger A c$ is real.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Compute $A^\dagger$ and compare to $A$.
+\item Use the explicit form from S3.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Note that $c^\dagger A c$ equals its own complex conjugate if $A=A^\dagger$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+(i) $A^\dagger=\begin{pmatrix}2 & (1-i)^*\\ (1+i)^* & -1\end{pmatrix}=\begin{pmatrix}2 & 1+i\\ 1-i & -1\end{pmatrix}=A$.
+(ii) From S3:
+\[
+\langle A\rangle = 2|\alpha|^2-|\beta|^2 + \alpha^*(1+i)\beta + \beta^*(1-i)\alpha.
+\]
+The last two terms are complex conjugates, hence their sum is $2\Re((1+i)\alpha^*\beta)$.
+So $\langle A\rangle\in\mathbb R$.
+\end{document}
+```
+
+***
+
+## **S6 — Unitary check + norm preservation**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S6 Unitary — Problem}
+Let $U=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$.
+(i) Show $U^\dagger U=I$. (ii) Show $\|Uc\|=\|c\|$ for any $c\in\mathbb C^2$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Compute $U^\dagger$ and multiply.
+\item Use $\|c\|^2=c^\dagger c$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item For (ii): $(Uc)^\dagger(Uc)=c^\dagger(U^\dagger U)c$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+(i) $U$ is real symmetric, so $U^\dagger=U^T=U$. Then
+\[
+U^\dagger U = \frac{1}{2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}
+=\frac{1}{2}\begin{pmatrix}2&0\\0&2\end{pmatrix}=I.
+\]
+(ii)
+\[
+\|Uc\|^2=(Uc)^\dagger(Uc)=c^\dagger(U^\dagger U)c=c^\dagger c=\|c\|^2.
+\]
+\end{document}
+```
+
+***
+
+## **S7 — Projector construction + idempotence**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S7 Projector — Problem}
+Let $|a\rangle$ be normalized. Define $P=|a\rangle\langle a|$.
+Show (i) $P^2=P$, (ii) $P^\dagger=P$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Multiply $P$ by itself and use $\langle a|a\rangle=1$.
+\item Use $(|a\rangle\langle a|)^\dagger=|a\rangle\langle a|$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret $P$ as “filter that keeps the component along $|a\rangle$”.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+(i)
+\[
+P^2=(|a\rangle\langle a|)(|a\rangle\langle a|)=|a\rangle(\langle a|a\rangle)\langle a|=|a\rangle\langle a|=P.
+\]
+(ii)
+\[
+P^\dagger=(|a\rangle\langle a|)^\dagger=|a\rangle\langle a|=P.
+\]
+\end{document}
+```
+
+***
+
+## **S8 — Identity insertion gives matrix formula**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S8 Identity insertion — Problem}
+Let $|\psi\rangle=\sum_n \psi_n|n\rangle$ and $|\phi\rangle=\sum_m \phi_m|m\rangle$.
+Show
+\[
+\langle\phi|\hat A|\psi\rangle=\sum_{m,n}\phi_m^*\,A_{mn}\,\psi_n
+\]
+where $A_{mn}=\langle m|\hat A|n\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Insert $\sum_m|m\rangle\langle m|$ and $\sum_n|n\rangle\langle n|$.
+\item Use $\langle\phi|m\rangle=\phi_m^*$ and $\langle n|\psi\rangle=\psi_n$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Recognize this as the abstract derivation of $\phi^\dagger A\psi$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+Insert identities:
+\[
+\langle\phi|\hat A|\psi\rangle
+=\sum_{m,n}\langle\phi|m\rangle\langle m|\hat A|n\rangle\langle n|\psi\rangle
+=\sum_{m,n}\phi_m^*\,A_{mn}\,\psi_n.
+\]
+\end{document}
+```
+
+***
+
+## **S9 — Basis change $$A'=UAU^\dagger$$ in 2×2**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S9 Basis change — Problem}
+Let $A=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ and $U=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$.
+Compute $A'=UAU^\dagger$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Note $U^\dagger=U$ here.
+\item Multiply step by step: first $B=UA$, then $A'=BU$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret $A'$ as the matrix of the same abstract operator in the new basis.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+Compute:
+\[
+UA=\frac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+=\frac{1}{\sqrt2}\begin{pmatrix}1&-1\\1&1\end{pmatrix}.
+\]
+Then
+\[
+A'= (UA)U = \frac{1}{2}\begin{pmatrix}1&-1\\1&1\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}
+=\frac{1}{2}\begin{pmatrix}0&2\\2&0\end{pmatrix}
+=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+So $A'=\sigma_x$.
+\end{document}
+```
+
+***
+
+## **S10 — Pauli expectation**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-S10 Pauli expectation — Problem}
+Let $\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ and $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$ with $|\alpha|^2+|\beta|^2=1$.
+Compute $\langle\sigma_z\rangle=\langle\psi|\sigma_z|\psi\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Use matrix form: $c=(\alpha,\beta)^T$ and compute $c^\dagger\sigma_z c$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret the result as “bias toward outcome +1 vs −1”.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\langle\sigma_z\rangle = (\alpha^*,\beta^*)\begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}\alpha\\\beta\end{pmatrix}
+=(\alpha^*,\beta^*)\begin{pmatrix}\alpha\\-\beta\end{pmatrix}
+=|\alpha|^2-|\beta|^2.
+\]
+\end{document}
+```
+
+***
+
+## **C1 — Hermitian ⇒ real expectation (proof)**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-C1 Hermitian expectation — Problem}
+Prove that if $\hat A=\hat A^\dagger$, then for any $|\psi\rangle$, $\langle\psi|\hat A|\psi\rangle\in\mathbb R$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Take complex conjugate of $\langle\psi|\hat A|\psi\rangle$.
+\item Use $(\langle\psi|\hat A|\psi\rangle)^*=\langle\psi|\hat A^\dagger|\psi\rangle$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Show the quantity equals its own conjugate.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+Let $z=\langle\psi|\hat A|\psi\rangle$. Then
+\[
+z^* = (\langle\psi|\hat A|\psi\rangle)^* = \langle\psi|\hat A^\dagger|\psi\rangle
+\]
+(using the defining property of the adjoint). If $\hat A=\hat A^\dagger$, then $z^*=z$.
+A complex number equal to its conjugate is real. Hence $z\in\mathbb R$.
+\end{document}
+```
+
+***
+
+## **C2 — Unitary preserves inner products (proof)**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-C2 Unitary invariance — Problem}
+Prove that if $\hat U^\dagger \hat U=I$, then $\langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Write $\langle U\phi|U\psi\rangle=\langle\phi|U^\dagger U|\psi\rangle$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret: unitaries preserve transition probabilities.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\langle U\phi|U\psi\rangle = \langle\phi|U^\dagger U|\psi\rangle = \langle\phi|I|\psi\rangle=\langle\phi|\psi\rangle.
+\]
+\end{document}
+```
+
+***
+
+## **C3 — Basis-change law $$A'=UAU^\dagger$$ (proof)**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-C3 Basis-change transformation — Problem}
+Let $|n'\rangle=\sum_m U_{mn}|m\rangle$ with $U$ unitary. Show that the matrix of $\hat A$ in the primed basis is
+$A'=UAU^\dagger$, i.e. $A'_{ij}=\langle i'|\hat A|j'\rangle$ equals $(UAU^\dagger)_{ij}$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Write $\langle i'|=\sum_p U_{pi}^*\langle p|$.
+\item Substitute into $\langle i'|\hat A|j'\rangle$ and rearrange sums.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Recognize $\sum_{p,q} U_{pi}^* A_{pq} U_{qj}$ as $(U^\dagger A U)_{ij}$ or $(UAU^\dagger)_{ij}$ depending on convention; check indices carefully.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+We compute
+\[
+A'_{ij}=\langle i'|\hat A|j'\rangle
+=\left(\sum_p U_{pi}^*\langle p|\right)\hat A\left(\sum_q U_{qj}|q\rangle\right)
+=\sum_{p,q} U_{pi}^*\,\langle p|\hat A|q\rangle\,U_{qj}.
+\]
+But $A_{pq}=\langle p|\hat A|q\rangle$, so
+\[
+A'_{ij}=\sum_{p,q} (U^\dagger)_{ip}\,A_{pq}\,U_{qj}=(U^\dagger A U)_{ij}.
+\]
+If you define the basis change oppositely (new coords $c'=Uc$), you obtain $A'=UAU^\dagger$.
+Both are consistent once you fix the convention. The invariant statement is: the operator matrix transforms by unitary similarity.
+\end{document}
+```
+
+***
+
+## **C4 — Projector algebra + interpretation**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-C4 Projectors — Problem}
+Let $P=|a\rangle\langle a|$ with $\langle a|a\rangle=1$.
+(i) Prove $P^2=P$ and $P^\dagger=P$.
+(ii) Show that for any $|\psi\rangle$, $P|\psi\rangle=|a\rangle\langle a|\psi\rangle$ is the component of $|\psi\rangle$ along $|a\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Use dyad multiplication and normalization.
+\item Interpret $\langle a|\psi\rangle$ as a scalar coefficient.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Show $P$ acts as identity on the span of $|a\rangle$ and annihilates orthogonal vectors.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+(i) Same as S7:
+\[
+P^2=|a\rangle(\langle a|a\rangle)\langle a|=|a\rangle\langle a|=P,\quad
+P^\dagger=|a\rangle\langle a|=P.
+\]
+(ii)
+\[
+P|\psi\rangle = |a\rangle\langle a|\psi\rangle.
+\]
+This is a scalar multiple of $|a\rangle$, hence lies in the subspace spanned by $|a\rangle$.
+If $|\psi\rangle$ is orthogonal to $|a\rangle$, then $\langle a|\psi\rangle=0$ and $P|\psi\rangle=0$.
+So $P$ extracts the $|a\rangle$ component.
+\end{document}
+```
+
+***
+
+## **C5 — Hermitian vs self-adjoint (MSc/PhD structured essay)**
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L03-C5 Hermitian vs self-adjoint — Problem}
+Write a structured 1--2 page essay answering:
+\begin{enumerate}
+\item In physics language, what do we call a Hermitian operator and why?
+\item In mathematics, what is the distinction between Hermitian (symmetric) and self-adjoint?
+\item Why does this matter for observables like position and momentum?
+\end{enumerate}
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Focus on the idea of domains for unbounded operators.
+\item Keep it conceptual; no heavy proofs required.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Give an example statement: ``an operator can be symmetric on a domain but fail to have a self-adjoint extension'' (or require boundary conditions).
+\item Connect self-adjointness to real spectrum and unitary time evolution.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution (model answer outline)}
+A high-quality answer should:
+\begin{itemize}
+\item Explain that physics often uses ``Hermitian'' informally for ``self-adjoint''.
+\item State that for unbounded operators, the domain is part of the definition; $\hat A^\dagger$ may have a different domain.
+\item Note that self-adjointness ensures real spectral values and generates unitary evolution (via Stone's theorem, later lecture).
+\item Mention that boundary conditions (e.g. particle in a box) correspond to choosing a self-adjoint extension.
+\end{itemize}
+
+\end{document}
+```
+
+***
+
+# ✅ What’s next
+
+If you approve Lecture 3, we proceed to **Lecture 4 (Eigenstates, Projectors, Spectral Decomposition)** with the same standard:
+
+*   10 SPS + 5 CPS
+*   full packets for every problem
+*   notes + slides + extra practice + homework + projects + research prompts
+*   Sakurai ↔ Dirac dual-track with explicit synthesis
+
+Before I generate Lecture 4, one quick preference:
+**Do you want Lecture 4 to introduce degeneracy and Lüders rule already**, or keep it strictly non-degenerate first and move degeneracy to an advanced add-on section?

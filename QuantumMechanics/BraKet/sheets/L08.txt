@@ -1,0 +1,939 @@
+==========================================================
+Lecture 8
+==========================================================
+Proceeding to **Lecture 8** ✅ — and I will include the **interaction picture (preview)** as requested.
+
+Below is the **complete Lecture 8 artifact package** in the same standardized format as Lectures 1–7:
+
+*   ✅ Narrative + derivations (**LaTeX source; student/instructor toggle**)
+*   ✅ Slides (**Beamer LaTeX + PowerPoint outline**)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra practice sheet + homework sheet (**LaTeX**)
+*   ✅ Simple + complex projects
+*   ✅ Well-defined + open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (each packet: Problem → Suggestions → Advanced suggestions → Detailed solutions)
+
+***
+
+# **Lecture 8 — Time Evolution, Unitaries, and Pictures (Schrödinger / Heisenberg / Interaction preview)**
+
+## 90‑minute pacing
+
+*   **0–15:** Time evolution as a probability-preserving transformation ⇒ unitarity
+*   **15–35:** Schrödinger picture: evolution operator $$U(t,t_0)$$, Schrödinger equation
+*   **35–55:** Heisenberg picture: operator evolution, Heisenberg equation of motion
+*   **55–70:** Constants of motion; commutators and expectation values
+*   **70–90:** **Interaction picture preview**: splitting $$H=H_0+V(t)$$, Dyson series/time ordering (conceptual)
+
+***
+
+## Core outcomes
+
+Students can:
+
+1.  Use $$U(t,t_0)$$ to evolve states and compute probabilities/expectations
+2.  Prove/verify that unitary evolution preserves norms and inner products
+3.  Translate between **Schrödinger** and **Heisenberg** pictures
+4.  Derive the Heisenberg equation $$\frac{dA_H}{dt}=\frac{i}{\hbar}[H_H,A_H]+\left(\frac{\partial A}{\partial t}\right)_H$$
+5.  Use the **interaction picture preview**: define $$U_I$$, write the interaction-picture Schrödinger equation, recognize time-ordering
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Dirac:** *The Principles of Quantum Mechanics* — transformation theory, time evolution, pictures
+*   **Sakurai & Napolitano:** *Modern Quantum Mechanics* — unitary time evolution, pictures, interaction picture in perturbation contexts
+
+## Tiered references (suggested)
+
+*   **HS:** exponential as repeated small steps; “probability must stay 1” intuition
+*   **BegUG:** matrix exponentials, basic ODEs; unitarity checks
+*   **AdvUG:** derivations of picture transformations; time-dependent Hamiltonians
+*   **MSc:** time-ordering, Dyson series, interaction picture perturbation
+*   **PhD:** Stone’s theorem; one-parameter unitary groups; domain subtleties (preview)
+
+## Historical anchors
+
+*   **Schrödinger (1926):** wave equation/time evolution
+*   **Heisenberg (1925–27):** operator evolution viewpoint
+*   **Dirac (1927):** transformation theory and picture equivalence
+*   **Stone (1932):** unitary groups and self-adjoint generators (advanced)
+
+## Expansion hooks
+
+*   Interaction picture → scattering/perturbation expansions (later add-on lectures)
+*   Commutators/constants of motion → Lecture 10 (symmetries)
+*   Measurement vs dynamics interplay → Lecture 7 and Lecture 11 (open systems)
+
+***
+
+# B) Learning tiers (Lecture 8 add-ons)
+
+## HS
+
+*   Unitary = “probability-preserving rotation” idea
+*   Expectation value as “average measurement result”
+
+## BegUG
+
+*   Matrix exponentials $$e^{-iHt/\hbar}$$
+*   Compute $$U^\dagger U=I$$ and norm conservation
+
+## AdvUG
+
+*   Derive Heisenberg equation
+*   Treat explicit time dependence $$\partial A/\partial t$$
+
+## MSc
+
+*   Interaction picture definitions
+*   Dyson series/time-ordering (conceptual + first formula)
+
+## PhD
+
+*   Generator of unitary evolution is self-adjoint (Stone’s theorem preview)
+*   Domains for unbounded $$H$$, time-dependent Hamiltonians rigor (preview)
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as `L08_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Pictures dictionary (S/Heis/Int)}
+
+\title{Lecture 8: Time Evolution and Pictures (Schr\"odinger / Heisenberg / Interaction preview)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: Evolution as probability-preserving transformation $\Rightarrow$ unitarity
+\item 15--35: Schr\"odinger picture: $U(t,t_0)$ and Schr\"odinger equation
+\item 35--55: Heisenberg picture: operator evolution; Heisenberg equation
+\item 55--70: Constants of motion; expectation value dynamics
+\item 70--90: Interaction picture preview; Dyson series and time ordering
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Use $|\psi(t)\rangle = U(t,t_0)|\psi(t_0)\rangle$ and show $U$ unitary preserves norms.
+\item Derive/verify Heisenberg equation of motion.
+\item Define the interaction picture and write its evolution equation (preview).
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Why must time evolution be unitary?}
+If a closed system evolves in time, the probabilities for all measurement outcomes must remain consistent with
+normalization. Thus inner products must be preserved:
+\[
+\langle\phi(t)|\psi(t)\rangle = \langle\phi(t_0)|\psi(t_0)\rangle.
+\]
+A linear map preserving inner products is unitary. Therefore we write
+\[
+|\psi(t)\rangle = U(t,t_0)|\psi(t_0)\rangle,\qquad U^\dagger U=I.
+\]
+
+\begin{warnbox}
+Unitarity is not optional: it encodes probability conservation for closed systems. Open systems require a more
+general (channel) description (Lecture 11).
+\end{warnbox}
+
+\section{Schr\"odinger picture}
+States evolve, operators are (usually) time-independent unless explicitly time-dependent.
+For time-independent Hamiltonian $H$,
+\[
+U(t,t_0)=e^{-iH(t-t_0)/\hbar}.
+\]
+Differentiating gives the Schr\"odinger equation:
+\[
+i\hbar\frac{d}{dt}|\psi(t)\rangle = H|\psi(t)\rangle.
+\]
+
+\subsection{Time-dependent Hamiltonian (preview)}
+If $H(t)$ depends on time, then formally
+\[
+U(t,t_0)=\mathcal T \exp\left(-\frac{i}{\hbar}\int_{t_0}^t H(\tau)\,d\tau\right),
+\]
+where $\mathcal T$ denotes time ordering.
+
+\section{Heisenberg picture}
+Define Heisenberg operators
+\[
+A_H(t) = U^\dagger(t,t_0)\,A_S(t)\,U(t,t_0),
+\]
+and Heisenberg states $|\psi_H\rangle=|\psi(t_0)\rangle$ (constant in time).
+
+\subsection{Heisenberg equation of motion}
+Differentiate (using $i\hbar\dot U=HU$ and $\dot U^\dagger = -\frac{i}{\hbar}U^\dagger H$):
+\[
+\frac{d}{dt}A_H(t)=\frac{i}{\hbar}[H_H(t),A_H(t)] + \left(\frac{\partial A_S}{\partial t}\right)_H.
+\]
+If $A$ has no explicit time dependence, $\partial A/\partial t=0$.
+
+\section{Expectation values and constants of motion}
+In Schr\"odinger picture:
+\[
+\langle A\rangle(t)=\langle\psi(t)|A|\psi(t)\rangle.
+\]
+In Heisenberg picture:
+\[
+\langle A\rangle(t)=\langle\psi_H|A_H(t)|\psi_H\rangle.
+\]
+If $[H,A]=0$ and $\partial A/\partial t=0$, then $A$ is conserved (its expectation is constant).
+
+\section{Interaction picture (preview)}
+Split the Hamiltonian:
+\[
+H(t)=H_0 + V(t).
+\]
+Define
+\[
+U_0(t,t_0)=e^{-iH_0(t-t_0)/\hbar}.
+\]
+Interaction-picture state:
+\[
+|\psi_I(t)\rangle = U_0^\dagger(t,t_0)|\psi_S(t)\rangle.
+\]
+Interaction-picture operators:
+\[
+A_I(t)=U_0^\dagger(t,t_0)A_S U_0(t,t_0).
+\]
+Define the interaction-picture evolution operator
+\[
+U_I(t,t_0)=U_0^\dagger(t,t_0)U(t,t_0).
+\]
+Then $|\psi_I(t)\rangle = U_I(t,t_0)|\psi(t_0)\rangle$ and it satisfies
+\[
+i\hbar\frac{d}{dt}|\psi_I(t)\rangle = V_I(t)|\psi_I(t)\rangle,
+\quad V_I(t)=U_0^\dagger(t,t_0)V(t)U_0(t,t_0).
+\]
+Formal solution:
+\[
+U_I(t,t_0)=\mathcal T\exp\left(-\frac{i}{\hbar}\int_{t_0}^t V_I(\tau)\,d\tau\right).
+\]
+Expanding gives the Dyson series (first terms):
+\[
+U_I(t,t_0)=I-\frac{i}{\hbar}\int_{t_0}^t d\tau\,V_I(\tau)
++\left(-\frac{i}{\hbar}\right)^2\int_{t_0}^t d\tau_1\int_{t_0}^{\tau_1} d\tau_2\,V_I(\tau_1)V_I(\tau_2)+\cdots
+\]
+
+\begin{mapbox}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Picture} & \textbf{States} & \textbf{Operators}\\ \midrule
+Schr\"odinger & $|\psi_S(t)\rangle$ evolves & $A_S$ fixed (usually)\\
+Heisenberg & $|\psi_H\rangle$ fixed & $A_H(t)=U^\dagger A_S U$\\
+Interaction & $|\psi_I(t)\rangle=U_0^\dagger|\psi_S(t)\rangle$ & $A_I(t)=U_0^\dagger A_S U_0$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Point out assumptions in derivations (differentiability, domain issues for unbounded $H$).
+In interaction picture, emphasize why time ordering appears: $[V_I(t_1),V_I(t_2)]\neq 0$.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L08_notes_student.tex` and `L08_notes_instructor.tex`:
+
+```latex
+% L08_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L08_chapter}
+```
+
+```latex
+% L08_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L08_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck (LaTeX) — `L08_slides_beamer.tex`
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 8: Time Evolution and Pictures (Interaction preview)}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Unitarity}
+\[
+|\psi(t)\rangle = U(t,t_0)|\psi(t_0)\rangle,\quad U^\dagger U = I
+\]
+\end{frame}
+
+\begin{frame}{Schr\"odinger equation}
+Time-independent $H$:
+\[
+U(t)=e^{-iHt/\hbar},\quad i\hbar\frac{d}{dt}|\psi\rangle=H|\psi\rangle
+\]
+\end{frame}
+
+\begin{frame}{Heisenberg picture}
+\[
+A_H(t)=U^\dagger A_S U
+\]
+\[
+\frac{dA_H}{dt}=\frac{i}{\hbar}[H_H,A_H]+\left(\frac{\partial A}{\partial t}\right)_H
+\]
+\end{frame}
+
+\begin{frame}{Interaction picture (preview)}
+Split $H=H_0+V(t)$
+\[
+|\psi_I\rangle=U_0^\dagger|\psi_S\rangle,\quad i\hbar\dot{|\psi_I\rangle}=V_I(t)|\psi_I\rangle
+\]
+\[
+U_I=\mathcal T\exp\left(-\frac{i}{\hbar}\int V_I\right)
+\]
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline — `L08_slides_ppt_outline.md`
+
+```md
+# Lecture 8: Time Evolution and Pictures (Interaction preview)
+
+## Slide 1 — Title
+- Unitary evolution, Schrödinger/Heisenberg pictures
+- Interaction picture preview
+
+## Slide 2 — Why unitary?
+- Probability/inner product preservation
+- |ψ(t)⟩ = U(t,t0)|ψ(t0)⟩, U†U=I
+
+## Slide 3 — Schrödinger picture
+- iħ d/dt |ψ⟩ = H|ψ⟩
+- If H constant: U(t)=exp(-iHt/ħ)
+
+## Slide 4 — Heisenberg picture
+- A_H(t) = U† A U
+- States fixed
+
+## Slide 5 — Heisenberg equation
+- dA_H/dt = (i/ħ)[H, A_H] + (∂A/∂t)_H
+
+## Slide 6 — Constants of motion
+- [H,A]=0 and ∂A/∂t=0 ⇒ expectation constant
+
+## Slide 7 — Interaction picture definitions
+- H = H0 + V(t)
+- |ψ_I⟩ = U0†|ψ_S⟩
+- A_I = U0† A U0
+
+## Slide 8 — Dyson/time ordering
+- U_I = T exp(-i/ħ ∫ V_I)
+- first terms of Dyson series
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  Why must evolution of a closed system be unitary?
+2.  What does it mean physically that inner products are preserved?
+3.  How do you derive Schrödinger’s equation from $$U(t)$$?
+4.  What changes between Schrödinger and Heisenberg pictures?
+5.  Why does operator time dependence appear in the Heisenberg picture?
+6.  What is a constant of motion and how do commutators detect it?
+7.  Why do we need time ordering for time-dependent Hamiltonians?
+8.  In interaction picture, what is treated as “free” and what as “interaction”?
+9.  What does the Dyson series represent physically?
+10. How does measurement (Lecture 7) interplay with unitary evolution?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+S1 Show unitarity preserves norm: $$\langle\psi(t)|\psi(t)\rangle=\langle\psi(t_0)|\psi(t_0)\rangle$$  
+S2 For time-independent $$H$$, verify $$U(t)=e^{-iHt/\hbar}$$ solves $$i\hbar \dot U = HU$$  
+S3 Compute $$U(t)$$ explicitly for a 2×2 Hamiltonian $$H=\hbar\omega\sigma_z/2$$  
+S4 Compute $$|\psi(t)\rangle$$ for a given initial qubit state under $$H=\hbar\omega\sigma_z/2$$  
+S5 Compute expectation $$\langle\sigma_x\rangle(t)$$ in Schrödinger picture for that evolution  
+S6 Derive $$A_H(t)=U^\dagger A U$$ and compute $$\sigma_x(t)$$ under $$H=\hbar\omega\sigma_z/2$$  
+S7 Show that if $$[H,A]=0$$ and $$\partial A/\partial t=0$$, then $$\frac{d}{dt}\langle A\rangle=0$$  
+S8 Interaction picture: given $$H=H_0+V(t)$$, write $$V_I(t)=U_0^\dagger V(t)U_0$$  
+S9 First-order Dyson approximation: $$U_I(t,t_0)\approx I-\frac{i}{\hbar}\int_{t_0}^t V_I(\tau)d\tau$$  
+S10 Show equivalence of expectation values between pictures: $$\langle\psi_S(t)|A|\psi_S(t)\rangle=\langle\psi_H|A_H(t)|\psi_H\rangle$$
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+C1 Prove $$H$$ Hermitian ⇒ $$U(t)$$ unitary for $$U(t)=e^{-iHt/\hbar}$$  
+C2 Derive Heisenberg equation of motion from $$A_H=U^\dagger A_S U$$  
+C3 Derive interaction-picture Schrödinger equation: $$i\hbar \dot{|\psi_I\rangle}=V_I|\psi_I\rangle$$  
+C4 Derive Dyson series up to second order and explain time ordering  
+C5 (MSc/PhD) Stone theorem preview (structured note): strongly continuous unitary groups and self-adjoint generators (no full proof required)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Qubit evolution lab”
+
+*   Choose $$H=\hbar\omega\sigma_z/2$$ or $$H=\hbar\omega\sigma_x/2$$
+*   Simulate $$|\psi(t)\rangle$$ and expectation values $$\langle\sigma_i\rangle(t)$$
+*   Compare Schrödinger vs Heisenberg computations (should match)
+
+Deliverables: code + plots + 2-page explanation.
+
+## Complex Project (CPJ): “Interaction picture perturbation demo”
+
+*   Take $$H_0=\hbar\omega\sigma_z/2$$, $$V(t)=\hbar\Omega\cos(\nu t)\sigma_x/2$$
+*   Compute $$V_I(t)$$ and implement first-order Dyson approximation
+*   Compare with numerical exact evolution; discuss regime of validity
+
+Deliverables: 8–12 page report + plots + derivation appendix.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**How did Dirac’s transformation theory motivate the equivalence of Schrödinger and Heisenberg pictures, and why did the interaction picture become central for perturbation theory?**  
+(5–7 pages, include a worked example of Dyson first order)
+
+## Open-ended (ORQ)
+
+**Can time evolution (unitarity + generator) be derived from purely operational constraints on measurement statistics, without assuming a Hamiltonian?**  
+Proposal-style memo.
+
+***
+
+# J) Extra practice sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice — `L08_extra_practice.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 8 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A}
+\begin{enumerate}
+\item Show $\langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$ if $U^\dagger U=I$.
+\item For $H=\hbar\omega\sigma_z/2$, compute $U(t)$ and show it is unitary.
+\item Compute $\sigma_x(t)=U^\dagger\sigma_x U$ for that $H$.
+\end{enumerate}
+
+\section*{Practice B (interaction picture preview)}
+\begin{enumerate}
+\item Given $H=H_0+V(t)$ define $U_0$ and $V_I(t)$.
+\item Write first-order Dyson approximation and interpret when it is valid.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework — `L08_homework.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 8 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S1) Show norm is preserved under unitary evolution.
+\item (S3) Compute $U(t)$ for $H=\hbar\omega\sigma_z/2$.
+\item (S6) Compute $\sigma_x(t)$ in the Heisenberg picture for that Hamiltonian.
+\item (C2) Derive Heisenberg equation of motion.
+\item (C3) Derive the interaction-picture Schr\"odinger equation.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (S9) First-order Dyson approximation for $U_I$.
+\item (C4) Dyson series to second order and time ordering.
+\item (C5) Stone theorem preview note.
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15 problems** (10 SPS + 5 CPS)
+
+Each packet is a complete mini-document with your required structure.
+
+***
+
+## **S1 — Norm preservation**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S1 Norm preservation — Problem}
+If $|\psi(t)\rangle=U|\psi(t_0)\rangle$ and $U^\dagger U=I$, show $\langle\psi(t)|\psi(t)\rangle=\langle\psi(t_0)|\psi(t_0)\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $\langle\psi(t)|=\langle\psi(t_0)|U^\dagger$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use associativity and $U^\dagger U=I$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\psi(t)|\psi(t)\rangle=\langle\psi(t_0)|U^\dagger U|\psi(t_0)\rangle=\langle\psi(t_0)|\psi(t_0)\rangle$.
+\end{document}
+```
+
+## **S2 — Verify $$U(t)$$ solves Schrödinger equation for time-independent $$H$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S2 Evolution operator ODE — Problem}
+Let $U(t)=e^{-iHt/\hbar}$ with time-independent $H$. Show $i\hbar\,\dot U(t)=HU(t)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\frac{d}{dt}e^{At}=Ae^{At}$ for constant matrix/operator $A$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Set $A=-iH/\hbar$ and substitute.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\dot U(t)=(-iH/\hbar)e^{-iHt/\hbar}=(-iH/\hbar)U(t)$, hence $i\hbar\dot U=HU$.
+\end{document}
+```
+
+## **S3 — Compute $$U(t)$$ for $$H=\hbar\omega\sigma_z/2$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S3 Qubit unitary — Problem}
+Let $H=\hbar\omega\sigma_z/2$ with $\sigma_z=\mathrm{diag}(1,-1)$. Compute $U(t)=e^{-iHt/\hbar}$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Since $H$ is diagonal, exponentiate entries.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use $e^{-i(\omega t/2)\sigma_z}=\mathrm{diag}(e^{-i\omega t/2},e^{+i\omega t/2})$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+U(t)=e^{-i(\omega t/2)\sigma_z}=
+\begin{pmatrix}e^{-i\omega t/2}&0\\0&e^{+i\omega t/2}\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S4 — Evolve a qubit state**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S4 State evolution — Problem}
+With $U(t)$ from S3 and $|\psi(0)\rangle=\alpha|0\rangle+\beta|1\rangle$, compute $|\psi(t)\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Multiply $U(t)$ by the coefficient vector $(\alpha,\beta)^T$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret as relative phase accumulation between energy eigenstates.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+|\psi(t)\rangle = \alpha e^{-i\omega t/2}|0\rangle + \beta e^{+i\omega t/2}|1\rangle.
+\]
+\end{document}
+```
+
+## **S5 — Compute $$\langle\sigma_x\rangle(t)$$ in Schrödinger picture**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S5 Expectation vs time — Problem}
+Let $\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix}$ and $|\psi(t)\rangle$ from S4. Compute $\langle\sigma_x\rangle(t)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\langle\sigma_x\rangle=\psi(t)^\dagger \sigma_x \psi(t)$.
+\item $\sigma_x$ swaps components.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item You should get an oscillation involving $e^{\pm i\omega t}$ and $\alpha^*\beta$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Write $\psi(t)=(\alpha e^{-i\omega t/2},\,\beta e^{i\omega t/2})^T$.
+Then $\sigma_x\psi(t)=(\beta e^{i\omega t/2},\,\alpha e^{-i\omega t/2})^T$.
+So
+\[
+\langle\sigma_x\rangle(t)=\alpha^* e^{i\omega t/2}\beta e^{i\omega t/2}+\beta^* e^{-i\omega t/2}\alpha e^{-i\omega t/2}
+=\alpha^*\beta e^{i\omega t} + \beta^*\alpha e^{-i\omega t}
+=2\Re(\alpha^*\beta e^{i\omega t}).
+\]
+\end{document}
+```
+
+## **S6 — Compute $$\sigma_x(t)$$ in Heisenberg picture**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S6 Heisenberg operator — Problem}
+With $U(t)$ from S3, compute $\sigma_x(t)=U^\dagger(t)\sigma_x U(t)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $U=\mathrm{diag}(e^{-i\omega t/2},e^{i\omega t/2})$.
+\item Multiply matrices in order.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Expect off-diagonal phases: $e^{\pm i\omega t}$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Compute:
+\[
+U^\dagger=\begin{pmatrix}e^{i\omega t/2}&0\\0&e^{-i\omega t/2}\end{pmatrix}.
+\]
+Then
+\[
+\sigma_x U=\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}e^{-i\omega t/2}&0\\0&e^{i\omega t/2}\end{pmatrix}
+=\begin{pmatrix}0&e^{i\omega t/2}\\ e^{-i\omega t/2}&0\end{pmatrix}.
+\]
+Multiply on left by $U^\dagger$:
+\[
+\sigma_x(t)=\begin{pmatrix}0&e^{i\omega t}\\ e^{-i\omega t}&0\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S7 — Constant of motion criterion**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L08-S7 Constant of motion — Problem}
+Show that if $[H,A]=0$ and $\partial A/\partial t=0$, then $\frac{d}{dt}\langle A\rangle=0$ (closed system).
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use Heisenberg equation or Schr\"odinger picture derivative.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item In Heisenberg picture: $\dot A_H=(i/\hbar)[H,A_H]$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+In Heisenberg picture, if $A$ has no explicit time dependence,
+\[
+\frac{dA_H}{dt}=\frac{i}{\hbar}[H,A_H].
+\]
+If $[H,A]=0$, then $[H,A_H]=0$ as well (unitary conjugation preserves commutators), so $\dot A_H=0$ and
+\[
+\frac{d}{dt}\langle A\rangle=\frac{d}{dt}\langle\psi_H|A_H|\psi_H\rangle=0.
+\]
+\end{document}
+```
+
+## **S8 — Interaction-picture interaction operator**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L08-S8 Interaction picture: $V_I(t)$ — Problem}
+Given $H=H_0+V(t)$ and $U_0(t,t_0)=e^{-iH_0(t-t_0)/\hbar}$, show $V_I(t)=U_0^\dagger(t,t_0)V(t)U_0(t,t_0)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Recall interaction-picture operator definition: $A_I=U_0^\dagger A_S U_0$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Treat $V(t)$ as an operator like any other (possibly time-dependent).
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+By definition of interaction-picture operators,
+\[
+V_I(t)=U_0^\dagger(t,t_0)V(t)U_0(t,t_0).
+\]
+\end{document}
+```
+
+## **S9 — First-order Dyson approximation**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-S9 First-order Dyson — Problem}
+Given $i\hbar \dot U_I(t)=V_I(t)U_I(t)$ with $U_I(t_0)=I$, show the first-order approximation
+\[
+U_I(t,t_0)\approx I-\frac{i}{\hbar}\int_{t_0}^t V_I(\tau)\,d\tau.
+\]
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Integrate the differential equation assuming $U_I\approx I$ on the right.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Recognize this as one step of Picard iteration.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+From $\dot U_I=-(i/\hbar)V_IU_I$ and $U_I(t_0)=I$,
+\[
+U_I(t)=I-\frac{i}{\hbar}\int_{t_0}^t V_I(\tau)U_I(\tau)\,d\tau.
+\]
+First-order sets $U_I(\tau)\approx I$ inside the integral, giving the stated approximation.
+\end{document}
+```
+
+## **S10 — Picture equivalence for expectation values**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L08-S10 Picture equivalence — Problem}
+Show $\langle\psi_S(t)|A_S|\psi_S(t)\rangle=\langle\psi_H|A_H(t)|\psi_H\rangle$ with $A_H=U^\dagger A_S U$ and $|\psi_S\rangle=U|\psi_H\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Substitute $|\psi_S\rangle=U|\psi_H\rangle$ and simplify.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use unitarity to move $U^\dagger$ to the bra side.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\langle\psi_S|A_S|\psi_S\rangle=\langle\psi_H|U^\dagger A_S U|\psi_H\rangle
+=\langle\psi_H|A_H|\psi_H\rangle.
+\]
+\end{document}
+```
+
+***
+
+## **C1 — Hermitian $$H$$ ⇒ unitary $$U(t)$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-C1 Hermitian generator implies unitary — Problem}
+Let $H=H^\dagger$ and $U(t)=e^{-iHt/\hbar}$. Prove $U^\dagger(t)U(t)=I$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $(e^X)^\dagger=e^{X^\dagger}$ for bounded matrices/operators.
+\item Compute $U^\dagger=e^{+iHt/\hbar}$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show $U^\dagger U=e^{iHt/\hbar}e^{-iHt/\hbar}=I$ because exponents commute (same operator).
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Since $H^\dagger=H$,
+\[
+U^\dagger=(e^{-iHt/\hbar})^\dagger=e^{(+iH^\dagger t/\hbar)}=e^{iHt/\hbar}.
+\]
+Then
+\[
+U^\dagger U = e^{iHt/\hbar}e^{-iHt/\hbar}=e^{0}=I,
+\]
+because $H$ commutes with itself. Hence $U$ is unitary.
+\end{document}
+```
+
+## **C2 — Derive Heisenberg equation**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L08-C2 Heisenberg equation — Problem}
+Let $A_H(t)=U^\dagger(t)A_S(t)U(t)$ and $i\hbar\dot U=HU$. Derive
+\[
+\frac{dA_H}{dt}=\frac{i}{\hbar}[H_H,A_H]+\left(\frac{\partial A_S}{\partial t}\right)_H.
+\]
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Differentiate $U^\dagger A_S U$ using product rule.
+\item Use $\dot U^\dagger=-(i/\hbar)U^\dagger H$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Collect terms to form a commutator.
+\item Define $H_H=U^\dagger H U$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Differentiate:
+\[
+\dot A_H=\dot U^\dagger A_S U + U^\dagger \dot A_S U + U^\dagger A_S \dot U.
+\]
+Using $\dot U=-(i/\hbar)HU$ and $\dot U^\dagger=(i/\hbar)U^\dagger H^\dagger=(i/\hbar)U^\dagger H$ with Hermitian $H$:
+\[
+\dot A_H=\frac{i}{\hbar}U^\dagger H A_S U + U^\dagger \dot A_S U -\frac{i}{\hbar}U^\dagger A_S H U.
+\]
+Factor $U^\dagger(\cdot)U$:
+\[
+\dot A_H = U^\dagger \dot A_S U + \frac{i}{\hbar}U^\dagger(HA_S-A_SH)U
+= \left(\frac{\partial A_S}{\partial t}\right)_H + \frac{i}{\hbar}[H_H,A_H].
+\]
+\end{document}
+```
+
+## **C3 — Derive interaction-picture Schrödinger equation**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L08-C3 Interaction-picture equation — Problem}
+Let $H=H_0+V(t)$ and $U_0=e^{-iH_0(t-t_0)/\hbar}$. Define $|\psi_I\rangle=U_0^\dagger|\psi_S\rangle$.
+Derive $i\hbar\frac{d}{dt}|\psi_I\rangle = V_I(t)|\psi_I\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Differentiate $|\psi_I\rangle=U_0^\dagger|\psi_S\rangle$.
+\item Use Schr\"odinger equation for $|\psi_S\rangle$ and $\dot U_0^\dagger$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show the $H_0$ terms cancel, leaving only $V_I$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Differentiate:
+\[
+\frac{d}{dt}|\psi_I\rangle=\dot U_0^\dagger|\psi_S\rangle+U_0^\dagger\dot{|\psi_S\rangle}.
+\]
+Use $i\hbar\dot{|\psi_S\rangle}=H|\psi_S\rangle=(H_0+V)|\psi_S\rangle$ and $\dot U_0^\dagger=\frac{i}{\hbar}U_0^\dagger H_0$.
+Then
+\[
+i\hbar\frac{d}{dt}|\psi_I\rangle = i\hbar\dot U_0^\dagger|\psi_S\rangle + U_0^\dagger(H_0+V)|\psi_S\rangle
+= -U_0^\dagger H_0|\psi_S\rangle + U_0^\dagger H_0|\psi_S\rangle + U_0^\dagger V|\psi_S\rangle.
+\]
+The $H_0$ terms cancel. Since $|\psi_S\rangle=U_0|\psi_I\rangle$,
+\[
+i\hbar\dot{|\psi_I\rangle}=U_0^\dagger V U_0 |\psi_I\rangle \equiv V_I(t)|\psi_I\rangle.
+\]
+\end{document}
+```
+
+## **C4 — Dyson series to second order + time ordering**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L08-C4 Dyson series — Problem}
+Starting from $U_I(t)=I-\frac{i}{\hbar}\int_{t_0}^t V_I(\tau)U_I(\tau)\,d\tau$, derive the Dyson expansion up to second order and explain why time ordering appears.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Substitute $U_I(\tau)\approx I$ to get first order.
+\item Substitute the first-order expression back into the integral to get second order.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show the second-order term involves $\int_{t_0}^t d\tau_1\int_{t_0}^{\tau_1} d\tau_2\,V_I(\tau_1)V_I(\tau_2)$.
+\item Note ordering matters if $[V_I(\tau_1),V_I(\tau_2)]\neq0$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Integral equation:
+\[
+U_I(t)=I-\frac{i}{\hbar}\int_{t_0}^t d\tau_1\,V_I(\tau_1)U_I(\tau_1).
+\]
+First order: set $U_I(\tau_1)\approx I$:
+\[
+U_I^{(1)}(t)=I-\frac{i}{\hbar}\int_{t_0}^t d\tau_1\,V_I(\tau_1).
+\]
+Second order: plug $U_I(\tau_1)\approx U_I^{(1)}(\tau_1)$:
+\[
+U_I^{(2)}(t)=I-\frac{i}{\hbar}\int_{t_0}^t d\tau_1\,V_I(\tau_1)
++\left(-\frac{i}{\hbar}\right)^2\int_{t_0}^t d\tau_1\int_{t_0}^{\tau_1} d\tau_2\,V_I(\tau_1)V_I(\tau_2).
+\]
+The nested integral enforces $\tau_1>\tau_2$, i.e. time ordering. This is necessary because in general
+$V_I(\tau_1)V_I(\tau_2)\neq V_I(\tau_2)V_I(\tau_1)$.
+\end{document}
+```
+
+## **C5 — Stone theorem preview (structured note)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L08-C5 Stone theorem preview — Problem}
+Write a structured 1--2 page note:
+\begin{enumerate}
+\item What is a one-parameter unitary group $U(t)$ and what continuity property is assumed?
+\item What does Stone's theorem assert about the generator?
+\item Why does self-adjointness (not just Hermitian) matter?
+\end{enumerate}
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Keep it conceptual; no full proof required.
+\item Mention that $U(t)=e^{-iHt/\hbar}$ with self-adjoint $H$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Explain domain issues for unbounded $H$.
+\item Connect to unitary evolution and conservation of probability.
+\end{itemize}
+
+\newpage\section*{Detailed solution (model outline)}
+A good note states:
+\begin{itemize}
+\item A strongly continuous one-parameter unitary group satisfies $U(t+s)=U(t)U(s)$, $U(0)=I$, and $\lim_{t\to0}\|U(t)\psi-\psi\|=0$.
+\item Stone's theorem: such a group is generated by a unique self-adjoint operator $H$ via $U(t)=e^{-iHt/\hbar}$ (up to constants).
+\item Self-adjointness ensures real spectrum and well-defined unitary evolution; Hermitian/symmetric without self-adjointness can fail to generate a unitary group.
+\end{itemize}
+\end{document}
+```
+
+***
+
+## ✅ Next step: Lecture 9
+
+Lecture 9 naturally follows with **tensor products, composite systems, entanglement**, and then we’ll connect measurement (Lecture 7) + dynamics (Lecture 8) to subsystems and reduced states (Lecture 11).
+
+If you’re ready, say: **“Proceed to Lecture 9”** and tell me one preference:
+
+*   Should Lecture 9 already include **partial trace as a preview**, or keep partial trace strictly in Lecture 11?

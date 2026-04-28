@@ -1,0 +1,1149 @@
+============================================
+Lecture 1
+============================================
+Great — **Option 3** it is. We’ll proceed **lecture-by-lecture**, and we’ll start with **Lecture 1**.
+
+Below is a **complete Lecture 1 “assessment + teaching artifact package”** delivered **in chat**:
+
+*   ✅ Full lecture notes (**narrative + derivations**) as **LaTeX sources** (student + instructor toggle)
+*   ✅ Slide deck as **Beamer LaTeX** + a **PowerPoint-ready outline**
+*   ✅ **Concept questions**
+*   ✅ **Simple Problem Set (SPS)** + **Complex Problem Set (CPS)**
+*   ✅ **Extra practice sheet** + **Homework sheet**
+*   ✅ **Projects** (simple + complex)
+*   ✅ **Research questions** (well-defined + open-ended)
+*   ✅ **References + historical papers** per tier (HS, BegUG, AdvUG, MSc, PhD)
+*   ✅ For **every exercise** below: **Problem → Suggestions → Advanced suggestions → Detailed solutions** (packet format)
+
+> **How to use this:** Copy each code block into its own `.tex` or `.md` file. When you’re ready, I’ll convert this into a repo/ZIP with automation.
+
+***
+
+# Lecture 1 — States, Preparations, and Superposition (Sakurai ↔ Dirac)
+
+## 90-minute pacing
+
+*   **0–15:** Motivation; representations vs abstract states
+*   **15–45:** Kets as vectors, rays, normalization, global phase
+*   **45–70:** Bras as duals (informal here), amplitudes
+*   **70–90:** First translations: ket ↔ column vector ↔ wavefunction idea
+
+## Core outcomes
+
+Students can:
+
+1.  Explain state as a **ray**: $$|\psi\rangle \sim e^{i\theta}|\psi\rangle$$
+2.  Interpret **amplitudes** and compute **probabilities**
+3.  Use the discrete-basis dictionary: $$c_n=\langle n|\psi\rangle$$
+
+***
+
+# A) Reference anchors + historical anchors + expansion hooks
+
+## Reference anchors (course anchors)
+
+*   **Dirac:** *The Principles of Quantum Mechanics* — formal postulates, transformation theory, bra–ket ethos
+*   **Sakurai & Napolitano:** *Modern Quantum Mechanics* — measurement-driven motivation, amplitudes and interpretation
+
+## Historical anchors (for lecture narrative and reading prompts)
+
+*   **Born (1926)** — probability interpretation (amplitude → probability)
+*   **Dirac (1927)** — early “probability amplitude / transformation” formalism
+*   **Dirac (1930)** — bra–ket notation systematized in book form
+*   *(Optional later)* **von Neumann (1932)** — Hilbert space foundations, spectral theory
+
+## Expansion hooks (to connect early to Sakurai)
+
+Use the “state preparation ↔ measurement outcomes” thread immediately:
+
+*   Preparation procedure → label it $$|\psi\rangle$$
+*   Measurement outcomes → basis kets $$|a_i\rangle$$
+*   Probabilities → $$P(a_i)=|\langle a_i|\psi\rangle|^2$$
+*   Representation independence → $$|\psi\rangle$$ is abstract; numbers depend on basis/measurement choice
+
+***
+
+# B) Learning tiers (Lecture 1 add-ons) — with references + papers + assessments + projects + research prompts
+
+Below, each tier includes: **references**, **historical reading**, **question set**, **SPS/CPS guidance**, **projects**, **research prompts**.
+
+***
+
+## Tier 1 — HS (High School prerequisites)
+
+### Focus
+
+*   Complex numbers as arrows; $$|z|^2$$ as probability
+*   Vector addition → interference intuition
+
+### References
+
+*   Any standard complex numbers chapter (algebra/pre-calc)
+*   Teacher note: “phasor addition” / vector diagrams (amplitude arrows)
+
+### Historical reading (HS-friendly)
+
+*   Born 1926 (story-level summary only; don’t assign the paper)
+
+### Concept questions (HS)
+
+1.  Why can’t probabilities be negative?
+2.  Why does squaring a length give a nonnegative number?
+3.  How can adding two arrows make the result shorter?
+
+### Problem sets (HS)
+
+*   Simple: compute $$|a+ib|^2$$, add amplitudes then square
+*   Complex: derive $$|1+e^{i\phi}|^2=2+2\cos\phi$$
+
+### Projects
+
+*   Simple: draw amplitude arrows for different phases and compare probabilities
+*   Complex: plot $$2+2\cos\phi$$ and interpret maxima/minima as interference
+
+### Research prompts
+
+*   Well-defined: 2 pages explaining interference via arrow addition
+*   Open-ended: propose an alternative mapping from amplitude to probability and test its properties
+
+***
+
+## Tier 2 — BegUG (Beginning Undergraduate)
+
+### Focus
+
+*   Normalization, orthogonality, components $$c_n=\langle n|\psi\rangle$$
+*   Probabilities $$P(n)=|c_n|^2$$
+
+### References
+
+*   Linear algebra: inner products + orthonormal bases (any text)
+*   Sakurai: early chapter sections on measurement/amplitudes
+
+### Historical reading
+
+*   Born 1926 (guided excerpt summary)
+*   Dirac early formalism (guided secondary summary)
+
+### Concept questions (BegUG)
+
+1.  Why is normalization required?
+2.  What does orthogonality mean operationally?
+3.  Why does “superposition” depend on the measurement basis?
+
+### Problem sets
+
+*   Simple: normalization + component extraction + probabilities
+*   Complex: insert identity, prove phase invariance
+
+### Projects
+
+*   Simple: compute basis coefficients and probabilities for random states
+*   Complex: compare probability distributions under basis change
+
+### Research prompts
+
+*   Well-defined: short memo “basis choice is measurement choice”
+*   Open-ended: “Why complex rather than real amplitudes?” (operational argument)
+
+***
+
+## Tier 3 — AdvUG (Advanced Undergraduate)
+
+### Focus
+
+*   Cauchy–Schwarz and triangle inequality
+*   geometry/metric viewpoint: overlaps bounded
+
+### References
+
+*   Proof-based linear algebra / inner product spaces
+*   QM text appendices on Hilbert spaces (often in Sakurai/Ballentine/Messiah)
+
+### Historical reading
+
+*   von Neumann 1932 (guided, selective)
+
+### Concept questions (AdvUG)
+
+1.  Why must $$|\langle\phi|\psi\rangle| \le 1$$ for normalized states?
+2.  What does C–S mean physically?
+3.  How does geometry enter probability?
+
+### Problem sets
+
+*   Simple: practice inequality applications
+*   Complex: full proofs + unitary invariances
+
+### Projects
+
+*   Simple: numerical verification of C–S and triangle inequality on random complex vectors
+*   Complex: “distance between states” minimizing over global phase
+
+### Research prompts
+
+*   Well-defined: proof note on C–S + probability bounds
+*   Open-ended: explore alternative geometries on pure-state space
+
+***
+
+## Tier 4 — MSc (Master’s)
+
+### Focus
+
+*   Rays / projective Hilbert space
+*   Wigner theorem preview (symmetry preserves transition probabilities)
+
+### References
+
+*   Sakurai: symmetries
+*   Geometry of QM notes: Fubini–Study distance (optional)
+
+### Historical reading
+
+*   Wigner’s early symmetry work (guided reading prompt)
+
+### Concept questions (MSc)
+
+1.  Why are physical states rays, not vectors?
+2.  What is preserved under symmetry: vectors or transition probabilities?
+3.  Why does Wigner force unitary/antiunitary maps?
+
+### Problem sets
+
+*   Simple: phase-invariant quantities
+*   Complex: Wigner theorem proof sketch + projective distance
+
+### Projects
+
+*   Simple: compute Fubini–Study distance numerically
+*   Complex: mini-essay linking symmetries ↔ probability invariance ↔ (anti)unitaries
+
+### Research prompts
+
+*   Well-defined: reading report on Wigner theorem (5 pages)
+*   Open-ended: “derive Hilbert space structure from operational axioms”
+
+***
+
+## Tier 5 — PhD
+
+### Focus
+
+*   Precise Hilbert space definition; separability; rays as 1D subspaces
+*   Preview of domain subtleties (unbounded operators) for later lectures
+
+### References
+
+*   von Neumann (foundations)
+*   Functional analysis for physicists (Reed–Simon/Berezansky-style references later)
+
+### Historical reading
+
+*   Stone 1932 (unitary groups) — later time evolution
+*   von Neumann 1932
+
+### Concept questions (PhD)
+
+1.  Why is completeness required physically?
+2.  Why do we usually assume separability in NRQM?
+3.  Why does “Hermitian” vs “self-adjoint” matter?
+
+### Problem sets
+
+*   Simple: formalize rays and transition probability invariance
+*   Complex: separability and countable basis; domain caveats (essay-style)
+
+### Projects
+
+*   Simple: “rigor checklist for safe Dirac manipulations”
+*   Complex: mini-survey: projective geometry in modern QM/QIT
+
+### Research prompts
+
+*   Well-defined: 10-page note on separability assumptions
+*   Open-ended: reconstruction programs and minimal postulates
+
+***
+
+# C) Lecture notes (LaTeX sources)
+
+## C1) Single-source lecture chapter with instructor toggle
+
+Copy as: `L01_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+% Instructor toggle:
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Track mapping (Sakurai $\leftrightarrow$ Dirac)}
+
+\title{Lecture 1: States, Preparations, and Superposition\\
+\large Sakurai (measurement) $\leftrightarrow$ Dirac (axioms)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{0--15:} Motivations; representations vs abstract states
+  \item \textbf{15--45:} Kets as vectors, rays, normalization, global phase
+  \item \textbf{45--70:} Bras as duals (informal), amplitudes, Born rule
+  \item \textbf{70--90:} Dictionary: ket $\leftrightarrow$ vector $\leftrightarrow$ wavefunction idea
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+By the end, you can:
+\begin{enumerate}[leftmargin=*]
+  \item Explain rays: $|\psi\rangle\sim e^{i\theta}|\psi\rangle$.
+  \item Compute probabilities from amplitudes: $P(a)=|\langle a|\psi\rangle|^2$.
+  \item Use discrete basis dictionary: $c_n=\langle n|\psi\rangle$.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Motivation: state vs representation}
+A persistent confusion is to identify a state with one of its representations: a wavefunction, a column vector,
+or a matrix. In Dirac notation, the state is the abstract ket $|\psi\rangle$. A representation is obtained only
+after choosing a basis, typically associated with a measurement.
+
+\begin{warnbox}
+\textbf{Pitfall:} A ket is not a column vector until a basis is chosen. Changing basis changes the coordinates,
+not the physical state.
+\end{warnbox}
+
+\section{Sakurai track: preparation, outcomes, and amplitudes}
+\subsection{Preparation and measurement}
+A preparation is a reproducible procedure. Measuring an observable $A$ yields outcomes $a_i$ with stable frequencies,
+defining probabilities $P(a_i)$.
+
+\subsection{Why amplitudes? Interference}
+Experiments show that indistinguishable alternatives do not combine by adding probabilities. Instead,
+complex \emph{amplitudes} add first, then probabilities are obtained by modulus-squared.
+
+\subsection{Born rule (operational)}
+We postulate complex numbers $\langle a_i|\psi\rangle$ such that
+\begin{equation}
+P(a_i)=|\langle a_i|\psi\rangle|^2.
+\end{equation}
+Normalization follows from total probability:
+\begin{equation}
+\sum_i |\langle a_i|\psi\rangle|^2 = 1.
+\end{equation}
+
+\section{Dirac track: Hilbert space, rays, and inner products}
+\subsection{States are rays}
+Physical states are rays: $|\psi\rangle \sim c|\psi\rangle$ for any nonzero complex $c$.
+In particular, global phase is irrelevant: $|\psi\rangle\sim e^{i\theta}|\psi\rangle$.
+
+\subsection{Orthonormal basis and completeness}
+Associate a measurement with an orthonormal basis $\{|n\rangle\}$:
+\[
+\langle m|n\rangle=\delta_{mn},\qquad \sum_n |n\rangle\langle n|=\mathbb I.
+\]
+
+\subsection{Key derivation: components are inner products}
+If $|\psi\rangle=\sum_n c_n|n\rangle$, then
+\[
+\langle m|\psi\rangle=\sum_n c_n\langle m|n\rangle = c_m,
+\]
+so $c_n=\langle n|\psi\rangle$.
+
+\subsection{Global phase invariance}
+If $|\psi'\rangle=e^{i\theta}|\psi\rangle$, then
+\[
+|\langle n|\psi'\rangle|^2 = |e^{i\theta}\langle n|\psi\rangle|^2 = |\langle n|\psi\rangle|^2.
+\]
+
+\section{Synthesis mapping}
+\begin{mapbox}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Sakurai (operational)} & \textbf{Dirac (structural)}\\ \midrule
+Preparation procedure & Ket $|\psi\rangle$ (ray in $\mathcal H$)\\
+Outcome label $a_i$ & Basis ket $|a_i\rangle$\\
+Amplitude & Inner product $\langle a_i|\psi\rangle$\\
+Probability & $|\langle a_i|\psi\rangle|^2$\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\section{First translation dictionary}
+Discrete basis: $|\psi\rangle \leftrightarrow (c_1,\dots,c_N)^T$ where $c_n=\langle n|\psi\rangle$.\\
+Continuous preview: $\psi(x)=\langle x|\psi\rangle$ (Lecture 6).
+
+\section{Artifacts (listed)}
+See the associated Concept Questions, Problem Sets A/B, Projects, and Research prompts.
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Emphasize deliberate repetition: operational meaning first, then axioms; end by mapping.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L01_notes_student.tex` and `L01_notes_instructor.tex`:
+
+```latex
+% L01_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L01_chapter}
+```
+
+```latex
+% L01_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L01_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer slide deck (LaTeX)
+
+Copy as `L01_slides_beamer.tex`:
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 1: States and Bra--Ket Notation}
+\author{}
+\date{}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{90-minute pacing}
+\begin{itemize}
+\item 0--15: Motivation; representations vs abstract states
+\item 15--45: Kets, rays, normalization, global phase
+\item 45--70: Bras (informal), amplitudes, Born rule
+\item 70--90: Dictionary: ket $\leftrightarrow$ vector $\leftrightarrow$ wavefunction
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Core outcomes}
+\begin{itemize}
+\item States are rays: $|\psi\rangle \sim e^{i\theta}|\psi\rangle$
+\item Probabilities: $P(a)=|\langle a|\psi\rangle|^2$
+\item Components: $c_n=\langle n|\psi\rangle$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Sakurai track}
+\begin{itemize}
+\item Preparation + measurement $\Rightarrow$ stable frequencies
+\item Interference motivates complex amplitudes
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Dirac track}
+\begin{itemize}
+\item Hilbert space + inner product
+\item Completeness: $\sum_n |n\rangle\langle n|=\mathbb I$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Synthesis dictionary}
+Preparation $\leftrightarrow |\psi\rangle$\\
+Outcome $\leftrightarrow |a\rangle$\\
+Amplitude $\leftrightarrow \langle a|\psi\rangle$\\
+Probability $\leftrightarrow |\langle a|\psi\rangle|^2$
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint-ready outline (paste into PPT)
+
+Copy as `L01_slides_ppt_outline.md`:
+
+```md
+# Lecture 1: States and Bra–Ket Notation (Sakurai ↔ Dirac)
+
+## Slide 1 — Title
+- Lecture 1: States, Preparations, and Superposition
+- Dual track: Sakurai (measurement) ↔ Dirac (axioms)
+
+## Slide 2 — 90-min pacing
+- 0–15 Motivation: state vs representation
+- 15–45 Kets: rays, normalization, global phase
+- 45–70 Bras: amplitudes, Born rule
+- 70–90 Dictionary: ket ↔ vector ↔ wavefunction preview
+
+## Slide 3 — Sakurai track
+- Preparation procedure → repeated trials
+- Outcomes → stable frequencies → probabilities
+
+## Slide 4 — Why amplitudes?
+- Interference: indistinguishable alternatives
+- P = |A1 + A2|^2 (not |A1|^2 + |A2|^2)
+
+## Slide 5 — Born rule + normalization
+- P(ai) = |⟨ai|ψ⟩|^2
+- Σi |⟨ai|ψ⟩|^2 = 1
+
+## Slide 6 — Dirac track
+- State is abstract ket |ψ⟩
+- Physical state is a ray: |ψ⟩ ~ e^{iθ}|ψ⟩
+
+## Slide 7 — Basis expansion
+- Completeness: Σn |n⟩⟨n| = I
+- Components: cn = ⟨n|ψ⟩
+
+## Slide 8 — Synthesis dictionary
+- Preparation ↔ |ψ⟩
+- Outcome ↔ |ai⟩
+- Amplitude ↔ ⟨ai|ψ⟩
+- Probability ↔ |⟨ai|ψ⟩|^2
+```
+
+***
+
+# E) Assessment artifacts (Lecture 1)
+
+## E1) Concept questions (CQ) — 10 items
+
+1.  What is the difference between a **state** and a **representation** of a state?
+2.  Why does interference imply that probabilities cannot be the primitive additive objects?
+3.  What does $$\langle a|\psi\rangle$$ mean operationally?
+4.  Why do we square the magnitude of an amplitude to get a probability?
+5.  Why is $$|\psi\rangle\sim e^{i\theta}|\psi\rangle$$ physically?
+6.  What does it mean that “superposition is basis dependent”?
+7.  Why must $$\sum_i P(a_i)=1$$?
+8.  What does $$\sum_n|n\rangle\langle n|=\mathbb I$$ mean in words?
+9.  Why does a global phase not affect any measurement probability?
+10. How do you interpret $$c_n=\langle n|\psi\rangle$$ in a measurement context?
+
+***
+
+## E2) Problem sets (SPS + CPS)
+
+We’ll use:
+
+*   **SPS:** 8 problems (computational fluency)
+*   **CPS:** 4 problems (proof/synthesis)
+
+### SPS list
+
+S1 Normalize a ket in a 2D basis  
+S2 Extract components $$c_n=\langle n|\psi\rangle$$  
+S3 Compute probabilities from amplitudes  
+S4 Show global phase invariance  
+S5 Use completeness to prove Parseval identity  
+S6 Two-path interference probability vs phase  
+S7 Basis change in a two-level system  
+S8 Translate ket ↔ column vector
+
+### CPS list
+
+C1 Prove Cauchy–Schwarz  
+C2 Prove triangle inequality  
+C3 Show unitary basis change preserves probabilities  
+C4 Phase-invariant distance: $$\min_\theta \|\phi-e^{i\theta}\psi\|$$ (advanced UG/MSc)
+
+***
+
+## E3) Projects
+
+### Simple project (SPJ) — Basis-expansion calculator
+
+**Deliverables:** code + README + 2 examples + verification checks  
+**Spec:**
+
+*   Input coefficients $$c$$ in basis A and unitary $$U$$ (A→B)
+*   Output $$c' = Uc$$
+*   Verify:
+    *   $$\sum |c|^2 = \sum |c'|^2$$
+    *   probabilities sum to 1
+    *   global phase invariance
+
+### Complex project (CPJ) — Compare physical meaning across representations
+
+**Deliverables:** 5–8 page report + appendix computations (and optionally code)
+
+*   Represent same state as:
+    1.  abstract ket $$|\psi\rangle$$
+    2.  coordinate vector in basis A
+    3.  coordinate vector in basis B
+    4.  wavefunction preview $$\psi(x)=\langle x|\psi\rangle$$ (conceptual)
+*   Explain invariants vs representation-dependent quantities.
+
+***
+
+## E4) Research questions
+
+### Well-defined (WRQ)
+
+**Prompt:** How did Born’s probability interpretation (1926) influence the meaning of “amplitude” by the time Dirac formalized transformation theory (1927–1930)?  
+**Output:** 3–5 pages with citations and an annotated timeline.
+
+### Open-ended (ORQ)
+
+**Prompt:** Which minimal operational assumptions force complex Hilbert space (rather than real) in reconstruction programs?  
+**Output:** proposal-style memo: assumptions, consequences, open gaps.
+
+***
+
+# F) Extra practice sheet + Homework sheet (LaTeX)
+
+## F1) Extra practice sheet
+
+Copy as `L01_extra_practice.tex`:
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 1 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (computational)}
+\begin{enumerate}
+\item Normalize $|\psi\rangle=2|1\rangle-(1-i)|2\rangle$.
+\item For $|\psi\rangle=\frac{1}{\sqrt{5}}(|1\rangle+2i|2\rangle)$ compute $P(1),P(2)$.
+\item If $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$, compute $\langle +|\psi\rangle$ for $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$.
+\item Show $\langle\psi|\psi\rangle=\sum_n |\langle n|\psi\rangle|^2$ using completeness.
+\end{enumerate}
+
+\section*{Practice B (concept + proof)}
+\begin{enumerate}
+\item Explain (in 5 sentences) why global phase is unobservable.
+\item Prove (sketch) Cauchy--Schwarz using $\|\phi-\lambda\psi\|^2\ge 0$.
+\end{enumerate}
+
+\end{document}
+```
+
+## F2) Homework sheet
+
+Copy as `L01_homework.tex`:
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 1 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S1) Normalize $|\psi\rangle=|1\rangle+i|2\rangle$.
+\item (S4) Prove probabilities are invariant under $|\psi\rangle\to e^{i\theta}|\psi\rangle$.
+\item (S6) Two-path toy model: $A(\phi)=1+e^{i\phi}$. Compute $P(\phi)=|A(\phi)|^2$ and identify maxima/minima.
+\item (C1) Prove Cauchy--Schwarz.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (S7) For $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$, compute $P(+)$ for $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$.
+\item (C3) Show unitary change of basis preserves probabilities.
+\item (C2) Prove triangle inequality.
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# G) Exercise packets (ALL Lecture 1 problems)
+
+Each packet includes **Problem → Suggestions → Advanced suggestions → Detailed solution**.
+
+> You can paste each into separate files like `L01_S1.tex`, `L01_C1.tex`, etc.
+
+***
+
+## Packet S1 — Normalization
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S1 Normalization — Problem}
+Let $\{|1\rangle,|2\rangle\}$ be orthonormal. Normalize $|\psi\rangle=|1\rangle+i|2\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Compute $\langle\psi|\psi\rangle$.
+\item Divide by $\sqrt{\langle\psi|\psi\rangle}$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret normalization as $\sum_i P(i)=1$.
+\item Verify by recomputing the norm after normalization.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+$\langle\psi|=\langle1|-i\langle2|$. Then
+\[
+\langle\psi|\psi\rangle
+=(\langle1|-i\langle2|)(|1\rangle+i|2\rangle)
+=\langle1|1\rangle+\langle2|2\rangle=2
+\]
+since cross terms vanish by orthogonality. Hence
+\[
+|\psi\rangle_{\text{norm}}=\frac{1}{\sqrt2}\left(|1\rangle+i|2\rangle\right).
+\]
+Check: $\langle\psi_{\text{norm}}|\psi_{\text{norm}}\rangle=1$.
+\end{document}
+```
+
+## Packet S2 — Components from inner products
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S2 Components — Problem}
+Let $|\psi\rangle=\sum_n c_n|n\rangle$ in an orthonormal basis $\{|n\rangle\}$. Prove $c_m=\langle m|\psi\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Multiply the expansion by $\langle m|$ from the left.
+\item Use $\langle m|n\rangle=\delta_{mn}$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret $\langle m|\psi\rangle$ as a coordinate (projection).
+\item Compare to dot products in $\mathbb C^N$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\langle m|\psi\rangle=\left\langle m\middle|\sum_n c_n|n\rangle\right\rangle
+=\sum_n c_n\langle m|n\rangle
+=\sum_n c_n\delta_{mn}
+=c_m.
+\]
+\end{document}
+```
+
+## Packet S3 — Probabilities from amplitudes
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S3 Probabilities — Problem}
+In an orthonormal basis, let $|\psi\rangle=\frac{1}{\sqrt5}(|1\rangle+2i|2\rangle)$. Compute $P(1)$ and $P(2)$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Compute $c_1=\langle1|\psi\rangle$, $c_2=\langle2|\psi\rangle$.
+\item Use $P(n)=|c_n|^2$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Check normalization: $P(1)+P(2)=1$.
+\item Note phase does not affect modulus.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+$c_1=1/\sqrt5$ and $c_2=2i/\sqrt5$. Thus
+\[
+P(1)=|c_1|^2=\frac15,\qquad P(2)=|c_2|^2=\frac{4}{5}.
+\]
+\end{document}
+```
+
+## Packet S4 — Global phase invariance
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S4 Global phase — Problem}
+Show that $P(n)=|\langle n|\psi\rangle|^2$ is invariant under $|\psi\rangle\to e^{i\theta}|\psi\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Pull out $e^{i\theta}$ using linearity in the ket.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Explain why this implies states are rays.
+\item Contrast with relative phase in interference.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+|\langle n|e^{i\theta}\psi\rangle|^2
+=|e^{i\theta}\langle n|\psi\rangle|^2
+=|e^{i\theta}|^2|\langle n|\psi\rangle|^2
+=|\langle n|\psi\rangle|^2
+\]
+since $|e^{i\theta}|=1$.
+\end{document}
+```
+
+## Packet S5 — Completeness (Parseval identity)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S5 Completeness — Problem}
+Given $\sum_n |n\rangle\langle n|=\mathbb I$, prove $\langle\psi|\psi\rangle=\sum_n|\langle n|\psi\rangle|^2$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Insert the identity between $\langle\psi|$ and $|\psi\rangle$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret as ``total probability'' in basis $\{|n\rangle\}$.
+\item Recognize this as a quantum version of Parseval’s identity.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\langle\psi|\psi\rangle=\langle\psi|\mathbb I|\psi\rangle
+=\left\langle\psi\middle|\sum_n|n\rangle\langle n|\middle|\psi\right\rangle
+=\sum_n \langle\psi|n\rangle\langle n|\psi\rangle
+=\sum_n |\langle n|\psi\rangle|^2.
+\]
+\end{document}
+```
+
+## Packet S6 — Two-path interference toy model
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S6 Interference — Problem}
+Let $A(\phi)=1+e^{i\phi}$. Compute $P(\phi)=|A(\phi)|^2$ and identify maxima/minima.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Use $|z|^2=zz^*$.
+\item Compute $(1+e^{i\phi})(1+e^{-i\phi})$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Simplify using $e^{i\phi}+e^{-i\phi}=2\cos\phi$.
+\item Interpret maxima as constructive interference, minima as destructive.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+P(\phi)=|1+e^{i\phi}|^2=(1+e^{i\phi})(1+e^{-i\phi})
+=2+e^{i\phi}+e^{-i\phi}
+=2+2\cos\phi.
+\]
+Max: $\cos\phi=1$ at $\phi=0\ (\text{mod }2\pi)$ gives $P_{\max}=4$.
+Min: $\cos\phi=-1$ at $\phi=\pi\ (\text{mod }2\pi)$ gives $P_{\min}=0$.
+\end{document}
+```
+
+## Packet S7 — Basis dependence in a two-level system
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S7 Basis change — Problem}
+Let $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$ with $|\alpha|^2+|\beta|^2=1$ and
+$|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$, $|-\rangle=(|0\rangle-|1\rangle)/\sqrt2$.
+Compute $P(+)$ and $P(-)$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Compute overlaps $\langle +|\psi\rangle$ and $\langle -|\psi\rangle$.
+\item Then square magnitudes.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Note $\langle +|=(\langle0|+\langle1|)/\sqrt2$.
+\item Interpret: different basis corresponds to different measurement.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\langle +|\psi\rangle=\frac{1}{\sqrt2}(\langle0|+\langle1|)(\alpha|0\rangle+\beta|1\rangle)
+=\frac{\alpha+\beta}{\sqrt2}.
+\]
+Similarly $\langle -|\psi\rangle=(\alpha-\beta)/\sqrt2$.
+Thus
+\[
+P(+)=\frac{|\alpha+\beta|^2}{2},\qquad P(-)=\frac{|\alpha-\beta|^2}{2}.
+\]
+\end{document}
+```
+
+## Packet S8 — Ket ↔ column vector translation
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-S8 Translation — Problem}
+In basis $\{|1\rangle,|2\rangle\}$, let $|\psi\rangle=\frac{1}{\sqrt2}(|1\rangle+i|2\rangle)$.
+Write the coordinate column vector and compute probabilities.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Coordinates are $c_1=\langle1|\psi\rangle$, $c_2=\langle2|\psi\rangle$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Emphasize: the column vector depends on basis choice.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+$c_1=1/\sqrt2$, $c_2=i/\sqrt2$. Column vector:
+\[
+\mathbf c=\begin{pmatrix}1/\sqrt2\\ i/\sqrt2\end{pmatrix}.
+\]
+Probabilities: $P(1)=|c_1|^2=1/2$, $P(2)=|c_2|^2=1/2$.
+\end{document}
+```
+
+***
+
+## Packet C1 — Cauchy–Schwarz
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-C1 Cauchy--Schwarz — Problem}
+Prove $|\langle\phi|\psi\rangle|^2\le \langle\phi|\phi\rangle\langle\psi|\psi\rangle$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Consider $\|\phi-\lambda\psi\|^2\ge 0$ for all $\lambda\in\mathbb C$.
+\item Expand and choose $\lambda$ to minimize.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Use $\lambda=\frac{\langle\psi|\phi\rangle}{\langle\psi|\psi\rangle}$ when $\psi\neq 0$.
+\item Rearrange the inequality after substitution.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+Let $f(\lambda)=\|\phi-\lambda\psi\|^2=\langle\phi-\lambda\psi|\phi-\lambda\psi\rangle\ge 0$.
+Expand:
+\[
+f(\lambda)=\langle\phi|\phi\rangle-\lambda\langle\phi|\psi\rangle-\lambda^*\langle\psi|\phi\rangle
++|\lambda|^2\langle\psi|\psi\rangle.
+\]
+Choose $\lambda=\frac{\langle\psi|\phi\rangle}{\langle\psi|\psi\rangle}$. Then
+\[
+0\le f(\lambda)=\langle\phi|\phi\rangle-\frac{|\langle\psi|\phi\rangle|^2}{\langle\psi|\psi\rangle}.
+\]
+Multiply by $\langle\psi|\psi\rangle>0$:
+\[
+|\langle\psi|\phi\rangle|^2\le \langle\phi|\phi\rangle\langle\psi|\psi\rangle.
+\]
+Since $|\langle\psi|\phi\rangle|=|\langle\phi|\psi\rangle|$, we are done.
+\end{document}
+```
+
+## Packet C2 — Triangle inequality
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-C2 Triangle inequality — Problem}
+Let $\|\psi\|=\sqrt{\langle\psi|\psi\rangle}$. Prove $\|\phi+\psi\|\le \|\phi\|+\|\psi\|$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Square both sides.
+\item Expand $\|\phi+\psi\|^2$ and bound cross term using Cauchy--Schwarz.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Use $\Re z\le |z|$.
+\item Conclude by taking square roots (nonnegativity).
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\|\phi+\psi\|^2=\langle\phi+\psi|\phi+\psi\rangle
+=\|\phi\|^2+\|\psi\|^2+2\Re\langle\phi|\psi\rangle.
+\]
+Since $\Re\langle\phi|\psi\rangle\le |\langle\phi|\psi\rangle|\le \|\phi\|\|\psi\|$ (C--S),
+\[
+\|\phi+\psi\|^2 \le \|\phi\|^2+\|\psi\|^2+2\|\phi\|\|\psi\|=(\|\phi\|+\|\psi\|)^2.
+\]
+Taking square roots yields $\|\phi+\psi\|\le \|\phi\|+\|\psi\|$.
+\end{document}
+```
+
+## Packet C3 — Unitary change-of-basis preserves probabilities
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-C3 Unitary invariance — Problem}
+Let $\mathbf c$ be coefficients of $|\psi\rangle$ in basis A. Let $\mathbf c'=U\mathbf c$ where $U^\dagger U=I$.
+Show $\sum_i|c'_i|^2=\sum_i|c_i|^2$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Use vector notation: $\|\mathbf c\|^2=\mathbf c^\dagger \mathbf c$.
+\item Compute $\|\mathbf c'\|^2$ and insert $U^\dagger U$.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Interpret as probability conservation under basis change.
+\item Connect to inner-product preservation: $\langle U\phi|U\psi\rangle=\langle\phi|\psi\rangle$.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+\[
+\sum_i|c'_i|^2=\|\mathbf c'\|^2=(U\mathbf c)^\dagger(U\mathbf c)=\mathbf c^\dagger U^\dagger U\mathbf c=\mathbf c^\dagger\mathbf c=\sum_i|c_i|^2.
+\]
+Thus normalization (and total probability) is preserved.
+\end{document}
+```
+
+## Packet C4 — Phase-invariant distance (AdvUG/MSc)
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\begin{document}
+
+\section*{L01-C4 Phase-invariant distance — Problem}
+Define $d(\phi,\psi)=\min_{\theta}\|\phi-e^{i\theta}\psi\|$ for normalized states.
+Show $d(\phi,\psi)$ depends only on the rays and express it in terms of $|\langle\phi|\psi\rangle|$.
+
+\newpage
+\section*{Suggestions}
+\begin{itemize}
+\item Expand $\|\phi-e^{i\theta}\psi\|^2$.
+\item Use $\Re(e^{i\theta}\langle\phi|\psi\rangle)$ and choose $\theta$ to maximize it.
+\end{itemize}
+
+\newpage
+\section*{Advanced suggestions}
+\begin{itemize}
+\item Write $\langle\phi|\psi\rangle=re^{i\alpha}$ and choose $\theta=-\alpha$.
+\item Conclude $d^2=2-2|\langle\phi|\psi\rangle|$ for normalized states.
+\end{itemize}
+
+\newpage
+\section*{Detailed solution}
+Assume $\|\phi\|=\|\psi\|=1$. Then
+\[
+\|\phi-e^{i\theta}\psi\|^2=\langle\phi-e^{i\theta}\psi|\phi-e^{i\theta}\psi\rangle
+=1+1- e^{i\theta}\langle\phi|\psi\rangle- e^{-i\theta}\langle\psi|\phi\rangle
+=2-2\Re(e^{i\theta}\langle\phi|\psi\rangle).
+\]
+Let $\langle\phi|\psi\rangle=re^{i\alpha}$ with $r=|\langle\phi|\psi\rangle|$. Then
+\[
+\Re(e^{i\theta}\langle\phi|\psi\rangle)=\Re(re^{i(\theta+\alpha)})=r\cos(\theta+\alpha).
+\]
+Maximizing occurs at $\theta=-\alpha$ giving maximum $r$. Hence
+\[
+d^2(\phi,\psi)=2-2r=2-2|\langle\phi|\psi\rangle|.
+\]
+This depends only on $|\langle\phi|\psi\rangle|$, which is ray-invariant.
+\end{document}
+```
+
+***
+
+# ✅ Next step (Lecture 2)
+
+If you’re happy with this Lecture 1 package structure, we move to **Lecture 2 (Bras, dual space, inner products)** next — same artifact set, same packet formatting, and I’ll keep the Sakurai ↔ Dirac dual-track pedagogy.
+
+Before I proceed, one quick preference question (no need for long back-and-forth):
+
+*   Do you want **Lecture 2** to include **8 SPS + 4 CPS** again, or should we standardize at **10 SPS + 5 CPS** per lecture for the rest of the course?

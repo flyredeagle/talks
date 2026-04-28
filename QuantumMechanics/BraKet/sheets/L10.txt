@@ -1,0 +1,970 @@
+====================================================
+Lecture 10
+====================================================
+Proceeding to **Lecture 10** ✅ — including **two‑spin singlet correlations** and a **short Bell (CHSH) inequality preview**, exactly as requested.
+
+Below is the **complete Lecture 10 artifact package** in the same standardized format as Lectures 1–9:
+
+*   ✅ Narrative + derivations (**LaTeX source; student/instructor toggle**)
+*   ✅ Slides (**Beamer LaTeX + PowerPoint outline**)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra practice sheet + homework sheet (**LaTeX**)
+*   ✅ Simple + complex projects
+*   ✅ Well-defined + open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (each: Problem → Suggestions → Advanced suggestions → Detailed solution)
+
+***
+
+# **Lecture 10 — Spin‑½, SU(2), Rotations, Two‑Spin Singlet, and a Bell (CHSH) Preview**
+
+### Dirac (abstract) ↔ Matrix (Pauli) ↔ Geometry (Bloch) ↔ Correlations
+
+## 90‑minute pacing
+
+*   **0–15:** Spin as a finite-dimensional quantum system; Stern–Gerlach motivation
+*   **15–35:** Spin‑½ Hilbert space; Pauli matrices; eigenstates; Born rule in 2D
+*   **35–55:** Rotations and SU(2): $$U(\hat n,\theta)=e^{-i\theta\,\hat n\cdot\sigma/2}$$; Bloch sphere dictionary
+*   **55–75:** Two-spin systems: tensor product; singlet state; correlation $$E(\mathbf a,\mathbf b)$$
+*   **75–90:** **Bell (CHSH) inequality preview**: classical bound 2; quantum value $$2\sqrt2$$ for singlet; what it means
+
+## Core outcomes
+
+Students can:
+
+1.  Compute spin measurement probabilities and expectation values using Pauli matrices
+2.  Represent rotations as unitaries in SU(2) and connect to Bloch vectors
+3.  Build two-spin states and compute correlation functions for the singlet
+4.  Compute reduced density matrices (preview from L09) for singlet and interpret “local randomness”
+5.  State CHSH inequality and compute the quantum violation (preview-level)
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Sakurai & Napolitano** — *Modern Quantum Mechanics*: spin, SU(2), Stern–Gerlach, symmetries
+*   **Dirac** — *The Principles of Quantum Mechanics*: transformation viewpoint; finite-dimensional states
+*   (Supplement) **Nielsen & Chuang**: two-qubit states, correlations, CHSH framing (helpful)
+
+## Tiered references (suggested)
+
+*   **HS:** qualitative Stern–Gerlach; “two outcomes” systems; vectors on a sphere
+*   **BegUG:** Pauli matrices and basic eigenvector calculations
+*   **AdvUG:** rotation operator derivations; correlation computations using $$\sigma$$ algebra
+*   **MSc:** CHSH inequality and quantum violation computation; density matrices and partial trace
+*   **PhD:** SU(2) vs SO(3) as double cover; projective representations; Wigner theorem link (from L1 MSc); rigorous measurement locality assumptions
+
+## Historical anchors
+
+*   **Stern–Gerlach (1922):** discrete spin outcomes
+*   **Pauli (1927):** spin matrices (Pauli matrices)
+*   **EPR (1935):** correlations and completeness debate
+*   **Schrödinger (1935):** “entanglement” emphasis
+*   **Bell (1964):** inequalities ruling out local hidden-variable models (preview)
+
+## Expansion hooks
+
+*   Spin rotations and symmetry generators → Lecture 8 and further symmetry lectures
+*   Two-spin singlet → Lecture 9 and Lecture 11 (mixed states, channels)
+*   Bell/CHSH preview → optional deeper module later (foundations / QIT)
+
+***
+
+# B) Learning tiers (Lecture 10 add‑ons)
+
+## HS
+
+*   “spin” as a two-outcome system (up/down)
+*   correlations in pairs: “always opposite” intuition for singlet
+
+## BegUG
+
+*   Compute eigenvectors/eigenvalues of $$\sigma_x,\sigma_y,\sigma_z$$
+*   Compute probabilities $$P(\pm)=\langle\psi|P_\pm|\psi\rangle$$
+
+## AdvUG
+
+*   Derive rotation operator closed form
+*   Compute singlet correlations $$E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$$
+
+## MSc
+
+*   Reduced state of singlet is maximally mixed
+*   CHSH inequality and quantum violation $$2\sqrt2$$
+
+## PhD
+
+*   SU(2) as double cover of SO(3), projective reps
+*   What “locality” and “measurement independence” assumptions mean in Bell’s theorem
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle
+
+Copy as `L10_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Dirac $\leftrightarrow$ Pauli matrices $\leftrightarrow$ Bloch + correlations}
+
+\title{Lecture 10: Spin-$\tfrac12$, SU(2) Rotations, Singlet Correlations, and CHSH Preview}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: Spin as a two-outcome quantum system (Stern--Gerlach motivation)
+\item 15--35: Pauli matrices; eigenstates; Born rule in 2D
+\item 35--55: SU(2) rotations; Bloch sphere dictionary
+\item 55--75: Two spins; singlet state; correlation $E(\mathbf a,\mathbf b)$
+\item 75--90: CHSH inequality preview; quantum violation $2\sqrt2$
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Compute spin measurement probabilities and expectations using Pauli matrices.
+\item Use $U(\hat n,\theta)=e^{-i\theta\,\hat n\cdot\sigma/2}$ to rotate spin states/observables.
+\item Compute singlet correlations and (preview) CHSH violation.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Spin-$\tfrac12$ as a 2D Hilbert space}
+A spin-$\tfrac12$ system is described by a 2D Hilbert space with a chosen basis, often $\{|0\rangle,|1\rangle\}$
+or $\{|\uparrow_z\rangle,|\downarrow_z\rangle\}$.
+
+The Pauli matrices are
+\[
+\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+\sigma_y=\begin{pmatrix}0&-i\\ i&0\end{pmatrix},\quad
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+They satisfy
+\[
+\sigma_i\sigma_j=\delta_{ij}I + i\sum_k \varepsilon_{ijk}\sigma_k,
+\quad [\sigma_i,\sigma_j]=2i\sum_k \varepsilon_{ijk}\sigma_k.
+\]
+
+\subsection{Spin measurement along an axis}
+The observable ``spin along unit vector $\hat n$'' is
+\[
+\sigma_{\hat n}=\hat n\cdot\sigma = n_x\sigma_x+n_y\sigma_y+n_z\sigma_z,
+\]
+with eigenvalues $\pm1$ (in units of $\hbar/2$). Projectors:
+\[
+P_\pm(\hat n)=\frac12\left(I\pm \sigma_{\hat n}\right).
+\]
+For state $|\psi\rangle$, probability of outcome $\pm$ is $p_\pm=\langle\psi|P_\pm|\psi\rangle$.
+
+\section{Bloch sphere representation}
+Any qubit density matrix can be written
+\[
+\rho=\frac12\left(I+\mathbf r\cdot\sigma\right),
+\]
+where $\mathbf r\in\mathbb R^3$ is the Bloch vector, $|\mathbf r|\le 1$. For pure states, $|\mathbf r|=1$.
+Expectation:
+\[
+\langle\sigma_{\hat n}\rangle=\Tr(\rho\,\sigma_{\hat n})=\mathbf r\cdot\hat n.
+\]
+
+\section{SU(2) rotations}
+A physical rotation by angle $\theta$ about axis $\hat n$ is represented by
+\[
+U(\hat n,\theta)=e^{-i\theta\,\hat n\cdot\sigma/2}.
+\]
+Using $(\hat n\cdot\sigma)^2=I$, we get the closed form:
+\[
+U(\hat n,\theta)=\cos\frac{\theta}{2}\,I - i\sin\frac{\theta}{2}\,\hat n\cdot\sigma.
+\]
+
+\begin{warnbox}
+SU(2) is a double cover of SO(3): $U(\hat n,2\pi)=-I$, which acts trivially on rays (global phase).
+\end{warnbox}
+
+\section{Two-spin systems and the singlet}
+For two spins, $\mathcal H_{AB}=\mathbb C^2\otimes\mathbb C^2$.
+The singlet state is
+\[
+|\Psi^-\rangle=\frac{1}{\sqrt2}\left(|01\rangle-|10\rangle\right).
+\]
+It is entangled and rotationally invariant (up to phase).
+
+\subsection{Correlation function}
+Define measurement along axes $\mathbf a$ and $\mathbf b$ with observables $\sigma_{\mathbf a}\otimes I$ and
+$I\otimes\sigma_{\mathbf b}$. The correlation is
+\[
+E(\mathbf a,\mathbf b)=\langle\Psi^-|(\sigma_{\mathbf a}\otimes\sigma_{\mathbf b})|\Psi^-\rangle.
+\]
+For the singlet, one obtains the key result
+\[
+E(\mathbf a,\mathbf b)= -\,\mathbf a\cdot\mathbf b.
+\]
+Thus measuring along the same axis yields perfect anti-correlation.
+
+\subsection{Reduced state (partial trace preview)}
+Let $\rho_{AB}=|\Psi^-\rangle\langle\Psi^-|$. Then
+\[
+\rho_A=\Tr_B(\rho_{AB})=\frac12 I,\qquad \rho_B=\frac12 I.
+\]
+Each subsystem is locally maximally mixed, yet the joint state has strong correlations.
+
+\section{Bell/CHSH inequality preview}
+Consider four measurement directions $\mathbf a,\mathbf a',\mathbf b,\mathbf b'$ and define
+\[
+S = E(\mathbf a,\mathbf b)+E(\mathbf a,\mathbf b')+E(\mathbf a',\mathbf b)-E(\mathbf a',\mathbf b').
+\]
+Local hidden-variable models satisfy the CHSH bound
+\[
+|S|\le 2.
+\]
+Quantum mechanics with the singlet can reach
+\[
+|S|_{\max}=2\sqrt2
+\]
+for suitable choices (e.g. coplanar settings separated by $45^\circ$).
+
+\begin{mapbox}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Object} & \textbf{Key formula}\\ \midrule
+Spin observable & $\sigma_{\hat n}=\hat n\cdot\sigma$\\
+Projectors & $P_\pm(\hat n)=\frac12(I\pm\sigma_{\hat n})$\\
+Rotation & $U=\cos(\theta/2)I-i\sin(\theta/2)\hat n\cdot\sigma$\\
+Singlet correlation & $E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$\\
+CHSH & $|S|\le 2$ (classical), $|S|_{\max}=2\sqrt2$ (quantum)\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+For the correlation derivation, you can use rotational invariance of singlet and compute one axis explicitly,
+or use Pauli algebra identities. For CHSH, keep it a preview: state assumptions (locality, realism, measurement
+independence) and emphasize it is an inequality on correlations.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L10_notes_student.tex` and `L10_notes_instructor.tex`:
+
+```latex
+% L10_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L10_chapter}
+```
+
+```latex
+% L10_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L10_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck — `L10_slides_beamer.tex`
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 10: Spin, SU(2), Singlet Correlations, CHSH Preview}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{Spin-$\frac12$ and Pauli matrices}
+\[
+\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\;
+\sigma_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\;
+\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\]
+\end{frame}
+
+\begin{frame}{Measurements along $\hat n$}
+\[
+\sigma_{\hat n}=\hat n\cdot\sigma,\quad P_\pm(\hat n)=\frac12(I\pm\sigma_{\hat n})
+\]
+\end{frame}
+
+\begin{frame}{SU(2) rotations}
+\[
+U(\hat n,\theta)=e^{-i\theta\,\hat n\cdot\sigma/2}
+=\cos\frac{\theta}{2}I-i\sin\frac{\theta}{2}\hat n\cdot\sigma
+\]
+\end{frame}
+
+\begin{frame}{Two-spin singlet}
+\[
+|\Psi^-\rangle=\frac{1}{\sqrt2}(|01\rangle-|10\rangle)
+\]
+\[
+E(\mathbf a,\mathbf b)=\langle\Psi^-|\sigma_{\mathbf a}\otimes\sigma_{\mathbf b}|\Psi^-\rangle=-\mathbf a\cdot\mathbf b
+\]
+\end{frame}
+
+\begin{frame}{CHSH preview}
+\[
+S=E(\mathbf a,\mathbf b)+E(\mathbf a,\mathbf b')+E(\mathbf a',\mathbf b)-E(\mathbf a',\mathbf b')
+\]
+Classical: $|S|\le2$, Quantum: $|S|_{\max}=2\sqrt2$.
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline — `L10_slides_ppt_outline.md`
+
+```md
+# Lecture 10: Spin-½, SU(2), Singlet Correlations, CHSH preview
+
+## Slide 1 — Title
+- Spin-½ as 2D Hilbert space
+- Rotations as SU(2) unitaries
+- Two-spin singlet correlations
+- CHSH inequality preview
+
+## Slide 2 — Pauli matrices
+- σx, σy, σz
+- algebra: σi σj = δij I + i εijk σk
+
+## Slide 3 — Measurement along n
+- σn = n·σ
+- projectors P±(n) = ½(I ± σn)
+- probabilities from Born rule
+
+## Slide 4 — Bloch sphere
+- ρ = ½(I + r·σ)
+- ⟨σn⟩ = r·n
+
+## Slide 5 — SU(2) rotation
+- U(n,θ) = exp(-i θ n·σ /2)
+- closed form with cos/sin
+
+## Slide 6 — Two spins
+- H_AB = H_A ⊗ H_B
+- local observables: σa ⊗ I, I ⊗ σb
+
+## Slide 7 — Singlet state
+- |Ψ-⟩ = (|01⟩ - |10⟩)/√2
+- reduced states: ρA = I/2 (local randomness)
+
+## Slide 8 — Correlation function
+- E(a,b) = ⟨Ψ-| σa ⊗ σb |Ψ-⟩ = -a·b
+- perfect anti-correlation when a=b
+
+## Slide 9 — CHSH preview
+- S = E(a,b)+E(a,b')+E(a',b)-E(a',b')
+- classical bound 2
+- quantum max 2√2
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  Why is spin‑½ modeled by a 2D Hilbert space?
+2.  What do Pauli matrices represent physically?
+3.  Why do measurements along different axes correspond to different bases?
+4.  Why does $$\sigma_{\hat n}$$ have eigenvalues $$\pm1$$?
+5.  How do projectors $$P_\pm(\hat n)$$ encode measurement outcomes?
+6.  Why does SU(2) use half-angles in $$U(\hat n,\theta)$$?
+7.  What is special about the singlet state under rotations?
+8.  How can the singlet be globally pure but locally maximally mixed?
+9.  What does the correlation $$E(\mathbf a,\mathbf b)$$ quantify?
+10. What assumptions go into CHSH and what does a violation imply (preview level)?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+S1 Find eigenvectors/eigenvalues of $$\sigma_z$$ and projectors $$P_\pm$$  
+S2 Compute measurement probabilities for $$\sigma_x$$ on $$|0\rangle$$  
+S3 Compute $$\langle\sigma_{\hat n}\rangle$$ for a Bloch vector $$\mathbf r$$  
+S4 Verify $$(\hat n\cdot\sigma)^2=I$$ for unit $$\hat n$$  
+S5 Derive closed form of $$U(\hat n,\theta)$$ using $$(\hat n\cdot\sigma)^2=I$$  
+S6 Apply a rotation $$U_z(\theta)$$ to a qubit state and compute new Bloch vector (simple case)  
+S7 Build the singlet state density matrix $$\rho_{AB}=|\Psi^-\rangle\langle\Psi^-|$$  
+S8 Compute reduced state $$\rho_A=\Tr_B(\rho_{AB})$$ for singlet (preview)  
+S9 Compute correlation $$E(\hat z,\hat z)$$ and $$E(\hat x,\hat x)$$ for singlet  
+S10 Compute $$E(\mathbf a,\mathbf b)$$ for coplanar directions with angle $$\theta$$ using $$E=-\cos\theta$$
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+C1 Prove $$P_\pm(\hat n)=\frac12(I\pm\sigma_{\hat n})$$ are projectors and sum to identity  
+C2 Prove the SU(2) closed form for $$U(\hat n,\theta)$$ and show $$U^\dagger U=I$$  
+C3 Derive singlet correlation $$E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$$ (one full derivation)  
+C4 Derive CHSH classical bound $$|S|\le 2$$ (standard algebraic proof)  
+C5 Show singlet violates CHSH: choose standard settings and compute $$S=2\sqrt2$$ (preview)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Spin measurement and rotation simulator”
+
+*   Simulate qubit states on Bloch sphere
+*   Compute $$p_\pm(\hat n)$$, $$\langle\sigma_{\hat n}\rangle$$
+*   Apply SU(2) rotations and verify Bloch vector rotates
+
+Deliverables: code + plots + 2–3 page report.
+
+## Complex Project (CPJ): “Singlet correlations + CHSH experiment in silico”
+
+*   Simulate singlet measurements along chosen axes
+*   Compute empirical correlations $$E(a,b)$$
+*   Compute CHSH $$S$$ for different settings
+*   Discuss what assumptions CHSH tests and why local mixtures cannot reproduce it
+
+Deliverables: 8–12 page report + plots + derivation appendix.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**How did the singlet state and entanglement (Schrödinger 1935) lead to Bell’s inequality (1964)?**  
+Write a 6–8 page annotated narrative including one full CHSH calculation.
+
+## Open-ended (ORQ)
+
+**Can one express “nonclassicality” purely as a constraint on allowed transformations/measurements (without hidden variables)?**  
+Proposal-style memo connecting Wigner symmetry, POVMs, and correlation bounds.
+
+***
+
+# J) Extra problem sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice — `L10_extra_practice.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 10 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (single qubit)}
+\begin{enumerate}
+\item Compute $P_\pm(\hat n)$ for $\hat n=\hat z$ and $\hat n=\hat x$.
+\item Show $\sigma_{\hat n}^2=I$ for any unit $\hat n$.
+\item Compute $U_z(\theta)=e^{-i\theta\sigma_z/2}$ explicitly.
+\end{enumerate}
+
+\section*{Practice B (two qubits)}
+\begin{enumerate}
+\item For $|\Psi^-\rangle$, compute $P(00),P(01),P(10),P(11)$ in the computational basis.
+\item Compute $\rho_A=\Tr_B(|\Psi^-\rangle\langle\Psi^-|)$.
+\end{enumerate}
+
+\section*{Practice C (CHSH preview)}
+\begin{enumerate}
+\item For $E(\theta)=-\cos\theta$, compute $S$ for angles $0^\circ,45^\circ,90^\circ$ in the standard CHSH choice.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework — `L10_homework.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 10 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S5) Derive closed form of $U(\hat n,\theta)$.
+\item (S8) Compute $\rho_A$ for the singlet.
+\item (S10) Compute $E(\theta)$ for coplanar directions.
+\item (C3) Derive $E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$.
+\item (C4) Prove CHSH bound $|S|\le2$ (classical).
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (C5) Compute quantum $S=2\sqrt2$ for standard settings.
+\item (S2) Compute $\sigma_x$ probabilities on $|0\rangle$.
+\item (C2) Unitarity and SU(2) rotation derivation.
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15** (10 SPS + 5 CPS)
+
+Each packet is a complete mini-document with your required structure.
+
+> Copy into `L10_S1.tex` … `L10_C5.tex`.
+
+***
+
+## **S1 — Eigenstates/projectors of $$\sigma_z$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L10-S1 $\sigma_z$ eigenstates — Problem}
+Find eigenvalues/eigenvectors of $\sigma_z$ and compute projectors $P_\pm=\frac12(I\pm\sigma_z)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item $\sigma_z$ is diagonal.
+\item Use $P_\pm$ formula and simplify.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Check $P_\pm^2=P_\pm$ and $P_+P_-=0$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\sigma_z=\mathrm{diag}(1,-1)$ has eigenvalue $+1$ with eigenvector $|0\rangle=(1,0)^T$ and eigenvalue $-1$ with $|1\rangle=(0,1)^T$.
+Projectors:
+\[
+P_+=\frac12(I+\sigma_z)=\begin{pmatrix}1&0\\0&0\end{pmatrix},\quad
+P_-=\frac12(I-\sigma_z)=\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S2 — Measure $$\sigma_x$$ on $$|0\rangle$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S2 $\sigma_x$ on $|0\rangle$ — Problem}
+Let $|0\rangle=(1,0)^T$. Compute probabilities of outcomes $\pm1$ when measuring $\sigma_x$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Eigenstates of $\sigma_x$ are $|\pm\rangle=(|0\rangle\pm|1\rangle)/\sqrt2$.
+\item Compute overlaps $\langle\pm|0\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Alternatively use projectors $P_\pm=(I\pm\sigma_x)/2$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle +|0\rangle=1/\sqrt2$ and $\langle -|0\rangle=1/\sqrt2$ (up to sign). Thus
+$P(+)=P(-)=1/2$.
+\end{document}
+```
+
+## **S3 — Expectation from Bloch vector**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S3 Bloch expectation — Problem}
+Let $\rho=\frac12(I+\mathbf r\cdot\sigma)$ with $\mathbf r=(0,0,r_z)$. Compute $\langle\sigma_z\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\langle\sigma_z\rangle=\Tr(\rho\sigma_z)$.
+\item Recall $\Tr(\sigma_i)=0$ and $\Tr(\sigma_i\sigma_j)=2\delta_{ij}$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item You should get $\langle\sigma_z\rangle=r_z$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\Tr(\rho\sigma_z)=\frac12\Tr(\sigma_z + r_z\sigma_z\sigma_z)
+=\frac12(0 + r_z\Tr(I))=\frac12(r_z\cdot 2)=r_z.
+\]
+\end{document}
+```
+
+## **S4 — Show $$(\hat n\cdot\sigma)^2=I$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S4 Pauli direction square — Problem}
+For unit vector $\hat n$, show $(\hat n\cdot\sigma)^2=I$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\sigma_i\sigma_j=\delta_{ij}I+i\varepsilon_{ijk}\sigma_k$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Symmetric part gives $|\hat n|^2I$; antisymmetric part cancels because $n_in_j$ is symmetric.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+(\hat n\cdot\sigma)^2=\sum_{i,j} n_i n_j \sigma_i\sigma_j
+=\sum_{i,j} n_i n_j(\delta_{ij}I+i\varepsilon_{ijk}\sigma_k).
+\]
+First term: $\sum_{i} n_i^2 I = |\hat n|^2 I=I$.
+Second term: $\sum_{i,j} n_in_j i\varepsilon_{ijk}\sigma_k=0$ because $n_in_j$ is symmetric in $i,j$ while $\varepsilon_{ijk}$ is antisymmetric.
+Thus $(\hat n\cdot\sigma)^2=I$.
+\end{document}
+```
+
+## **S5 — Closed form of $$U(\hat n,\theta)$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S5 SU(2) closed form — Problem}
+Using $(\hat n\cdot\sigma)^2=I$, show
+$U(\hat n,\theta)=e^{-i\theta\hat n\cdot\sigma/2}=\cos(\theta/2)I-i\sin(\theta/2)\hat n\cdot\sigma$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Expand exponential in power series.
+\item Separate even and odd powers.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Even powers give $I$, odd powers give $\hat n\cdot\sigma$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Let $K=\hat n\cdot\sigma$ with $K^2=I$.
+\[
+e^{-i\theta K/2}=\sum_{m=0}^\infty \frac{(-i\theta/2)^m}{m!}K^m
+=\sum_{m\ \text{even}}\frac{(-i\theta/2)^m}{m!}I+\sum_{m\ \text{odd}}\frac{(-i\theta/2)^m}{m!}K
+=\cos\frac{\theta}{2}I-i\sin\frac{\theta}{2}K.
+\]
+\end{document}
+```
+
+## **S6 — Rotate a state about z**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S6 $z$ rotation — Problem}
+Compute $U_z(\theta)=e^{-i\theta\sigma_z/2}$ and apply it to $|\psi\rangle=\alpha|0\rangle+\beta|1\rangle$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item $\sigma_z$ is diagonal; exponentiate entrywise.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret as relative phase change between $|0\rangle$ and $|1\rangle$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+U_z(\theta)=\begin{pmatrix}e^{-i\theta/2}&0\\0&e^{i\theta/2}\end{pmatrix}.
+\]
+Then
+\[
+U_z(\theta)|\psi\rangle=\alpha e^{-i\theta/2}|0\rangle+\beta e^{i\theta/2}|1\rangle.
+\]
+\end{document}
+```
+
+## **S7 — Singlet density matrix**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S7 Singlet density matrix — Problem}
+Let $|\Psi^-\rangle=(|01\rangle-|10\rangle)/\sqrt2$ in basis $(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$.
+Write $\rho_{AB}=|\Psi^-\rangle\langle\Psi^-|$ as a $4\times4$ matrix.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Vector is $(0,1,-1,0)^T/\sqrt2$.
+\item Compute $\rho=vv^\dagger$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Only the 2×2 block on entries (01,10) is nonzero.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$v=\frac{1}{\sqrt2}(0,1,-1,0)^T$ so
+\[
+\rho=\frac12\begin{pmatrix}
+0&0&0&0\\
+0&1&-1&0\\
+0&-1&1&0\\
+0&0&0&0
+\end{pmatrix}.
+\]
+\end{document}
+```
+
+## **S8 — Reduced state of singlet**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L10-S8 Partial trace — Problem}
+Compute $\rho_A=\Tr_B(\rho_{AB})$ for the singlet state and show $\rho_A=I/2$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use basis $\{|0\rangle_B,|1\rangle_B\}$.
+\item Trace term-by-term using $\Tr_B(|i\rangle\langle j|)=\delta_{ij}$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use symmetry: singlet is rotationally invariant ⇒ no preferred direction ⇒ local state must be maximally mixed.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Write $|\Psi^-\rangle=\frac{1}{\sqrt2}(|0\rangle|1\rangle-|1\rangle|0\rangle)$.
+Then
+\[
+\rho_{AB}=\frac12\Big(|01\rangle\langle01|-|01\rangle\langle10|-|10\rangle\langle01|+|10\rangle\langle10|\Big).
+\]
+Trace over $B$:
+\[
+\Tr_B(|01\rangle\langle01|)=|0\rangle\langle0|,\quad
+\Tr_B(|10\rangle\langle10|)=|1\rangle\langle1|,
+\]
+cross terms vanish because $\langle1|0\rangle=0$ in $B$:
+\[
+\Tr_B(|01\rangle\langle10|)=0,\quad \Tr_B(|10\rangle\langle01|)=0.
+\]
+So $\rho_A=\frac12(|0\rangle\langle0|+|1\rangle\langle1|)=I/2$.
+\end{document}
+```
+
+## **S9 — Correlations along same axes**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-S9 Singlet correlations (special cases) — Problem}
+For the singlet, compute $E(\hat z,\hat z)$ and $E(\hat x,\hat x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use known result $E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$.
+\item For same axes, $\mathbf a\cdot\mathbf a=1$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret as perfect anti-correlation.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$E(\hat z,\hat z)=-1$ and $E(\hat x,\hat x)=-1$.
+\end{document}
+```
+
+## **S10 — Correlation as $$-\cos\theta$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L10-S10 Coplanar correlation — Problem}
+For coplanar unit vectors $\mathbf a,\mathbf b$ separated by angle $\theta$, use $E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$ to express $E$ in terms of $\theta$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item $\mathbf a\cdot\mathbf b=\cos\theta$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Explain what happens at $\theta=0$ and $\theta=\pi$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$E(\theta)=-\cos\theta$. At $\theta=0$, $E=-1$ (perfect anti-correlation); at $\theta=\pi$, $E=+1$.
+\end{document}
+```
+
+***
+
+## **C1 — Projectors $$P_\pm(\hat n)$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-C1 Projector proof — Problem}
+Show $P_\pm(\hat n)=\frac12(I\pm\sigma_{\hat n})$ satisfy $P_\pm^2=P_\pm$, $P_+P_-=0$, and $P_++P_-=I$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\sigma_{\hat n}^2=I$ from S4.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Compute $(I\pm\sigma)^2=2(I\pm\sigma)$ when $\sigma^2=I$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Let $\sigma=\sigma_{\hat n}$ with $\sigma^2=I$.
+\[
+P_\pm^2=\frac14(I\pm\sigma)^2=\frac14(I\pm2\sigma+\sigma^2)=\frac14(2I\pm2\sigma)=\frac12(I\pm\sigma)=P_\pm.
+\]
+Also $P_+P_-=\frac14(I+\sigma)(I-\sigma)=\frac14(I-\sigma^2)=0$ and $P_++P_-=I$.
+\end{document}
+```
+
+## **C2 — SU(2) rotation derivation and unitarity**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L10-C2 SU(2) unitarity — Problem}
+Prove the closed form for $U(\hat n,\theta)$ and show $U^\dagger U=I$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use series expansion as in S5.
+\item Use $(\hat n\cdot\sigma)^\dagger=\hat n\cdot\sigma$ and $(\hat n\cdot\sigma)^2=I$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show $U^\dagger=\cos(\theta/2)I+i\sin(\theta/2)\hat n\cdot\sigma$.
+\item Multiply $U^\dagger U$ using $\sigma^2=I$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+From S5, $U=cI-is\sigma$ with $c=\cos(\theta/2)$, $s=\sin(\theta/2)$, $\sigma=\hat n\cdot\sigma$.
+Then $U^\dagger=cI+is\sigma$ (since $\sigma^\dagger=\sigma$).
+Thus
+\[
+U^\dagger U=(cI+is\sigma)(cI-is\sigma)=c^2I+s^2\sigma^2=(c^2+s^2)I=I.
+\]
+\end{document}
+```
+
+## **C3 — Derive singlet correlation $$E=-\mathbf a\cdot\mathbf b$$**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L10-C3 Singlet correlation derivation — Problem}
+Derive $E(\mathbf a,\mathbf b)=\langle\Psi^-|\sigma_{\mathbf a}\otimes\sigma_{\mathbf b}|\Psi^-\rangle=-\mathbf a\cdot\mathbf b$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use rotational invariance of singlet: you can rotate axes so that $\mathbf a=\hat z$.
+\item Compute $E(\hat z,\mathbf b)$ explicitly and express in terms of $\mathbf a\cdot\mathbf b$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use identity $(\sigma_i\otimes I + I\otimes\sigma_i)|\Psi^-\rangle=0$ for $i=x,y,z$.
+\item Expand $\sigma_{\mathbf a}\otimes\sigma_{\mathbf b}=\sum_{ij}a_i b_j\,\sigma_i\otimes\sigma_j$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+A standard identity for the singlet is $(\sigma_i\otimes I + I\otimes\sigma_i)|\Psi^-\rangle=0$ for $i=x,y,z$.
+From this, $(\sigma_i\otimes I)|\Psi^-\rangle=-(I\otimes\sigma_i)|\Psi^-\rangle$.
+Then
+\[
+\langle\Psi^-|\sigma_i\otimes\sigma_j|\Psi^-\rangle
+=\langle\Psi^-|\sigma_i\otimes I\,\,I\otimes\sigma_j|\Psi^-\rangle
+=-\langle\Psi^-|I\otimes\sigma_i\sigma_j|\Psi^-\rangle.
+\]
+Using $\sigma_i\sigma_j=\delta_{ij}I+i\varepsilon_{ijk}\sigma_k$ and the fact that
+$\langle\Psi^-|I\otimes\sigma_k|\Psi^-\rangle=0$ (local state maximally mixed), we get
+\[
+\langle\Psi^-|\sigma_i\otimes\sigma_j|\Psi^-\rangle=-\delta_{ij}.
+\]
+Therefore
+\[
+E(\mathbf a,\mathbf b)=\sum_{ij}a_i b_j\,(-\delta_{ij})=-(\mathbf a\cdot\mathbf b).
+\]
+\end{document}
+```
+
+## **C4 — CHSH classical bound**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L10-C4 CHSH inequality (classical) — Problem}
+Let $A,A',B,B'\in\{-1,+1\}$ be predetermined outcomes (hidden variables).
+Show that for each hidden variable value,
+\[
+S = AB + AB' + A'B - A'B'
+\]
+satisfies $|S|\le 2$. Conclude the averaged correlation obeys $|S|\le 2$.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Factor: $S = A(B+B') + A'(B-B')$.
+\item Note $B\pm B'$ can only be $-2,0,+2$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Exactly one of $(B+B')$ and $(B-B')$ is nonzero (since $B,B'=\pm1$).
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Since $B,B'=\pm1$, either $B=B'$ so $B+B'=\pm2$ and $B-B'=0$, or $B=-B'$ so $B+B'=0$ and $B-B'=\pm2$.
+Thus
+\[
+S = A(B+B') + A'(B-B')
+\]
+is always either $\pm2$ (one term contributes $\pm2$, the other is 0). Hence $|S|\le2$ pointwise.
+Averaging over hidden variables preserves the inequality: $|\langle S\rangle|\le 2$.
+\end{document}
+```
+
+## **C5 — Quantum CHSH value $$2\sqrt2$$ for singlet (preview)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L10-C5 Quantum CHSH violation (preview) — Problem}
+Using $E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b$, choose coplanar unit vectors:
+\[
+\mathbf a=\hat x,\quad \mathbf a'=\hat z,\quad
+\mathbf b=\frac{\hat x+\hat z}{\sqrt2},\quad \mathbf b'=\frac{\hat x-\hat z}{\sqrt2}.
+\]
+Compute $S=E(\mathbf a,\mathbf b)+E(\mathbf a,\mathbf b')+E(\mathbf a',\mathbf b)-E(\mathbf a',\mathbf b')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Compute dot products: $\hat x\cdot(\hat x\pm\hat z)/\sqrt2 = 1/\sqrt2$.
+\item $\hat z\cdot(\hat x\pm\hat z)/\sqrt2 = \pm 1/\sqrt2$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Remember $E=-\mathbf a\cdot\mathbf b$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Compute:
+\[
+E(\mathbf a,\mathbf b)=-(\hat x\cdot(\hat x+\hat z)/\sqrt2)=-(1/\sqrt2),
+\quad
+E(\mathbf a,\mathbf b')=-(\hat x\cdot(\hat x-\hat z)/\sqrt2)=-(1/\sqrt2).
+\]
+\[
+E(\mathbf a',\mathbf b)=-(\hat z\cdot(\hat x+\hat z)/\sqrt2)=-(1/\sqrt2),
+\quad
+E(\mathbf a',\mathbf b')=-(\hat z\cdot(\hat x-\hat z)/\sqrt2)= -(-1/\sqrt2)=+(1/\sqrt2).
+\]
+Thus
+\[
+S= \left(-\frac{1}{\sqrt2}\right)+\left(-\frac{1}{\sqrt2}\right)+\left(-\frac{1}{\sqrt2}\right)-\left(+\frac{1}{\sqrt2}\right)
+= -\frac{4}{\sqrt2}=-2\sqrt2,
+\]
+so $|S|=2\sqrt2>2$.
+\end{document}
+```
+
+***
+
+## ✅ Next step: Lecture 11
+
+Lecture 11 will now fully develop **density operators, mixed states, partial trace (fully), Kraus maps, and channels**, building directly on Lectures 7 (POVM/Kraus) and 9–10 (reduced states and correlations).
+
+If you’re ready, say: **“Proceed to Lecture 11”** and tell me one preference:
+
+*   Should Lecture 11 include a **full quantum channel taxonomy** (CPTP, Kraus, Choi matrix preview), or keep Choi matrix as an optional advanced add-on?

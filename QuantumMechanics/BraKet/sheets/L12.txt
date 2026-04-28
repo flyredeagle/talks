@@ -1,0 +1,897 @@
+======================
+Lecture 12
+=====================
+
+Proceeding to **Lecture 12** ✅ — and I’ll include **two parallel tracks inside the lecture**:
+
+1.  **Physics‑rigor track**: practical “safe Dirac rules” + worked examples
+2.  **Math‑forward track**: functional analysis framing (domains, self‑adjointness, rigged Hilbert spaces, spectral measures)
+
+As before, this response includes **all standardized artifacts**:
+
+*   ✅ Narrative + derivations (**LaTeX source; student/instructor toggle**)
+*   ✅ Slides (**Beamer LaTeX + PowerPoint outline**)
+*   ✅ Tiered references + historical anchors
+*   ✅ Concept questions (10)
+*   ✅ **10 SPS + 5 CPS**
+*   ✅ Extra practice + homework (**LaTeX**)
+*   ✅ Simple + complex projects
+*   ✅ Well-defined + open-ended research questions
+*   ✅ **Exercise packets for all 15 problems** (each: Problem → Suggestions → Advanced suggestions → Detailed solution)
+
+***
+
+# **Lecture 12 — Mathematical Foundations of Bra–Ket Notation**
+
+## Two tracks: Physics‑rigor + Math‑forward (functional analysis)
+
+### 90‑minute pacing
+
+*   **0–15:** Why foundations matter; what bra–ket hides (continuous spectra, unbounded operators)
+*   **15–35 (Physics‑rigor):** safe delta/ket manipulation rules + worked examples
+*   **35–55 (Math‑forward):** Hilbert spaces, domains, self‑adjointness vs symmetric; examples
+*   **55–75:** Rigged Hilbert spaces (Gelfand triplet) and generalized eigenvectors
+*   **75–90:** Spectral measures (PVMs), continuous spectrum, “safe rules” summary + research directions
+
+### Core outcomes
+
+Students can:
+
+1.  Explain why $$|x\rangle$$ and $$|p\rangle$$ are **generalized** (not in $$\mathcal H$$)
+2.  Apply “safe Dirac rules” for delta functions and continuous bases
+3.  Distinguish **symmetric (Hermitian)** vs **self‑adjoint** operators and why the difference matters
+4.  Understand the **rigged Hilbert space** framework $$\Phi\subset \mathcal H\subset \Phi'$$
+5.  State the **spectral theorem** viewpoint: observables as self‑adjoint operators with spectral measures
+
+***
+
+# A) Reference anchors, historical anchors, expansion hooks
+
+## Reference anchors (core)
+
+*   **Dirac** — *The Principles of Quantum Mechanics* (formalism; generalized eigenkets usage)
+*   **Sakurai & Napolitano** — *Modern Quantum Mechanics* (physics meaning; continuous spectra cautions)
+
+## Math-forward references (recommended)
+
+*   **von Neumann** — *Mathematical Foundations of Quantum Mechanics* (1932)
+*   **Reed & Simon, Vol. I** — functional analysis / self-adjointness / spectral theorem
+*   **Gelfand & Vilenkin** — *Generalized Functions* (rigged Hilbert spaces)
+*   **Schwartz** — distributions (delta formalism)
+
+## Historical anchors
+
+*   **von Neumann (1932):** Hilbert space formalization; spectral theorem foundations
+*   **Stone (1932):** unitary groups and self‑adjoint generators
+*   **Schwartz (1940s):** distribution theory (delta rigor)
+*   **Gelfand triplet (mid‑20th century):** rigged Hilbert space formalization
+
+## Expansion hooks
+
+*   Safe operator-domain handling → strengthens Lecture 6 (continuous bases) and Lecture 8 (Stone theorem)
+*   Spectral measures / PVMs / POVMs → connects to Lecture 7 and Lecture 11
+*   Scattering theory and continuous spectrum → natural extension module after course
+
+***
+
+# B) Learning tiers (Lecture 12 add-ons)
+
+## HS
+
+*   “Idealized” states (like $$|x\rangle$$) are not physically realizable but approximate limits
+*   Probability density vs probability in an interval
+
+## BegUG
+
+*   Delta function as a rule-of-thumb; completeness integrals
+*   Understand “formal tools” and where they apply
+
+## AdvUG
+
+*   Integration-by-parts assumptions; boundary terms; why momentum representation works
+*   Recognize where derivations silently assume decay conditions
+
+## MSc
+
+*   Rigged Hilbert space picture; PVM and POVM language; spectral decomposition as integral
+*   Self-adjointness as the correct observable condition
+
+## PhD
+
+*   Domains, self-adjoint extensions, deficiency indices (preview)
+*   Stone theorem precise statement; unbounded operators; spectral measures rigor
+
+***
+
+# C) Lecture notes (Narrative + derivations) — LaTeX sources
+
+## C1) Single-source chapter with instructor toggle and two tracks
+
+Copy as `L12_chapter.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{amsmath,amssymb,physics,hyperref}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+
+\newif\ifinstructor
+
+\newtcolorbox{pacingbox}{colback=blue!3!white,colframe=blue!60!black,title=90-minute pacing}
+\newtcolorbox{outcomesbox}{colback=green!3!white,colframe=green!50!black,title=Core outcomes}
+\newtcolorbox{warnbox}{colback=red!2!white,colframe=red!60!black,title=Common pitfalls}
+\newtcolorbox{physbox}{colback=orange!3!white,colframe=orange!70!black,title=Physics-rigor track (safe Dirac rules)}
+\newtcolorbox{mathbox}{colback=gray!3!white,colframe=gray!60!black,title=Math-forward track (functional analysis)}
+\newtcolorbox{mapbox}{colback=purple!2!white,colframe=purple!60!black,title=Safe translation dictionary}
+
+\title{Lecture 12: Foundations of Bra--Ket Notation\\
+\large Physics-rigor + Math-forward tracks}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{pacingbox}
+\begin{itemize}[leftmargin=*]
+\item 0--15: What Dirac notation hides (continuous spectra, unbounded operators)
+\item 15--35: Physics-rigor safe rules + examples
+\item 35--55: Math-forward: Hilbert spaces, domains, self-adjointness
+\item 55--75: Rigged Hilbert spaces and generalized eigenvectors
+\item 75--90: Spectral measures (PVM), continuous spectrum, summary and outlook
+\end{itemize}
+\end{pacingbox}
+
+\begin{outcomesbox}
+\begin{enumerate}[leftmargin=*]
+\item Explain why $|x\rangle$ and $|p\rangle$ are generalized eigenvectors (not in $\mathcal H$).
+\item Apply safe rules for delta functions and continuous completeness.
+\item Distinguish symmetric (Hermitian) vs self-adjoint and why this matters for observables and unitary evolution.
+\end{enumerate}
+\end{outcomesbox}
+
+\section{Why foundations matter}
+Dirac notation is powerful because it is representation-independent. But it can hide delicate issues:
+\begin{itemize}
+\item Continuous bases involve distributions: $\langle x|x'\rangle=\delta(x-x')$.
+\item Important observables ($x$, $p$, $H$) are unbounded operators: domains matter.
+\item ``Hermitian'' in physics often means ``self-adjoint''; these differ for unbounded operators.
+\end{itemize}
+
+\begin{warnbox}
+Treat $\delta$ as a distribution and $|x\rangle$ as a generalized object. Formal manipulations are safe only when
+they can be justified by inserting test functions and checking boundary/domain assumptions.
+\end{warnbox}
+
+\section{Physics-rigor track: safe Dirac rules}
+\begin{physbox}
+\subsection*{Rulebook (practical)}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Always test against a wavefunction.} Replace expressions with their action on $\psi(x)=\langle x|\psi\rangle$.
+\item \textbf{Use completeness as an operator identity.} $\int dx\,|x\rangle\langle x|=I$ should be applied inside inner products.
+\item \textbf{Use delta only under integrals.} $\delta$ is defined by $\int f(x)\delta(x-a)\,dx=f(a)$ for nice $f$.
+\item \textbf{Track boundary terms.} Derivations like $\hat p=-i\hbar\partial_x$ assume suitable decay or boundary conditions.
+\item \textbf{Check normalization/positivity.} Probabilities must be $\ge0$ and sum/integrate to 1.
+\item \textbf{Separate ``formal'' from ``physical.''} $|x\rangle$ is idealized; physical states are square-integrable wavepackets.
+\end{enumerate}
+
+\subsection*{Example: completeness produces inner product}
+\[
+\langle\phi|\psi\rangle = \int dx\,\langle\phi|x\rangle\langle x|\psi\rangle=\int dx\,\phi^*(x)\psi(x).
+\]
+
+\subsection*{Example: momentum operator in $x$-rep}
+From $\langle x|p\rangle\propto e^{ipx/\hbar}$, we obtain $(\hat p\psi)(x)=-i\hbar\partial_x\psi(x)$,
+assuming we can exchange differentiation and integration and boundary terms vanish.
+\end{physbox}
+
+\section{Math-forward track: Hilbert spaces, domains, self-adjointness}
+\begin{mathbox}
+\subsection*{Hilbert space and domains}
+A Hilbert space $\mathcal H$ is a complete inner-product space. Many quantum observables are \emph{unbounded},
+so they cannot be defined on all of $\mathcal H$. They have a dense domain $D(A)\subset\mathcal H$.
+
+\subsection*{Adjoint and self-adjointness}
+Given a densely-defined operator $A$, the adjoint $A^\dagger$ is defined via
+\[
+\langle \phi|A\psi\rangle=\langle A^\dagger \phi|\psi\rangle\quad \text{for }\psi\in D(A),\ \phi\in D(A^\dagger).
+\]
+An operator is \textbf{symmetric} if $\langle \phi|A\psi\rangle=\langle A\phi|\psi\rangle$ on $D(A)$.
+It is \textbf{self-adjoint} if $A=A^\dagger$ and $D(A)=D(A^\dagger)$.
+
+\subsection*{Why self-adjoint matters}
+Self-adjointness guarantees real spectrum and generates unitary evolution $U(t)=e^{-itA/\hbar}$ (Stone's theorem).
+
+\end{mathbox}
+
+\section{Rigged Hilbert spaces and generalized eigenvectors}
+To handle continuous spectra, one uses a Gelfand triple (rigged Hilbert space):
+\[
+\Phi \subset \mathcal H \subset \Phi',
+\]
+where $\Phi$ is a dense test-function space (e.g. Schwartz functions), and $\Phi'$ its dual (distributions).
+Generalized eigenvectors like $|x\rangle$ live in $\Phi'$ rather than $\mathcal H$.
+
+\section{Spectral measures (PVM) viewpoint}
+A self-adjoint operator $A$ has a spectral measure $E(\lambda)$ such that
+\[
+A=\int \lambda\, dE(\lambda),
+\]
+and probabilities for outcome in a set $\Delta$ are
+\[
+p(\Delta)=\langle\psi|E(\Delta)|\psi\rangle.
+\]
+Discrete case reduces to sums with projectors; continuous case uses integrals.
+
+\begin{mapbox}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Formal Dirac & Safe interpretation\\ \midrule
+$|x\rangle$ & distributional functional on test functions\\
+$\delta(x-x')$ & defined by action under integrals\\
+$A(x,x')=\langle x|A|x'\rangle$ & integral kernel on $\psi(x')$\\
+Hermitian & symmetric on a domain (physics shorthand)\\
+Self-adjoint & correct observable notion; real spectrum; unitary group\\
+\bottomrule
+\end{tabular}
+\end{mapbox}
+
+\ifinstructor
+\appendix
+\section{Instructor-only notes}
+Spend time on one concrete domain example (momentum on an interval) to show how boundary conditions change
+self-adjointness. Emphasize what is safe for calculations and what requires rigor.
+\fi
+
+\end{document}
+```
+
+## C2) Student and Instructor wrappers
+
+Copy as `L12_notes_student.tex` and `L12_notes_instructor.tex`:
+
+```latex
+% L12_notes_student.tex
+\newif\ifinstructor
+\instructorfalse
+\input{L12_chapter}
+```
+
+```latex
+% L12_notes_instructor.tex
+\newif\ifinstructor
+\instructortrue
+\input{L12_chapter}
+```
+
+***
+
+# D) Slides
+
+## D1) Beamer deck — `L12_slides_beamer.tex`
+
+```latex
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{amsmath}
+\title{Lecture 12: Foundations (Physics-rigor + Math-forward)}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+\begin{frame}{What Dirac notation hides}
+\begin{itemize}
+\item Continuous bases $\Rightarrow$ distributions (delta)
+\item Unbounded operators $\Rightarrow$ domains matter
+\item Hermitian vs self-adjoint (not identical for unbounded operators)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Physics-rigor: safe rules}
+\begin{itemize}
+\item Use $\delta$ only under integrals (test functions)
+\item Check boundary terms when integrating by parts
+\item Treat $|x\rangle$ as generalized (idealized) state
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Math-forward: self-adjointness}
+\begin{itemize}
+\item Domain $D(A)$ is part of operator definition
+\item Symmetric $\neq$ self-adjoint in general
+\item Self-adjoint $\Rightarrow$ real spectrum, unitary evolution
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rigged Hilbert space}
+\[
+\Phi \subset \mathcal H \subset \Phi'
+\]
+Generalized eigenvectors live in $\Phi'$.
+\end{frame}
+
+\begin{frame}{Spectral measures (PVM)}
+\[
+A=\int \lambda\, dE(\lambda),\quad p(\Delta)=\langle\psi|E(\Delta)|\psi\rangle
+\]
+\end{frame}
+
+\end{document}
+```
+
+## D2) PowerPoint outline — `L12_slides_ppt_outline.md`
+
+```md
+# Lecture 12: Foundations (Physics-rigor + Math-forward)
+
+## Slide 1 — Title
+- What bra–ket notation hides and how to use it safely
+
+## Slide 2 — The “hidden issues”
+- continuous bases → delta distributions
+- unbounded operators → domains
+- Hermitian vs self-adjoint
+
+## Slide 3 — Physics-rigor safe rules
+- delta only inside integrals with test functions
+- completeness acts under inner products
+- watch boundary terms in integration by parts
+- physical states are wavepackets, not |x>
+
+## Slide 4 — Math-forward: operators
+- define domains D(A)
+- adjoint A† depends on domain
+- symmetric vs self-adjoint
+
+## Slide 5 — Why self-adjoint matters
+- real spectrum for observables
+- generates unitary evolution (Stone)
+
+## Slide 6 — Rigged Hilbert spaces
+- Φ ⊂ H ⊂ Φ'
+- generalized eigenvectors in Φ'
+
+## Slide 7 — Spectral measures (PVM)
+- A = ∫ λ dE(λ)
+- probability p(Δ)=⟨ψ|E(Δ)|ψ⟩
+
+## Slide 8 — Takeaways
+- what is safe to do with Dirac notation
+- what requires functional analysis
+```
+
+***
+
+# E) Concept Questions (CQ) — 10
+
+1.  Why is $$|x\rangle$$ not a normalizable vector in $$L^2(\mathbb R)$$?
+2.  What does it mean to call $$\delta(x)$$ a “distribution” rather than a function?
+3.  Why do we insist that physical states be square-integrable wavepackets?
+4.  Where do boundary conditions enter when deriving $$\hat p=-i\hbar\partial_x$$?
+5.  What is the difference between a symmetric and self-adjoint operator?
+6.  Why does self-adjointness matter for unitary time evolution?
+7.  What is a rigged Hilbert space and why introduce it?
+8.  How does the spectral theorem generalize “diagonalization”?
+9.  How does a PVM describe measurement probabilities?
+10. Which bra–ket manipulations are safe rules-of-thumb and which require proof?
+
+***
+
+# F) **Simple Problem Set (SPS) — 10**
+
+S1 Use completeness to derive $$\langle\phi|\psi\rangle=\int \phi^*(x)\psi(x)\,dx$$  
+S2 Verify delta sifting for simple test functions  
+S3 Show $$\int dx\,\delta(x-x')g(x)=g(x')$$  
+S4 Compute kernel action $$(A\psi)(x)=\int A(x,x')\psi(x')dx'$$ for a given kernel  
+S5 Show the position operator kernel is $$x\delta(x-x')$$ (formal)  
+S6 Show the momentum operator kernel is $$-i\hbar\partial_x\delta(x-x')$$ (formal)  
+S7 Integration by parts check: show $$\langle\phi|(-i\hbar\partial_x)\psi\rangle = \langle(-i\hbar\partial_x)\phi|\psi\rangle$$ under boundary decay  
+S8 Give an example where boundary terms do NOT vanish (particle on interval)  
+S9 Show that if $$A$$ is self-adjoint then $$\langle\psi|A|\psi\rangle\in\mathbb R$$ (short proof)  
+S10 Translate spectral decomposition: discrete sum vs continuous integral form (conceptual + simple example)
+
+***
+
+# G) **Complex Problem Set (CPS) — 5**
+
+C1 Prove momentum on an interval is symmetric but not self-adjoint without boundary conditions; show which BCs make it self-adjoint (outline-level)  
+C2 Prove (or carefully justify) that $$x$$ and $$p$$ are unbounded and cannot be defined on all of $$L^2(\mathbb R)$$  
+C3 Rigged Hilbert space: show Schwartz space $$\mathcal S(\mathbb R)\subset L^2(\mathbb R)\subset \mathcal S'(\mathbb R)$$ (structured explanation + one example functional)  
+C4 Spectral theorem statement: from $$A=\int \lambda\,dE(\lambda)$$ derive $$f(A)=\int f(\lambda)\,dE(\lambda)$$ (outline)  
+C5 Stone theorem connection (preview): show strongly continuous unitary group implies self-adjoint generator (structured sketch)
+
+***
+
+# H) Projects
+
+## Simple Project (SPJ): “Dirac Safe-Use Cookbook”
+
+Create a 3–5 page “cookbook”:
+
+*   safe delta rules
+*   safe completeness insertions
+*   examples: $$\langle\phi|\psi\rangle$$, kernel action, $$\hat p$$ derivation
+*   list common pitfalls + how to detect them
+
+Deliverables: PDF memo + annotated examples.
+
+## Complex Project (CPJ): “Self-adjoint extensions in action”
+
+Study momentum operator on $$[0,L]$$:
+
+*   show why boundary conditions matter
+*   explore family of self-adjoint boundary conditions (phase-twisted periodic)
+*   connect to physical meaning (quantization of momentum)
+
+Deliverables: 8–12 page report + derivations + (optional) numerical spectra.
+
+***
+
+# I) Research questions
+
+## Well-defined (WRQ)
+
+**Explain how von Neumann’s Hilbert space framework (1932) and Schwartz distributions justify Dirac’s continuous basis manipulations.**  
+(6–8 pages; include at least two worked examples: delta completeness and momentum operator)
+
+## Open-ended (ORQ)
+
+**Is there an alternative foundational framework (e.g., algebraic QM, operational reconstructions) that avoids rigged Hilbert spaces while retaining Dirac notation’s power?**  
+Proposal-style memo (assumptions, pros/cons, test case).
+
+***
+
+# J) Extra practice sheet + Homework sheet (LaTeX)
+
+## J1) Extra practice — `L12_extra_practice.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 12 — Extra Practice}
+\date{}
+\begin{document}\maketitle
+
+\section*{Practice A (safe delta)}
+\begin{enumerate}
+\item Verify $\int dx\,x^2\delta(x-a)=a^2$.
+\item Evaluate $\int dx\,\delta(x-x')\sin x$.
+\item Show $\int dx\,f(x)\delta'(x-a)=-f'(a)$ (formal).
+\end{enumerate}
+
+\section*{Practice B (operators)}
+\begin{enumerate}
+\item Use integration by parts to show $p=-i\hbar\partial_x$ is symmetric on Schwartz functions.
+\item Show boundary terms matter on the interval $[0,L]$.
+\end{enumerate}
+
+\end{document}
+```
+
+## J2) Homework — `L12_homework.tex`
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry,amsmath,amssymb,physics}
+\geometry{margin=1in}
+\title{Lecture 12 — Homework (graded)}
+\date{}
+\begin{document}\maketitle
+
+\section*{Required}
+\begin{enumerate}
+\item (S4) Kernel action computation for a given kernel.
+\item (S7) Symmetry of momentum operator under boundary decay.
+\item (S8) Provide a boundary-term counterexample on an interval.
+\item (C3) Rigged Hilbert space structured explanation with one example functional.
+\item (C4) Spectral calculus outline: $f(A)=\int f(\lambda)\,dE(\lambda)$.
+\end{enumerate}
+
+\section*{Choose two}
+\begin{enumerate}
+\item (C1) Momentum on an interval: self-adjoint extensions sketch.
+\item (C5) Stone theorem structured sketch.
+\item (S6) Momentum kernel as derivative of delta (formal).
+\end{enumerate}
+
+\end{document}
+```
+
+***
+
+# K) Exercise packets — **all 15** (10 SPS + 5 CPS)
+
+Each packet below is a complete mini-document with **Problem → Suggestions → Advanced suggestions → Detailed solution**.
+
+> Copy into `L12_S1.tex` … `L12_C5.tex`.
+
+***
+
+## **S1 — Inner product via completeness**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L12-S1 Inner product from completeness — Problem}
+Assume $\int dx\,|x\rangle\langle x|=I$. Show $\langle\phi|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Insert the identity between $\langle\phi|$ and $|\psi\rangle$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use $\langle\phi|x\rangle=\phi^*(x)$ and $\langle x|\psi\rangle=\psi(x)$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle\phi|\psi\rangle=\int dx\,\langle\phi|x\rangle\langle x|\psi\rangle=\int dx\,\phi^*(x)\psi(x)$.
+\end{document}
+```
+
+## **S2 — Delta sifting**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L12-S2 Delta sifting — Problem}
+Evaluate $\int_{-\infty}^{\infty} dx\, (1+x)\delta(x-2)$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Apply $\int f(x)\delta(x-a)dx=f(a)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item State that $\delta$ is a distribution defined by this property on test functions.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$f(x)=1+x$, $a=2$ so the integral equals $f(2)=3$.
+\end{document}
+```
+
+## **S3 — Delta reproducing**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L12-S3 Delta reproducing — Problem}
+Compute $\int dx\,\delta(x-x')g(x)$ and interpret the result.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Treat $x'$ as fixed and apply sifting.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Interpret as continuum analog of Kronecker delta selecting one component.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\int dx\,\delta(x-x')g(x)=g(x')$. Interpretation: delta selects the value at $x'$.
+\end{document}
+```
+
+## **S4 — Kernel action**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L12-S4 Kernel action — Problem}
+Let $A(x,x')=\delta(x-x')x'^2$. Compute $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use delta to collapse the integral.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Note $x'^2$ becomes $x^2$ after delta acts.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+(A\psi)(x)=\int dx'\,\delta(x-x')x'^2\psi(x')=x^2\psi(x).
+\]
+\end{document}
+```
+
+## **S5 — Position operator kernel**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb,physics}\geometry{margin=1in}\begin{document}
+\section*{L12-S5 Kernel of $\hat x$ (formal) — Problem}
+Show that the kernel of $\hat x$ in the $x$ basis is $x\delta(x-x')$, i.e. $\langle x|\hat x|x'\rangle=x\delta(x-x')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Use $\hat x|x'\rangle=x'|x'\rangle$ and take $\langle x|$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Replace $x'$ by $x$ under $\delta(x-x')$ when acting under integrals.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\langle x|\hat x|x'\rangle=\langle x|x' x'\rangle=x'\langle x|x'\rangle=x'\delta(x-x')$.
+Under integrals this acts as $x\delta(x-x')$, so we write $x\delta(x-x')$ (formal equivalence).
+\end{document}
+```
+
+## **S6 — Momentum operator kernel**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L12-S6 Kernel of $\hat p$ (formal) — Problem}
+Assuming $(\hat p\psi)(x)=-i\hbar\partial_x\psi(x)$, show a formal kernel is $A(x,x')=-i\hbar\,\partial_x\delta(x-x')$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Start from $(A\psi)(x)=\int dx'\,A(x,x')\psi(x')$ and aim to produce a derivative of $\psi$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Use distribution identity: $\int dx'\,\partial_x\delta(x-x')\psi(x')=\partial_x\psi(x)$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Formally,
+\[
+\int dx'\,\partial_x\delta(x-x')\psi(x')=\partial_x\int dx'\,\delta(x-x')\psi(x')=\partial_x\psi(x).
+\]
+Thus choosing $A(x,x')=-i\hbar\,\partial_x\delta(x-x')$ yields $(A\psi)(x)=-i\hbar\,\partial_x\psi(x)$.
+\end{document}
+```
+
+## **S7 — Symmetry of momentum with decay (integration by parts)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L12-S7 Symmetry of $-i\hbar\partial_x$ — Problem}
+Let $(p\psi)(x)=-i\hbar\psi'(x)$. Show $\langle\phi|p\psi\rangle=\langle p\phi|\psi\rangle$ assuming $\phi,\psi$ vanish at $\pm\infty$.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Write $\langle\phi|p\psi\rangle=\int dx\,\phi^*(x)(-i\hbar\psi'(x))$.
+\item Integrate by parts.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Boundary term $[-i\hbar\phi^*\psi]_{-\infty}^{\infty}$ vanishes by assumption.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\int dx\,\phi^*(-i\hbar\psi') = -i\hbar\left[\phi^*\psi\right]_{-\infty}^{\infty}+i\hbar\int dx\,(\phi^*)'\psi.
+\]
+Boundary term vanishes, and $(\phi^*)'=(\phi')^*$, hence
+\[
+\langle\phi|p\psi\rangle=\int dx\,(i\hbar\phi')^*\psi=\langle p\phi|\psi\rangle.
+\]
+So $p$ is symmetric on this domain.
+\end{document}
+```
+
+## **S8 — Boundary terms do not vanish on an interval**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L12-S8 Boundary counterexample — Problem}
+On $[0,L]$, let $(p\psi)(x)=-i\hbar\psi'(x)$ with no boundary conditions. Show integration by parts yields a boundary term and explain why symmetry can fail.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Repeat integration by parts but evaluate boundary term at $0$ and $L$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show symmetry requires $\phi^*(L)\psi(L)-\phi^*(0)\psi(0)=0$ for all $\phi,\psi$ in the domain.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+\[
+\int_0^L dx\,\phi^*(-i\hbar\psi') = -i\hbar[\phi^*\psi]_0^L + i\hbar\int_0^L dx\,(\phi^*)'\psi.
+\]
+The boundary term is $-i\hbar(\phi^*(L)\psi(L)-\phi^*(0)\psi(0))$ and need not vanish.
+Without boundary conditions restricting the domain, symmetry can fail because $\langle\phi|p\psi\rangle\neq\langle p\phi|\psi\rangle$.
+\end{document}
+```
+
+## **S9 — Self-adjoint implies real expectation**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath,amssymb}\geometry{margin=1in}\begin{document}
+\section*{L12-S9 Real expectation — Problem}
+Show if $A=A^\dagger$ (self-adjoint/Hermitian in finite dimension), then $\langle\psi|A|\psi\rangle$ is real.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Take complex conjugate and use adjoint property.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Show the number equals its own conjugate.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Let $z=\langle\psi|A|\psi\rangle$. Then $z^*=\langle\psi|A^\dagger|\psi\rangle=\langle\psi|A|\psi\rangle=z$.
+Thus $z\in\mathbb R$.
+\end{document}
+```
+
+## **S10 — Spectral decomposition: sum vs integral**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry,amsmath}\geometry{margin=1in}\begin{document}
+\section*{L12-S10 Spectral form — Problem}
+State the discrete spectral decomposition $\hat A=\sum_a aP_a$ and the continuous spectral form $A=\int \lambda\,dE(\lambda)$, and explain (in 3–5 sentences) how they relate.
+
+\newpage\section*{Suggestions}\begin{itemize}
+\item Discrete uses sums over eigenvalues with projectors.
+\item Continuous uses a projection-valued measure (PVM).
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}\begin{itemize}
+\item Think of $dE(\lambda)$ as “infinitesimal projectors” over spectrum intervals.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+Discrete: $\hat A=\sum_a aP_a$ where $P_a$ project onto eigenspaces.
+Continuous: $A=\int \lambda\,dE(\lambda)$ where $E(\Delta)$ projects onto spectral subspaces for intervals $\Delta$.
+The integral generalizes the sum: when the spectrum is discrete, $E$ jumps at eigenvalues and the integral reduces to a sum.
+\end{document}
+```
+
+***
+
+## **C1 — Momentum on an interval: symmetric vs self-adjoint (outline)**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L12-C1 Momentum on $[0,L]$ — Problem}
+Consider $p=-i\hbar d/dx$ on $[0,L]$. Provide an outline argument that:
+(i) Without boundary conditions it is not symmetric.
+(ii) With periodic-like boundary conditions $\psi(L)=e^{i\theta}\psi(0)$ it can be made self-adjoint.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Use the boundary term from S8.
+\item Self-adjointness requires matching domains of $p$ and $p^\dagger$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Argue that boundary conditions impose a one-parameter family of self-adjoint extensions (phase $\theta$).
+\item Mention deficiency indices (preview only).
+\end{itemize}
+
+\newpage\section*{Detailed solution (outline)}
+(i) From S8, symmetry requires boundary term to vanish for all domain functions: this fails without BCs.
+(ii) Imposing $\psi(L)=e^{i\theta}\psi(0)$ (and same for test functions) forces the boundary term to cancel:
+$\phi^*(L)\psi(L)=\phi^*(0)\psi(0)$, making the operator symmetric. With suitable smoothness, this choice aligns domains
+so that $p=p^\dagger$, yielding a self-adjoint extension.
+\end{document}
+```
+
+## **C2 — Unbounded operators cannot be everywhere-defined**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L12-C2 Unboundedness and domains — Problem}
+Give a careful argument (1 page) why $x$ and $p$ are unbounded on $L^2(\mathbb R)$ and thus cannot be defined on all of $\mathcal H$ as bounded operators.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Construct a sequence of normalized wavefunctions with growing $\|x\psi\|$.
+\item Similar for $p$ using high-frequency oscillations.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Mention: bounded operator would satisfy $\|A\psi\|\le C\|\psi\|$ for all $\psi$; show no such $C$ exists.
+\end{itemize}
+
+\newpage\section*{Detailed solution (model sketch)}
+For $x$: choose normalized $\psi_n$ concentrated near $x=n$ (shifted wavepackets). Then $\|x\psi_n\|\approx n\|\psi_n\|=n$ grows without bound, so no uniform constant $C$ exists.
+Similarly for $p=-i\hbar\partial_x$: choose $\psi_n(x)=e^{inx}\phi(x)$ with fixed normalized $\phi$; then $\|p\psi_n\|$ grows like $n$, showing unboundedness.
+Therefore domains must be restricted to vectors for which $x\psi$ and $p\psi$ remain square-integrable.
+\end{document}
+```
+
+## **C3 — Rigged Hilbert space example**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L12-C3 Rigged Hilbert space — Problem}
+Provide a structured explanation of the Gelfand triple $\mathcal S(\mathbb R)\subset L^2(\mathbb R)\subset \mathcal S'(\mathbb R)$ and give one example of a distribution in $\mathcal S'$ (e.g. $\delta$) acting on a test function.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item $\mathcal S$ are smooth rapidly decaying functions; $\mathcal S'$ are continuous linear functionals on $\mathcal S$.
+\item Define $\delta(f)=f(0)$.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Explain why plane waves are not in $L^2$ but define distributions.
+\item Connect to $|x\rangle$ as functional: $\langle x|\psi\rangle=\psi(x)$.
+\end{itemize}
+
+\newpage\section*{Detailed solution}
+$\mathcal S(\mathbb R)$ is dense in $L^2(\mathbb R)$ and stable under Fourier transform. Its dual $\mathcal S'(\mathbb R)$ consists of tempered distributions.
+The delta distribution is a continuous linear functional on $\mathcal S$ defined by $\delta(f)=f(0)$.
+In bra--ket language, $|x\rangle$ corresponds to the evaluation functional $\psi\mapsto \psi(x)$, which is not an $L^2$ vector but a distributional object.
+\end{document}
+```
+
+## **C4 — Spectral calculus outline**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L12-C4 Spectral calculus — Problem}
+Given the spectral form $A=\int \lambda\,dE(\lambda)$, outline why for suitable $f$ one has
+$f(A)=\int f(\lambda)\,dE(\lambda)$ and how this generalizes polynomial functional calculus.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Start with polynomials: if $A=\sum aP_a$, then $f(A)=\sum f(a)P_a$.
+\item Replace the sum by an integral over the spectral measure.
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Mention approximating continuous $f$ by polynomials or simple functions.
+\item Note $E(\Delta)$ are projectors and obey measure properties.
+\end{itemize}
+
+\newpage\section*{Detailed solution (outline)}
+In the discrete case, $A=\sum_a aP_a$ implies $A^n=\sum_a a^n P_a$ and hence $f(A)=\sum_a f(a)P_a$ for polynomials.
+For general spectra, one defines $f(A)$ first for simple functions $f=\sum_k c_k \chi_{\Delta_k}$ by $f(A)=\sum_k c_k E(\Delta_k)$ and extends by limits to broader classes of $f$.
+This yields $f(A)=\int f(\lambda)\,dE(\lambda)$, consistent with the discrete sum when the measure has atoms at eigenvalues.
+\end{document}
+```
+
+## **C5 — Stone theorem structured sketch**
+
+```latex
+\documentclass[11pt]{article}\usepackage{geometry}\geometry{margin=1in}\begin{document}
+\section*{L12-C5 Stone theorem sketch — Problem}
+Write a structured sketch explaining:
+(i) what a strongly continuous one-parameter unitary group $U(t)$ is,
+(ii) why it implies the existence of a self-adjoint generator $H$ with $U(t)=e^{-itH/\hbar}$,
+(iii) how this connects to physical Hamiltonians.
+
+\newpage\section*{Suggestions}
+\begin{itemize}
+\item Mention group property $U(t+s)=U(t)U(s)$ and strong continuity.
+\item State the theorem (no full proof).
+\end{itemize}
+
+\newpage\section*{Advanced suggestions}
+\begin{itemize}
+\item Explain why self-adjointness (not just symmetry) is essential for true unitary evolution.
+\end{itemize}
+
+\newpage\section*{Detailed solution (sketch)}
+A strongly continuous unitary group satisfies $U(0)=I$, $U(t+s)=U(t)U(s)$, and $\lim_{t\to0}\|U(t)\psi-\psi\|=0$ for all $\psi$.
+Stone's theorem states there exists a unique self-adjoint operator $H$ such that $U(t)=e^{-itH/\hbar}$.
+Physically, $H$ is the Hamiltonian generating time evolution; self-adjointness ensures real energy spectrum and conservation of probability through unitarity.
+\end{document}
+```
+
+***
+
+## 🎉 Course status (syllabus completion)
+
+With Lectures **1–12** now generated in-chat at the artifact level, we have:
+
+*   the full 12-lecture arc,
+*   standardized assessment format (10 SPS + 5 CPS),
+*   and the advanced inclusions you requested (degeneracy/Lüders, POVMs, interaction picture, partial trace preview, channels + Choi preview, foundations dual-track).
+
+***
+
+# Next step options
+
+Now that the **full course lecture set is complete**, the natural next moves are:
+
+1.  **Repository build**: I package everything into a **ZIP repo** with:
+    *   consistent file naming (`L12_S1.tex`, etc.)
+    *   Makefile targets (`student`, `instructor`, `all`)
+    *   generated PDFs/PPTX via scripts (like earlier versions)
+
+2.  **Deepening pass**: choose 2–3 lectures to expand into **40–50 page chapters** (e.g., L01, L06, L11, L12).
+
+Tell me which you want next: **(1) ZIP repo build** or **(2) deepening pass** — or both in that order.

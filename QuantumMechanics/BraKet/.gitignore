@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log
+
+# LaTeX temp files
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Intermediate build files (regenerated on rebuild)
+build/L*/formulas/*.png
+build/L*/formulas/cache.json
+build/L*/lecture_content.json
+build/L*/formula_lookup.json
+build/shared_formulas/
+
+# Keep committed: final PPTX, PDFs, diagrams, L01 assets
+!build/L01/formulas/
+!build/L01/diagrams/*.png
+!build/L01/homework/
+!build/L01/*.pptx
+!build/L*/L*.pptx
+!build/QM_Syllabus.pdf
