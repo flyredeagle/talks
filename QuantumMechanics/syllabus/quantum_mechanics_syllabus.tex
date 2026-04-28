@@ -129,7 +129,8 @@
                          & \quad Module~I.1 --- State Space, Operators, and the Bra-Ket Language (6 lectures)\\
                          & \quad Module~I.2 --- Bra-Ket Notation and the Language of Quantum Mechanics (12 lectures)\\
                          & \quad Module~I.3 --- Quantum Dynamics, Symmetry, and Perturbation Theory (10 lectures)\\
-                         & \quad Module~I.4 --- Paradigm Physical Systems (8 lectures)\\[6pt]
+                         & \quad Module~I.4 --- Paradigm Physical Systems (12 lectures)\\
+                         & \quad Module~I.5 --- Advanced Physical Systems: Lecture Menu (12 topics)\\[6pt]
     \textbf{Series~II:}  & Advanced Quantum Mechanics\\
                          & \quad 7 Modules (II.1--II.7), 12 lectures each\\[6pt]
     \textbf{Series~III:} & Molecular Electronic Structure \& Quantum Chemistry\\
@@ -205,7 +206,7 @@
   {\fontsize{11}{14}\selectfont\bfseries\color{accentgold}\MakeUppercase{Series I}}\\[0.3cm]
   {\fontsize{26}{32}\selectfont\bfseries Introductory Quantum Mechanics}\\[0.4cm]
   {\color{accentgold}\rule{11cm}{1.5pt}}\\[1.0cm]
-  {\large\itshape Four modules --- 37 lectures $\times$ 90 minutes}\\[0.5cm]
+  {\large\itshape Five modules --- 52 lectures $\times$ 90 minutes}\\[0.5cm]
   {\normalsize\itshape Audience: Advanced undergraduates through early graduate students}\\[0.3cm]
   {\normalsize\itshape Prerequisites: Linear algebra, classical mechanics, basic complex analysis}\\[1.6cm]
 
@@ -230,7 +231,14 @@
                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
                    rigged Hilbert spaces. Dual Dirac--Sakurai approach; five-tier pedagogy.}\\[6pt]
     \textbf{I.3} & Quantum Dynamics, Symmetry, and Perturbation Theory & 10\\[3pt]
-    \textbf{I.4} & Paradigm Physical Systems & 8\\[3pt]
+    \textbf{I.4} & Paradigm Physical Systems & 12\\[3pt]
+    \textbf{I.5} & Advanced Physical Systems (Lecture Menu) & 12\\[3pt]
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   12 stand-alone topics: 3D potentials; H$_2^+$; identical particles;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   3D HO; NMR; decoherence; path integrals; Berry phase;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   Bell inequalities; 3D WKB; SUSY QM; exactly solvable models.}\\[4pt]
                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
                    Free particle; particle in box; harmonic oscillator;}\\
                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
@@ -244,7 +252,7 @@
                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
                    and Dirac pictures; perturbation theory; open systems; example systems.}\\[4pt]
     \midrule
-    & \textbf{Total} & \textbf{37}\\
+    & \textbf{Total} & \textbf{52}\\
     \bottomrule
   \end{tabular}
 
@@ -267,7 +275,7 @@
 \begin{tcolorbox}[seriesbox, title={Series~I Overview}]
 \textbf{Audience:} Advanced undergraduates through early graduate students.\\
 \textbf{Prerequisites:} Linear algebra, classical mechanics, basic complex analysis.\\
-\textbf{Structure:} Four modules totalling 37 lectures $\times$ 90~minutes.\\[4pt]
+\textbf{Structure:} Five modules totalling 52 lectures $\times$ 90~minutes.\\[4pt]
 \begin{tabular}{llr}
 \toprule
 \textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
@@ -275,7 +283,8 @@
 I.1 & State Space, Operators, and the Bra-Ket Language & 6\\
 I.2 & Bra-Ket Notation and the Language of Quantum Mechanics & 12\\
 I.3 & Quantum Dynamics, Symmetry, and Perturbation Theory & 10\\
-I.4 & Paradigm Physical Systems & 8\\
+I.4 & Paradigm Physical Systems & 12\\
+I.5 & Advanced Physical Systems (Lecture Menu) & 12\\
 \midrule
  & \textbf{Total} & \textbf{29}\\
 \bottomrule
@@ -1776,7 +1785,7 @@ Born \& Oppenheimer (1927) original paper.
 \begin{tcolorbox}[seriesbox]
   \textbf{Series I / Module~I.4} \quad
   \textit{Paradigm Physical Systems}\\[4pt]
-  \textbf{Duration:} 8 lectures $\times$ 90 minutes (Lectures~L01--L08).
+  \textbf{Duration:} 12 lectures $\times$ 90 minutes (Lectures~L01--L12).
   Each lecture develops one canonical quantum system in full depth, applying
   the formalism of Modules~I.1--I.3. Lectures are self-contained and may be
   taught in any order after Module~I.3~L10.
@@ -1788,25 +1797,29 @@ Born \& Oppenheimer (1927) original paper.
 \addcontentsline{toc}{subsubsection}{Module I.4 Overview}
 \begin{center}
 \begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
-\begin{tabular}[t]{@{}clp{4.2cm}@{}}
+\begin{tabular}[t]{@{}clp{4.0cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & Free Particle \& Particle in a Box & Plane waves; group velocity; wave packets; quantisation; zero-point energy\\
-L02 & Simple Bloch Electron & Periodic potential; Bloch's theorem; crystal momentum; band structure; BZ\\
-L03 & Harmonic Oscillator & Ladder operators; coherent states; Fock states; anharmonic perturbations\\
+L01 & Free Particle \& Particle in a Box & Plane waves; wave packets; quantisation; DOS in 1/2/3D\\
+L02 & Simple Bloch Electron & Bloch's theorem; BZ; nearly-free electron gap; tight-binding\\
+L03 & Harmonic Oscillator & Ladder operators; coherent states; anharmonic PT\\
 L04 & Rabi Model \& Two-Level Systems & Jaynes--Cummings; Rabi oscillations; RWA; $\pi$-pulses\\
+L05 & Minimal Coupling \& Landau Levels & $(\hat{\mathbf{p}}-e\mathbf{A})^2/2m$; gauge invariance; Landau levels\\
+L06 & Zeeman Effect & Normal and anomalous; Paschen--Back; Breit--Rabi\\
+L07 & Stark Effect & Linear and quadratic; parabolic coordinates; polarisability\\
+L08 & Spin--Orbit \& Fine Structure & Thomas precession; $\hat{\mathbf{L}}\cdot\hat{\mathbf{S}}$; $E_{nj}^{\rm FS}$\\
 \bottomrule
 \end{tabular}
 &
-\begin{tabular}[t]{@{}clp{4.2cm}@{}}
+\begin{tabular}[t]{@{}clp{4.0cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L05 & Minimal Coupling \& Landau Levels & $(\hat{\mathbf{p}}-e\mathbf{A})^2/2m$; gauge invariance; Landau quantisation\\
-L06 & Zeeman Effect & Normal and anomalous; Paschen--Back; Breit--Rabi; spectroscopy\\
-L07 & Stark Effect & Linear and quadratic; parabolic coordinates; selection rules\\
-L08 & Spin--Orbit Coupling \& Fine Structure & Thomas precession; $\hat{\mathbf{L}}\cdot\hat{\mathbf{S}}$; $j$-$j$ vs.\ $LS$; hydrogen fine structure\\
+L09 & Hydrogen Atom & Coulomb potential; radial equation; $\psi_{nlm}$; $SO(4)$ symmetry\\
+L10 & Scattering from a Potential Barrier & Step potential; transmission; tunnelling; $T$ and $R$ coefficients\\
+L11 & Scattering from a Potential Well & Finite square well; bound states; resonance transmission\\
+L12 & Delta-Function Potential \& WKB & $\delta(x)$ bound state; WKB quantisation; tunnelling rate\\
 \bottomrule
 \end{tabular}
 \\
@@ -2233,6 +2246,216 @@ Projects: (simple) hydrogen fine-structure energy level diagram: $n=1,2,3$ inclu
 (complex) Foldy--Wouthuysen transformation: derive non-relativistic limit of Dirac Hamiltonian.
 \end{tcolorbox}
 
+
+\medskip
+
+% ------ L09 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.4 --- Lecture L09: The Hydrogen Atom}]
+\textbf{90-min pacing:} (0--20~min) Hydrogen Hamiltonian in atomic units:
+$\hat{H}=-\tfrac{1}{2}\nabla^2-\tfrac{1}{r}$;
+separation in spherical coordinates: $\psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y_l^m(\theta,\phi)$;
+reduction of radial equation via $u_{nl}(r)=rR_{nl}(r)$;
+effective potential $V_{\rm eff}(r)=-1/r+l(l+1)/2r^2$;
+(20--45~min) Power-series solution: associated Laguerre polynomials;
+termination condition gives quantisation $E_n=-1/(2n^2)$ a.u.\ $= -13.6/n^2$~eV;
+principal quantum number $n=1,2,3,\ldots$; orbital $l=0,\ldots,n-1$; magnetic $m=-l,\ldots,l$;
+radial wavefunctions $R_{nl}(r)$ for $n=1,2,3$; radial nodes $n-l-1$; angular nodes $l$;
+(45--65~min) Degeneracy: $n^2$-fold degeneracy (ignoring spin); explanation via hidden $SO(4)$ symmetry;
+Runge--Lenz vector $\hat{\mathbf{A}}$; $[\hat{H},\hat{\mathbf{A}}]=0$; $\mathfrak{so}(4)$ algebra;
+algebraic derivation of $1/n^2$ spectrum without solving the radial equation;
+(65--90~min) Expectation values and radial properties: $\langle r\rangle_{nl}=a_0[3n^2-l(l+1)]/2Z$;
+$\langle r^{-1}\rangle=Z/n^2a_0$; $\langle r^{-3}\rangle$ (Kramers--Pasternack);
+most probable radius; radial probability density $4\pi r^2|R_{nl}|^2$;
+connection to fine structure (L08) and to multi-electron atoms.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Separate the hydrogen Schr\"odinger equation and solve the radial part.
+  \item State the energy spectrum, quantum numbers, and degeneracy.
+  \item Compute radial expectation values and interpret radial probability densities.
+  \item Explain the hidden $SO(4)$ symmetry and its algebraic consequences.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Hydrogen as the prototype for all atomic structure;
+    comparison with experimental spectroscopy (Lyman, Balmer, Paschen series);
+    connection to fine structure (L08), Zeeman (L06), and Stark (L07) effects.
+  \item \textit{Mathematical track:} Runge--Lenz vector and $\mathfrak{so}(4)$ algebra;
+    algebraic derivation of the spectrum; parabolic coordinates as an alternative separation;
+    $N$-dimensional hydrogen and supersymmetric QM.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: hydrogen orbitals as the shapes of atomic physics; spectral series and the Bohr model vs.\ exact QM.
+Beg.\ UG: radial wavefunctions; probability densities; $E_n=-13.6/n^2$~eV; quantum numbers.
+Adv.\ UG: series solution and termination; $\langle r^k\rangle_{nl}$; $SO(4)$ symmetry sketch.
+MSc: Runge--Lenz vector algebra; parabolic coordinates; algebraic derivation of spectrum.
+PhD: $N$-dimensional hydrogen; supersymmetric QM for hydrogen; muonic hydrogen and reduced mass.
+
+\medskip\textbf{Assessment:}
+Set~A --- $R_{10},R_{21}$; probability density; most probable radius; $\langle r\rangle_{2p}$; $E_n$.
+Set~B --- termination condition derivation; prove $[\hat{H},\hat{\mathbf{A}}]=0$; algebraic spectrum from $\mathfrak{so}(4)$.
+Projects: (simple) radial probability density plotter for all orbitals with $n\leq3$;
+(complex) Runge--Lenz algebra: derive energy spectrum of hydrogen without the Schr\"odinger equation.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L10 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.4 --- Lecture L10: Scattering from a Potential Barrier}]
+\textbf{90-min pacing:} (0--20~min) Setup: particle with energy $E$ incident from the left on a
+rectangular potential barrier $V_0>0$ of width $a$;
+three regions with different wavevectors:
+$k_1=\sqrt{2mE}/\hbar$ (regions I, III), $k_2=\sqrt{2m|E-V_0|}/\hbar$ (region II);
+two sub-cases: $E>V_0$ (above barrier) and $E<V_0$ (tunnelling);
+(20--50~min) Matching boundary conditions: continuity of $\psi$ and $\psi'$ at $x=0$ and $x=a$;
+matrix transfer method; transmission amplitude $t$ and reflection amplitude $r$;
+transmission coefficient $T=|t|^2$ and reflection coefficient $R=|r|^2$; verify $T+R=1$;
+above-barrier case $E>V_0$: oscillatory $T(E)$ with resonances at $k_2 a=n\pi$;
+(50--70~min) Tunnelling case $E<V_0$: $k_2\to i\kappa_2=i\sqrt{2m(V_0-E)}/\hbar$;
+$T=\bigl[1+\tfrac{(k_1^2+\kappa_2^2)^2}{4k_1^2\kappa_2^2}\sinh^2(\kappa_2 a)\bigr]^{-1}$;
+thin-barrier limit: $T\approx e^{-2\kappa_2 a}$; Gamow factor;
+applications: alpha decay, STM, nuclear fusion;
+(70--90~min) Step potential (limiting case $a\to0$, $V_0\to\infty$):
+$T=4k_1k_2/(k_1+k_2)^2$, $R=(k_1-k_2)^2/(k_1+k_2)^2$;
+above-barrier reflection (quantum effect with no classical analogue);
+energy dependence of $T$; time delay; phase of reflection coefficient; Hartman effect.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply boundary conditions to derive $T$ and $R$ for a rectangular barrier.
+  \item Derive the tunnelling transmission coefficient and the Gamow factor.
+  \item Explain above-barrier reflection as a quantum effect with no classical analogue.
+  \item Identify resonance transmission conditions and their physical origin.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/applications track:} STM tunnelling current; alpha-decay Gamow factor;
+    nuclear quantum tunnelling in fusion; Josephson junction; resonant tunnelling diode.
+  \item \textit{Mathematical track:} Transfer matrix method; S-matrix; unitarity $T+R=1$ from
+    probability current conservation; analytic structure of $T(E)$ and its poles (resonances).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``a quantum particle can pass through a wall --- that's tunnelling.''
+Beg.\ UG: rectangular barrier $T$ and $R$; tunnelling formula; step potential.
+Adv.\ UG: transfer matrix; resonance condition; Gamow factor; Hartman effect.
+MSc: S-matrix; analytic continuation; poles and resonances; time delay.
+PhD: Breit--Wigner resonances; complex scaling; multi-channel scattering; Feshbach resonances.
+
+\medskip\textbf{Assessment:}
+Set~A --- $T$ and $R$ for rectangular barrier at given $E$ and $V_0$; verify $T+R=1$; step potential.
+Set~B --- transfer matrix derivation; thin-barrier $T\approx e^{-2\kappa a}$; resonance condition.
+Projects: (simple) $T(E)$ plotter for rectangular barrier: resonances and tunnelling regime;
+(complex) STM tunnelling current vs.\ tip--sample distance: exponential decay and work function.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L11 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.4 --- Lecture L11: Scattering from a Potential Well}]
+\textbf{90-min pacing:} (0--20~min) Finite square well: $V(x)=-V_0<0$ for $|x|<a$, $V=0$ outside;
+bound states ($E<0$) vs.\ scattering states ($E>0$); even and odd solutions from parity;
+(20--50~min) Bound states: inside $k=\sqrt{2m(E+V_0)}/\hbar$;
+outside $\kappa=\sqrt{-2mE}/\hbar$;
+transcendental equations: $k\tan(ka)=\kappa$ (even), $-k\cot(ka)=\kappa$ (odd);
+graphical solution; minimum well depth for first bound state $V_0^{\rm min}=\pi^2\hbar^2/8ma^2$;
+number of bound states $\approx\sqrt{2mV_0}\cdot 2a/\pi\hbar$;
+(50--70~min) Scattering states ($E>0$): transmission resonances at $k_{\rm in}a=n\pi/2$
+(Ramsauer--Townsend effect); $T=1$ at resonance (perfect transmission);
+physical interpretation: standing wave inside well; comparison with classical case;
+(70--90~min) Ramsauer--Townsend effect in rare-gas electron scattering: historical significance;
+comparison of 1D well with 3D spherically symmetric well;
+zero-energy scattering: scattering length $a_s$; $T\to1$ for $a_s\to0$;
+connection to Feshbach resonances in cold atom physics; unitarity limit.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Solve the finite square well for both bound and scattering states.
+  \item Derive the transcendental equations graphically and interpret their solutions.
+  \item Explain transmission resonances and the Ramsauer--Townsend effect.
+  \item Define scattering length and relate it to the Feshbach resonance.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Ramsauer--Townsend effect as the first evidence for wave nature of electrons;
+    nuclear well models; cold-atom Feshbach resonances; unitarity limit in scattering.
+  \item \textit{Mathematical track:} Transcendental equations and graphical analysis;
+    analytic structure of $T(E)$; scattering length from the zero-energy limit of the S-matrix;
+    Levinson's theorem: $\delta(0)-\delta(\infty)=N_b\pi$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: finite well as a better model than infinite well; why bound states have limited energy.
+Beg.\ UG: even/odd bound states; graphical solution; transmission resonances.
+Adv.\ UG: minimum well depth; Ramsauer--Townsend; scattering length.
+MSc: Levinson's theorem; Feshbach resonances; connection to cold-atom physics.
+PhD: multi-channel scattering; effective range expansion; universality at unitarity.
+
+\medskip\textbf{Assessment:}
+Set~A --- bound state count for given $V_0,a$; graphical transcendental solution; resonance $E$.
+Set~B --- derive transcendental equations from BCs; Levinson's theorem statement and example.
+Projects: (simple) bound state energies vs.\ $V_0$ for finite well: emergence of new states;
+(complex) Ramsauer--Townsend: $T(E)$ for Xe modelled as a finite spherical well.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L12 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.4 --- Lecture L12: Delta-Function Potential and WKB Tunnelling}]
+\textbf{90-min pacing:} (0--20~min) The delta-function potential $V(x)=-\alpha\delta(x)$;
+integration of Schr\"odinger equation across $x=0$: discontinuity in $\psi'$,
+continuity of $\psi$; condition $\psi'(0^+)-\psi'(0^-)=-2m\alpha\psi(0)/\hbar^2$;
+(20--45~min) Bound state ($E<0$): $\psi=Ae^{-\kappa|x|}$ with $\kappa=m\alpha/\hbar^2$;
+$E_b=-m\alpha^2/2\hbar^2$ (unique bound state for any $\alpha>0$);
+scattering states: $T=1/(1+m\alpha^2/2\hbar^2 E)$; $R=1-T$;
+double delta-function: two wells at $\pm a$; bonding and antibonding states;
+connection to molecular bonding;
+(45--65~min) WKB approximation reviewed: $\psi\approx C/\sqrt{p(x)}\exp(\pm\tfrac{i}{\hbar}\int p(x)dx)$
+in classically allowed regions; $p(x)=\sqrt{2m(E-V(x))}$;
+connection formulae across turning points;
+Bohr--Sommerfeld quantisation $\oint p\,dx=2\pi\hbar(n+\tfrac{1}{2})$;
+(65--90~min) WKB tunnelling: barrier penetration factor
+$T\approx\exp\bigl(-\tfrac{2}{\hbar}\int_{x_1}^{x_2}\sqrt{2m(V-E)}\,dx\bigr)$;
+Gamow factor for Coulomb barrier: $G=\pi Z_1Z_2e^2/\hbar v$;
+alpha decay rate $\Gamma=\nu_0 T$ with attempt frequency $\nu_0$; Geiger--Nuttall law;
+WKB for bound states in a Morse potential; limitations at turning points.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Solve the delta-function potential for bound and scattering states.
+  \item Derive the WKB wavefunction and Bohr--Sommerfeld quantisation.
+  \item Compute the WKB tunnelling factor for a general barrier.
+  \item Apply the Gamow factor to alpha decay and derive the Geiger--Nuttall law.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Delta potential as a model for molecular bonding (H$_2^+$);
+    WKB tunnelling in alpha decay, proton--proton fusion in the Sun;
+    Geiger--Nuttall law as a triumph of WKB; enzyme catalysis via proton tunnelling.
+  \item \textit{Mathematical track:} Distributional derivative and delta-function BCs;
+    WKB as the leading-order term in an $\hbar$ expansion;
+    connection formulae from Airy functions; uniform approximation near turning points.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: the delta potential as the thinnest possible wall; WKB as ``tunnelling with an exponential rule.''
+Beg.\ UG: delta-function bound state and $T$; WKB quantisation for HO; Gamow factor formula.
+Adv.\ UG: double delta-function bonding/antibonding; WKB connection formulae; Geiger--Nuttall.
+MSc: Airy function connection formulae; Morse potential WKB levels; uniform approximation.
+PhD: Instanton as imaginary-time WKB; exact WKB; resurgence; Gamow vectors and complex scaling.
+
+\medskip\textbf{Assessment:}
+Set~A --- delta-function $E_b$ and $T$; WKB levels for harmonic oscillator; Gamow factor for $^{238}$U.
+Set~B --- double delta-function bonding/antibonding states; WKB connection formula derivation.
+Projects: (simple) WKB energy levels for Morse potential vs.\ exact: anharmonicity;
+(complex) Geiger--Nuttall law: alpha decay rate vs.\ $Z$ and $E_\alpha$ for actinide series.
+\end{tcolorbox}
+
 %------------------------------------------------------------
 \subsubsection*{Assessment Strategy}
 \addcontentsline{toc}{subsubsection}{Module I.4 Assessment Strategy}
@@ -2249,7 +2472,7 @@ mini-project complex (5--10 hours, open-ended).
 \medskip
 \noindent\textbf{Course-level grading template:}
 \begin{itemize}[leftmargin=1.5em]
-  \item Weekly homework (best 6/8): 40\%
+  \item Weekly homework (best 9/12): 40\%
   \item System synthesis project (one chosen system, deep study): 35\%
   \item Final oral/whiteboard exam: 25\%
 \end{itemize}
@@ -2260,19 +2483,121 @@ Mixed cohorts: HS/UG $\to$ Set~A + simple projects; MSc/PhD $\to$ Set~B + comple
 \addcontentsline{toc}{subsubsection}{Module I.4 Reading Strategy}
 
 \noindent\textbf{Track A --- Core textbooks:}
-Sakurai \& Napolitano, \textit{Modern Quantum Mechanics} Ch.~2 (HO), 4 (Zeeman/Stark), 5 (perturbation theory);
-Griffiths, \textit{Introduction to Quantum Mechanics} Ch.~2--6.
+Sakurai \& Napolitano, \textit{Modern Quantum Mechanics} Ch.~2 (HO, hydrogen), 4 (Zeeman/Stark), 5 (PT);
+Griffiths, \textit{Introduction to Quantum Mechanics} Ch.~2--6 (all systems).
 
 \noindent\textbf{Track B --- Support:}
-Cohen-Tannoudji, Diu \& Lalo\"e, \textit{Quantum Mechanics} Vol.~II (spin--orbit, Stark);
-Atkins \& Friedman, \textit{Molecular Quantum Mechanics} (Zeeman, spectroscopy).
+Cohen-Tannoudji, Diu \& Lalo\"e, \textit{Quantum Mechanics} Vol.~II (spin--orbit, Stark, scattering);
+Atkins \& Friedman, \textit{Molecular Quantum Mechanics} (Zeeman, hydrogen, spectroscopy).
 
 \noindent\textbf{Track C --- Specialised:}
 Allen \& Eberly, \textit{Optical Resonance and Two-Level Atoms} (Rabi model);
-Landau \& Lifshitz, \textit{Quantum Mechanics} \S{}113 (Stark in parabolic coordinates);
-Holstein, Am.\ J.\ Phys.\ \textbf{57}, 714 (1989) --- Thomas precession.
+Landau \& Lifshitz, \textit{Quantum Mechanics} \S{}23 (delta potential), \S{}50 (WKB), \S{}113 (Stark);
+Holstein, Am.\ J.\ Phys.\ \textbf{57}, 714 (1989) --- Thomas precession;
+Gamow, Z.\ Phys.\ \textbf{51}, 204 (1928) --- original tunnelling calculation.
 
-\newpage\newpage
+\newpage
+
+%=============================================================
+\subsection{Module I.5 --- Advanced Physical Systems (Lecture Menu)}
+\label{sec:mod-I5}
+%=============================================================
+
+\begin{tcolorbox}[seriesbox]
+  \textbf{Series I / Module~I.5} \quad
+  \textit{Advanced Physical Systems --- Lecture Menu}\\[4pt]
+  \textbf{Format:} 12 stand-alone lecture topics, each self-contained.
+  Instructors select any subset as optional enrichment lectures following
+  Modules~I.1--I.4. Full expansion (90-min pacing, dual-track content,
+  five-tier pedagogy, assessment bundles) to be developed per instructor need.
+  Prerequisites for each topic listed in parentheses.\\[4pt]
+  \textbf{Recommended audience:} Advanced UG, MSc, and PhD students who have
+  completed Modules~I.1--I.4.
+\end{tcolorbox}
+
+\medskip
+
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module I.5 Overview}
+
+\begin{center}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.0cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Prereqs / Theme}\\
+\midrule
+L01 & 3D Spherically Symmetric Potentials & I.4-L09; spherical harmonics; effective potential; 3D scattering\\
+L02 & The Hydrogen Molecular Ion (H$_2^+$) & I.4-L09; LCAO; Born--Oppenheimer; bonding/antibonding MOs\\
+L03 & Identical Particles \& Quantum Statistics & I.3-L10; exchange symmetry; bosons; fermions; Gibbs paradox\\
+L04 & The 3D Isotropic Harmonic Oscillator & I.4-L03; degeneracy; $\mathfrak{su}(3)$ symmetry; shell model\\
+L05 & Magnetic Resonance (NMR/ESR) & I.4-L04/L06; rotating frame; Bloch equations; relaxation $T_1,T_2$\\
+L06 & Coherence, Decoherence, \& the Quantum Eraser & I.3-L01; Mach--Zehnder; which-path; environment-induced decoherence\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.0cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Prereqs / Theme}\\
+\midrule
+L07 & Path Integrals: First Steps & I.3-L05; Feynman's sum over histories; free particle; harmonic oscillator\\
+L08 & Adiabatic Theorem \& Berry Phase & I.3-L04/L05; slow parameter change; geometric phase; adiabatic approximation\\
+L09 & Quantum Entanglement \& Bell Inequalities & I.3-L01; EPR; CHSH; loophole-free tests; quantum cryptography\\
+L10 & The WKB Method in 3D & I.4-L12; radial WKB; Langer correction; 3D Bohr--Sommerfeld; barrier\\
+L11 & Supersymmetric Quantum Mechanics & I.4-L03/L09; SUSY partner potentials; factorisation; shape invariance\\
+L12 & Exactly Solvable Models beyond the HO & I.4-L03; P\"oschl--Teller; Morse; P\"oschl--Teller II; reflectionless potentials\\
+\bottomrule
+\end{tabular}
+\\
+\end{tabular}
+\end{center}
+
+\subsubsection*{Lecture Abstracts}
+\addcontentsline{toc}{subsubsection}{Module I.5 Lecture Abstracts}
+
+\medskip
+\begin{description}[leftmargin=1.4em, style=nextline, itemsep=6pt]
+
+\item[\textbf{L01 --- 3D Spherically Symmetric Potentials}]
+Generalisation from 1D to 3D for any central potential $V(r)$; separation into radial and angular parts; effective potential including the centrifugal barrier $\hbar^2l(l+1)/2mr^2$; radial Schr\"odinger equation for $u_{nl}=rR_{nl}$; general behaviour at $r\to0$ (regularity) and $r\to\infty$ (bound vs.\ scattering); 3D infinite spherical well (spherical Bessel functions); 3D scattering: partial-wave expansion; phase shifts $\delta_l$; optical theorem; application to neutron--proton scattering and nuclear potential models.
+
+\item[\textbf{L02 --- The Hydrogen Molecular Ion (H$_2^+$)}]
+Simplest molecular system: one electron, two protons; Born--Oppenheimer PES; LCAO-MO ansatz with $1s$ atomic orbitals; bonding ($\sigma_g$) and antibonding ($\sigma_u^*$) MOs; overlap integral $S$, Coulomb integral $\alpha$, resonance integral $\beta$; variational optimisation of $Z_{\rm eff}$; exact solution in prolate spheroidal coordinates ($\xi,\eta,\phi$); comparison of LCAO vs.\ exact; equilibrium bond length and dissociation energy; connection to H\"uckel and VB theories.
+
+\item[\textbf{L03 --- Identical Particles and Quantum Statistics}]
+The identity postulate for indistinguishable particles; exchange operator $\hat{P}_{12}$; symmetric ($+1$) and antisymmetric ($-1$) subspaces; fermions (half-integer spin, antisymmetric) and bosons (integer spin, symmetric); spin--statistics theorem (statement); many-particle wavefunctions; permanents and determinants; Gibbs paradox resolved; exchange interaction as a purely quantum effect; emergence of Bose--Einstein and Fermi--Dirac statistics; brief discussion of anyons and parastatistics.
+
+\item[\textbf{L04 --- The 3D Isotropic Harmonic Oscillator}]
+Hamiltonian $\hat{H}=\hat{p}^2/2m+m\omega^2r^2/2$; three approaches: Cartesian (product of 1D HOs), spherical (radial equation + spherical harmonics), and algebraic ($\mathfrak{su}(3)$ creation operators); energy levels $E_N=(N+3/2)\hbar\omega$ with $N=2n_r+l$; degeneracy $\tfrac{1}{2}(N+1)(N+2)$; connection to nuclear shell model (magic numbers 2, 8, 20 from single-particle filling); $\mathfrak{su}(3)$ algebra and its physical interpretation.
+
+\item[\textbf{L05 --- Magnetic Resonance (NMR and ESR)}]
+Larmor precession of a spin in a static field $B_0$; resonance condition $\omega_0=\gamma B_0$; oscillating transverse field $B_1\cos(\omega t)$; rotating frame transformation; Rabi formula for spin flip; Bloch equations including phenomenological relaxation: longitudinal $T_1$ (spin--lattice) and transverse $T_2$ (spin--spin); free induction decay; Fourier transform to spectrum; pulsed NMR: $\pi/2$ pulse, FID, spin echo; chemical shift and $J$-coupling; MRI gradient encoding.
+
+\item[\textbf{L06 --- Coherence, Decoherence, and the Quantum Eraser}]
+Quantum coherence as off-diagonal elements of $\hat\rho$; Mach--Zehnder interferometer with a ``which-path'' detector; loss of interference when path information is available; quantum eraser: restoring interference by erasing which-path information; decoherence from environment entanglement: $\hat\rho_{\rm sys}=\operatorname{Tr}_E(\hat\rho_{\rm total})$; pointer states; decoherence time scale $t_D\sim\hbar/\Delta E_{\rm env}$; connection to the measurement problem; Zurek's einselection; experimental realisations.
+
+\item[\textbf{L07 --- Path Integrals: First Steps}]
+Feynman's sum over histories as the third formulation of QM; transition amplitude $K(x_b,t_b;x_a,t_a)=\int\mathcal{D}x(t)\,e^{iS[x]/\hbar}$; derivation from the short-time propagator; free particle: exact Gaussian integral; harmonic oscillator: classical action + fluctuation determinant; stationary phase and the classical limit; imaginary-time path integral and the partition function; brief discussion of field-theory generalisation; connection to PIMC (Module~II.2).
+
+\item[\textbf{L08 --- Adiabatic Theorem and Berry Phase}]
+Adiabatic theorem: slow variation of $\hat{H}(\mathbf{R}(t))$ keeps the system in the instantaneous eigenstate if the gap remains non-zero; quantum adiabatic condition $|\langle m|\dot{\hat{H}}|n\rangle|/(E_n-E_m)^2\ll1$; dynamical phase vs.\ geometric phase; Berry's phase $\gamma_n=i\oint\bra{n(\mathbf{R})}\nabla_\mathbf{R}\ket{n(\mathbf{R})}\cdot d\mathbf{R}$; Berry connection and curvature; examples: spin-$\tfrac{1}{2}$ in a rotating field (solid-angle formula); Aharonov--Bohm as Berry phase; non-Abelian Berry phase; connection to topology.
+
+\item[\textbf{L09 --- Quantum Entanglement and Bell Inequalities}]
+EPR paradox and local hidden variables; Bell's theorem; CHSH inequality $|S|\leq2$ (classical) vs.\ $|S|\leq2\sqrt{2}$ (quantum); derivation for singlet state; loophole-free experimental tests (2015 onwards); implications for non-locality; quantum cryptography: BB84 protocol; E91 entanglement-based QKD; quantum teleportation; entanglement as a resource; entanglement measures: concurrence, entanglement of formation; monogamy of entanglement.
+
+\item[\textbf{L10 --- The WKB Method in 3D}]
+Extension of 1D WKB to 3D spherically symmetric potentials; radial WKB wavefunction; Langer correction $l(l+1)\to(l+\tfrac{1}{2})^2$ for centrifugal barrier near origin; 3D Bohr--Sommerfeld quantisation $\int_{r_1}^{r_2}p_r\,dr=\pi\hbar(n_r+\tfrac{1}{2})$; application to hydrogen: recover $E_n=-Z^2/2n^2$ a.u.; 3D tunnelling: barrier-penetration in a central field; alpha-decay Gamow factor in 3D; connection to quasi-classical limit and semiclassical mechanics.
+
+\item[\textbf{L11 --- Supersymmetric Quantum Mechanics}]
+Factorisation of $\hat{H}=\hat{A}^\dagger\hat{A}+E_0$; supercharge operators $\hat{Q}=\hat{A}$, $\hat{Q}^\dagger=\hat{A}^\dagger$; SUSY partner potentials $V_\pm=W^2\pm W'$ (superpotential $W$); isospectrality: $V_-$ and $V_+$ have identical spectra except ground state; shape invariance: hierarchy of solvable potentials; exactly solvable potentials from SUSY: infinite square well, harmonic oscillator, hydrogen; broken vs.\ unbroken SUSY; Witten index; connection to integrability and exactly solvable models.
+
+\item[\textbf{L12 --- Exactly Solvable Models beyond the Harmonic Oscillator}]
+Criteria for exact solvability; P\"oschl--Teller potential $V(x)=-V_0/\cosh^2(x/a)$: hypergeometric equation; $N$ bound states for $V_0=\hbar^2N(N+1)/2ma^2$; reflectionless property; Morse potential $V(r)=D_e(1-e^{-a(r-r_e)})^2$: exact vibrational levels $E_n=\hbar\omega_e(n+\tfrac{1}{2})-x_e\hbar\omega_e(n+\tfrac{1}{2})^2$ (finite anharmonicity); P\"oschl--Teller II (symmetric Rosen--Morse); inverse square potential; connection to SUSY hierarchy (L11); experimental relevance: diatomic molecules, optical solitons.
+
+\end{description}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module I.5 Note:} These lectures are intended as optional enrichment modules. Each can be taught as a standalone 90-minute lecture. Full expansion to the standard format (90-min pacing, dual-track content, five-tier pedagogy, Problem Sets A \& B, mini-projects) can be carried out on request. Prerequisites listed in the overview table are recommended but not strictly required for strong students.
+\end{tcolorbox}
 
 %#############################################################
 %  SERIES II SEPARATOR PAGE
@@ -5817,7 +6142,8 @@ Projects: (simple) decision-tree: method selection for 10 representative chemica
 \textbf{I.1} & State Space, Operators, Bra-Ket & Linear algebra, classical mechanics & 6\\
 \textbf{I.2} & Bra-Ket Notation (Dirac + Sakurai) & I.1 (concurrent or prior) & 12\\
 \textbf{I.3} & Dynamics, Symmetry, Perturbation Theory & I.1; I.2 recommended & 10\\
-\textbf{I.4} & Paradigm Physical Systems & I.1--I.3 & 8\\
+\textbf{I.4} & Paradigm Physical Systems & I.1--I.3 & 12\\
+\textbf{I.5} & Advanced Physical Systems (Menu) & I.1--I.4 & 12\\
 \midrule
 \textbf{II.1} & Ground-State Methods & Series~I & 12\\
 \textbf{II.2} & Path Integrals & Series~I & 12\\
@@ -5831,7 +6157,7 @@ Projects: (simple) decision-tree: method selection for 10 representative chemica
 \textbf{III.2} & Electronic Structure & Series~I, II.4 (rec.) & 16\\
 \textbf{III.3} & DFT and Beyond & III.1, III.2 & 12\\
 \midrule
- & \textbf{Grand total} & & \textbf{152}\\
+ & \textbf{Grand total} & & \textbf{168}\\
 \bottomrule
 \end{tabular}
 \end{center}
