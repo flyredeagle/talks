@@ -298,24 +298,18 @@ I.3 & Quantum Dynamics, Perturbation Theory, and Physical Systems & 11\\
 \addcontentsline{toc}{subsubsection}{Module I.1 Overview}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}clp{5.8cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & The Hilbert Space of Quantum States &
-    Hilbert space $\mathcal{H}$; vectors, norms, completeness; bounded vs.\ unbounded operators; adjoint\\
-L02 & Unitary Operators and Symmetry Transformations &
-    $\hat{U}\hat{U}^\dagger=\hat{1}$; inner-product preservation; rotations, translations, time evolution\\
-L03 & Observables, Hermitian Operators, and the Spectral Theorem &
-    Observables $\leftrightarrow$ Hermitian operators; real eigenvalues; orthogonal eigenstates; spectral decomposition\\
-L04 & Operator Algebra and the Exponential Map &
-    Sums, products, functions of operators; $e^{i\theta\hat{A}}$; Baker--Campbell--Hausdorff lemma; commutators\\
-L05 & Types of Symmetry Operators and Wigner's Theorem &
-    Unitary vs.\ anti-unitary symmetries; Wigner's theorem; projectors $\hat{P}^2=\hat{P}$; time-reversal\\
-L06 & Bra-Ket Formalism (\S2.1--2.2) &
-    Dirac notation; ket/bra duality; inner product; outer product; matrix elements; expectation values\\
+L01 & Hilbert Space of Quantum States & $\mathcal{H}$; norms; completeness; bounded/unbounded operators; adjoint\\
+L02 & Unitary Operators \& Symmetry & $\hat{U}\hat{U}^\dagger=\hat{1}$; inner-product preservation; rotations; translations\\
+L03 & Observables \& Spectral Theorem & Hermitian operators; real eigenvalues; orthogonal eigenstates; spectral decomposition\\
+L04 & Operator Algebra \& Exponential Map & Functions of operators; $e^{i\theta\hat{A}}$; BCH lemma; commutators\\
+L05 & Symmetry Operators \& Wigner's Theorem & Unitary vs.\ anti-unitary; Wigner's theorem; projectors $\hat{P}^2=\hat{P}$\\
+L06 & Bra-Ket Formalism (\S2.1--2.2) & Dirac notation; ket/bra duality; inner/outer product; matrix elements\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{center}
 
 %------------------------------------------------------------
@@ -619,38 +613,34 @@ density matrix properties, and partial trace (\S2.3--2.5).}
 \addcontentsline{toc}{subsubsection}{Module I.2 Overview}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.2cm}@{}}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Key Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & Why Dirac Notation? States as Rays \& Superposition &
-      States, kets, rays, global phase, Born rule preview; Sakurai operational vs.\ Dirac abstract\\
-L02 & Bras, Dual Space \& Inner Product Structure &
-      Dual vectors, conjugate linearity, inner product axioms, Riesz theorem (intuition)\\
-L03 & Linear Operators: Adjoint, Hermitian \& Unitary &
-      Operator algebra, matrix elements $\bra{\phi}\hat{A}\ket{\psi}$, observables \& symmetries\\
-L04 & Eigenkets, Projectors \& Spectral Decomposition &
-      Measurement outcomes, projectors $\hat{P}_a=\ket{a}\bra{a}$, post-measurement state\\
-L05 & Completeness, Change of Basis \& Matrix Mechanics &
-      Identity insertion, basis transforms, matrix representation $A_{mn}=\bra{m}\hat{A}\ket{n}$\\
-L06 & Continuous Bases: $\ket{x}$, $\ket{p}$ \& Delta Functions &
-      Position/momentum bases, wavefunctions, Fourier connection, distributions\\
-L07 & Measurement Theory: Postulates, Compatibility \& Uncertainty &
-      Commutators, Robertson--Schr\"odinger inequality, compatible observables, POVM preview\\
-L08 & Time Evolution \& Pictures of Quantum Mechanics &
-      Unitary evolution, Schr\"odinger/Heisenberg pictures, constants of motion, Ehrenfest\\
-L09 & Tensor Products: Composite Systems \& Entanglement &
-      Product vs.\ entangled states, Schmidt decomposition, partial measurement\\
-L10 & Spin \& Finite-Dimensional Hilbert Spaces ($SU(2)$) &
-      Spin-$\tfrac{1}{2}$, Pauli matrices, rotation operators, Bloch sphere, $SU(2)$ vs.\ $SO(3)$\\
-L11 & Density Operators, Mixed States \& Partial Trace &
-      $\hat{\rho}=\sum_i p_i\ket{\psi_i}\bra{\psi_i}$, $\operatorname{Tr}(\hat{\rho}\hat{A})$,
-      partial trace, Bloch sphere, purity\\
-L12 & Rigged Hilbert Spaces \& Mathematical Foundations &
-      Gel'fand triple $\Phi\subset\mathcal{H}\subset\Phi'$, distributions, self-adjointness
-      vs.\ Hermiticity, safe usage rules\\
+L01 & States as Rays \& Ket Space & State space; superposition; Hilbert space\\
+L02 & Bras, Dual Space \& Inner Product & Dual vectors; conjugate linearity; Cauchy--Schwarz\\
+L03 & Linear Operators: Adjoint \& Hermitian & Adjoint; Hermitian; unitary; normal operators\\
+L04 & Eigenkets, Projectors \& Spectral Decomp. & Spectral theorem; projectors; completeness\\
+L05 & Completeness \& Change of Basis & Resolution of identity; unitary basis change\\
+L06 & Continuous Bases: $\ket{x}$, $\ket{p}$, $\delta$ & Position/momentum eigenstates; delta function\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.2cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L07 & Measurement Theory \& Commutation & Postulates; uncertainty; CSCO\\
+L08 & Time Evolution \& Pictures & Schr\"odinger, Heisenberg, interaction\\
+L09 & Tensor Products \& Composite Systems & Entanglement; partial trace; Schmidt\\
+L10 & Spin \& Finite-Dimensional Spaces & Pauli matrices; SU(2); Bloch sphere\\
+L11 & Density Operators \& Mixed States & $\hat\rho$; purity; von Neumann entropy\\
+L12 & Rigged Hilbert Spaces \& Foundations & Gel'fand triple; distributions; mathematical rigour\\
+\bottomrule
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 %------------------------------------------------------------
@@ -1135,35 +1125,33 @@ Advanced Measurement \& POVMs & 2 lectures & POVM elements; Naimark's theorem; i
 \addcontentsline{toc}{subsubsection}{Module I.3 Overview}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.2cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01\textsuperscript{cont} & Pure/Mixed States and the Density Matrix (\S2.3--2.5) &
-    Pure vs.\ mixed states, $\hat{\rho}$ properties, $\operatorname{Tr}\hat{\rho}=1$, purity, partial trace, entanglement entropy preview\\
-L02 & Bases: Discrete and Continuous &
-    Orthonormal bases, completeness relations, position/momentum representations, Dirac delta\\
-L03 & Uncertainty and Commutation Relations &
-    Robertson--Schr\"odinger inequality, compatible observables, CSCO, simultaneous eigenstates\\
-L04 & Infinitesimal Generators, Symmetries, and Noether's Theorem &
-    Lie algebras, Stone's theorem, Noether's theorem, discrete symmetries\\
-L05 & Time Evolution I --- Time-Independent Hamiltonians &
-    Time evolution operator $\hat{U}(t)$, T-symmetry, stationary states, Schr\"odinger equation\\
-L06 & Time Evolution II --- Time-Dependent and Non-Commuting &
-    Dyson series, time-ordered exponential $\mathcal{T}\exp$, Magnus expansion\\
-L07 & Pictures of Quantum Mechanics and the Heisenberg Picture &
-    Schr\"odinger/Heisenberg pictures, equation of motion, Ehrenfest, virial theorem\\
-L08 & The Dirac (Interaction) Picture &
-    Splitting $\hat{H}=\hat{H}_0+\hat{V}$, interaction picture, $S$-matrix\\
-L09 & Perturbation Theory &
-    Rayleigh--Schr\"odinger PT (degenerate and non-degenerate), Born--Oppenheimer, Feynman--Hellmann\\
-L10 & Time-Dependent PT, Open Systems, and Many-Body Preview &
-    Fermi's golden rule, Lindblad equation, decoherence, two-electron system\\
-L11 & Example Systems and Physical Effects &
-    Free particle, particle in a box, Bloch electron, harmonic oscillator,
-    Rabi model, Zeeman/Stark/spin--orbit\\
+L01 & Pure/Mixed States \& Density Matrix & $\hat\rho$; purity; partial trace; entanglement entropy\\
+L02 & Bases: Discrete and Continuous & Resolution of identity; wavefunctions; Fourier transform\\
+L03 & Uncertainty \& Commutation Relations & Robertson inequality; CSCO; Zeno effect\\
+L04 & Generators, Symmetries \& Noether & Stone's theorem; Noether; discrete symmetries\\
+L05 & Time Evolution I & $\hat{U}(t)=e^{-i\hat{H}t/\hbar}$; stationary states; probability current\\
+L06 & Time Evolution II & Dyson series; Magnus expansion; Floquet preview\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.2cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L07 & Heisenberg Picture & EOM; Ehrenfest; virial theorem; canonical quantisation\\
+L08 & Interaction (Dirac) Picture & $S$-matrix; Dyson series; three-picture comparison\\
+L09 & Perturbation Theory & RSPT; degenerate PT; variational; Feynman--Hellmann\\
+L10 & TDPT, Open Systems \& Many-Body & Fermi's golden rule; Lindblad; decoherence\\
+L11 & Example Systems & HO; Rabi model; Zeeman; Stark; spin--orbit\\
+\bottomrule
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -1943,24 +1931,34 @@ II.7 & Quantum Statistical Mechanics in Equilibrium & 12\\
 \addcontentsline{toc}{subsubsection}{Module II.1 Overview}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & Variational Principle & Ritz method; Rayleigh quotient; upper bound theorem; trial states\\
+L01 & Variational Principle & Ritz method; Rayleigh quotient; upper bound; trial states\\
 L02 & Linear Variational Method & Secular determinant; basis expansion; H\"uckel MO theory\\
-L03 & Hartree and Hartree--Fock & Mean-field; Fock operator; self-consistency; Koopman's theorem\\
-L04 & Coupled-Cluster Methods & Cluster operator $e^{\hat{T}}$; CCSD(T); connected diagrams; size consistency\\
-L05 & Quantum Monte Carlo I & Variational QMC; importance sampling; Metropolis algorithm\\
-L06 & Quantum Monte Carlo II & Diffusion QMC; fixed-node approximation; sign problem\\
-L07 & Density Matrix Renormalisation Group & Entanglement area laws; SVD; renormalisation group idea\\
+L03 & Hartree and Hartree--Fock & Mean-field; Fock operator; self-consistency; Koopman\\
+L04 & Coupled-Cluster Methods & $e^{\hat{T}}$ ansatz; CCSD(T); size consistency\\
+L05 & Quantum Monte Carlo I & VMC; importance sampling; Metropolis algorithm\\
+L06 & Quantum Monte Carlo II & DMC; fixed-node approximation; sign problem\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L07 & DMRG & Entanglement area law; SVD; MPS; renormalisation group\\
 L08 & Tensor Networks & MPS, MERA; contraction algorithms; bond dimension\\
-L09 & Natural Orbitals & 1-RDM; NO expansion; occupation numbers; multi-configurational methods\\
+L09 & Natural Orbitals & 1-RDM; NOONs; multi-configurational methods; PNOs\\
 L10 & Multi-Reference Methods & CASSCF; MRCI; NEVPT2; active space selection\\
-L11 & Benchmark Systems & H$_2$, LiH, N$_2$ dissociation; accuracy hierarchy; error analysis\\
+L11 & Benchmark Systems & H$_2$, LiH, N$_2$; accuracy hierarchy; error budget\\
 L12 & Method Selection in Practice & Cost scaling; applicability regimes; crossover criteria\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Five-Tier Layered Pedagogy}
@@ -2714,24 +2712,34 @@ Needs \textit{et al.}, J.\ Chem.\ Phys.\ \textbf{152} (2020) --- CASINO DMC revi
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module II.2 Overview}
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
 L01 & Feynman's Postulate & Sum over histories; action; classical limit; stationary phase\\
-L02 & Derivation of the Path Integral & Trotter; discretisation; continuum limit; measure\\
+L02 & Derivation of the PI & Trotter; discretisation; continuum limit; measure\\
 L03 & Gaussian Path Integrals & HO propagator; fluctuation determinant; van Vleck--Morette\\
 L04 & Saddle Point and WKB & Semiclassical expansion; Bohr--Sommerfeld; tunnelling\\
-L05 & Imaginary-Time Path Integrals & Wick rotation; Euclidean action; Matsubara frequencies\\
+L05 & Imaginary-Time PIs & Wick rotation; Euclidean action; Matsubara frequencies\\
 L06 & Statistical Mechanics Connection & $Z$ as periodic PI; PIMC; exchange cycles\\
-L07 & Coherent State Path Integral & Bosonic/fermionic coherent states; Grassmann; Berry term\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L07 & Coherent State PI & Bosonic/fermionic coherent states; Grassmann; Berry term\\
 L08 & Instantons and Tunnelling & Bounce; dilute gas; splitting; resurgence\\
-L09 & Path Integrals in Field Theory & $\phi^4$; generating functional; Feynman rules; one-loop\\
+L09 & PI in Field Theory & $\phi^4$; generating functional; Feynman rules; one-loop\\
 L10 & Gauge Fields and Topology & Aharonov--Bohm; Wilson loop; $\theta$-vacuum; Chern--Simons\\
 L11 & Numerical Path Integrals & PIMC; ring polymer; RPMD; worm algorithm\\
-L12 & Berry Phase from Path Integrals & Geometric phase; Chern number; TKNN; non-Abelian\\
+L12 & Berry Phase from PIs & Geometric phase; Chern number; TKNN; non-Abelian\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -3023,25 +3031,36 @@ Projects: (simple) Berry curvature map for two-band model; (complex) Haldane mod
 
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module II.3 Overview}
+
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & $\mathfrak{su}(2)$ Algebra & Commutation relations; Casimir; irreps; Schur's lemma\\
-L02 & Ladder Operators and Spectrum & $\hat{J}_\pm$; quantisation of $j,m$; matrix elements; Schwinger bosons\\
-L03 & Orbital Angular Momentum & $\hat{\mathbf{L}}$ in spherical coordinates; spherical harmonics; addition theorem\\
+L01 & $\mathfrak{su}(2)$ Algebra & Commutation relations; Casimir; irreps; Schur\'s lemma\\
+L02 & Ladder Operators \& Spectrum & $\hat{J}_\pm$; quantisation of $j,m$; matrix elements; Schwinger bosons\\
+L03 & Orbital Angular Momentum & $\hat{\mathbf{L}}$ in spherical coords; spherical harmonics; addition theorem\\
 L04 & Spin Angular Momentum & Pauli matrices; spinors; $SU(2)$ double cover; spin coherent states\\
-L05 & Addition of Angular Momenta & Triangle rule; Clebsch--Gordan; singlet/triplet\\
-L06 & Wigner $3j$-Symbols and Racah Algebra & $3j,6j,9j$; selection rules; astrophysical line strengths\\
-L07 & Wigner--Eckart Theorem & Spherical tensor operators; reduced matrix elements; Land\'e $g$-factor\\
-L08 & Hydrogen Atom and $SO(4)$ Symmetry & Runge--Lenz; accidental degeneracy; parabolic coordinates\\
+L05 & Addition of Angular Momenta & Triangle rule; Clebsch--Gordan coefficients; singlet/triplet\\
+L06 & Wigner $3j$-Symbols \& Racah & $3j,6j,9j$ symbols; selection rules; line strengths\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L07 & Wigner--Eckart Theorem & Spherical tensor operators; reduced matrix elements; Land\'e $g$\\
+L08 & Hydrogen Atom \& $SO(4)$ & Runge--Lenz vector; accidental degeneracy; parabolic coordinates\\
 L09 & Fine and Hyperfine Structure & Spin--orbit; Darwin; Fermi contact; 21~cm; Breit--Rabi\\
 L10 & Wigner $D$-matrices & Euler angles; $D^{(j)}$; symmetric top; NMR pulses\\
-L11 & Angular Momentum in Many-Body & Term symbols; Hund's rules; shell model; $LS$ vs.\ $jj$\\
+L11 & Angular Momentum Many-Body & Term symbols; Hund\'s rules; shell model; $LS$ vs.\ $jj$ coupling\\
 L12 & Rotational Spectroscopy & Rigid rotor; symmetric top; Raman; nuclear spin statistics\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -3264,17 +3283,26 @@ Projects: (simple) simulated rotational spectrum of a diatomic; (complex) ortho/
 
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module II.4 Overview}
+
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
 L01 & Fock Space & Occupation number; creation/annihilation; Jordan--Wigner; field operators\\
-L02 & Operators in 2nd Quantisation & One- and two-body operators; normal ordering; Wick's theorem\\
+L02 & Operators in 2nd Quantisation & One- and two-body operators; normal ordering; Wick\'s theorem\\
 L03 & Homogeneous Electron Gas & Jellium; Fermi sea; HF exchange; Lindhard; Friedel; plasmon\\
 L04 & HF in 2nd Quantisation & Mean-field decoupling; Brillouin; Koopman; HFB; Nambu\\
 L05 & Beyond Mean Field & CI; MP2; Goldstone diagrams; linked cluster; GW; RPA\\
-L06 & Green's Functions I & Retarded GF; Lehmann; spectral function; Galitskii--Migdal\\
+L06 & Green's Functions I & Retarded GF; Lehmann representation; spectral function; Galitskii--Migdal\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
 L07 & Green's Functions II & Dyson equation; HF and GW self-energies; quasiparticle weight\\
 L08 & Interacting Bosons: BEC & Bogoliubov transformation; Goldstone; Landau criterion; vortices\\
 L09 & Interacting Fermions: BCS & Cooper instability; gap equation; Bogoliubov--Valatin; BCS--BEC\\
@@ -3282,7 +3310,9 @@ L10 & The Hubbard Model & Tight-binding; Mott insulator; superexchange; DMFT\\
 L11 & Quantum Magnetism & Heisenberg model; Holstein--Primakoff; magnons; frustrated magnets\\
 L12 & Towards Non-Equilibrium & Keldysh motivation; Floquet theory; driven-dissipative balance\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -3490,8 +3520,10 @@ Projects: (simple) Floquet quasi-energy spectrum for driven TLS; (complex) Floqu
 
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module II.5 Overview}
+
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
@@ -3501,6 +3533,13 @@ L03 & Contour Green's Functions & $G^c,G^<,G^>,G^R,G^A,G^K$; LO matrix; FDT; Mat
 L04 & Langreth Rules & Analytic continuation; convolution identities; GW and 2B self-energies\\
 L05 & Kadanoff--Baym Equations & EOM; two-time structure; $\Phi$-derivable; conserving approximations\\
 L06 & Self-Energies & HF; GW; second Born; T-matrix; KB conservation theorem\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
 L07 & Quantum Boltzmann Equation & Wigner transform; gradient expansion; collision integral; Drude\\
 L08 & Steady-State Transport & Meir--Wingreen; Landauer; Kondo; IETS; shot noise\\
 L09 & Electron--Phonon Coupling & Fr\"ohlich; Fan--Migdal; polaron; Eliashberg; $T_c$\\
@@ -3508,7 +3547,9 @@ L10 & Pump--Probe Dynamics & Time-resolved spectral function; Peierls; tr-ARPES;
 L11 & Driven-Dissipative Systems & Lindblad from NEGF; Floquet--Keldysh; NESS; polaritons\\
 L12 & Numerical NEGF & Time-stepping KB; GKBA; NESSi; ML surrogate self-energies\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -3721,25 +3762,36 @@ Projects: (simple) full KB vs.\ GKBA for driven HO: accuracy and cost; (complex)
 
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module II.6 Overview}
+
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & Classical and Quantum EM Fields & Coulomb gauge; mode expansion; photon; vacuum fluctuations; coherent states\\
+L01 & Classical and Quantum EM Fields & Coulomb gauge; mode expansion; photon; vacuum fluctuations\\
 L02 & Light--Matter Coupling & Minimal coupling; dipole approximation; PZW; RWA; strong field\\
-L03 & Linear Response and Kubo Formula & Retarded susceptibility; causality; Kramers--Kronig; Wiener--Khinchin\\
+L03 & Linear Response \& Kubo Formula & Retarded susceptibility; causality; Kramers--Kronig\\
 L04 & Fluctuation--Dissipation Theorem & FDT; Johnson--Nyquist; quantum noise; effective temperature\\
 L05 & Optical Conductivity & Drude from Kubo; $f$-sum rule; KK analysis; superfluid weight\\
-L06 & Absorption and Emission & Fermi's golden rule; Einstein coefficients; spontaneous emission; line shapes\\
+L06 & Absorption and Emission & Fermi\'s golden rule; Einstein coefficients; line shapes\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
 L07 & Selection Rules & $E1,M1,E2$; Laporte; molecular symmetry; IR vs.\ Raman\\
 L08 & Non-Linear Response & $\chi^{(2)},\chi^{(3)}$; SHG; TPA; FWM; 2DES\\
 L09 & Time-Domain Spectroscopy & FID; photon echo; $R^{(3)}$ correlator; 2D IR/ES\\
 L10 & Raman and Resonance Raman & Kramers--Heisenberg; Franck--Condon; SERS; TERS; CARS\\
 L11 & Photoelectron Spectroscopy & Sudden approximation; Dyson orbital; ARPES; shake-up\\
-L12 & Cavity QED and Strong Coupling & Jaynes--Cummings; vacuum Rabi splitting; polaritons; circuit QED\\
+L12 & Cavity QED \& Strong Coupling & Jaynes--Cummings; vacuum Rabi splitting; polaritons; circuit QED\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -3956,25 +4008,36 @@ Projects: (simple) JC dynamics: Fock vs.\ coherent state Rabi oscillations; (com
 %------------------------------------------------------------
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module II.7 Overview}
+
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
 L01 & Density Operators in Thermodynamics & Gibbs state; von Neumann entropy; max-entropy principle\\
-L02 & Canonical and Grand-Canonical Ensembles & Partition function; $\mu$; grand potential; ensemble equivalence\\
-L03 & Quantum Ideal Gases & BE/FD distributions; Sommerfeld; degeneracy pressure\\
+L02 & Canonical and Grand-Canonical & Partition function; $\mu$; grand potential; ensemble equivalence\\
+L03 & Quantum Ideal Gases & BE/FD distributions; Sommerfeld expansion; degeneracy pressure\\
 L04 & BEC and Superfluidity & $T_c$; ODLRO; $^4$He; BKT transition\\
 L05 & Fermi Liquid Theory & Quasiparticles; Landau parameters; non-Fermi liquid\\
-L06 & Matsubara Green's Functions & Imaginary-time GF; Matsubara frequencies; analytic continuation\\
-L07 & Perturbation Theory at Finite $T$ & Diagrammatics; Dyson; free energy; linked-cluster\\
+L06 & Matsubara Green\'s Functions & Imaginary-time GF; Matsubara frequencies; analytic continuation\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L07 & Perturbation Theory at Finite $T$ & Diagrammatics; Dyson; free energy; linked-cluster theorem\\
 L08 & Phase Transitions I & Landau theory; order parameter; SSB; Ginzburg criterion\\
 L09 & Phase Transitions II & Ising model; RG; universality; quantum phase transitions\\
 L10 & Quantum Criticality & QCP; $\omega/T$ scaling; non-Fermi liquid; strange metal\\
-L11 & Entanglement in Many-Body Systems & Area/volume law; entanglement entropy; topological order\\
-L12 & Open Problems and Frontiers & High-$T_c$; FQH; quantum simulation; outlook\\
+L11 & Entanglement Many-Body & Area/volume law; entanglement entropy; topological order\\
+L12 & Open Problems \& Frontiers & High-$T_c$; FQH; quantum simulation; outlook\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -4413,15 +4476,15 @@ III.3 & Density Functional Theory and Beyond & 12\\
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module III.1 Overview}
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}clp{8cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-L01 & The Molecular Hamiltonian & $\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$; atomic units; degrees of freedom\\
+L01 & The Molecular Hamiltonian & $\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$; atomic units; degrees of freedom; symmetries\\
 L02 & Born--Oppenheimer Approximation & Adiabatic PES; non-adiabatic couplings; derivative couplings; conical intersections\\
-L03 & Feynman--Hellmann Theorem & $\partial_\lambda E=\langle\partial_\lambda\hat{H}\rangle$; force calculations; geometry optimisation\\
+L03 & Feynman--Hellmann Theorem & $\partial_\lambda E=\langle\partial_\lambda\hat{H}\rangle$; forces; geometry optimisation; analytic gradients\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -4533,28 +4596,38 @@ Projects: (simple) geometry optimisation of H$_2$O: energy and gradient at each 
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module III.2 Overview}
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.0cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
 L01 & The Quantum Many-Body Problem & Complexity; $N$-representability; curse of dimensionality\\
 L02 & Hydrogenic Systems & Exact solution; $Z_{\rm eff}$; quantum defect; radial nodes\\
-L03 & Polyelectronic Systems & He prototype; electron correlation; inter-electronic repulsion\\
-L04 & Spin Orbitals and Slater Screening & $\chi(\mathbf{x})=\phi(\mathbf{r})\sigma(s)$; Slater rules; shielding\\
-L05 & Antisymmetry and Slater Determinants & Pauli exclusion; Slater determinant; properties\\
+L03 & Polyelectronic Systems & He prototype; electron correlation; Coulomb/Fermi hole\\
+L04 & Spin Orbitals \& Slater Screening & $\chi(\mathbf{x})=\phi(\mathbf{r})\sigma(s)$; Slater rules; shielding\\
+L05 & Antisymmetry \& Slater Determinants & Pauli exclusion; Slater determinant; Slater--Condon rules\\
 L06 & Restricted and Unrestricted Methods & RHF vs.\ UHF; spin contamination; ROHF\\
-L07 & Variational Methods & Ritz; Hylleraas--Undheim; bracketing theorem\\
-L08 & Configurations, Aufbau, and Virtual Orbitals & Aufbau; orbital energies; excited configurations\\
-L09 & Configuration Interaction & FCI; CISD; size consistency; exact non-rel.\ limit\\
-L10 & Hartree--Fock and Correlation Energy & SCF; Roothaan--Hall; Koopman's; $E_{\rm corr}$\\
-L11 & Orbital Theories and Bonding Models & MO theory; VB theory; Coulson--Fischer; resonance\\
-L12 & Natural and Localised Orbitals & NBO; L\"owdin; NAO; Foster--Boys localisation\\
-L13 & Basis Sets I --- Function Types & STO; GTO; contraction; minimal, split-valence, polarised\\
+L07 & Variational Methods & Ritz; Hylleraas--Undheim; cusp condition; R12/F12\\
+L08 & Configurations, Aufbau \& Virtuals & Aufbau; orbital energies; excited configurations\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.0cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L09 & Configuration Interaction & FCI; CISD; size consistency; Davidson correction\\
+L10 & Hartree--Fock \& Correlation Energy & SCF; Roothaan--Hall; Koopman's; $E_{\rm corr}$\\
+L11 & Orbital Theories \& Bonding & MO theory; VB theory; Coulson--Fischer; resonance\\
+L12 & Natural and Localised Orbitals & NBO; NAO; Foster--Boys; DLPNO connection\\
+L13 & Basis Sets I --- Function Types & STO; GTO; contraction; minimal; split-valence\\
 L14 & Basis Sets II --- Standard Families & Pople; Dunning cc-pVXZ; Karlsruhe def2; ECP\\
 L15 & Molecular Integral Schemes & Two-electron integrals; Obara--Saika; RI approximation\\
 L16 & Glimpse into Solid State & PAW; plane-wave basis; Bloch electrons; band vs.\ MO\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
@@ -4953,17 +5026,26 @@ Projects: (simple) tight-binding band structure for graphene; (complex) periodic
 
 \subsubsection*{Module Overview}
 \addcontentsline{toc}{subsubsection}{Module III.3 Overview}
+
 \begin{center}
-\begin{tabularx}{\textwidth}{clX}
+\begin{tabular}{@{}p{0.48\textwidth}@{\hskip0.04\textwidth}p{0.48\textwidth}@{}}
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
 \toprule
 \textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
 L01 & Hohenberg--Kohn Theorems & HK1/HK2; $v$-representability; universal functional\\
-L02 & Thomas--Fermi--Weizs\"acker & Orbital-free DFT; TF kinetic energy; gradient correction; limitations\\
+L02 & Thomas--Fermi--Weizs\"acker & Orbital-free DFT; TF kinetic energy; gradient correction\\
 L03 & Kohn--Sham DFT & KS equations; non-interacting reference; XC functional; SCF\\
 L04 & XC Functionals --- Jacob's Ladder & LDA; GGA; meta-GGA; hybrid; range-separated; double-hybrid\\
-L05 & Useful DFT Quantities & Fukui functions; chemical hardness/softness; dual descriptor; CDFT\\
-L06 & Tight-Binding and Effective Hamiltonians & LCAO; Slater--Koster; SSH model; topological TBM\\
+L05 & Useful DFT Quantities & Fukui functions; chemical hardness; dual descriptor; CDFT\\
+L06 & Tight-Binding \& Effective Hamiltonians & LCAO; Slater--Koster; SSH model; topological TBM\\
+\bottomrule
+\end{tabular}
+&
+\begin{tabular}[t]{@{}clp{4.5cm}@{}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
 L07 & H\"uckel and M\"obius Aromaticity & H\"uckel MO; $4n+2$ rule; M\"obius; Woodward--Hoffmann\\
 L08 & Crystal Field Theory & $d$-orbital splitting; $\Delta_o$; high-spin/low-spin; Jahn--Teller\\
 L09 & Ligand Field Theory & Nephelauxetic; AOM; Tanabe--Sugano; Racah parameters\\
@@ -4971,7 +5053,9 @@ L10 & Full CI QMC (FCIQMC) & Booth--Alavi algorithm; walker dynamics; sign probl
 L11 & Diffusion QMC (DMC) & Fixed-node; branching walk; trial wavefunction; pseudopotentials\\
 L12 & Synthesis and Outlook & Method comparison; strong correlation; excited states; periodic; ML\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
+\\
+\end{tabular}
 \end{center}
 
 \subsubsection*{Lecture-by-Lecture Syllabi}
