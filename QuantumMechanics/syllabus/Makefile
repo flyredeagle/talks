@@ -6,4 +6,5 @@ clean:
 	rm -f quantum_mechanics_syllabus.out
 	rm -f quantum_mechanics_syllabus.pdf
 	rm -f quantum_mechanics_syllabus.toc
-
+distclean: clean
+	rm -f *~
