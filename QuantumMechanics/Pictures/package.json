@@ -1,0 +1,33 @@
+{
+  "name": "qm-module-i3-slides",
+  "version": "1.0.0",
+  "description": "Automated PPTX generator for QM Module I.3 — Quantum Dynamics, Perturbation Theory, and Physical Systems",
+  "main": "src/build-all.js",
+  "scripts": {
+    "build":      "node src/build-all.js",
+    "build:L01":  "node src/generate-L01.js",
+    "build:L02":  "node src/generate-L02.js",
+    "build:L03":  "node src/generate-L03.js",
+    "build:L04":  "node src/generate-L04.js",
+    "build:L05":  "node src/generate-L05.js",
+    "build:L06":  "node src/generate-L06.js",
+    "build:L07":  "node src/generate-L07.js",
+    "build:L08":  "node src/generate-L08.js",
+    "build:L09":  "node src/generate-L09.js",
+    "build:L10":  "node src/generate-L10.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "quantum-mechanics",
+    "lecture-slides",
+    "pptxgenjs",
+    "education",
+    "physics"
+  ],
+  "license": "MIT"
+}
