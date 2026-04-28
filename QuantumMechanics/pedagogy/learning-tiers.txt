@@ -1,0 +1,128 @@
+Absolutely — here are the **learning tiers** we’ve been using for this course, from least to most advanced, with what each tier means in practice.
+
+***
+
+# Learning Tiers (HS → PhD)
+
+## **Tier 1 — High School (HS) prerequisites**
+
+**Goal:** Build the *intuition tools* needed for amplitudes and interference.  
+**Core competencies:**
+
+*   Complex numbers as “2D arrows”: $$a+ib$$, magnitude $$|z|$$, phase $$\arg z$$
+*   **Magnitude squared** as probability: $$P \propto |A|^2$$
+*   **Vector addition analogy**: adding complex amplitudes before squaring → interference
+*   Basic probability: events, normalization (“total probability = 1”)
+
+**You should be able to:**
+
+*   Compute $$|a+ib|^2$$
+*   Understand why $$|A_1+A_2|^2\neq |A_1|^2+|A_2|^2$$ in general
+
+***
+
+## **Tier 2 — Beginning Undergraduate (BegUG)**
+
+**Goal:** Become fluent in the *working language* of bras, kets, bases, and probabilities.  
+**Core competencies:**
+
+*   Normalization: $$\langle \psi|\psi\rangle=1$$
+*   Orthonormal bases: $$\langle m|n\rangle=\delta_{mn}$$
+*   Components as inner products:
+    $$
+    c_n=\langle n|\psi\rangle
+    $$
+*   Probabilities:
+    $$
+    P(n)=|c_n|^2
+    $$
+*   “Insert identity” in discrete form:
+    $$
+    \sum_n |n\rangle\langle n|=\mathbb I
+    $$
+
+**You should be able to:**
+
+*   Expand a state in a basis and compute probabilities
+*   Translate between $$|\psi\rangle$$ and its coordinate column vector in a chosen basis
+
+***
+
+## **Tier 3 — Advanced Undergraduate (AdvUG)**
+
+**Goal:** Understand why the formalism is *internally consistent* and geometric.  
+**Core competencies:**
+
+*   **Cauchy–Schwarz inequality**:
+    $$
+    |\langle\phi|\psi\rangle|^2\le \langle\phi|\phi\rangle\langle\psi|\psi\rangle
+    $$
+*   **Triangle inequality** for norms:
+    $$
+    \|\phi+\psi\|\le \|\phi\|+\|\psi\|
+    $$
+*   Metric/geometric viewpoint:
+    *   overlaps behave like cosines of angles (up to phase)
+    *   distance notions emerge from $$\|\phi-\psi\|$$ (with caveats about phase)
+
+**You should be able to:**
+
+*   Prove basic inequalities in Hilbert space
+*   Explain why overlaps and probabilities are bounded by 1 for normalized states
+*   See superposition as linear structure, not “mystery”
+
+***
+
+## **Tier 4 — Master’s (MSc)**
+
+**Goal:** Shift from “vectors as states” to “rays as states” and connect to symmetry theory.  
+**Core competencies:**
+
+*   **Rays / projective Hilbert space** viewpoint:
+    *   physical states are equivalence classes $$ |\psi\rangle\sim e^{i\theta}|\psi\rangle$$
+    *   mathematically, pure states are points in **projective space** $$\mathbb P(\mathcal H)$$
+*   **Wigner theorem preview**:
+    *   transformations preserving transition probabilities
+        $$|\langle\phi|\psi\rangle|^2$$
+        are implemented by **unitary or antiunitary** operators
+
+**You should be able to:**
+
+*   Explain why global phase is unphysical and why rays are the correct objects
+*   State what Wigner’s theorem says and why it matters for symmetries
+
+***
+
+## **Tier 5 — PhD**
+
+**Goal:** Make all foundational statements **mathematically precise** and know where physics shorthand hides subtleties.  
+**Core competencies:**
+
+*   Precise definition of **Hilbert space** (inner product + completeness)
+*   **Separability** (existence of a countable orthonormal basis / countable dense subset) and why it’s assumed in most QM
+*   Rays as **1D subspaces** (not just “vectors up to phase”)
+*   Awareness of operator subtleties:
+    *   Hermitian vs self-adjoint (domains matter)
+    *   generalized eigenvectors and distributional states (preview for rigged Hilbert spaces)
+
+**You should be able to:**
+
+*   Distinguish informal bra–ket manipulations from rigorous operator statements
+*   Discuss why separability matters for spectral decompositions and expansions
+*   Frame state space as a projective object and symmetry as structure on that space
+
+***
+
+# One-line summary of the ladder
+
+*   **HS:** amplitudes are complex arrows → probabilities are squared lengths
+*   **BegUG:** bases/components → compute probabilities with $$\langle n|\psi\rangle$$
+*   **AdvUG:** inequalities → geometry and consistency of the formalism
+*   **MSc:** rays/projective space → symmetries (Wigner theorem)
+*   **PhD:** rigorous Hilbert space + separability + domain subtleties
+
+***
+
+If you want, I can also provide a **tier-to-tier mapping** (what exact skills unlock the next tier) and a **diagnostic quiz** to place a student into the right tier quickly.
+
+

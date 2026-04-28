@@ -1,0 +1,349 @@
+Yes — and it’s a *really* good idea. What you’re asking for is essentially an **assessment artifact taxonomy + spec** that we can reuse for **every lecture** and for **each learning tier (HS → PhD)**, while still supporting:
+
+*   a **simple track** (skills + fluency),
+*   a **complex track** (proof + synthesis),
+*   and a **research track** (reading + proposing).
+
+Below is a **clean, reusable definition** of the artifact set, with **templates**, **rubrics**, **recommended counts**, and **how they scale by tier**. You can drop this into a course admin pack as the “Assessment Policy & Templates” document.
+
+***
+
+# Assessment Artifact Set (Reusable Across Lectures)
+
+## 0) Design Goals (why this set works)
+
+Each lecture should assess **four distinct capabilities**:
+
+1.  **Conceptual understanding** (can you explain it?)
+2.  **Procedural fluency** (can you compute it?)
+3.  **Structural mastery** (can you prove/derive it?)
+4.  **Transfer & creation** (can you apply it to a new context / ask new questions?)
+
+Your six artifacts map cleanly onto these:
+
+| Capability                   | Artifact(s)                                    |
+| ---------------------------- | ---------------------------------------------- |
+| Conceptual understanding     | Concept questions                              |
+| Procedural fluency           | Simple problem set                             |
+| Structural mastery           | Complex problem set                            |
+| Transfer (engineering)       | Simple project                                 |
+| Transfer (synthesis)         | Complex project                                |
+| Creation & frontier thinking | Well-defined research Q; Open-ended research Q |
+
+***
+
+# 1) Artifact: Concept Questions (CQ)
+
+## Purpose
+
+Fast checks that a student has the **right mental model**, not just algebra.
+
+## Deliverable format
+
+*   6–10 short questions (mix of multiple-choice, true/false + justify, and 2–3 sentence prompts)
+*   Designed for **10–15 minutes** in class or as pre-lecture warmup.
+
+## Recommended counts by tier
+
+*   **HS:** 6 (mostly qualitative)
+*   **BegUG:** 8 (qualitative + very short computations)
+*   **AdvUG:** 10 (include “explain why”)
+*   **MSc/PhD:** 10 (include “state assumptions” + “what fails if…”)
+
+## Example CQ prompts (bra–ket Lecture 1 style)
+
+*   Why is $$|\psi\rangle$$ not “a column vector” until a basis is chosen?
+*   What is physically meaningful: $$\langle a|\psi\rangle$$ or $$|\langle a|\psi\rangle|^2$$?
+*   Why does a global phase not change probabilities?
+*   In what sense is “superposition” basis-dependent?
+
+## Rubric (quick)
+
+*   **2 points** each: correct + explanation consistent
+*   Total: **12–20 points**
+
+***
+
+# 2) Artifact: Simple Problem Set (SPS)
+
+## Purpose
+
+Build **fluency**: compute probabilities, normalize states, insert identity, basic basis changes.
+
+## Deliverable format
+
+*   8–12 problems
+*   Mostly 1–5 steps each
+*   Minimal proofs; focus on correct use of notation and technique.
+
+## Suggested structure
+
+*   **Part A: mechanics** (normalization, components, overlaps)
+*   **Part B: interpretation** (what does the computed number mean?)
+*   **Part C: translation** (ket ↔ coordinates ↔ wavefunction preview)
+
+## Tier scaling
+
+*   **HS:** numeric complex arithmetic + simple amplitude-to-probability
+*   **BegUG:** normalization + components $$c_n=\langle n|\psi\rangle$$ + probabilities
+*   **AdvUG:** include “show that” using completeness, but not full proofs
+*   **MSc/PhD:** fewer but deeper; emphasize representation-independence checks
+
+## Rubric
+
+*   Correct result (**60%**)
+*   Correct method and notation (**30%**)
+*   Interpretation sentence (**10%**)
+
+***
+
+# 3) Artifact: Complex Problem Set (CPS)
+
+## Purpose
+
+Assess **structural mastery**: proofs, derivations, multi-step synthesis, “why the formalism works.”
+
+## Deliverable format
+
+*   4–6 problems
+*   Multi-part (a)(b)(c)
+*   Often proof-based or derivation-based
+*   Designed for **3–6 hours** total work.
+
+## Canonical CPS themes in early lectures
+
+*   Prove Cauchy–Schwarz and/or triangle inequality
+*   Prove phase invariance and ray equivalence
+*   Show unitaries preserve probabilities and inner products
+*   Derive completeness consequences (Parseval identity)
+
+## Tier scaling
+
+*   **AdvUG:** full proofs with guidance allowed
+*   **MSc:** proofs + conceptual interpretation + links to projective space
+*   **PhD:** proofs + additional conditions (“boundedness”, “domains”, “separability”)
+
+## Rubric
+
+*   Correct statement of assumptions (**15%**)
+*   Logical proof structure (**45%**)
+*   Correct algebra/steps (**25%**)
+*   Insight / interpretation (**15%**)
+
+***
+
+# 4) Artifact: Simple Project (SPJ)
+
+## Purpose
+
+Hands-on transfer: “I can build something that uses the formalism.”
+
+## Scope
+
+*   2–6 hours
+*   Structured, well-scaffolded
+*   Works for mixed cohorts
+
+## Deliverable format
+
+*   short report (1–3 pages) **and** small artifact (code / worksheet / visualization)
+
+## Example SPJ template (your “basis-expansion calculator”)
+
+**Project S: Basis Expansion Calculator**
+
+*   Input: coefficients $$c$$ in basis $$\{|n\rangle\}$$, unitary matrix $$U$$
+*   Output: new coefficients $$c' = Uc$$
+*   Checks:
+    *   normalization preserved
+    *   probabilities sum to 1
+    *   global phase invariance
+*   Deliverables:
+    *   code + README
+    *   one worked example
+    *   short explanation of what changed and what didn’t
+
+## Rubric
+
+*   Correctness (**40%**)
+*   Verification tests included (**25%**)
+*   Clarity of explanation (**25%**)
+*   Reproducibility (instructions) (**10%**)
+
+***
+
+# 5) Artifact: Complex Project (CPJ)
+
+## Purpose
+
+Synthesis and conceptual transfer: “I can compare frameworks and defend choices.”
+
+## Scope
+
+*   8–15 hours
+*   Open-ended but guided
+*   Should produce something like a mini-essay or mini-tool with reflection.
+
+## Example CPJ template (your “compare representations”)
+
+**Project C: Compare physical meaning across representations**
+
+*   Choose a state and represent it:
+    1.  abstract ket $$|\psi\rangle$$ (representation-free)
+    2.  coordinates in basis A: $$c_n=\langle n|\psi\rangle$$
+    3.  coordinates in basis B (unitary-related)
+    4.  preview: wavefunction $$\psi(x)=\langle x|\psi\rangle$$ (conceptual only early on)
+*   Analyze:
+    *   What is invariant (norm, transition probabilities)?
+    *   What changes (coordinates, basis-dependent “superposition”)?
+*   Deliverables:
+    *   5–8 page report
+    *   appendix with computations
+    *   optional code for basis transforms / plots
+
+## Rubric
+
+*   Technical correctness (**30%**)
+*   Conceptual synthesis (**35%**)
+*   Depth & structure (**25%**)
+*   Originality/insight (**10%**)
+
+***
+
+# 6) Artifact: Well-Defined Research Question (WRQ)
+
+## Purpose
+
+Train “research-like thinking” while still being **bounded**: clear scope, clear output.
+
+## Scope
+
+*   5–10 hours
+*   Must be answerable with literature + calculation + interpretation.
+
+## Deliverable format
+
+*   2–6 page memo with:
+    *   question statement
+    *   method
+    *   evidence
+    *   conclusion
+    *   5–10 references
+
+## Examples (early bra–ket)
+
+*   “How did Born’s probabilistic interpretation change the meaning of the wavefunction between 1926–1927?”
+*   “What exactly does ‘state is a ray’ buy us operationally? Provide examples where vectors fail but rays succeed.”
+
+## Rubric
+
+*   Clear scope and method (**25%**)
+*   Evidence quality (**25%**)
+*   Correct technical content (**25%**)
+*   Quality of argument (**25%**)
+
+***
+
+# 7) Artifact: Open-Ended Research Question (ORQ)
+
+## Purpose
+
+Expose the frontier: no single correct answer; evaluates **quality of reasoning**, not correctness.
+
+## Scope
+
+*   10–20 hours (or ongoing)
+*   Can include proposing a new definition, comparing frameworks, or designing a thought experiment.
+
+## Deliverable format
+
+*   4–10 page proposal-style note:
+    *   motivation
+    *   what’s known (brief)
+    *   what you propose
+    *   how you’d test/argue it
+    *   risks and limitations
+
+## Examples (early bra–ket)
+
+*   “What minimal operational axioms force complex Hilbert space rather than real?”
+*   “Can you formulate measurement and state update without projective collapse but still reproduce observed statistics?”
+
+## Rubric
+
+*   Clarity + framing (**25%**)
+*   Depth of engagement (**25%**)
+*   Novelty and plausibility (**25%**)
+*   Awareness of limitations (**25%**)
+
+***
+
+# 8) Packaging standard (your multi-page exercise requirement)
+
+For any **problem** (in SPS or CPS), the official exercise packet structure is:
+
+1.  **Problem Statement** (no hints)
+2.  **Suggestions / Hints** (scaffolded)
+3.  **Advanced Suggestions** (structural hints, alternative approaches)  
+    4+) **Detailed Solution** (full derivation + commentary + common pitfalls)
+
+### Implementation note (for later repo automation)
+
+Each exercise can be stored as:
+
+*   `ex##_problem.tex`
+*   `ex##_hints.tex`
+*   `ex##_adv_hints.tex`
+*   `ex##_solution.tex`
+    and assembled into PDFs.
+
+***
+
+# 9) Recommended “per lecture” minimum bundle (practical)
+
+For each 90-minute lecture, a sustainable package is:
+
+*   **Concept Questions:** 8
+*   **Simple Problem Set:** 10 problems
+*   **Complex Problem Set:** 4 problems
+*   **Projects:** 1 simple + 1 complex
+*   **Research prompts:** 1 well-defined + 1 open-ended
+
+This yields:
+
+*   enough material for mixed cohorts
+*   manageable grading load
+*   consistent cadence
+
+***
+
+# 10) Tier mapping: what changes *without* changing the artifacts
+
+Same artifact types at every tier; what changes is:
+
+*   **language** (qualitative → formal)
+*   **required rigor** (compute → prove → state assumptions)
+*   **scope** (toy model → general theorem → domain subtleties)
+
+Example: “phase invariance”
+
+*   HS: “why doesn’t the arrow’s overall rotation matter for length?”
+*   BegUG: compute $$|e^{i\theta}c_n|^2$$
+*   AdvUG: prove for arbitrary basis
+*   MSc: interpret as ray in projective space
+*   PhD: formalize rays as 1D subspaces and identify topology/structure
+
+***
+
+## Quick next step (so we can lock the course standard)
+
+Do you want to standardize grading weights across artifact types like:
+
+*   CQ 10%
+*   SPS 30%
+*   CPS 30%
+*   Projects 20%
+*   Research 10%
+
+Or would you prefer separate tracks (UG track without research, Grad track with research)?
+
