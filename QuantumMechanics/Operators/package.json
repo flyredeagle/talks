@@ -1,0 +1,30 @@
+{
+  "name": "qm-module-i1",
+  "version": "1.0.0",
+  "description": "QM/QC Programme \u2014 Module I.1: Hilbert Space & Operators \u2014 Lecture slide generator",
+  "main": "src/generate_lectures.js",
+  "scripts": {
+    "generate": "node src/generate_lectures.js",
+    "build": "bash scripts/build.sh",
+    "clean": "rm -f generated/*.pptx",
+    "generate:pdf": "python3 src/generate_pdfs.py",
+    "generate:all": "npm run generate && npm run generate:pdf"
+  },
+  "keywords": [
+    "quantum-mechanics",
+    "education",
+    "lecture",
+    "powerpoint",
+    "pptxgenjs",
+    "hilbert-space"
+  ],
+  "author": "QM/QC Programme",
+  "license": "SEE LICENSE IN README.md",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1",
+    "reportlab": ">=4.0 (pip)"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
