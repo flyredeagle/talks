@@ -8,7 +8,10 @@
     "build": "bash scripts/build.sh",
     "clean": "rm -f generated/*.pptx",
     "generate:pdf": "python3 src/generate_pdfs.py",
-    "generate:all": "npm run generate && npm run generate:pdf"
+    "generate:all": "npm run generate && npm run generate:pdf",
+    "generate:L01-extra": "node src/generate_L01_extra.js",
+    "merge:L01": "python3 src/merge_L01.py",
+    "build:L01-extended": "npm run generate:L01-extra && npm run merge:L01"
   },
   "keywords": [
     "quantum-mechanics",
