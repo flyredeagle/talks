@@ -2710,53 +2710,551 @@ Needs \textit{et al.}, J.\ Chem.\ Phys.\ \textbf{152} (2020) --- CASINO DMC revi
 \label{sec:mod-II2}
 %=============================================================
 
-\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture Overview}]
-\begin{longtable}{clp{7cm}}
+%%% MODULE II.2 REPLACEMENT %%%
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.2 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & Feynman's Postulate & Sum over histories; Lagrangian action; classical limit\\
-L02 & Derivation of the Path Integral & Trotter factorisation; discretisation; continuum limit\\
-L03 & Gaussian Path Integrals & Harmonic oscillator; stationary phase; fluctuation determinant\\
-L04 & Saddle Point and WKB & Semiclassical expansion; tunnelling amplitude\\
-L05 & Imaginary-Time Path Integrals & Wick rotation; partition function; Euclidean action\\
-L06 & Statistical Mechanics Connection & $Z=\operatorname{Tr}e^{-\beta\hat{H}}$ as path integral\\
-L07 & Coherent State Path Integral & Bosonic/fermionic coherent states; Grassmann variables\\
-L08 & Instantons and Tunnelling & Bounce solution; decay rate; double-well potential\\
-L09 & Path Integrals in Field Theory & $\phi^4$ theory; Feynman rules; propagator\\
-L10 & Gauge Fields & Aharonov--Bohm; minimal coupling; Wilson loop\\
-L11 & Numerical Path Integrals & Monte Carlo; path integral MD\\
-L12 & Berry Phase from Path Integrals & Geometric action; holonomy; applications\\
+L01 & Feynman's Postulate & Sum over histories; action; classical limit; stationary phase\\
+L02 & Derivation of the Path Integral & Trotter; discretisation; continuum limit; measure\\
+L03 & Gaussian Path Integrals & HO propagator; fluctuation determinant; van Vleck--Morette\\
+L04 & Saddle Point and WKB & Semiclassical expansion; Bohr--Sommerfeld; tunnelling\\
+L05 & Imaginary-Time Path Integrals & Wick rotation; Euclidean action; Matsubara frequencies\\
+L06 & Statistical Mechanics Connection & $Z$ as periodic PI; PIMC; exchange cycles\\
+L07 & Coherent State Path Integral & Bosonic/fermionic coherent states; Grassmann; Berry term\\
+L08 & Instantons and Tunnelling & Bounce; dilute gas; splitting; resurgence\\
+L09 & Path Integrals in Field Theory & $\phi^4$; generating functional; Feynman rules; one-loop\\
+L10 & Gauge Fields and Topology & Aharonov--Bohm; Wilson loop; $\theta$-vacuum; Chern--Simons\\
+L11 & Numerical Path Integrals & PIMC; ring polymer; RPMD; worm algorithm\\
+L12 & Berry Phase from Path Integrals & Geometric phase; Chern number; TKNN; non-Abelian\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.2 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L01: Feynman's Postulate}]
+\textbf{90-min pacing:} (0--20~min) Three formulations of QM: Schr\"odinger, Heisenberg, Feynman; Feynman's postulate --- amplitude from $x_a$ to $x_b$ is sum over all paths weighted by $e^{iS/\hbar}$; (20--45~min) Classical action $S=\int L\,dt$; stationary phase $\hbar\to 0$: only classical path survives; Fermat's principle analogy; double-slit from two-path sum; (45--70~min) From PI to Schr\"odinger equation: Trotter factorisation $e^{-i\hat{H}\varepsilon/\hbar}\approx e^{-i\hat{T}\varepsilon/\hbar}e^{-i\hat{V}\varepsilon/\hbar}$; recover $i\hbar\partial_t\psi=\hat{H}\psi$ as $\varepsilon\to 0$; (70--90~min) Relation to propagator $K(x_b,x_a;T)=\bra{x_b}e^{-i\hat{H}T/\hbar}\ket{x_a}$; Dirac's precursor idea; historical context.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State Feynman's postulate and relate it to the propagator.
+  \item Derive the classical limit from the stationary-phase argument.
+  \item Recover the Schr\"odinger equation from the short-time propagator.
+  \item Compute the double-slit amplitude from a two-path sum.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``nature tries all paths; at human scales only the classical path matters.''
+Beg.\ UG: stationary phase; free-particle PI; double-slit amplitude.
+Adv.\ UG: Trotter factorisation; recover Schr\"odinger; momentum-space PI.
+MSc: functional measure; Wiener measure; Feynman--Kac theorem.
+PhD: mathematical rigour of PI; lattice regularisation; stochastic PDE connection.
+\medskip\textbf{Assessment:}
+Set~A --- stationary phase for free particle; double-slit amplitude from two paths.
+Set~B --- derive Schr\"odinger from short-time propagator; Trotter error analysis.
+Projects: (simple) path interference visualiser for double slit; (complex) Trotter error for HO propagator vs.\ number of slices.
 \end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L02: Derivation of the Path Integral}]
+\textbf{90-min pacing:} (0--20~min) Time-slicing: insert $N-1$ resolutions of identity $\int dx_k\ket{x_k}\bra{x_k}$; $\varepsilon=T/N$; (20--45~min) Momentum Gaussian integral: $\int dp\,e^{ip(x_{k+1}-x_k)/\hbar-i\varepsilon p^2/2m\hbar}$; Lagrangian form; Riemann sum $\to\int L\,dt$; measure $\mathcal{D}x(t)$; (45--65~min) Free particle: exact Gaussian; $K_0=(m/2\pi i\hbar T)^{1/2}e^{im(x_b-x_a)^2/2\hbar T}$; check at $T\to 0$; (65--90~min) Ordering ambiguities: midpoint vs.\ endpoint; Weyl ordering; lattice regularisation as rigorous definition; continuum limit.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the PI by time-slicing and integrating over momenta.
+  \item Obtain the Lagrangian form and define the PI measure.
+  \item Compute the free-particle propagator exactly.
+  \item Explain ordering ambiguities and the Weyl prescription.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``slice time into many steps; combine them to get the full amplitude.''
+Beg.\ UG: time-sliced derivation; momentum Gaussian; free-particle result.
+Adv.\ UG: ordering ambiguity; Weyl prescription; linear-potential PI.
+MSc: Wiener measure; lattice regularisation; Feynman--Kac.
+PhD: cylindrical measures; stochastic analysis; connection to QFT PI.
+\medskip\textbf{Assessment:}
+Set~A --- derive $K_0$ from PI; check normalisation; linear-potential PI.
+Set~B --- ordering ambiguity derivation; Weyl prescription; lattice-PI convergence.
+Projects: (simple) numerical time-sliced propagator vs.\ analytic for HO; (complex) ordering ambiguity: midpoint vs.\ pre-point for anharmonic oscillator.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L03: Gaussian Path Integrals}]
+\textbf{90-min pacing:} (0--20~min) Quadratic actions give exact results; split $S=S_{\rm cl}+S[\eta]$; cross terms vanish by EOM; (20--50~min) HO: classical solution; $S_{\rm cl}$; fluctuation determinant $\det(-\partial_t^2-\omega^2)^{-1/2}$; $\zeta$-function regularisation; Gel'fand--Yaglom; $K_{\rm HO}=(\tfrac{m\omega}{2\pi i\hbar\sin\omega T})^{1/2}e^{iS_{\rm cl}/\hbar}$; (50--70~min) Stationary-phase approximation: expand around classical; leading Gaussian correction; van Vleck--Morette determinant; validity $S_{\rm cl}\gg\hbar$; (70--90~min) Multiple saddles; Morse theory; conjugate points; Maslov index; multi-dimensional generalisation.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Evaluate Gaussian PIs by separating classical and fluctuation parts.
+  \item Compute the HO propagator exactly via the fluctuation determinant.
+  \item Apply stationary-phase approximation for non-Gaussian actions.
+  \item Define the van Vleck--Morette determinant and Maslov index.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: HO PI as ``the exactly solvable model'' of path integrals.
+Beg.\ UG: $S_{\rm cl}$ for HO; verify propagator normalisation.
+Adv.\ UG: fluctuation determinant; stationary-phase derivation.
+MSc: van Vleck--Morette; Maslov index; multi-dimensional saddle.
+PhD: $\zeta$-function; Gel'fand--Yaglom method; functional determinants in QFT.
+\medskip\textbf{Assessment:}
+Set~A --- $S_{\rm cl}$ for HO; propagator at $T=\pi/\omega$; coherent-state check.
+Set~B --- fluctuation determinant via $\zeta$-function; Maslov index for caustic crossing.
+Projects: (simple) HO propagator: PI vs.\ operator method; (complex) semiclassical approximation for quartic potential vs.\ exact.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L04: Saddle-Point Approximation and WKB}]
+\textbf{90-min pacing:} (0--20~min) WKB ansatz $\psi=A e^{iS/\hbar}$; Hamilton--Jacobi from $\hbar^0$; transport equation for $A$; (20--45~min) WKB in allowed/forbidden regions; connection formulae from Airy functions; Bohr--Sommerfeld $\oint p\,dx=2\pi\hbar(n+\tfrac{1}{2})$; Maslov index gives $\tfrac{1}{2}$; (45--65~min) Tunnelling: $\gamma=\hbar^{-1}\int|p|dx$; Gamow factor for alpha decay; field emission; (65--90~min) Beyond WKB: uniform approximation; complex turning points; Stokes lines; exact WKB and resurgence; Gutzwiller trace formula (sum over periodic orbits).
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive WKB wavefunctions and connection formulae.
+  \item Apply Bohr--Sommerfeld and compute energy levels.
+  \item Calculate tunnelling amplitudes via the barrier integral.
+  \item Connect WKB to PI saddle-point approximation.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``particles tunnel through barriers in imaginary time.''
+Beg.\ UG: WKB for HO; Bohr--Sommerfeld; simple tunnelling rate.
+Adv.\ UG: connection formulae from Airy; Gamow factor derivation.
+MSc: uniform approximation; complex turning points; Stokes lines; resurgence.
+PhD: exact WKB; Gutzwiller trace formula; quantum chaos.
+\medskip\textbf{Assessment:}
+Set~A --- Bohr--Sommerfeld for HO and square well; Gamow factor for Coulomb barrier.
+Set~B --- connection formulae from Airy; Bohr--Sommerfeld with Maslov.
+Projects: (simple) WKB energy levels vs.\ exact for Morse potential; (complex) Gamow factor for alpha decay vs.\ experimental data.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L05: Imaginary-Time Path Integrals}]
+\textbf{90-min pacing:} (0--20~min) Wick rotation $t\to-i\tau$; Euclidean action $S_E=\int(\tfrac{m}{2}\dot{x}^2+V)d\tau$; damped integrand $e^{iS_M}\to e^{-S_E}$; (20--45~min) $Z=\operatorname{Tr}e^{-\beta\hat{H}}=\oint\mathcal{D}x\,e^{-S_E}$ over periodic paths $x(0)=x(\beta\hbar)$; HO via Matsubara modes $\omega_n=2\pi n/\beta\hbar$; $Z_{\rm HO}=[\sinh(\beta\hbar\omega/2)]^{-1}$; (45--65~min) Imaginary-time GF $G(\tau)=-\langle T_\tau x(\tau)x(0)\rangle$; spectral function via inverse Laplace; (65--90~min) Thermal averages as PI with operator insertion; analytic continuation $G(\tau)\to G^R(\omega)$; ill-posedness and MEM.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Perform the Wick rotation and construct the Euclidean PI.
+  \item Derive $Z$ as a periodic Euclidean PI.
+  \item Compute the HO partition function via Matsubara modes.
+  \item Define the imaginary-time GF and relate it to the spectral function.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``imaginary time turns quantum oscillations into statistical weights.''
+Beg.\ UG: Wick rotation; Euclidean action; $Z_{\rm HO}$.
+Adv.\ UG: Matsubara modes; imaginary-time correlator; analytic continuation.
+MSc: spectral function from $G(\tau)$; MEM; ill-posedness.
+PhD: Wiener measure in Euclidean time; stochastic quantisation; lattice field theory.
+\medskip\textbf{Assessment:}
+Set~A --- Wick-rotate HO action; $Z_{\rm HO}$ via Gaussian; ground-state energy.
+Set~B --- Matsubara product formula; imaginary-time correlator for HO.
+Projects: (simple) $Z_{\rm HO}(\beta)$ and specific heat; (complex) analytic continuation of $G(\tau)$ to $G^R(\omega)$: stability and MEM.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L06: Statistical Mechanics Connection}]
+\textbf{90-min pacing:} (0--20~min) $Z=\operatorname{Tr}e^{-\beta\hat{H}}$ as Euclidean PI with periodic BCs; $F=-k_BT\ln Z$; $U,S$ from $Z$; (20--45~min) Quantum ideal gases from PI: fermionic anti-periodic BCs; bosonic periodic; BE/FD distributions derived from PI; grand canonical $\Xi=\operatorname{Tr}e^{-\beta(\hat{H}-\mu\hat{N})}$; (45--65~min) Interacting systems: linked-cluster theorem for $\ln Z$; virial coefficients; $\hbar^2$ Wigner--Kirkwood corrections; (65--90~min) Path-integral Monte Carlo: ring-polymer representation; Metropolis sampling; exchange cycles; bosonic permutations and superfluidity onset.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive quantum statistical mechanics from the Euclidean PI.
+  \item Show how Bose/Fermi statistics arise from boundary conditions.
+  \item Apply linked-cluster theorem to compute $\ln Z$ perturbatively.
+  \item Describe path-integral Monte Carlo and exchange cycles.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``quantum particles can swap paths in imaginary time --- that's exchange.''
+Beg.\ UG: $Z$ for free boson/fermion from PI; Bose/Fermi distributions from BCs.
+Adv.\ UG: linked-cluster theorem; second virial coefficient from PI.
+MSc: Wigner--Kirkwood expansion; PIMC algorithm; exchange cycles.
+PhD: worldline MC; sign problem for fermions; superfluid description from PI.
+\medskip\textbf{Assessment:}
+Set~A --- partition function for two-state system; Bose/Fermi statistics from BCs.
+Set~B --- linked-cluster theorem; second virial coefficient for hard-sphere gas.
+Projects: (simple) PIMC for HO: energy vs.\ $\beta$; (complex) PIMC exchange cycles: bosonic statistics and superfluid onset for 4 particles.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L07: Coherent-State Path Integrals}]
+\textbf{90-min pacing:} (0--20~min) Bosonic coherent states $\hat{a}\ket{\alpha}=\alpha\ket{\alpha}$; over-completeness $\int d^2\alpha\ket{\alpha}\bra{\alpha}/\pi=\hat{1}$; (20--45~min) Bosonic PI: insert over-completeness; action $S=\int(\alpha^*\partial_\tau\alpha+H(\alpha^*,\alpha))d\tau$; Berry connection term; $Z$ as closed-path integral; (45--65~min) Grassmann algebra: $\psi\psi'=-\psi'\psi$; Berezin integration $\int d\psi\,\psi=1$; fermionic coherent states; anti-periodic BCs; Grassmann Gaussian $\int\prod d\bar\psi d\psi\,e^{-\bar\psi M\psi}=\det M$; (65--90~min) Applications: free boson/fermion $Z$; Matsubara frequencies from BCs; Hubbard--Stratonovich decoupling preview.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct the bosonic coherent-state PI and identify the Berry term.
+  \item Define Grassmann algebra and perform Berezin integration.
+  \item Derive the fermionic PI with anti-periodic BCs.
+  \item Evaluate Grassmann Gaussian integrals.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: coherent states as ``most classical'' quantum states.
+Beg.\ UG: bosonic coherent-state PI; $Z$ for free boson.
+Adv.\ UG: Grassmann algebra; fermionic PI; determinant formula.
+MSc: Hubbard--Stratonovich; mean-field from saddle point.
+PhD: supersymmetric QM; Witten index; localisation.
+\medskip\textbf{Assessment:}
+Set~A --- over-completeness; Berry term; free boson $Z$ from PI.
+Set~B --- Berezin integral identities; Grassmann Gaussian $=\det M$; fermionic $Z$.
+Projects: (simple) bosonic PI for driven HO: Berry phase from cyclic evolution; (complex) Hubbard--Stratonovich decoupling and mean-field saddle point.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L08: Instantons and Quantum Tunnelling}]
+\textbf{90-min pacing:} (0--20~min) Tunnelling as imaginary-time classical solution; double-well $V=\tfrac{\lambda}{4}(x^2-v^2)^2$; instanton $x_{\rm inst}(\tau)=v\tanh[\omega(\tau-\tau_0)/2]$; (20--45~min) Instanton action $S_{\rm inst}=\tfrac{4}{3\lambda}(m\omega)^3/\hbar$; zero mode from translational invariance; collective coordinate $\tau_0$; dilute instanton gas; splitting $\Delta E=2\hbar\omega C e^{-S_{\rm inst}/\hbar}$; (45--65~min) Bounce for metastable decay; imaginary part of energy; Affleck's formula; vacuum decay in cosmology; (65--90~min) Multi-instanton interactions; resurgence; Borel resummation; trans-series in QM.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the instanton solution and compute its action.
+  \item Treat the zero mode via collective coordinates.
+  \item Compute the ground-state splitting from the dilute instanton gas.
+  \item Explain the bounce solution and metastable decay.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``the instanton is the imaginary-time classical path for tunnelling.''
+Beg.\ UG: double-well instanton; action; splitting formula.
+Adv.\ UG: zero mode; dilute gas; derive $\Delta E$.
+MSc: bounce; Affleck's formula; metastable decay rate.
+PhD: resurgence; instanton--anti-instanton; Borel resummation.
+\medskip\textbf{Assessment:}
+Set~A --- instanton profile and action; splitting formula; compare to exact.
+Set~B --- zero mode collective coordinate; fluctuation determinant with zero mode.
+Projects: (simple) double-well splitting vs.\ barrier height: instanton vs.\ exact; (complex) dilute gas: multi-instanton partition function.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L09: Path Integrals in Field Theory}]
+\textbf{90-min pacing:} (0--20~min) QM to QFT: $x(t)\to\phi(x,t)$; generating functional $Z[J]=\int\mathcal{D}\phi\,e^{i(S+\int J\phi)}$; $W[J]=\ln Z[J]$; 1PI effective action $\Gamma$; (20--45~min) $\phi^4$ theory; Feynman rules from PI: propagator $(k^2+m^2)^{-1}$; vertex $-\lambda$; loop expansion = $\hbar$ expansion; (45--65~min) One-loop effective potential; UV divergences; dimensional regularisation; renormalisation group equation; (65--90~min) Gauge theories: Yang--Mills; Faddeev--Popov ghosts; BRST symmetry; QED Feynman rules from PI.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct the generating functional and derive Feynman rules for $\phi^4$.
+  \item Perform the loop expansion and compute the one-loop effective potential.
+  \item Explain UV divergences and dimensional regularisation.
+  \item Outline the Faddeev--Popov procedure for gauge theories.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``Feynman diagrams are pictures of particle interactions derived from the PI.''
+Beg.\ UG: generating functional; $\phi^4$ Feynman rules; connected Green's functions.
+Adv.\ UG: one-loop effective potential; UV divergences; dimensional regularisation.
+MSc: Coleman--Weinberg; Faddeev--Popov; BRST.
+PhD: Wilsonian effective action; FRG; Zinn-Justin.
+\medskip\textbf{Assessment:}
+Set~A --- tree-level Feynman diagrams for $\phi^4$ 4-point function; propagator from $Z_0[J]$.
+Set~B --- one-loop effective potential; dimensional regularisation of mass divergence.
+Projects: (simple) Feynman diagram generator for $\phi^4$ at two loops; (complex) Coleman--Weinberg mechanism: symmetry restoration vs.\ breaking as function of $\lambda/m^2$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L10: Gauge Fields and Topological Effects}]
+\textbf{90-min pacing:} (0--20~min) $U(1)$ gauge invariance; Aharonov--Bohm phase $e^{ie\oint\mathbf{A}\cdot d\mathbf{l}/\hbar}$; physical despite $\mathbf{B}=0$; (20--45~min) PI derivation of AB phase; holonomy; non-Abelian gauge fields; Wilson loop $W_C=\operatorname{Tr}\mathcal{P}e^{ig\oint A_\mu dx^\mu}$; area law and confinement; (45--65~min) Lattice gauge theory: plaquette action; strong-coupling expansion; Monte Carlo for $SU(2)$; (65--90~min) Topological field theories: Chern--Simons in 2+1D; $\theta$-vacuum of QCD; topological charge $Q=\tfrac{g^2}{32\pi^2}\int F\tilde{F}$; instanton number; axion.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Aharonov--Bohm phase from the PI.
+  \item Define the Wilson loop and relate its area law to confinement.
+  \item Describe lattice gauge theory and Monte Carlo.
+  \item Explain the topological charge and $\theta$-vacuum.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``a particle can feel a magnetic field it never touches'' --- AB effect.
+Beg.\ UG: AB phase; Wilson loop; topological charge.
+Adv.\ UG: area law from strong coupling; topological charge calculation.
+MSc: lattice gauge MC; plaquette action; $SU(2)$.
+PhD: Chern--Simons TQFT; $\theta$-vacuum; axion; instanton number.
+\medskip\textbf{Assessment:}
+Set~A --- AB phase for given flux; Wilson loop; topological charge for instanton.
+Set~B --- area law from strong-coupling expansion; Chern--Simons action.
+Projects: (simple) AB interference pattern vs.\ flux; (complex) $SU(2)$ lattice: plaquette energy vs.\ coupling by MC.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L11: Numerical Path Integrals}]
+\textbf{90-min pacing:} (0--20~min) Why numerical PI: non-Gaussian integrals; PIMC via ring-polymer representation; bead-and-spring; (20--45~min) PIMC algorithm: Metropolis on ring polymer; staging moves for efficiency; energy estimator; Trotter error vs.\ $P$; (45--65~min) PIMD: ring polymer MD; thermostat (PILE); RPMD for rate theory; quantum effects in proton transfer; (65--90~min) Worm algorithm for bosons: worldlines; permutation cycles; BEC from winding number; sign problem for fermions; restricted PIMC.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Set up ring-polymer representation and describe PIMC.
+  \item Explain staging moves and their role in decorrelation.
+  \item Describe RPMD and its application to rate theory.
+  \item Outline worm algorithm and connection to BEC.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``each quantum particle becomes a ring of classical beads.''
+Beg.\ UG: ring polymer; energy estimator; Trotter error.
+Adv.\ UG: staging moves; RPMD; Trotter error analysis.
+MSc: worm algorithm; exchange cycles; superfluid density.
+PhD: sign problem; restricted PIMC; fixed-node PIMC for fermions.
+\medskip\textbf{Assessment:}
+Set~A --- ring polymer for HO; Trotter error vs.\ $P$; energy estimator.
+Set~B --- staging move derivation; winding number and superfluidity estimator.
+Projects: (simple) PIMC for 1D hydrogen: ground-state energy vs.\ temperature; (complex) RPMD rate constant for symmetric double well vs.\ exact quantum.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture L12: Berry Phase from Path Integrals}]
+\textbf{90-min pacing:} (0--20~min) Adiabatic evolution; Berry phase $\gamma_n=i\oint\bra{n}\nabla_R\ket{n}\cdot dR$; Berry connection and curvature; (20--45~min) PI derivation: coherent-state PI; Berry term $i\oint\alpha^*\dot\alpha\,d\tau$ as geometric phase; adiabatic limit; (45--65~min) Chern number: $C=\tfrac{1}{2\pi}\int_{\rm BZ}\mathcal{F}_{xy}d^2k\in\mathbb{Z}$; TKNN formula $\sigma_{xy}=Ce^2/h$; bulk--boundary correspondence; Haldane model; (65--90~min) Non-Abelian Berry phase: degenerate states; Wilczek--Zee holonomy; topological quantum computing; experimental observations.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Berry phase from the adiabatic coherent-state PI.
+  \item Define Berry curvature and Chern number.
+  \item State the TKNN formula and explain bulk-boundary correspondence.
+  \item Describe non-Abelian Berry phase and topological quantum computing.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``some quantum phases cannot be removed by any gauge choice'' --- topological invariants.
+Beg.\ UG: Berry phase for spin-$\tfrac{1}{2}$; solid-angle formula.
+Adv.\ UG: Chern number; TKNN; Haldane model.
+MSc: non-Abelian Berry phase; Wilczek--Zee; topological insulator.
+PhD: anyons in FQH; topological quantum error correction; holonomy in QFT.
+\medskip\textbf{Assessment:}
+Set~A --- Berry phase for adiabatic spin cycle; solid-angle formula.
+Set~B --- Chern number for Haldane model; TKNN from Kubo formula.
+Projects: (simple) Berry curvature map for two-band model; (complex) Haldane model topological phase diagram.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module II.2 Reading:} Zinn-Justin, \textit{QFT and Critical Phenomena}; Schulman, \textit{Techniques and Applications of Path Integration}; Kleinert, \textit{Path Integrals}; Nakahara, \textit{Geometry, Topology and Physics}.
+\end{tcolorbox}
+
 
 %=============================================================
 \subsection{Module II.3 --- Theory of Angular Momentum}
 \label{sec:mod-II3}
 %=============================================================
 
-\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture Overview}]
-\begin{longtable}{clp{7cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.3 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & $\mathfrak{su}(2)$ Algebra & $[\hat{J}_i,\hat{J}_j]=i\hbar\epsilon_{ijk}\hat{J}_k$; Casimir $\hat{\mathbf{J}}^2$\\
-L02 & Ladder Operators and Spectrum & $\hat{J}_\pm$; $\ket{j,m}$; quantisation of $j$\\
-L03 & Orbital Angular Momentum & $\hat{\mathbf{L}}=-i\hbar(\mathbf{r}\times\nabla)$; spherical harmonics\\
-L04 & Spin Angular Momentum & Pauli matrices; spinors; $SU(2)$ double cover of $SO(3)$\\
-L05 & Addition of Angular Momenta & Clebsch--Gordan coefficients; $j_1\otimes j_2$\\
-L06 & Wigner $3j$-Symbols and Racah Algebra & Selection rules; Wigner--Eckart theorem\\
-L07 & Spherical Tensor Operators & Rank-$k$ tensors; matrix element theorems\\
-L08 & Hydrogen Atom Full Solution & $SO(4)$ symmetry; $n,l,m,m_s$ quantum numbers\\
-L09 & Fine and Hyperfine Structure & Relativistic corrections; spin--orbit; contact term\\
-L10 & Wigner $D$-matrices & $D^{(j)}_{mm'}(\alpha,\beta,\gamma)$; applications\\
-L11 & Angular Momentum in Many-Body Systems & Shell model; $LS$ and $jj$ coupling\\
-L12 & Rotational Spectroscopy Connection & Rigid rotor; selection rules; molecular spectra\\
+L01 & $\mathfrak{su}(2)$ Algebra & Commutation relations; Casimir; irreps; Schur's lemma\\
+L02 & Ladder Operators and Spectrum & $\hat{J}_\pm$; quantisation of $j,m$; matrix elements; Schwinger bosons\\
+L03 & Orbital Angular Momentum & $\hat{\mathbf{L}}$ in spherical coordinates; spherical harmonics; addition theorem\\
+L04 & Spin Angular Momentum & Pauli matrices; spinors; $SU(2)$ double cover; spin coherent states\\
+L05 & Addition of Angular Momenta & Triangle rule; Clebsch--Gordan; singlet/triplet\\
+L06 & Wigner $3j$-Symbols and Racah Algebra & $3j,6j,9j$; selection rules; astrophysical line strengths\\
+L07 & Wigner--Eckart Theorem & Spherical tensor operators; reduced matrix elements; Land\'e $g$-factor\\
+L08 & Hydrogen Atom and $SO(4)$ Symmetry & Runge--Lenz; accidental degeneracy; parabolic coordinates\\
+L09 & Fine and Hyperfine Structure & Spin--orbit; Darwin; Fermi contact; 21~cm; Breit--Rabi\\
+L10 & Wigner $D$-matrices & Euler angles; $D^{(j)}$; symmetric top; NMR pulses\\
+L11 & Angular Momentum in Many-Body & Term symbols; Hund's rules; shell model; $LS$ vs.\ $jj$\\
+L12 & Rotational Spectroscopy & Rigid rotor; symmetric top; Raman; nuclear spin statistics\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.3 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L01: The $\mathfrak{su}(2)$ Algebra}]
+\textbf{90-min pacing:} (0--20~min) Rotation symmetry generators $\hat{J}_x,\hat{J}_y,\hat{J}_z$; algebra $[\hat{J}_i,\hat{J}_j]=i\hbar\epsilon_{ijk}\hat{J}_k$; Casimir $\hat{\mathbf{J}}^2$ commutes with all $\hat{J}_i$; (20--45~min) Irreducible representations: $j\in\{0,\tfrac{1}{2},1,\ldots\}$; simultaneous eigenstates $\ket{j,m}$; $(2j+1)$-dimensional; (45--70~min) $SU(2)$ vs.\ $SO(3)$: $2\pi$ rotation gives $-1$ for half-integer $j$; Schur's lemma; (70--90~min) Physical realisations: orbital AM ($j$ integer), spin ($j$ half-integer); fundamental vs.\ adjoint representation.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State $\mathfrak{su}(2)$ commutation relations and identify the Casimir.
+  \item Label irreps by $j,m$ and state their ranges.
+  \item Distinguish $SU(2)$ from $SO(3)$ and explain double-valued representations.
+  \item Apply Schur's lemma.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``angular momentum comes in units of $\hbar$.''
+Beg.\ UG: Casimir; $2\times2$ and $3\times3$ representations.
+Adv.\ UG: all irreps from Schur; $SU(2)$ vs.\ $SO(3)$.
+MSc: universal enveloping algebra; Casimir from Killing form.
+PhD: highest-weight theory; Verma modules; quantum groups $SU_q(2)$.
+\medskip\textbf{Assessment:}
+Set~A --- verify Casimir commutes with $\hat{J}_i$; eigenvalues for $j=1,\tfrac{3}{2}$.
+Set~B --- prove irreps labelled by $j\geq 0$; $SU(2)$ double cover.
+Projects: (simple) angular momentum algebra visualiser; (complex) character table for $j=0,\tfrac{1}{2},1,\tfrac{3}{2}$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L02: Ladder Operators and Spectrum}]
+\textbf{90-min pacing:} (0--20~min) Ladder operators $\hat{J}_\pm=\hat{J}_x\pm i\hat{J}_y$; $[\hat{J}_z,\hat{J}_\pm]=\pm\hbar\hat{J}_\pm$; (20--50~min) Matrix elements $\hat{J}_+\ket{j,m}=\hbar\sqrt{j(j+1)-m(m+1)}\ket{j,m+1}$; termination at $m=\pm j$; quantisation of $j$; (50--70~min) Explicit matrices $j=\tfrac{1}{2}$ (Pauli) and $j=1$; (70--90~min) Schwinger boson representation: $\hat{J}_+=\hat{a}^\dagger\hat{b}$, $\hat{J}_-=\hat{b}^\dagger\hat{a}$; spin coherent states.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive spectrum and matrix elements via ladder operators.
+  \item Explain quantisation of $j$ from ladder termination.
+  \item Write explicit matrices for $j=\tfrac{1}{2},1$.
+  \item Construct the Schwinger boson representation.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- matrix elements $\bra{j,m'}\hat{J}_x\ket{j,m}$ for $j=1$; $\hat{\mathbf{J}}^2$ check.
+Set~B --- quantisation from termination; Schwinger boson algebra.
+Projects: (simple) Bloch sphere visualiser; (complex) Schwinger bosons: generate all $j$ from two HO modes.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L03: Orbital Angular Momentum and Spherical Harmonics}]
+\textbf{90-min pacing:} (0--20~min) $\hat{\mathbf{L}}=-i\hbar(\mathbf{r}\times\nabla)$; $\hat{L}_z=-i\hbar\partial_\phi$; $\hat{\mathbf{L}}^2$ in spherical coordinates; (20--50~min) Spherical harmonics $Y_l^m(\theta,\phi)$; associated Legendre polynomials; orthonormality; parity $(-1)^l$; (50--70~min) Addition theorem; solid harmonics; multipole expansion; (70--90~min) Rigid rotor $\hat{H}=\hat{\mathbf{L}}^2/2I$; spectrum $E_l=\hbar^2l(l+1)/2I$; selection rule $\Delta l=\pm1$.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Express $\hat{L}_z$ and $\hat{\mathbf{L}}^2$ in spherical coordinates.
+  \item State properties of spherical harmonics and use the addition theorem.
+  \item Solve the rigid rotor and identify selection rules.
+  \item Apply multipole expansion.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $Y_l^m$ for $l=0,1$; addition theorem; rigid rotor spectrum.
+Set~B --- derive $\hat{\mathbf{L}}^2$ in spherical coordinates; prove addition theorem.
+Projects: (simple) 3D orbital visualiser; (complex) multipole expansion of arbitrary charge distribution.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L04: Spin Angular Momentum}]
+\textbf{90-min pacing:} (0--20~min) Spin: $\hat{\mathbf{S}}=\tfrac{\hbar}{2}\hat{\boldsymbol{\sigma}}$; Pauli matrices; spinors; (20--45~min) $SU(2)$ double cover; $2\pi$ rotation $\to-1$; neutron interferometry; (45--65~min) Spin in magnetic field: Larmor precession; Rabi formula; (65--90~min) Spin coherent states; Bloch sphere; over-completeness; spin-coherent-state PI.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Compute Pauli matrix algebra and spin precession.
+  \item Explain the $SU(2)$ double cover physically.
+  \item Solve spin in a magnetic field exactly.
+  \item Describe spin coherent states and the Bloch sphere.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Pauli algebra; Larmor frequency; $\langle\hat{S}_z\rangle(t)$.
+Set~B --- $SU(2)$ double cover; spin coherent state over-completeness.
+Projects: (simple) Bloch sphere trajectory for Rabi problem; (complex) spin-coherent-state PI: Berry phase.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L05: Addition of Angular Momenta}]
+\textbf{90-min pacing:} (0--20~min) $\hat{\mathbf{J}}=\hat{\mathbf{J}}_1+\hat{\mathbf{J}}_2$; uncoupled and coupled bases; triangle rule; (20--50~min) Clebsch--Gordan coefficients; symmetry properties; ladder-operator derivation; tables for $\tfrac{1}{2}\otimes\tfrac{1}{2}$, $\tfrac{1}{2}\otimes1$; (50--70~min) Singlet and triplet states; entanglement; (70--90~min) Spin--orbit states for hydrogen; $6j$-symbols as recoupling coefficients.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply the triangle rule and compute CG coefficients.
+  \item Construct singlet and triplet states.
+  \item Apply CG to spin--orbit coupling in hydrogen.
+  \item Define $6j$-symbols and explain recoupling.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- CG for $\tfrac{1}{2}\otimes1$; triplet/singlet states; spin--orbit $m_j$.
+Set~B --- derive CG by ladders; verify orthogonality of coupled basis.
+Projects: (simple) CG coefficient calculator; (complex) spin--orbit spectrum via CG recoupling.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L06: Wigner $3j$-Symbols and Racah Algebra}]
+\textbf{90-min pacing:} (0--20~min) Wigner $3j$-symbols; symmetry properties; relation to CG; (20--45~min) Racah formula; selection rules $m_1+m_2+m_3=0$ and triangle rule; (45--70~min) $6j$-symbols as recoupling; $9j$-symbols; orthogonality; (70--90~min) Applications: atomic $E1$ selection rules; Laporte rule; astrophysical line strengths.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define $3j$-symbol and state symmetry properties.
+  \item Derive selection rules from $3j$-symbols.
+  \item Define $6j$-symbols and explain recoupling.
+  \item Apply to atomic electric dipole selection rules.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $3j$-symbols for given $j,m$; identify forbidden transitions.
+Set~B --- $3j$ symmetry derivation; $6j$ orthogonality.
+Projects: (simple) atomic line-strength calculator; (complex) Racah algebra for hyperfine matrix elements.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L07: The Wigner--Eckart Theorem}]
+\textbf{90-min pacing:} (0--20~min) Spherical tensor operators $\hat{T}^{(k)}_q$; transformation under $\hat{J}$; rank-0 (scalar), rank-1 (vector), rank-2 (quadrupole); (20--45~min) Wigner--Eckart theorem: $\bra{j',m'}\hat{T}^{(k)}_q\ket{j,m}=\braket{j,m;k,q|j',m'}\tfrac{\bra{j'}\|\hat{T}^{(k)}\|\ket{j}}{\sqrt{2j'+1}}$; reduced matrix element; (45--65~min) Applications: $E1$ selection rules; dipole matrix elements; Land\'e $g$-factor; (65--90~min) Composite systems; $6j$-symbols; effective operators.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define spherical tensor operators and verify transformation properties.
+  \item State W-E theorem and identify reduced matrix element.
+  \item Apply W-E to selection rules and Land\'e $g$-factor.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- identify ranks; $E1,M1,E2$ selection rules; Land\'e $g$ for $^3P_1$.
+Set~B --- W-E proof from Schur; reduced matrix element for HO ladder.
+Projects: (simple) line-strength calculator; (complex) quadrupole moments for nuclear models.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L08: Hydrogen Atom and $SO(4)$ Symmetry}]
+\textbf{90-min pacing:} (0--20~min) Hydrogen Hamiltonian; separation; radial equation; (20--45~min) Radial wavefunctions; Laguerre polynomials; $E_n=-13.6/n^2$~eV; degeneracy $n^2$; (45--65~min) $SO(4)$: Runge--Lenz vector $\hat{\mathbf{A}}$; $[\hat{H},\hat{\mathbf{A}}]=0$; $\mathfrak{so}(4)$ from $\hat{\mathbf{L}}$ and rescaled $\hat{\mathbf{A}}$; algebraic derivation of $1/n^2$ spectrum; (65--90~min) Parabolic coordinates; $n_1,n_2,m$; Stark effect.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Solve the hydrogen radial equation and identify quantum numbers.
+  \item Define Runge--Lenz and show $[\hat{H},\hat{\mathbf{A}}]=0$.
+  \item Derive the spectrum algebraically from $\mathfrak{so}(4)$.
+  \item Describe parabolic coordinates and Stark effect.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $R_{nl}$ for $2s,2p$; $n=2$ degeneracy count.
+Set~B --- verify Runge--Lenz commutator; $n^2$ degeneracy from $\mathfrak{so}(4)$.
+Projects: (simple) hydrogen orbital density visualiser; (complex) algebraic spectrum without radial equation.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L09: Fine and Hyperfine Structure}]
+\textbf{90-min pacing:} (0--20~min) Three fine-structure corrections: relativistic KE, spin--orbit, Darwin; (20--45~min) First-order PT: $\hat{\mathbf{L}}\cdot\hat{\mathbf{S}}=\tfrac{1}{2}(\hat{\mathbf{J}}^2-\hat{\mathbf{L}}^2-\hat{\mathbf{S}}^2)$; $\langle r^{-3}\rangle_{nl}$; energy $E_{nj}^{(1)}$; (45--65~min) Hyperfine: Fermi contact + orbital + dipole--dipole; $\hat{\mathbf{F}}=\hat{\mathbf{J}}+\hat{\mathbf{I}}$; 21~cm line; (65--90~min) Zeeman: weak (anomalous) and strong (Paschen--Back); Breit--Rabi diagram.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Evaluate the three fine-structure corrections.
+  \item Derive spin--orbit splitting via PT in the $j$-basis.
+  \item Describe hyperfine Hamiltonian and 21~cm line.
+  \item Analyse Zeeman effect in weak and strong limits.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- fine-structure splitting of $2p$; 21~cm energy.
+Set~B --- $\langle r^{-3}\rangle_{nl}$; Darwin term; Breit--Rabi diagram.
+Projects: (simple) hydrogen energy-level diagram with fine and hyperfine; (complex) Zeeman splitting of hyperfine levels: Breit--Rabi formula.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L10: Wigner $D$-matrices}]
+\textbf{90-min pacing:} (0--20~min) Euler angles; rotation operator $\hat{R}(\alpha,\beta,\gamma)=e^{-i\alpha\hat{J}_z/\hbar}e^{-i\beta\hat{J}_y/\hbar}e^{-i\gamma\hat{J}_z/\hbar}$; (20--45~min) $D^{(j)}_{m'm}(\alpha,\beta,\gamma)$; $d^{(j)}(\beta)$ real matrices; explicit forms for $j=\tfrac{1}{2},1$; (45--65~min) Properties: unitarity; orthogonality $\int D^{(j)*}D^{(j')}d\Omega\propto\delta_{jj'}$; connection $D^{(l)*}_{m0}\propto Y_l^m$; (65--90~min) Applications: rotation of $Y_l^m$; symmetric top; NMR pulse sequences; single-qubit gates.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Parametrise $SO(3)$ and compute $D$-matrices for $j=\tfrac{1}{2},1$.
+  \item Apply orthogonality and connection to spherical harmonics.
+  \item Rotate $Y_l^m$ and analyse symmetric top.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $D^{(1/2)}(\alpha,\beta,\gamma)$; rotate $Y_1^0$; orthogonality.
+Set~B --- group multiplication law; symmetric top selection rules.
+Projects: (simple) $D$-matrix rotation visualiser; (complex) symmetric top levels and NMR pulses.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L11: Angular Momentum in Many-Body Systems}]
+\textbf{90-min pacing:} (0--20~min) Multi-electron atoms: $LS$ vs.\ $jj$ coupling; term symbols $^{2S+1}L_J$; Hund's rules; (20--45~min) $LS$ coupling: spin--orbit via W-E; Lande interval rule $E(J)-E(J-1)=\tfrac{A}{2}J$; (45--65~min) Nuclear shell model: magic numbers; spin--orbit splitting; $nlj$ states; (65--90~min) $jj$ coupling for heavy nuclei; intermediate coupling; Racah for many-body.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct term symbols and apply Hund's rules.
+  \item Derive the Lande interval rule.
+  \item Explain magic numbers from the shell model.
+  \item Distinguish $LS$ and $jj$ coupling.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- term symbols for $p^2,d^3$; Hund's ground state; interval rule for $^3P$.
+Set~B --- Lande interval rule; $LS$ vs.\ $jj$ for Pb vs.\ C.
+Projects: (simple) atomic term symbol calculator; (complex) shell model: magic numbers from spin--orbit.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture L12: Rotational Spectroscopy}]
+\textbf{90-min pacing:} (0--20~min) Rigid rotor: $E_J=\hbar^2J(J+1)/2I$; $B=\hbar/4\pi cI$; (20--45~min) Selection rules $\Delta J=\pm1$; microwave spectrum; bond lengths; centrifugal distortion; (45--65~min) Symmetric top: prolate/oblate; $E_{J,K}=\hbar^2[BJ(J+1)+(A-B)K^2]$; (65--90~min) Raman: $\Delta J=0,\pm2$; nuclear spin statistics; ortho/para-H$_2$; alternating intensity.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive rigid rotor spectrum and selection rules.
+  \item Extract $B$ and bond length from rotational spectrum.
+  \item Solve symmetric top and identify quantum numbers.
+  \item Explain nuclear spin statistics and intensity alternation.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- rotational spectrum of HCl; $B$ and bond length; centrifugal distortion.
+Set~B --- symmetric top energy levels; ortho/para-H$_2$ statistics.
+Projects: (simple) simulated rotational spectrum of a diatomic; (complex) ortho/para-H$_2$ ratio vs.\ temperature.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module II.3 Reading:} Sakurai \& Napolitano, Ch.~3; Edmonds, \textit{Angular Momentum in QM}; Varshalovich, Moskalev \& Khersonskii, \textit{Quantum Theory of Angular Momentum}; Bunker \& Jensen, \textit{Molecular Symmetry and Spectroscopy}.
 \end{tcolorbox}
 
 %=============================================================
@@ -2764,27 +3262,225 @@ L12 & Rotational Spectroscopy Connection & Rigid rotor; selection rules; molecul
 \label{sec:mod-II4}
 %=============================================================
 
-\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture Overview}]
-\begin{longtable}{clp{7cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.4 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & Fock Space & Occupation number representation; bosons and fermions;
-     $[\hat{a}_i,\hat{a}_j^\dagger]=\delta_{ij}$ vs.\ $\{\hat{c}_i,\hat{c}_j^\dagger\}=\delta_{ij}$\\
-L02 & Operators in Second Quantisation & One- and two-body operators; normal ordering; Wick's theorem\\
-L03 & Homogeneous Electron Gas & Jellium model; Fermi sea; exchange energy\\
-L04 & Hartree--Fock in Second Quantisation & Mean-field decoupling; HF equations; Koopman's theorem\\
-L05 & Beyond Mean Field & Configuration interaction; MP2; diagrammatics\\
-L06 & Green's Functions I & Single-particle GF; Lehmann representation; spectral function\\
-L07 & Green's Functions II & Dyson equation; self-energy; quasiparticles\\
-L08 & Interacting Bosons: BEC & Bogoliubov transformation; phonon spectrum; superfluidity\\
-L09 & Interacting Fermions: BCS & Cooper pairs; gap equation; Bogoliubov--Valatin transformation\\
-L10 & The Hubbard Model & Tight-binding + interactions; half-filling; Mott transition\\
-L11 & Quantum Magnetism & Heisenberg exchange; spin waves; Holstein--Primakoff\\
-L12 & Towards Non-Equilibrium & Keldysh formalism motivation; drive-dissipation balance\\
+L01 & Fock Space & Occupation number; creation/annihilation; Jordan--Wigner; field operators\\
+L02 & Operators in 2nd Quantisation & One- and two-body operators; normal ordering; Wick's theorem\\
+L03 & Homogeneous Electron Gas & Jellium; Fermi sea; HF exchange; Lindhard; Friedel; plasmon\\
+L04 & HF in 2nd Quantisation & Mean-field decoupling; Brillouin; Koopman; HFB; Nambu\\
+L05 & Beyond Mean Field & CI; MP2; Goldstone diagrams; linked cluster; GW; RPA\\
+L06 & Green's Functions I & Retarded GF; Lehmann; spectral function; Galitskii--Migdal\\
+L07 & Green's Functions II & Dyson equation; HF and GW self-energies; quasiparticle weight\\
+L08 & Interacting Bosons: BEC & Bogoliubov transformation; Goldstone; Landau criterion; vortices\\
+L09 & Interacting Fermions: BCS & Cooper instability; gap equation; Bogoliubov--Valatin; BCS--BEC\\
+L10 & The Hubbard Model & Tight-binding; Mott insulator; superexchange; DMFT\\
+L11 & Quantum Magnetism & Heisenberg model; Holstein--Primakoff; magnons; frustrated magnets\\
+L12 & Towards Non-Equilibrium & Keldysh motivation; Floquet theory; driven-dissipative balance\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.4 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L01: Fock Space and Second Quantisation}]
+\textbf{90-min pacing:} (0--20~min) Fock space $\mathcal{F}=\bigoplus_{N=0}^\infty\mathcal{H}^{(N)}$; vacuum; (20--50~min) Bosons $[\hat{a}_i,\hat{a}_j^\dagger]=\delta_{ij}$; fermions $\{\hat{c}_i,\hat{c}_j^\dagger\}=\delta_{ij}$; Pauli exclusion from $\hat{c}^2=0$; occupation basis; (50--70~min) Many-body states from creation operators; inner products; comparison with Slater determinants; Jordan--Wigner string; (70--90~min) Field operators $\hat\psi(\mathbf{r})=\sum_k\phi_k\hat{c}_k$; density operator $\hat{n}(\mathbf{r})=\hat\psi^\dagger\hat\psi$.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct Fock space and define creation/annihilation operators.
+  \item Show Pauli exclusion from fermionic anti-commutation.
+  \item Write many-body states as products of creation operators.
+  \item Define field operators and their (anti-)commutation relations.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $\hat{a}\hat{a}^\dagger\ket{n}$; verify Pauli from $\hat{c}^2=0$; write $\ket{1,0,1,0}$.
+Set~B --- Jordan--Wigner derivation; field operator commutation.
+Projects: (simple) boson vs.\ fermion occupation statistics; (complex) Jordan--Wigner for 1D spin chain: map to free fermions.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L02: Operators in Second Quantisation}]
+\textbf{90-min pacing:} (0--20~min) One-body: $\hat{T}=\sum_{ij}t_{ij}\hat{c}_i^\dagger\hat{c}_j$; kinetic energy; external potential; (20--45~min) Two-body: $\hat{V}=\tfrac{1}{2}\sum_{ijkl}V_{ijkl}\hat{c}_i^\dagger\hat{c}_j^\dagger\hat{c}_l\hat{c}_k$; Coulomb interaction; normal ordering; Wick's theorem; (45--65~min) Contractions; compute $\langle\hat{T}\rangle,\langle\hat{V}\rangle$ in Slater determinant; (65--90~min) Generalised Wick; Isserlis theorem; Feynman diagrams as Wick contractions.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write one- and two-body operators in second quantisation.
+  \item Apply Wick's theorem to evaluate expectation values.
+  \item Draw Feynman diagrams as Wick contractions.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- one-body Hamiltonian; $\langle\hat{V}\rangle$ in HF by Wick.
+Set~B --- prove Wick for 4-operator product; generalised Wick for BCS state.
+Projects: (simple) Wick contraction calculator; (complex) Wick-based HF energy: all diagrams.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L03: The Homogeneous Electron Gas}]
+\textbf{90-min pacing:} (0--20~min) Jellium model; Hamiltonian components; (20--45~min) Fermi sea; $k_F=(3\pi^2n)^{1/3}$; kinetic energy; (45--65~min) HF exchange energy $E_{\rm ex}=-\tfrac{3e^2k_F}{4\pi}$; correlation energy; $r_s$ parameter; Gell-Mann--Brueckner high-density limit; (65--90~min) Lindhard dielectric function; Thomas--Fermi screening; plasmon; Friedel oscillations.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Set up jellium model and compute HF exchange energy.
+  \item Define correlation energy and describe its $r_s$ dependence.
+  \item Derive Thomas--Fermi screening and identify the plasmon.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $k_F,E_F$; HF exchange energy; Gell-Mann--Brueckner high-density limit.
+Set~B --- Lindhard function at $q\to0$; plasmon dispersion.
+Projects: (simple) HEG energy vs.\ $r_s$; (complex) Lindhard dielectric function and Friedel oscillations.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L04: Hartree--Fock in Second Quantisation}]
+\textbf{90-min pacing:} (0--20~min) HF ansatz; variational principle; orbital rotations; (20--45~min) Mean-field decoupling; Fock matrix; Brillouin's theorem; Koopman's theorem; (45--65~min) SCF density matrix idempotency; symmetry breaking; (65--90~min) HFB generalisation; pairing; BCS as HFB; Bogoliubov transformation in Nambu space.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive HF mean-field decoupling and prove Brillouin's theorem.
+  \item Describe the HFB generalisation and BCS connection.
+  \item Perform a Bogoliubov transformation in Nambu space.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- mean-field decoupling; Brillouin theorem check.
+Set~B --- Thouless stability; Bogoliubov transformation: diagonalise HFB matrix.
+Projects: (simple) HF for Hubbard dimer; (complex) HFB pairing: gap equation.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L05: Beyond Mean Field --- MP2, Diagrams, and Resummations}]
+\textbf{90-min pacing:} (0--20~min) Correlation energy; CI; size inconsistency; (20--45~min) MBPT: MP2 $E^{(2)}=\sum_{ia,jb}\tfrac{|\langle\Phi_{ij}^{ab}|\hat{V}|\Phi_0\rangle|^2}{E_0-E_{ij}^{ab}}$; Goldstone diagrams; (45--65~min) Linked-cluster theorem; MP2 as two Goldstone diagrams; MP3; Dyson equation; (65--90~min) GW: screened interaction $W=v/(1-vP)$; self-consistent GW; RPA as ring-diagram sum; connection to TDDFT.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Compute MP2 energy and draw its Goldstone diagrams.
+  \item State the linked-cluster theorem.
+  \item Describe GW and RPA as diagrammatic resummations.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- MP2 for H$_2$; two Goldstone diagrams; size-consistency check.
+Set~B --- linked-cluster derivation; Dyson equation from self-energy.
+Projects: (simple) MP2 correlation energy vs.\ basis size; (complex) RPA correlation energy for HEG.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L06: Green's Functions I}]
+\textbf{90-min pacing:} (0--20~min) Retarded GF $G^R(t)=-i\theta(t)\langle\{\hat{c}(t),\hat{c}^\dagger(0)\}\rangle$; (20--50~min) Lehmann representation; spectral function $A(k,\omega)=-2\text{Im}G^R$; poles at ionisation/affinity energies; (50--70~min) Non-interacting GF; quasiparticle peak; incoherent background; $Z_k$; lifetime; (70--90~min) Observables: Galitskii--Migdal; DOS; momentum distribution.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define retarded GF and derive the Lehmann representation.
+  \item Interpret poles as ionisation/affinity energies.
+  \item Compute spectral function and DOS for a non-interacting system.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- non-interacting GF; spectral function; DOS for HEG.
+Set~B --- Lehmann representation; Galitskii--Migdal energy.
+Projects: (simple) spectral function: non-interacting to quasiparticle; (complex) Lehmann from CI eigenvalues of a cluster.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L07: Green's Functions II --- Dyson Equation}]
+\textbf{90-min pacing:} (0--20~min) Self-energy $\Sigma$ via Dyson $G=G_0+G_0\Sigma G$; (20--45~min) HF self-energy diagrams; GW: $\Sigma^{GW}=iGW$; $W=v/(1-vP)$; (45--65~min) Quasiparticle equation; $Z_k=[1-\partial_\omega\text{Re}\Sigma]^{-1}$; lifetime $\tau^{-1}=-2Z_k\text{Im}\Sigma$; (65--90~min) $G_0W_0$ band gaps; ARPES; self-consistent GW.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive Dyson equation and compute HF and GW self-energies.
+  \item Solve quasiparticle equation; compute $Z_k$ and lifetime.
+  \item Describe $G_0W_0$ accuracy for band gaps.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- HF and GW diagrams; $Z_k$ for model self-energy; DOS from $G$.
+Set~B --- Dyson derivation; prove $Z_k\leq1$; lifetime from Im$\Sigma$.
+Projects: (simple) model spectral function: QP peak + satellite; (complex) $G_0W_0$ band gap for Si.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L08: Interacting Bosons and BEC}]
+\textbf{90-min pacing:} (0--20~min) Weakly interacting Bose gas; BEC: $\hat{a}_0\approx\sqrt{N_0}$; (20--50~min) Bogoliubov transformation; dispersion $E_k=\sqrt{\varepsilon_k(\varepsilon_k+2gn_0)}$; phonon mode; Goldstone; (50--70~min) Depletion; Lee--Huang--Yang; Landau criterion; two-fluid model; (70--90~min) Quantised vortices; BKT in 2D; GP equation; experimental realisations.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Perform Bogoliubov transformation and derive dispersion.
+  \item Identify Goldstone mode and explain Landau criterion.
+  \item Describe vortices and GP equation.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Bogoliubov spectrum; depletion; Landau critical velocity.
+Set~B --- Bogoliubov derivation; Goldstone: $E_k\propto k$.
+Projects: (simple) Bogoliubov dispersion vs.\ free particle; (complex) GP vortex solution and energy.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L09: Interacting Fermions and BCS Theory}]
+\textbf{90-min pacing:} (0--20~min) Cooper instability; exponential binding energy $E_B\sim-2\hbar\omega_D e^{-1/\lambda}$; (20--50~min) BCS wavefunction; gap equation $\Delta_k=-\sum_{k'}V_{kk'}\tfrac{\Delta_{k'}}{2E_{k'}}$; quasiparticle energy $E_k=\sqrt{\xi_k^2+|\Delta_k|^2}$; (50--70~min) Bogoliubov--Valatin transformation; condensation energy; Meissner effect; (70--90~min) BCS--BEC crossover; Feshbach resonance; unitary Fermi gas; cold atoms.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive Cooper pairing and the gap equation.
+  \item Perform the Bogoliubov--Valatin transformation.
+  \item Describe BCS--BEC crossover.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Cooper binding energy; gap equation at $T=0$; quasiparticle spectrum.
+Set~B --- derive gap equation; Bogoliubov--Valatin derivation.
+Projects: (simple) BCS gap vs.\ coupling $\lambda$; (complex) BCS--BEC crossover: quasiparticle spectrum vs.\ $1/k_Fa_s$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L10: The Hubbard Model}]
+\textbf{90-min pacing:} (0--20~min) Tight-binding + Hubbard $U$; Hamiltonian; (20--45~min) Half-filling: non-interacting metal; Mott insulator at large $U$; spectral weight transfer; (45--65~min) Limits: $U\to0$ (perturbation theory); $U\to\infty$ (Heisenberg/$t$--$J$); magnetic phase diagram; Stoner criterion; (65--90~min) Exact 1D solution (Bethe ansatz); spinon--holon separation; DMFT; high-$T_c$ cuprates.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the Hubbard Hamiltonian and describe its two limiting cases.
+  \item Explain the Mott insulator and derive the Heisenberg model.
+  \item Describe DMFT and connections to high-$T_c$.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- tight-binding band; Mott gap; Stoner criterion.
+Set~B --- superexchange derivation ($t$--$J$ model); Mott transition.
+Projects: (simple) Hubbard dimer: exact vs.\ HF; (complex) DMFT self-consistency for Bethe lattice.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L11: Quantum Magnetism}]
+\textbf{90-min pacing:} (0--20~min) Heisenberg model $J\sum\hat{\mathbf{S}}_i\cdot\hat{\mathbf{S}}_j$; mean-field; (20--45~min) Holstein--Primakoff: $\hat{S}^+\approx\sqrt{2S}\hat{a}$; magnon dispersion $\omega_k=4JS(1-\gamma_k)$; Goldstone at $k=0$; (45--65~min) AFM: two-sublattice; Bogoliubov transformation; zero-point fluctuations; Mermin--Wagner in 1D; (65--90~min) Frustrated magnets; quantum spin liquids; Kitaev honeycomb: exact solution via Majorana fermions.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply Holstein--Primakoff and derive magnon dispersion.
+  \item Explain zero-point fluctuations in AFM and Mermin--Wagner.
+  \item Describe frustrated magnets and quantum spin liquids.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- magnon dispersion for FM; mean-field $T_c$; AFM zero-point fluctuation.
+Set~B --- AFM Bogoliubov transformation; Mermin--Wagner sketch.
+Projects: (simple) magnon dispersion for 1D/2D FM; (complex) AFM spin-wave theory: zero-point reduction vs.\ dimension.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture L12: Towards Non-Equilibrium}]
+\textbf{90-min pacing:} (0--20~min) Limitations of equilibrium: laser-driven systems, biased junctions, periodic drives; (20--45~min) Keldysh contour motivation; closed-time-path; contour-ordered GF; (45--65~min) Floquet theory: $\ket{\psi(t)}=e^{-i\varepsilon t/\hbar}\ket{u(t)}$; quasi-energies; effective Floquet Hamiltonian from Magnus; (65--90~min) Driven-dissipative steady states; Lindblad from Keldysh limit; Floquet topological insulators; time-crystalline order.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain the Keldysh contour and its relation to real-time GFs.
+  \item State Floquet's theorem and derive the effective Hamiltonian.
+  \item Describe driven-dissipative steady states.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Keldysh contour GF relations; Floquet quasi-energies for two-level system.
+Set~B --- Magnus expansion for Floquet Hamiltonian; Lindblad steady-state derivation.
+Projects: (simple) Floquet quasi-energy spectrum for driven TLS; (complex) Floquet engineering of Haldane model from driven graphene.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module II.4 Reading:} Fetter \& Walecka, \textit{Quantum Theory of Many-Particle Systems}; Bruus \& Flensberg, \textit{Introduction to Many-Body QT in Condensed Matter}; Altland \& Simons, \textit{Condensed Matter Field Theory}; Auerbach, \textit{Interacting Electrons and Quantum Magnetism}.
 \end{tcolorbox}
 
 %=============================================================
@@ -2792,26 +3488,230 @@ L12 & Towards Non-Equilibrium & Keldysh formalism motivation; drive-dissipation 
 \label{sec:mod-II5}
 %=============================================================
 
-\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture Overview}]
-\begin{longtable}{clp{7cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.5 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & Motivation and Scope & Transport; ultrafast dynamics; driven systems; failures of equilibrium\\
-L02 & The Keldysh Contour & Closed time path; forward/backward branches; contour ordering\\
-L03 & Contour-Ordered Green's Functions & $G^c$, $G^<$, $G^>$, $G^R$, $G^A$, $G^K$\\
-L04 & Langreth Rules & Analytic continuation; convolution on contour\\
-L05 & Kadanoff--Baym Equations & Functional derivation; two-time structure; initial correlations\\
-L06 & Self-Energies and Approximations & Hartree--Fock; GW; second Born; T-matrix\\
-L07 & Quantum Boltzmann Equation & Gradient expansion; kinetic limit; quasi-classical transport\\
-L08 & Steady-State Transport & Meir--Wingreen formula; Landauer--B\"uttiker; molecular junctions\\
-L09 & Electron--Phonon Coupling & Fr\"ohlich Hamiltonian; polaron; phonon self-energy\\
-L10 & Pump--Probe Dynamics & Two-time spectra; transient absorption; non-equilibrium spectral functions\\
-L11 & Driven-Dissipative Systems & Lindblad from Keldysh; NEGF + bath; Floquet--Keldysh\\
-L12 & Numerical Methods & Time-stepping KB equations; HPC considerations; benchmarks\\
+L01 & Motivation and Scope & Transport; ultrafast; driven systems; failure of equilibrium MBPT\\
+L02 & The Keldysh Contour & CTP; forward/backward branches; contour ordering; generating functional\\
+L03 & Contour Green's Functions & $G^c,G^<,G^>,G^R,G^A,G^K$; LO matrix; FDT; Matsubara limit\\
+L04 & Langreth Rules & Analytic continuation; convolution identities; GW and 2B self-energies\\
+L05 & Kadanoff--Baym Equations & EOM; two-time structure; $\Phi$-derivable; conserving approximations\\
+L06 & Self-Energies & HF; GW; second Born; T-matrix; KB conservation theorem\\
+L07 & Quantum Boltzmann Equation & Wigner transform; gradient expansion; collision integral; Drude\\
+L08 & Steady-State Transport & Meir--Wingreen; Landauer; Kondo; IETS; shot noise\\
+L09 & Electron--Phonon Coupling & Fr\"ohlich; Fan--Migdal; polaron; Eliashberg; $T_c$\\
+L10 & Pump--Probe Dynamics & Time-resolved spectral function; Peierls; tr-ARPES; thermalisation\\
+L11 & Driven-Dissipative Systems & Lindblad from NEGF; Floquet--Keldysh; NESS; polaritons\\
+L12 & Numerical NEGF & Time-stepping KB; GKBA; NESSi; ML surrogate self-energies\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.5 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L01: Motivation and Scope of NEGF}]
+\textbf{90-min pacing:} (0--20~min) Paradigmatic non-equilibrium situations: molecular junctions under bias; laser-driven solids; open quantum systems; (20--45~min) Why equilibrium MBPT fails: adiabatic switching; no transient dynamics; (45--65~min) Survey of formalisms: Redfield/Lindblad (Markovian); TDCI (exponential); NEGF (systematically improvable); (65--90~min) Key observables: $I(t)$; non-equilibrium spectral function; tr-ARPES; entanglement entropy from NEGF.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Identify physical situations requiring non-equilibrium treatment.
+  \item Explain why Matsubara MBPT fails for driven systems.
+  \item Compare Lindblad, TDCI, and NEGF in accuracy and cost.
+  \item List observables accessible from the NEGF.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- identify equilibrium vs.\ non-equilibrium scenarios; match formalism to problem.
+Set~B --- limitations of Matsubara: why adiabatic switching fails.
+Projects: (simple) scenario classification exercise; (complex) NEGF vs.\ TDDFT comparison for driven quantum dot.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L02: The Keldysh Contour}]
+\textbf{90-min pacing:} (0--20~min) CTP $\mathcal{C}=\mathcal{C}^+\cup\mathcal{C}^-$; motivation from $\langle\hat{O}(t)\rangle=\operatorname{Tr}[\hat{U}(t_0,t)\hat{O}\hat{U}(t,t_0)\hat\rho_0]$; (20--45~min) Contour-ordering $T_\mathcal{C}$; contour-ordered GF $G^c=-i\langle T_\mathcal{C}\hat{c}(t)\hat{c}^\dagger(t')\rangle$; (45--65~min) Perturbation theory on contour; Wick's theorem; (65--90~min) Keldysh generating functional; Schwinger--Dyson equations.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct the CTP contour and justify its necessity.
+  \item Define contour ordering and the contour GF.
+  \item Apply Wick's theorem on the Keldysh contour.
+  \item Derive GFs as functional derivatives of the generating functional.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- contour ordering examples; $G^c$ for non-interacting system.
+Set~B --- Wick on contour; Keldysh action for free fermions.
+Projects: (simple) diagrammatic free-fermion GF on Keldysh contour; (complex) Keldysh generating functional: $G^<$ and $G^>$ as derivatives.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L03: Contour-Ordered Green's Functions}]
+\textbf{90-min pacing:} (0--20~min) Six real-time GFs from contour decomposition: $G^c,G^{\bar c},G^<,G^>,G^R,G^A$; (20--45~min) Keldysh GF $G^K=G^<+G^>$; Larkin--Ovchinnikov (LO) matrix $\hat{G}=\begin{pmatrix}G^R&G^K\\0&G^A\end{pmatrix}$; causality; (45--65~min) FDT at equilibrium: $G^K=(1-2f)(G^R-G^A)$; Lehmann for $G^R$ and $G^<$; (65--90~min) Analytic continuation Keldysh$\to$Matsubara; connection at equilibrium.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define all six real-time GFs and state their relations.
+  \item Construct the LO matrix representation.
+  \item Derive the FDT from Keldysh formalism.
+  \item Connect Keldysh GFs to Matsubara GF at equilibrium.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $G^R,G^<,G^>$ for non-interacting fermion; verify FDT.
+Set~B --- LO matrix algebra; analytic continuation to Matsubara.
+Projects: (simple) GF component visualiser at various temperatures; (complex) LO Dyson equation for model self-energy.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L04: Langreth Rules}]
+\textbf{90-min pacing:} (0--20~min) Need for Langreth rules: contour convolutions in real time; (20--50~min) Basic rules: $C^R=A^R B^R$; $C^<=A^R B^<+A^< B^A$; $C^K=A^R B^K+A^K B^A$; $n$-fold generalisations; (50--70~min) Mixed products for vertex corrections; (70--90~min) GW self-energy $\Sigma^R=iG^RW^<+iG^<W^R$; second-Born $\Sigma^<=i^2G^<G^<G^>$; T-matrix.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State and derive Langreth rules for contour convolutions.
+  \item Apply rules to convert contour diagrams to real-time expressions.
+  \item Derive real-time GW and second-Born self-energies.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- apply Langreth rules to product of two GFs; HF self-energy in real time.
+Set~B --- GW $\Sigma^{R,<}$ from Langreth; verify equilibrium FDT.
+Projects: (simple) Langreth rule calculator; (complex) second-Born $\Sigma^{R,<}$: verify FDT at equilibrium.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L05: Kadanoff--Baym Equations}]
+\textbf{90-min pacing:} (0--20~min) EOM for $G^c(t,t')$: apply $i\partial_t$; (20--50~min) KB equations for $G^<$ and $G^R$; two-time integro-differential structure; initial conditions; (50--65~min) Matsubara track for correlated initial states; (65--90~min) $\Phi$-derivable conserving approximations: $\Sigma=\delta\Phi/\delta G$; KB conservation theorem.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the KB equations for $G^R$ and $G^<$.
+  \item Explain two-time structure and initial conditions.
+  \item Define conserving approximations via the $\Phi$-functional.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- EOM for $G^<$; particle conservation for HF self-energy.
+Set~B --- derive KB from $\Phi$-functional; conserving approximation check.
+Projects: (simple) KB for two-level system: exact vs.\ HF; (complex) energy conservation in KB with second-Born for quantum dot.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L06: Self-Energies and Conserving Approximations}]
+\textbf{90-min pacing:} (0--20~min) Self-energy hierarchy from $\Phi$-functional; HF $\Phi_{\rm HF}$; (20--45~min) GW: $\Phi_{\rm GW}=-\tfrac{i}{2}\operatorname{Tr}[\ln(1-vP)]$; $W=v+vPW$; $\Sigma^{\rm GW}=iGW$; $\mathcal{O}(N^3)$/step; (45--65~min) Second Born: $\Sigma^{\rm 2B}=i^2VGGV+\text{exchange}$; T-matrix: ladder resummation; (65--90~min) Comparison: accuracy vs.\ cost; benchmark vs.\ TDCI; KB conservation theorem.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive GW, second-Born, and T-matrix from $\Phi$-functionals.
+  \item State the KB conservation theorem.
+  \item Compare self-energy approximations in accuracy and scaling.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- HF and GW diagrams; identify conserving vs.\ non-conserving.
+Set~B --- $\Phi$ derivation of GW; KB conservation theorem proof.
+Projects: (simple) GW vs.\ HF spectral function for Hubbard dimer; (complex) benchmark GW vs.\ 2B vs.\ exact.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L07: Quantum Boltzmann Equation}]
+\textbf{90-min pacing:} (0--20~min) Wigner transform: $T=(t+t')/2$, $\omega\leftrightarrow t-t'$; $G(T,\omega)$; (20--45~min) Gradient expansion of KB; QBE: $\partial_T f+\mathbf{v}_k\cdot\nabla f+\mathbf{F}\cdot\partial_k f=I_{\rm coll}[f]$; Wigner distribution $f(T,\mathbf{k})=G^</(2\pi)$; (45--65~min) Collision integral from self-energy; Born approximation; H-theorem; (65--90~min) Drude conductivity; electron--phonon scattering; relaxation-time approximation; beyond Born.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Perform Wigner transform and gradient expansion of KB equations.
+  \item Derive the QBE and identify the collision integral.
+  \item Compute Drude conductivity from the QBE.
+  \item State the H-theorem and entropy production.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Wigner transform of $G^<$; Drude from RTA.
+Set~B --- gradient expansion of KB; collision integral from Born self-energy.
+Projects: (simple) Boltzmann relaxation to equilibrium; (complex) electron--phonon QBE: $T$-dependent resistivity.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L08: Steady-State Transport}]
+\textbf{90-min pacing:} (0--20~min) Nanojunction: central region + leads L,R at $\mu_L,\mu_R$; (20--50~min) Meir--Wingreen formula; embedding self-energy $\Sigma^R_{L/R}$; broadening $\Gamma_{L/R}$; Landauer non-interacting limit: $T(\omega)=\operatorname{Tr}[\Gamma_L G^R\Gamma_R G^A]$; (50--70~min) Kondo effect; IETS; shot noise; Fano factor; (70--90~min) Experimental comparison: STM break junction; mechanically controlled break junction.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Meir--Wingreen formula.
+  \item Obtain the Landauer formula in the non-interacting limit.
+  \item Compute transmission for a molecular junction.
+  \item Describe Kondo effect and IETS.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Landauer for single-channel wire; transmission for resonant level.
+Set~B --- Meir--Wingreen derivation; Kondo temperature estimate.
+Projects: (simple) Landauer transmission: conductance vs.\ gate voltage; (complex) Meir--Wingreen for Anderson model: interacting vs.\ non-interacting.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L09: Electron--Phonon Coupling}]
+\textbf{90-min pacing:} (0--20~min) Fr\"ohlich Hamiltonian $\hat{H}_{\rm el-ph}=\sum_{kq}g_{kq}\hat{c}^\dagger_{k+q}\hat{c}_k(\hat{b}_q+\hat{b}^\dagger_{-q})$; (20--45~min) Fan--Migdal electron self-energy; phonon self-energy from electrons; (45--65~min) Polaron: Fr\"ohlich effective mass; Holstein small polaron; Lang--Firsov; (65--90~min) Eliashberg theory: $\alpha^2F(\omega)$; $\lambda=2\int d\omega\alpha^2F/\omega$; McMillan $T_c$; comparison to BCS.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the Fr\"ohlich Hamiltonian and derive Fan--Migdal self-energy.
+  \item Describe the polaron and compute its effective mass.
+  \item Explain Eliashberg theory and the phonon contribution to $T_c$.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Fr\"ohlich coupling; electron lifetime; Drude resistivity.
+Set~B --- Fan--Migdal self-energy derivation; large polaron effective mass.
+Projects: (simple) electron spectral function renormalisation from phonons; (complex) Eliashberg $T_c$ from ab initio $\alpha^2F$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L10: Pump--Probe Dynamics}]
+\textbf{90-min pacing:} (0--20~min) Femtosecond pump--probe; time-resolved ARPES; transient absorption; (20--45~min) Non-equilibrium spectral function $A(T,\omega)$; Wigner-transformed $G^<$; time-energy uncertainty; (45--65~min) KB equations for pump-driven system; Peierls substitution; photo-excited $f(T,\mathbf{k})$; (65--90~min) Relaxation: electron--electron thermalisation; electron--phonon cooling; Auger recombination; comparison to experiment.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define time-resolved spectral function and relate to tr-ARPES.
+  \item Set up KB equations for a laser-driven solid.
+  \item Describe the hierarchy of relaxation processes after photo-excitation.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- non-equilibrium $f(\mathbf{k},T)$ after Gaussian pulse; energy conservation check.
+Set~B --- Peierls substitution derivation; KB for driven two-band model.
+Projects: (simple) two-band model: population dynamics after laser pulse; (complex) tr-ARPES simulation for driven graphene.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L11: Driven-Dissipative Systems}]
+\textbf{90-min pacing:} (0--20~min) Open quantum systems: Markovian bath; Lindblad from NEGF by tracing out bath; (20--45~min) Bath self-energy gives imaginary contribution; jump operators from bath spectral function; (45--65~min) Floquet--Keldysh: periodic drive + bath; NESS from Dyson equation; (65--90~min) Polariton condensation; quantum synchronisation; Floquet topological states; time-crystalline order.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive Lindblad by integrating out a Markovian bath in NEGF.
+  \item Set up Floquet--Keldysh GF for a periodically driven open system.
+  \item Compute NESS from the Dyson equation.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Lindblad from bath self-energy; NESS for two-level system.
+Set~B --- Floquet--Keldysh GF structure; NESS for driven resonant level.
+Projects: (simple) NESS occupation for driven-dissipative resonant level; (complex) Floquet--Keldysh NESS for driven Haldane model.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture L12: Numerical Methods for NEGF}]
+\textbf{90-min pacing:} (0--20~min) Computational challenge: 2D time grid $\mathcal{O}(N_T^2N_k^2)$ memory; $\mathcal{O}(N_T^3N_k^3)$ cost; (20--45~min) Predictor--corrector (Adams--Bashforth--Moulton); stability; parallelisation; (45--65~min) GKBA: $G^<(t,t')\approx G^R(t,t')\rho(t')-\rho(t)G^A(t,t')$; $\mathcal{O}(N_TN_k^3)$; accuracy vs.\ full KB; (65--90~min) NESSi library; GPU acceleration; ML surrogate self-energies; benchmark vs.\ TDCI.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain the computational cost of KB equations on a 2D time grid.
+  \item Describe the predictor--corrector algorithm for KB.
+  \item Derive the GKBA and state its accuracy and cost advantage.
+  \item Outline NESSi software and ML-based acceleration.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- scaling analysis; GKBA for driven two-level system.
+Set~B --- predictor--corrector derivation; stability analysis.
+Projects: (simple) full KB vs.\ GKBA for driven HO: accuracy and cost; (complex) GPU-accelerated KB for Hubbard dimer: scaling benchmarks.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module II.5 Reading:} Stefanucci \& van Leeuwen, \textit{Nonequilibrium Many-Body Theory of Quantum Systems} (Cambridge, 2013); Kadanoff \& Baym, \textit{Quantum Statistical Mechanics}; Haug \& Jauho, \textit{Quantum Kinetics in Transport and Optics of Semiconductors}.
 \end{tcolorbox}
 
 %=============================================================
@@ -2819,26 +3719,233 @@ L12 & Numerical Methods & Time-stepping KB equations; HPC considerations; benchm
 \label{sec:mod-II6}
 %=============================================================
 
-\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture Overview}]
-\begin{longtable}{clp{7cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.6 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & Classical and Quantum EM Fields & Vector potential; Coulomb gauge; quantisation; photon\\
-L02 & Light--Matter Coupling & Minimal coupling; dipole approximation; PZW transformation\\
-L03 & Linear Response Theory & Kubo formula; retarded response $\chi^R(\omega)$; causality\\
-L04 & Fluctuation--Dissipation Theorem & FDT; fluctuations from dissipation; thermal equilibrium\\
-L05 & Optical Conductivity & Drude model from Kubo; $f$-sum rule; Kramers--Kronig relations\\
-L06 & Absorption and Emission & Fermi golden rule for radiation; Einstein $A$ and $B$ coefficients\\
-L07 & Selection Rules & Dipole, quadrupole; parity; angular momentum conservation; Laporte rule\\
-L08 & Non-Linear Response & $\chi^{(2)},\chi^{(3)}$; two-photon absorption; harmonic generation\\
-L09 & Time-Domain Spectroscopy & Free-induction decay; response from correlation function\\
-L10 & Raman and Resonance Raman & Vibronic coupling; Kramers--Heisenberg formula\\
-L11 & Photoelectron Spectroscopy & XPS/UPS; sudden approximation; Dyson orbital; shake-up\\
-L12 & Cavity QED and Strong Coupling & Jaynes--Cummings; vacuum Rabi splitting; polaritons\\
+L01 & Classical and Quantum EM Fields & Coulomb gauge; mode expansion; photon; vacuum fluctuations; coherent states\\
+L02 & Light--Matter Coupling & Minimal coupling; dipole approximation; PZW; RWA; strong field\\
+L03 & Linear Response and Kubo Formula & Retarded susceptibility; causality; Kramers--Kronig; Wiener--Khinchin\\
+L04 & Fluctuation--Dissipation Theorem & FDT; Johnson--Nyquist; quantum noise; effective temperature\\
+L05 & Optical Conductivity & Drude from Kubo; $f$-sum rule; KK analysis; superfluid weight\\
+L06 & Absorption and Emission & Fermi's golden rule; Einstein coefficients; spontaneous emission; line shapes\\
+L07 & Selection Rules & $E1,M1,E2$; Laporte; molecular symmetry; IR vs.\ Raman\\
+L08 & Non-Linear Response & $\chi^{(2)},\chi^{(3)}$; SHG; TPA; FWM; 2DES\\
+L09 & Time-Domain Spectroscopy & FID; photon echo; $R^{(3)}$ correlator; 2D IR/ES\\
+L10 & Raman and Resonance Raman & Kramers--Heisenberg; Franck--Condon; SERS; TERS; CARS\\
+L11 & Photoelectron Spectroscopy & Sudden approximation; Dyson orbital; ARPES; shake-up\\
+L12 & Cavity QED and Strong Coupling & Jaynes--Cummings; vacuum Rabi splitting; polaritons; circuit QED\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.6 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L01: Classical and Quantum Electromagnetic Fields}]
+\textbf{90-min pacing:} (0--20~min) Maxwell; Coulomb gauge $\nabla\cdot\mathbf{A}=0$; transverse/longitudinal; (20--45~min) Mode expansion; quantisation $[\hat{a}_{\mathbf{k}\lambda},\hat{a}^\dagger_{\mathbf{k}'\lambda'}]=\delta_{\mathbf{k}\mathbf{k}'}\delta_{\lambda\lambda'}$; photon; (45--65~min) Vacuum fluctuations $\langle0|\hat{\mathbf{E}}^2|0\rangle\neq0$; Casimir effect; (65--90~min) Coherent states; Fock vs.\ coherent vs.\ thermal; Glauber--Sudarshan $P$-function; $g^{(1)},g^{(2)}$.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Quantise the EM field in Coulomb gauge.
+  \item Define photon operators and number states.
+  \item Explain vacuum fluctuations and the Casimir effect.
+  \item Distinguish coherent, Fock, and thermal states.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- EM energy in photon numbers; vacuum $\langle E^2\rangle$; Casimir force.
+Set~B --- commutation relations from canonical quantisation; $g^{(2)}$ for coherent vs.\ Fock.
+Projects: (simple) Casimir force vs.\ plate separation; (complex) Wigner function of single-photon Fock state.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L02: Light--Matter Coupling}]
+\textbf{90-min pacing:} (0--20~min) Minimal coupling $\hat{H}=\tfrac{1}{2m}(\hat{\mathbf{p}}-e\mathbf{A})^2+V$; expand to linear in $\mathbf{A}$; (20--45~min) Dipole approximation; length and velocity gauges; gauge equivalence via unitary transformation; (45--65~min) Power--Zienau--Woolley transformation; multipolar Hamiltonian; $E1,M1,E2$; (65--90~min) Strong field: beyond dipole; Floquet; RWA; driven two-level system.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive light--matter interaction from minimal coupling.
+  \item Apply dipole approximation and verify gauge equivalence.
+  \item Describe PZW transformation and multipolar Hamiltonian.
+  \item Apply RWA to a driven two-level system.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- expand minimal coupling; dipole approximation; RWA for TLS.
+Set~B --- gauge equivalence proof; PZW transformation.
+Projects: (simple) Rabi oscillations: exact vs.\ RWA; (complex) Bloch--Siegert shift beyond RWA.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L03: Linear Response Theory and the Kubo Formula}]
+\textbf{90-min pacing:} (0--20~min) Linear response: $\langle\delta\hat{B}(t)\rangle=\int\chi_{BA}(t-t')F(t')dt'$; (20--50~min) Kubo formula: $\chi_{BA}(t)=-i\theta(t)\langle[\hat{B}(t),\hat{A}(0)]\rangle_0$; causality $\Rightarrow$ upper-half analyticity; Kramers--Kronig relations; (50--70~min) Physical examples: dielectric, magnetic, optical conductivity; density--density response; (70--90~min) Wiener--Khinchin: Im$\,\chi^R$ from equilibrium fluctuations.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Kubo formula for retarded susceptibility.
+  \item Apply causality to derive Kramers--Kronig.
+  \item Compute optical conductivity from current--current Kubo.
+  \item Connect Im$\,\chi^R$ to fluctuations via Wiener--Khinchin.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- $\chi^R(\omega)$ for damped HO; Kramers--Kronig check.
+Set~B --- Kubo derivation from TDPT; $f$-sum rule from commutator.
+Projects: (simple) KK verification for Lorentzian; (complex) optical conductivity for tight-binding chain from Kubo.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L04: The Fluctuation--Dissipation Theorem}]
+\textbf{90-min pacing:} (0--20~min) FDT: $S_{BA}(\omega)=2\hbar n_B(\omega)\text{Im}\,\chi^R_{BA}(\omega)$; (20--45~min) Derivation from Lehmann: detailed balance; classical limit $\hbar\omega\ll k_BT$; (45--65~min) Johnson--Nyquist noise $S_V=4k_BTR$; dissipation from noise; (65--90~min) Quantum noise; standard quantum limit; back-action; quantum optomechanics; FDT in non-equilibrium: effective temperature.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State the FDT and derive it from the Lehmann representation.
+  \item Apply FDT to derive Johnson--Nyquist noise.
+  \item Discuss FDT in non-equilibrium: effective temperature.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- FDT for RC circuit; Johnson--Nyquist noise; classical limit.
+Set~B --- Lehmann derivation; FDT for non-interacting fermion.
+Projects: (simple) FDT verification: numerical dynamics vs.\ Im$\,\chi^R$; (complex) effective temperature from FDT in non-equilibrium electron gas.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L05: Optical Conductivity and the $f$-Sum Rule}]
+\textbf{90-min pacing:} (0--20~min) $\sigma(\omega)$ from current--current Kubo; Re$\,\sigma(\omega)$=power absorbed; (20--45~min) Drude from Kubo; $\sigma_{\rm Drude}=\tfrac{ne^2}{m}\tfrac{1}{\gamma-i\omega}$; Drude--Lorentz; (45--65~min) $f$-sum rule: $\int_0^\infty\text{Re}\,\sigma\,d\omega=\tfrac{\pi ne^2}{2m}$; derivation from $[\hat{H},\hat{j}]$; (65--90~min) Ellipsometry; KK analysis; Drude weight; superfluid density; Mott insulator gap.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive optical conductivity from current--current Kubo.
+  \item Obtain Drude and Drude--Lorentz models.
+  \item Prove and apply the $f$-sum rule.
+  \item Interpret reflectance spectra via KK analysis.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Drude parameters from spectrum; $f$-sum rule numerical check.
+Set~B --- $f$-sum derivation from Kubo; KK analysis of reflectance.
+Projects: (simple) Drude--Lorentz fit to metal optical conductivity; (complex) superfluid density from spectral weight: BCS vs.\ cuprate.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L06: Absorption, Emission, and Einstein Coefficients}]
+\textbf{90-min pacing:} (0--20~min) Fermi's golden rule: $\Gamma_{i\to f}=\tfrac{2\pi}{\hbar}|\bra{f}\hat{H}'\ket{i}|^2\rho(E_f)$; (20--45~min) Einstein: $A_{21},B_{12},B_{21}$; relations $A_{21}=\tfrac{\hbar\omega^3}{\pi^2c^3}B_{21}$; Planck from detailed balance; (45--65~min) Spontaneous emission from QED: $\Gamma_{\rm sp}=\tfrac{e^2\omega^3}{3\pi\epsilon_0\hbar c^3}|d_{fi}|^2$; natural linewidth; (65--90~min) Line shapes: Lorentzian (lifetime); Gaussian (Doppler); Voigt; power broadening.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply Fermi's golden rule to compute absorption cross sections.
+  \item Define Einstein coefficients and derive their relation.
+  \item Compute spontaneous emission rate from first principles.
+  \item Describe physical origins of line shapes.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Einstein $A$ for H Lyman-$\alpha$; $B_{12}$ from $A_{21}$; natural linewidth.
+Set~B --- spontaneous emission from minimal coupling; Wigner--Weisskopf sketch.
+Projects: (simple) absorption spectrum vs.\ line shape parameters; (complex) Purcell factor: cavity modification of $A_{21}$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L07: Selection Rules}]
+\textbf{90-min pacing:} (0--20~min) Selection rules from AM conservation; $\Delta m=0,\pm1$; (20--45~min) $E1$ from W-E: $\Delta l=\pm1$; parity change; Laporte rule; $\Delta j=0,\pm1$ (not $0\to0$); (45--65~min) $M1$: $\Delta l=0$, parity unchanged; $E2$: $\Delta l=0,\pm2$; competition; (65--90~min) Molecular selection rules: symmetry group; $\langle\psi_f|\hat\mu|\psi_i\rangle\neq0$ iff $\Gamma_f\otimes\Gamma_\mu\otimes\Gamma_i\supset A_1$; IR vs.\ Raman; mutual exclusion.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State and apply $E1$ selection rules from W-E.
+  \item Identify Laporte-forbidden transitions and higher-order mechanisms.
+  \item Apply molecular symmetry to determine selection rules.
+  \item Distinguish IR-active from Raman-active modes.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- allowed/forbidden for H $1s\to2s,2p,3d$; CO$_2$ IR modes.
+Set~B --- $E2$ matrix element; group theory for $C_{2v}$ molecule.
+Projects: (simple) atomic selection rule table; (complex) symmetry analysis of benzene normal modes: IR vs.\ Raman.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L08: Non-Linear Response}]
+\textbf{90-min pacing:} (0--20~min) $\chi^{(2)}_{ijk}(\omega_1,\omega_2)$; $\chi^{(3)}$; (20--45~min) $\chi^{(2)}$: SHG; sum/difference frequency; optical rectification; phase matching; $\chi^{(2)}=0$ centrosymmetric; (45--65~min) $\chi^{(3)}$: TPA; FWM; self-phase modulation; solitons; (65--90~min) Ultrafast: transient absorption; 2DES; double-sided Feynman diagrams; rephasing vs.\ non-rephasing.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define $\chi^{(2)}$ and $\chi^{(3)}$ and identify associated phenomena.
+  \item Explain phase matching for SHG.
+  \item Describe TPA, FWM, and transient absorption.
+  \item Interpret double-sided Feynman diagrams for 2DES.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- SHG phase matching; $\chi^{(2)}=0$ for centrosymmetric; TPA cross-section.
+Set~B --- $\chi^{(3)}$ from PT; Liouville pathway for TA.
+Projects: (simple) SHG spectrum from phase-matching bandwidth; (complex) 2DES for coupled TLS: cross-peak identification.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L09: Time-Domain Spectroscopy}]
+\textbf{90-min pacing:} (0--20~min) FID; NMR analogy; Fourier transform spectroscopy; (20--45~min) Photon echo: $\pi/2$--$\tau$--$\pi$; rephasing; inhomogeneous broadening removal; (45--65~min) Response from correlators: $\chi^R(t)\propto\theta(t)\langle[\hat\mu(t),\hat\mu(0)]\rangle$; $R^{(3)}$ as four-point correlator; (65--90~min) 2D IR; 2DES; waiting-time dynamics; quantum biology; energy transfer.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain FID and photon echo in terms of rephasing.
+  \item Express linear and third-order response as correlators.
+  \item Describe 2DES and interpret waiting-time dynamics.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- FID for TLS; photon echo timing; Fourier transform to spectrum.
+Set~B --- derive $R^{(3)}$ as four-point correlator; rephasing vs.\ non-rephasing pathway.
+Projects: (simple) 2DES for coupled TLS; (complex) 2D IR for Morse oscillator.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L10: Raman and Resonance Raman Spectroscopy}]
+\textbf{90-min pacing:} (0--20~min) Raman: Stokes/anti-Stokes; cross-section $\propto(\omega_i\pm\Omega)^4|\alpha|^2$; (20--45~min) Kramers--Heisenberg formula; resonance enhancement; (45--65~min) Vibronic coupling; Condon; Herzberg--Teller; Franck--Condon overlaps; (65--90~min) SERS; TERS; single-molecule SERS; graphene $G$ and $D$ bands; CARS microscopy.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Kramers--Heisenberg formula and identify resonance condition.
+  \item Compute Raman intensities from Franck--Condon factors.
+  \item Describe SERS, TERS, and CARS.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- Raman spectrum for diatomic; Stokes/anti-Stokes ratio; selection rule.
+Set~B --- Kramers--Heisenberg derivation; Franck--Condon for displaced HO.
+Projects: (simple) Raman spectrum of CO$_2$; (complex) resonance Raman intensity vs.\ excitation frequency.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L11: Photoelectron Spectroscopy}]
+\textbf{90-min pacing:} (0--20~min) XPS/UPS: $E_B=h\nu-E_{\rm kin}-\phi$; Koopman's theorem; (20--45~min) Sudden approximation; spectral function $A(\omega)$ directly measured; shake-up/shake-off satellites; (45--65~min) Dyson orbital; pole strength = quasiparticle weight $Z$; (65--90~min) ARPES: $E_{\rm kin}(\theta,\phi)$ maps band structure; $\mathbf{k}$-resolved spectral function; matrix element effects; tr-ARPES.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain the sudden approximation and relate PES to spectral function.
+  \item Define the Dyson orbital and quasiparticle weight.
+  \item Interpret ARPES as $\mathbf{k}$-resolved spectral function.
+  \item Identify shake-up satellites.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- binding energies from XPS; Koopman vs.\ $\Delta$SCF; satellite identification.
+Set~B --- Dyson orbital derivation; quasiparticle weight from pole strength.
+Projects: (simple) simulated ARPES for tight-binding band; (complex) Fermi liquid spectral function: QP peak and incoherent background.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture L12: Cavity QED and Strong Light--Matter Coupling}]
+\textbf{90-min pacing:} (0--20~min) Cavity QED: three regimes ($\kappa,g,\gamma$); (20--45~min) Jaynes--Cummings: $\hat{H}_{\rm JC}=\hbar\omega_c\hat{a}^\dagger\hat{a}+\tfrac{\hbar\omega_0}{2}\hat\sigma_z+\hbar g(\hat{a}\hat\sigma_++\hat{a}^\dagger\hat\sigma_-)$; dressed states; vacuum Rabi splitting $2g$; (45--65~min) Polaritons: upper/lower branches; Hopfield coefficients; polariton condensation; (65--90~min) Ultra-strong coupling; photon blockade; circuit QED; quantum information applications.
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Solve JC model and identify dressed states.
+  \item Derive vacuum Rabi splitting and explain strong coupling.
+  \item Describe polariton branches and Hopfield coefficients.
+  \item Explain photon blockade and circuit QED.
+\end{itemize}
+\medskip\textbf{Assessment:}
+Set~A --- JC dressed states; Rabi splitting; photon blockade condition.
+Set~B --- JC dynamics: collapse and revival; Hopfield coefficients.
+Projects: (simple) JC dynamics: Fock vs.\ coherent state Rabi oscillations; (complex) polariton dispersion: upper/lower branches and Hopfield coefficients.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module II.6 Reading:} Mukamel, \textit{Principles of Nonlinear Optical Spectroscopy}; Mandel \& Wolf, \textit{Optical Coherence and Quantum Optics}; Walls \& Milburn, \textit{Quantum Optics}; Atkins \& Friedman, \textit{Molecular Quantum Mechanics}.
 \end{tcolorbox}
 
 %=============================================================
@@ -2846,26 +3953,367 @@ L12 & Cavity QED and Strong Coupling & Jaynes--Cummings; vacuum Rabi splitting; 
 \label{sec:mod-II7}
 %=============================================================
 
-\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture Overview}]
-\begin{longtable}{clp{7cm}}
+%------------------------------------------------------------
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.7 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & Density Operators in Thermodynamics & Gibbs state $\hat{\rho}=e^{-\beta\hat{H}}/Z$; entropy\\
-L02 & Canonical and Grand-Canonical Ensembles & Partition function; chemical potential; grand potential\\
-L03 & Quantum Ideal Gases & Bose--Einstein and Fermi--Dirac statistics; degeneracy pressure\\
-L04 & Bose--Einstein Condensation & Critical temperature; condensate fraction; superfluid helium\\
-L05 & Fermi Liquid Theory & Quasiparticles; Landau parameters; specific heat; compressibility\\
-L06 & Imaginary-Time Formalism & Matsubara Green's functions; fermionic/bosonic frequencies $\omega_n$\\
-L07 & Perturbation Theory at Finite $T$ & Diagrammatics; Dyson equation; self-energy at $T>0$\\
-L08 & Phase Transitions I & Landau theory; order parameter; spontaneous symmetry breaking\\
-L09 & Phase Transitions II & Ising model; mean-field; universality; quantum phase transitions\\
-L10 & Quantum Criticality & Quantum critical point; $\omega/T$ scaling; non-Fermi liquid\\
-L11 & Entanglement in Many-Body Systems & Area vs.\ volume law; topological entropy\\
-L12 & Open Problems and Frontiers & High-$T_c$ superconductivity; fractional QH; quantum simulation\\
+L01 & Density Operators in Thermodynamics & Gibbs state; von Neumann entropy; max-entropy principle\\
+L02 & Canonical and Grand-Canonical Ensembles & Partition function; $\mu$; grand potential; ensemble equivalence\\
+L03 & Quantum Ideal Gases & BE/FD distributions; Sommerfeld; degeneracy pressure\\
+L04 & BEC and Superfluidity & $T_c$; ODLRO; $^4$He; BKT transition\\
+L05 & Fermi Liquid Theory & Quasiparticles; Landau parameters; non-Fermi liquid\\
+L06 & Matsubara Green's Functions & Imaginary-time GF; Matsubara frequencies; analytic continuation\\
+L07 & Perturbation Theory at Finite $T$ & Diagrammatics; Dyson; free energy; linked-cluster\\
+L08 & Phase Transitions I & Landau theory; order parameter; SSB; Ginzburg criterion\\
+L09 & Phase Transitions II & Ising model; RG; universality; quantum phase transitions\\
+L10 & Quantum Criticality & QCP; $\omega/T$ scaling; non-Fermi liquid; strange metal\\
+L11 & Entanglement in Many-Body Systems & Area/volume law; entanglement entropy; topological order\\
+L12 & Open Problems and Frontiers & High-$T_c$; FQH; quantum simulation; outlook\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.7 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L01: Density Operators in Thermodynamics}]
+\textbf{90-min pacing:} (0--20~min) Statistical quantum mechanics: mixed states as ensembles; density operator $\hat\rho$; purity; thermal equilibrium state $\hat\rho=e^{-\beta\hat{H}}/Z$; (20--45~min) Partition function $Z=\operatorname{Tr}e^{-\beta\hat{H}}$; Helmholtz free energy $F=-k_BT\ln Z$; internal energy $U=-\partial_\beta\ln Z$; entropy $S=-k_B\operatorname{Tr}(\hat\rho\ln\hat\rho)$ (von Neumann); heat capacity $C_V$; (45--65~min) Maximum entropy principle: Jaynes' derivation --- maximise $S$ subject to $\operatorname{Tr}\hat\rho=1$ and $\operatorname{Tr}(\hat\rho\hat{H})=U$; Lagrange multipliers give Gibbs state; (65--90~min) Quantum information perspective: von Neumann entropy as entanglement entropy at zero temperature; relative entropy $S(\hat\rho\|\hat\sigma)=\operatorname{Tr}(\hat\rho\ln\hat\rho-\hat\rho\ln\hat\sigma)\geq 0$; trace distance; quantum thermodynamics preview.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the Gibbs state and compute $F,U,S,C_V$ from $Z$.
+  \item Derive the Gibbs state from the maximum entropy principle.
+  \item Define von Neumann entropy and compare with thermodynamic entropy.
+  \item Evaluate relative entropy and trace distance for simple density matrices.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Two-level system, harmonic oscillator, and spin-$\tfrac{1}{2}$ as paradigmatic examples; specific heat anomalies; Schottky anomaly.
+  \item \textit{Quantum information track:} Von Neumann entropy as information content; Jaynes' maximum entropy as Bayesian inference; relative entropy as statistical distinguishability.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``thermal equilibrium is the state of maximum ignorance given the average energy.''
+Beg.\ UG: $Z$ for two-level system; $F,U,S$; specific heat.
+Adv.\ UG: maximum entropy derivation; von Neumann entropy; Gibbs state uniqueness.
+MSc: relative entropy; trace distance; quantum thermodynamics (work extraction).
+PhD: quantum fluctuation theorems (Jarzynski, Crooks); quantum heat engines; resource theory of thermodynamics.
+
+\medskip\textbf{Assessment:}
+Set~A --- $Z$, $F$, $U$, $S$, $C_V$ for two-level system and HO; Schottky anomaly temperature.
+Set~B --- Jaynes derivation of Gibbs state; von Neumann entropy of Gibbs state; relative entropy positivity proof.
+Projects: (simple) $C_V(T)$ for two-level vs.\ HO: Schottky peak vs.\ Planck;
+(complex) quantum Otto heat engine: efficiency from $Z$ of working fluid.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L02: Canonical and Grand-Canonical Ensembles}]
+\textbf{90-min pacing:} (0--20~min) Canonical ensemble: system in thermal contact with a reservoir; $Z_N=\operatorname{Tr}_Ne^{-\beta\hat{H}}$; grand canonical: additionally allows particle exchange; grand partition function $\Xi=\sum_{N=0}^\infty e^{\beta\mu N}Z_N=\operatorname{Tr}e^{-\beta(\hat{H}-\mu\hat{N})}$; (20--45~min) Grand potential $\Omega=-k_BT\ln\Xi$; mean particle number $\langle\hat{N}\rangle=-\partial\Omega/\partial\mu$; number fluctuations $\langle(\Delta N)^2\rangle=k_BT\partial\langle N\rangle/\partial\mu$; pressure $P=-\partial\Omega/\partial V$; Gibbs--Duhem relation $SdT+Vd P=Nd\mu$; (45--65~min) Deriving quantum statistics: single-mode grand canonical; Bose--Einstein $n_k=(e^{\beta(\varepsilon_k-\mu)}-1)^{-1}$; Fermi--Dirac $n_k=(e^{\beta(\varepsilon_k-\mu)}+1)^{-1}$; fugacity expansion; (65--90~min) Ensemble equivalence in the thermodynamic limit; corrections for finite systems; Yang--Lee theorem: zeros of $\Xi$ in the complex $z$-plane signal phase transitions; microcanonical saddle-point approximation.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Set up the grand canonical ensemble and derive thermodynamic relations.
+  \item Derive BE and FD distributions from the single-mode grand canonical.
+  \item State ensemble equivalence and identify its breakdown.
+  \item Apply the Yang--Lee theorem to phase transitions.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``the chemical potential is the energy cost of adding one more particle.''
+Beg.\ UG: grand canonical; BE/FD from single-mode; $\langle N\rangle$ vs.\ $\mu$.
+Adv.\ UG: Gibbs--Duhem; ensemble equivalence; Yang--Lee zeros.
+MSc: fugacity expansion; virial coefficients; grand canonical for interacting systems.
+PhD: Yang--Lee zeros and phase transitions; Lee--Yang theorem; complex fugacity in QFT.
+
+\medskip\textbf{Assessment:}
+Set~A --- $\langle N\rangle,\Omega,P$ for non-interacting fermion gas; BE/FD distributions.
+Set~B --- Yang--Lee theorem statement; ensemble equivalence derivation via saddle point.
+Projects: (simple) $\langle N\rangle$ vs.\ $\mu$ for Bose and Fermi gas at various temperatures;
+(complex) virial expansion to second order: quantum corrections to classical ideal gas.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L03: Quantum Ideal Gases}]
+\textbf{90-min pacing:} (0--20~min) Density of states in 3D: $D(\varepsilon)=\tfrac{V}{2\pi^2}(\tfrac{2m}{\hbar^2})^{3/2}\varepsilon^{1/2}$; grand potential $\Omega=\mp k_BT\int D(\varepsilon)\ln(1\pm e^{-\beta(\varepsilon-\mu)})d\varepsilon$; (20--45~min) Ideal Fermi gas: Fermi energy $E_F=\tfrac{\hbar^2}{2m}(3\pi^2n)^{2/3}$; Sommerfeld expansion: $\langle f(\varepsilon)\rangle=\int_0^\infty f(\varepsilon)n_F d\varepsilon=\int_0^\mu f\,d\varepsilon+\tfrac{\pi^2}{6}(k_BT)^2f'(\mu)+\ldots$; specific heat $C_V=\tfrac{\pi^2}{3}k_B^2TD(E_F)$; Pauli susceptibility; (45--65~min) Ideal Bose gas: $\mu<0$ at all $T>T_c$; $\mu\to 0^-$ signals BEC; $\Omega$ for bosons; pressure and density in terms of Bose functions $g_\nu(z)$; (65--90~min) Low-$T$ thermodynamics: $T^3$ law for bosons; Fermi gas degeneracy pressure; applications: He-3 specific heat; white dwarf and neutron star equations of state; cold atoms.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Compute thermodynamic quantities for ideal Bose and Fermi gases.
+  \item Derive the Sommerfeld expansion and apply it to specific heat and susceptibility.
+  \item Explain degeneracy pressure and its role in stellar physics.
+  \item Describe the approach to BEC as $\mu\to 0^-$ in the ideal Bose gas.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: FD and BE distributions; electronic specific heat linear in $T$; degeneracy pressure in white dwarfs.
+Beg.\ UG: Fermi energy; Sommerfeld linear $C_V$; Pauli susceptibility; BEC $T_c$.
+Adv.\ UG: Sommerfeld expansion derivation; Bose functions; degeneracy pressure for neutron star.
+MSc: Landau diamagnetism; de Haas--van Alphen; Bose gas thermodynamics below $T_c$.
+PhD: strongly interacting Fermi gas at unitarity; polaron in Fermi sea; quantum critical Fermi gas.
+
+\medskip\textbf{Assessment:}
+Set~A --- Fermi energy for Cu; $C_V$ from Sommerfeld; Pauli susceptibility; BEC $T_c$ for $^{87}$Rb.
+Set~B --- Sommerfeld expansion derivation; pressure of degenerate neutron star; Bose functions.
+Projects: (simple) $C_V(T)$ for Fermi gas: crossover from linear to Dulong--Petit;
+(complex) equation of state for white dwarf: degeneracy pressure vs.\ gravitational collapse.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L04: Bose--Einstein Condensation and Superfluidity}]
+\textbf{90-min pacing:} (0--20~min) BEC in 3D ideal gas: $\mu\to 0^-$ at $T_c$; condensate fraction $N_0/N=1-(T/T_c)^{3/2}$; thermodynamics below $T_c$: pressure independent of $N$; (20--45~min) Off-diagonal long-range order (ODLRO): $\lim_{|\mathbf{r}-\mathbf{r}'|\to\infty}\langle\hat\psi^\dagger(\mathbf{r})\hat\psi(\mathbf{r}')\rangle=n_0\neq 0$; broken $U(1)$ symmetry; Goldstone (phonon) mode; superfluidity from ODLRO; Landau criterion $v<c_s$; (45--65~min) Superfluid $^4$He: lambda transition; two-fluid model (normal + superfluid fractions); quantised vortices $\kappa=h/m$; vortex energy and critical rotation speed; (65--90~min) 2D systems: Mermin--Wagner theorem forbids true LRO in 2D; algebraic ODLRO $\sim r^{-\eta}$ below BKT; Kosterlitz--Thouless transition: vortex--anti-vortex unbinding at $T_{\rm BKT}$; superfluid density jumps at $T_{\rm BKT}$; experimental observation in thin He films and cold atoms.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive BEC critical temperature and condensate fraction.
+  \item Define ODLRO and connect to broken symmetry and Goldstone mode.
+  \item Describe quantised vortices and the Landau criterion for superfluidity.
+  \item State the BKT transition and its experimental signatures.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``below $T_c$ a macroscopic number of bosons occupy the same state.''
+Beg.\ UG: $T_c$; condensate fraction; Landau criterion; two-fluid model.
+Adv.\ UG: ODLRO; vortex energy; BKT transition.
+MSc: algebraic order in 2D; superfluid density jump; BKT in ultracold atoms.
+PhD: BKT from renormalisation group; topological defects; superfluid density from Kubo formula.
+
+\medskip\textbf{Assessment:}
+Set~A --- $T_c$ and $N_0/N$ for $^4$He and $^{87}$Rb; Landau critical velocity from Bogoliubov spectrum.
+Set~B --- ODLRO derivation; Mermin--Wagner theorem sketch; BKT vortex unbinding energy.
+Projects: (simple) condensate fraction vs.\ $T/T_c$ and specific heat anomaly;
+(complex) BKT transition: vortex--anti-vortex density and correlation function decay.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L05: Fermi Liquid Theory}]
+\textbf{90-min pacing:} (0--20~min) Landau's postulate: adiabatic continuity from non-interacting to interacting Fermi gas; quasiparticle concept; one-to-one correspondence of states; sharp Fermi surface; (20--45~min) Quasiparticle energy: $\varepsilon_k^\star=\varepsilon_k^0+\sum_{k'}f_{kk'}\delta n_{k'}$; Landau interaction function $f_{kk'}$; Landau parameters $F_l^s,F_l^a$; effective mass $m^*=m(1+F_1^s/3)^{-1}$; (45--65~min) Thermodynamics from quasiparticles: specific heat $C_V=\tfrac{\pi^2}{3}k_B^2T D^*(E_F)$ with renormalised DOS; compressibility $\kappa=\kappa_0/(1+F_0^s)$; Pauli susceptibility $\chi=\chi_0/(1+F_0^a)$; Wilson ratio $R_W=\chi/C_V$; (65--90~min) Quasiparticle lifetime: $\tau^{-1}\propto(\varepsilon-E_F)^2+(\pi k_BT)^2$ from Fermi's golden rule and phase space; Fermi liquid $\Leftrightarrow$ Im$\,\Sigma\propto\omega^2$; breakdown: Tomonaga--Luttinger in 1D; non-Fermi liquid at quantum critical points.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State Landau's postulate and explain the quasiparticle concept.
+  \item Compute renormalised thermodynamic quantities from Landau parameters.
+  \item Derive quasiparticle lifetime from phase-space arguments.
+  \item Identify signatures of non-Fermi liquid behaviour.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``interacting electrons still behave like free electrons but with a different mass.''
+Beg.\ UG: quasiparticle concept; effective mass; Sommerfeld linear $C_V$ from FL.
+Adv.\ UG: Landau parameters; compressibility; susceptibility; Wilson ratio.
+MSc: quasiparticle lifetime derivation; Luttinger liquid in 1D.
+PhD: Luttinger's theorem; microscopic derivation of FL from self-energy; quantum critical non-FL.
+
+\medskip\textbf{Assessment:}
+Set~A --- effective mass for $^3$He from $C_V$; Pauli susceptibility from $F_0^a$; Wilson ratio.
+Set~B --- quasiparticle lifetime derivation; Luttinger theorem statement and use.
+Projects: (simple) FL thermodynamics: $C_V,\chi,\kappa$ as function of $F_0^s,F_0^a,F_1^s$;
+(complex) marginal Fermi liquid self-energy: Im$\,\Sigma\propto\omega$ and its experimental signatures.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L06: Imaginary-Time Formalism and Matsubara Green's Functions}]
+\textbf{90-min pacing:} (0--20~min) Imaginary-time evolution $\hat{O}(\tau)=e^{\hat{H}\tau/\hbar}\hat{O}e^{-\hat{H}\tau/\hbar}$; thermal averages as Euclidean path integrals (recap); Matsubara GF $\mathcal{G}(\mathbf{k},\tau)=-\langle T_\tau\hat{c}_k(\tau)\hat{c}_k^\dagger(0)\rangle_\beta$; (anti-)periodicity in $\tau\in[0,\beta\hbar]$; (20--45~min) Fourier decomposition: fermionic $\omega_n=(2n+1)\pi/\beta\hbar$; bosonic $\omega_n=2n\pi/\beta\hbar$; non-interacting Matsubara GF $\mathcal{G}_0(\mathbf{k},i\omega_n)=(i\omega_n-\varepsilon_k)^{-1}$; Dyson equation $\mathcal{G}=\mathcal{G}_0+\mathcal{G}_0\Sigma\mathcal{G}$; (45--65~min) Matsubara frequency sums: contour integration; $\sum_n f(i\omega_n)=-\operatorname{Res}[n_F(\omega)f(\omega)]$; evaluation of one-loop self-energy; (65--90~min) Analytic continuation $i\omega_n\to\omega+i\eta$: spectral representation; Padé approximants for numerical continuation; maximum entropy method (MEM); ill-posedness and regularisation; connection between Matsubara and real-time GFs.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define the Matsubara GF and perform Matsubara Fourier decomposition.
+  \item Evaluate Matsubara frequency sums via contour integration.
+  \item Apply the Dyson equation to find the interacting Matsubara GF.
+  \item Perform analytic continuation and describe numerical methods (Padé, MEM).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``imaginary-time GFs encode thermal equilibrium information.''
+Beg.\ UG: Matsubara frequencies; $\mathcal{G}_0$; Dyson equation in Matsubara.
+Adv.\ UG: frequency sums via contour; one-loop self-energy; analytic continuation.
+MSc: Padé approximants; MEM; spectral function reconstruction.
+PhD: Nevanlinna analytic continuation; stochastic MEM; sparse-modelling approach.
+
+\medskip\textbf{Assessment:}
+Set~A --- $\mathcal{G}_0$ for fermion and boson; Dyson equation for HF self-energy.
+Set~B --- Matsubara sum via contour; analytic continuation of model self-energy.
+Projects: (simple) Matsubara GF for Hubbard dimer: spectral function via analytic continuation;
+(complex) MEM analytic continuation: spectral function from QMC-generated $\mathcal{G}(\tau)$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L07: Perturbation Theory at Finite Temperature}]
+\textbf{90-min pacing:} (0--20~min) Finite-$T$ perturbation theory: split $\hat{H}=\hat{H}_0+\hat{V}$; interaction picture in imaginary time; $\mathcal{G}=\mathcal{G}_0+\mathcal{G}_0\Sigma\mathcal{G}$; Wick's theorem in imaginary time; (20--45~min) Diagrammatic rules at finite $T$: Feynman diagrams identical to $T=0$ but with Matsubara frequencies; propagator $\mathcal{G}_0(k,i\omega_n)$; vertices $V$; frequency conservation; sums over $i\omega_n$ instead of integrals; (45--65~min) Free energy from diagrams: $F=F_0-k_BT\ln\langle T_\tau e^{-\int_0^\beta\hat{V}d\tau}\rangle_0$; linked-cluster theorem: $\ln Z=\ln Z_0+$ (linked diagrams only); first-order: $F^{(1)}=\langle\hat{V}\rangle_0$; second-order: $F^{(2)}$; (65--90~min) Self-consistent Dyson at finite $T$: HF at finite $T$ (free energy minimisation); GW at finite $T$; finite-$T$ spectral function; Matsubara self-energy and quasiparticle renormalisation; phase boundary from self-energy divergence.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply Wick's theorem in imaginary time to derive Matsubara diagrammatic rules.
+  \item Compute the free energy perturbatively using the linked-cluster theorem.
+  \item Apply Dyson's equation at finite $T$ for the HF and GW self-energies.
+  \item Identify phase boundaries from divergences in the self-energy.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``quantum perturbation theory at finite temperature uses oscillating imaginary-time diagrams.''
+Beg.\ UG: linked-cluster theorem; first-order free energy; HF at finite $T$.
+Adv.\ UG: full diagrammatic rules; second-order $F$; Dyson at finite $T$.
+MSc: GW at finite $T$; finite-$T$ spectral function; Mott transition from self-energy.
+PhD: $\Phi$-derivable approximations at finite $T$; Luttinger--Ward functional; DMFT at finite $T$.
+
+\medskip\textbf{Assessment:}
+Set~A --- first-order $F$ for Fermi gas with contact interaction; HF self-energy at finite $T$.
+Set~B --- linked-cluster theorem at finite $T$; second-order free energy for electron gas.
+Projects: (simple) HF free energy vs.\ $T$: paramagnetic to ferromagnetic transition (Stoner);
+(complex) GW spectral function at finite $T$: quasiparticle peak broadening.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L08: Phase Transitions I --- Landau Theory}]
+\textbf{90-min pacing:} (0--20~min) Order parameter concept: zero above $T_c$, non-zero below; examples: magnetisation ($\hat{M}$), condensate ($\psi_0$), sublattice magnetisation; continuous (second-order) vs.\ first-order transitions; (20--45~min) Landau free energy: $F(\phi,T)=a(T)\phi^2+b\phi^4+c\phi^6+\ldots$ (symmetry $\phi\to-\phi$); $a(T)=a_0(T-T_c)$; minimisation: $\phi^*=0$ for $T>T_c$, $\phi^*=\sqrt{-a/2b}$ for $T<T_c$; second-order: $b>0$; first-order: $b<0$ with $c>0$; (45--65~min) Thermodynamic consequences: specific heat jump $\Delta C=a_0^2T_c/2b$; susceptibility $\chi=(2|a|)^{-1}$ above $T_c$; critical exponents $\alpha,\beta,\gamma,\delta$ from Landau; (65--90~min) Ginzburg criterion: Landau breaks down near $T_c$; $\xi=\xi_0(T-T_c)^{-\nu}$; fluctuations $\langle(\delta\phi)^2\rangle\sim k_BT/\xi^d$; Ginzburg--Landau theory (spatial order parameter); coherence length; domain walls; upper critical dimension $d_c^+=4$.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct the Landau free energy from symmetry and compute the order parameter.
+  \item Distinguish first- and second-order transitions from the sign of $b$.
+  \item Derive critical exponents $\alpha,\beta,\gamma,\delta$ from Landau theory.
+  \item State the Ginzburg criterion and identify the upper critical dimension.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``order parameter measures how ordered the system is; it grows continuously at a second-order transition.''
+Beg.\ UG: Landau free energy; minimisation; $T_c$; $\Delta C$.
+Adv.\ UG: critical exponents; susceptibility; first- vs.\ second-order.
+MSc: Ginzburg criterion; Ginzburg--Landau theory; coherence length; domain walls.
+PhD: renormalisation group improvement of Landau; $\epsilon$-expansion; tricritical points.
+
+\medskip\textbf{Assessment:}
+Set~A --- minimise Landau $F$; $T_c$; $\phi^*(T)$; $\Delta C$; $\chi$ above $T_c$.
+Set~B --- first-order transition: discontinuous $\phi$; latent heat; Ginzburg criterion derivation.
+Projects: (simple) Landau free energy landscape: second-order and first-order as function of temperature;
+(complex) Ginzburg--Landau order parameter profile: domain wall solution and energy.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L09: Phase Transitions II --- Ising Model and Renormalisation Group}]
+\textbf{90-min pacing:} (0--20~min) Ising model: $\hat{H}=-J\sum_{\langle ij\rangle}\sigma_i\sigma_j-h\sum_i\sigma_i$; exact solution in 1D (no phase transition); exact solution in 2D (Onsager); (20--45~min) Mean-field theory: $\sigma_i\approx m+\delta\sigma_i$; self-consistency $m=\tanh(\beta zJm+\beta h)$; $T_c=zJ/k_B$; critical exponents $\beta=\tfrac{1}{2},\gamma=1,\delta=3$; mean-field fails in low $d$; (45--65~min) Kadanoff block spin and renormalisation group (RG) idea: coarse-grain by blocks of $b$ spins; effective Hamiltonian; flow of couplings; fixed points and universality; Wilson's RG in $d=4-\epsilon$; (65--90~min) Universality classes: Ising, Heisenberg, XY, $O(N)$; critical exponents from RG; scaling hypothesis; quantum phase transitions: $\hat{H}=\hat{H}_0+g\hat{V}$ at $T=0$; quantum critical point (QCP); dimensional crossover; quantum Ising model (TFIM) as paradigm.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply mean-field theory to the Ising model and compute critical exponents.
+  \item Describe Kadanoff block-spin RG and explain universality.
+  \item Identify universality classes and their experimental realisations.
+  \item Distinguish classical from quantum phase transitions and describe the TFIM.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``all second-order phase transitions near their critical point behave the same way --- universality.''
+Beg.\ UG: mean-field Ising; $T_c$; critical exponents; universality concept.
+Adv.\ UG: Kadanoff block spin; RG flow; fixed points; universality classes.
+MSc: Wilson RG in $4-\epsilon$ dimensions; $\epsilon$-expansion; quantum Ising model.
+PhD: conformal field theory at the critical point; operator product expansion; exact critical exponents in 2D.
+
+\medskip\textbf{Assessment:}
+Set~A --- mean-field $T_c$ for 3D Ising; critical exponents; Ising exact solution in 1D.
+Set~B --- Kadanoff block-spin RG; fixed point analysis; $\epsilon$-expansion for $\beta$.
+Projects: (simple) Monte Carlo simulation of 2D Ising model: $M(T)$ and $T_c$;
+(complex) RG flow for the 1D quantum Ising model: quantum phase transition.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L10: Quantum Criticality}]
+\textbf{90-min pacing:} (0--20~min) Quantum phase transition at $T=0$: varying a non-thermal parameter $g$ (pressure, field, doping); quantum critical point (QCP) at $g=g_c$; diverging correlation length $\xi\propto|g-g_c|^{-\nu}$; diverging correlation time $\xi_\tau\propto\xi^z$ (dynamical exponent $z$); (20--45~min) Quantum critical region: $T>0$ near QCP; fan-shaped quantum critical region in $(g,T)$ plane; $\omega/T$ scaling: correlators $C(\omega,T)=T^{2\Delta/z}f(\omega/T)$ from conformal invariance; ``strange metal'' regime: $\rho\propto T$ linear resistivity; (45--65~min) Non-Fermi liquid signatures: self-energy Im$\,\Sigma\propto\omega$ or $T$ (vs.\ $\omega^2,T^2$ in FL); cuprate phase diagram: pseudogap, strange metal, FL; QCP under the superconducting dome; (65--90~min) Theoretical approaches: $(d+1)$-dimensional classical field theory at QCP; $1/N$ expansion; holographic duality (AdS/CFT) for strongly coupled QCPs; quantum spin liquid as frustrated QCP; experimental signatures: NMR, transport, neutron scattering.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define a QCP and its characteristic scales $\xi$ and $\xi_\tau$.
+  \item State the $\omega/T$ scaling hypothesis and its physical origin.
+  \item Identify non-Fermi liquid signatures in transport and spectral functions.
+  \item Describe the cuprate phase diagram and the role of the putative QCP.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``near a quantum phase transition, quantum fluctuations dominate over thermal ones.''
+Beg.\ UG: QCP definition; diverging $\xi$; quantum critical fan; linear resistivity.
+Adv.\ UG: $\omega/T$ scaling; dynamical exponent $z$; non-FL self-energy.
+MSc: holographic duality; $1/N$ expansion; cuprate phase diagram.
+PhD: conformal field theory at QCP; Hertz--Millis theory; non-Fermi liquid from FL instabilities.
+
+\medskip\textbf{Assessment:}
+Set~A --- quantum critical scaling: $\xi(g)$, $\xi_\tau(g)$; quantum critical fan width vs.\ $T$.
+Set~B --- $\omega/T$ scaling derivation from conformal invariance; non-FL self-energy and resistivity.
+Projects: (simple) quantum critical fan diagram for transverse-field Ising model;
+(complex) $\omega/T$ scaling: numerical correlation function for quantum Ising chain at QCP.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L11: Entanglement in Many-Body Systems}]
+\textbf{90-min pacing:} (0--20~min) Entanglement entropy as a probe of many-body physics: $S_A=-\operatorname{Tr}(\hat\rho_A\ln\hat\rho_A)$ where $\hat\rho_A=\operatorname{Tr}_B\hat\rho$; area law: $S_A\propto L^{d-1}$ for gapped systems; volume law for generic excited states and thermal states; (20--45~min) 1D gapped systems: area law $S_A=\mathrm{const}$; MPS as efficient representation (connection to DMRG); 1D critical systems: $S_A=\tfrac{c}{3}\ln L$ where $c$ is the central charge (conformal field theory); Calabrese--Cardy formula; (45--65~min) Higher dimensions: area law in 2D and 3D gapped phases; subleading corrections: topological entanglement entropy $S_A^{\rm top}=-\ln\mathcal{D}$ where $\mathcal{D}$ is the total quantum dimension; detection of topological order (Kitaev--Preskill, Levin--Wen); (65--90~min) Entanglement spectrum: eigenvalues $\lambda_i$ of $\hat\rho_A$; entanglement Hamiltonian $H_E=-\ln\hat\rho_A$; bulk--boundary correspondence; entanglement negativity for mixed states; multipartite entanglement measures.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define entanglement entropy and compute it for simple bipartitions.
+  \item State the area law and the Calabrese--Cardy formula for critical systems.
+  \item Define topological entanglement entropy and describe how it detects topological order.
+  \item Describe the entanglement spectrum and its relation to the entanglement Hamiltonian.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``entanglement tells us how quantum-correlated two parts of a system are.''
+Beg.\ UG: entanglement entropy for Bell states; area law; volume law for thermal states.
+Adv.\ UG: Calabrese--Cardy formula; central charge; topological entanglement entropy.
+MSc: entanglement spectrum; entanglement Hamiltonian; Kitaev--Preskill construction.
+PhD: modular Hamiltonian in QFT; entanglement in holography (Ryu--Takayanagi); multipartite entanglement.
+
+\medskip\textbf{Assessment:}
+Set~A --- $S_A$ for Bell state, GHZ, and product state; area law check for 1D gapped chain.
+Set~B --- Calabrese--Cardy formula for XX chain; topological entropy for toric code.
+Projects: (simple) $S_A$ vs.\ subsystem size $L$ for critical vs.\ gapped 1D chain (DMRG);
+(complex) topological entanglement entropy from DMRG for Kitaev honeycomb model.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture L12: Open Problems and Frontiers}]
+\textbf{90-min pacing:} (0--20~min) Overview of open problems: high-$T_c$ superconductivity; fractional quantum Hall (FQH) effect; quantum spin liquids; non-equilibrium many-body physics; quantum simulation; (20--40~min) High-$T_c$ superconductivity: cuprate phase diagram (underdoped, optimally doped, overdoped); pseudogap; strange metal; pairing mechanism (not phonon-mediated); competing orders; $d$-wave symmetry of the gap; key experiments (ARPES, neutron, NMR); (40--55~min) Fractional quantum Hall effect: Landau levels; fractional filling $\nu=\tfrac{1}{3},\tfrac{2}{5},\ldots$; Laughlin wavefunction; fractional charge and statistics (anyons); non-Abelian FQH states ($\nu=\tfrac{5}{2}$) and topological quantum computing; (55--70~min) Quantum simulation: analog quantum simulators (cold atoms, trapped ions); digital quantum simulation (VQE, QPE); resource estimation for quantum chemistry on fault-tolerant hardware; (70--90~min) Outlook: machine learning for many-body physics (neural network quantum states, ML force fields); tensor network methods for open systems; non-equilibrium topological phases; quantum advantage in many-body simulations.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Describe the cuprate phase diagram and the open questions in high-$T_c$.
+  \item Explain the FQH effect and the role of Laughlin's wavefunction.
+  \item Outline quantum simulation approaches (analog and digital).
+  \item Identify frontier methods: neural network states, ML, non-equilibrium topology.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``these are the unsolved problems that the next generation of physicists will crack.''
+Beg.\ UG: cuprate phenomenology; FQH basics; quantum simulation concept.
+Adv.\ UG: Laughlin wavefunction; fractional statistics; VQE algorithm.
+MSc: non-Abelian anyons; topological quantum computing; analog simulators.
+PhD: current research frontiers; neural network quantum states; quantum error correction for many-body.
+
+\medskip\textbf{Assessment:}
+Set~A --- sketch cuprate phase diagram; Laughlin wavefunction for $\nu=\tfrac{1}{3}$; VQE ansatz design.
+Set~B --- fractional charge from Laughlin; anyonic braiding statistics; QPE resource estimation for FeMoco.
+Projects: (simple) cuprate phase diagram: literature survey of key experiments and their interpretation;
+(complex) Laughlin wavefunction: Monte Carlo evaluation of density and pair correlation.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module II.7 Reading:}
+Altland \& Simons, \textit{Condensed Matter Field Theory} (Cambridge);
+Sachdev, \textit{Quantum Phase Transitions}, 2nd ed.\ (Cambridge);
+Goldenfeld, \textit{Lectures on Phase Transitions and the Renormalization Group};
+Wen, \textit{Quantum Field Theory of Many-Body Systems} (Oxford).
 \end{tcolorbox}
 
 \newpage
