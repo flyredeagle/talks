@@ -4410,23 +4410,119 @@ III.3 & Density Functional Theory and Beyond & 12\\
 \label{sec:mod-III1}
 %=============================================================
 
-\begin{tcolorbox}[chembox, title={Module~III.1 --- Lecture Overview}]
-\begin{longtable}{clp{8cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module III.1 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & The Molecular Hamiltonian &
-     $\hat{H}=\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$;
-     atomic units; degrees of freedom\\
-L02 & Born--Oppenheimer Approximation and Adiabaticity &
-     Electronic vs.\ nuclear time scales; adiabatic PES;
-     non-adiabatic couplings; derivative couplings\\
-L03 & Parametric Dependence and the Feynman--Hellmann Theorem &
-     $\partial_\lambda E = \langle\partial_\lambda\hat{H}\rangle$;
-     force calculations; geometry optimisation; potential energy gradients\\
+L01 & The Molecular Hamiltonian & $\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$; atomic units; degrees of freedom\\
+L02 & Born--Oppenheimer Approximation & Adiabatic PES; non-adiabatic couplings; derivative couplings; conical intersections\\
+L03 & Feynman--Hellmann Theorem & $\partial_\lambda E=\langle\partial_\lambda\hat{H}\rangle$; force calculations; geometry optimisation\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module III.1 Lecture Syllabi}
+
+\begin{tcolorbox}[chembox, title={Module~III.1 --- Lecture L01: The Molecular Hamiltonian}]
+\textbf{90-min pacing:} (0--20~min) The complete molecular Hamiltonian in SI and atomic units: $\hat{H}=\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$; nuclear KE $\hat{T}_n=-\sum_A\tfrac{\hbar^2}{2M_A}\nabla_A^2$; electronic KE $\hat{T}_e=-\sum_i\tfrac{\hbar^2}{2m_e}\nabla_i^2$; electron--nuclear attraction $\hat{V}_{ne}=-\sum_{iA}\tfrac{Z_Ae^2}{r_{iA}}$; electron--electron repulsion $\hat{V}_{ee}=\sum_{i<j}\tfrac{e^2}{r_{ij}}$; nuclear--nuclear repulsion $\hat{V}_{nn}=\sum_{A<B}\tfrac{Z_AZ_Be^2}{R_{AB}}$; (20--45~min) Atomic units: Hartree $E_h=27.211$~eV; Bohr $a_0=0.529$~\AA; time $\hbar/E_h=24.2$~as; mass ratio $m_e/M_p\approx1/1836$; physical intuition for each scale; (45--70~min) Degrees of freedom: $3N_e$ electronic + $3N_n$ nuclear; total $3(N_e+N_n)$ minus COM; translational/rotational invariance; remaining internal coordinates; electronic Schr\"odinger equation at fixed $\{\mathbf{R}_A\}$; (70--90~min) Symmetries of the molecular Hamiltonian: permutation symmetry of electrons (Pauli); permutation of identical nuclei; point-group symmetry; time-reversal; connection between molecular symmetry and observable selection rules.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the full molecular Hamiltonian and identify each physical contribution.
+  \item Convert between SI and atomic units fluently.
+  \item Count the independent degrees of freedom for a given molecule.
+  \item Identify the symmetries of $\hat{H}$ and their consequences.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/chemical track:} Physical meaning of each term; energy scales ($\hat{V}_{ee}$ vs.\ $\hat{T}_e$ vs.\ $\hat{V}_{ne}$ for H$_2$); why $\hat{V}_{ee}$ is the source of difficulty.
+  \item \textit{Mathematical track:} Schr\"odinger equation as a PDE; separation of COM motion; permutation group $S_{N_e}$; point groups as symmetry of the Hamiltonian operator.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: the molecular Hamiltonian as ``the rule book for quantum chemistry.''
+Beg.\ UG: write $\hat{H}$ in atomic units for H$_2$; count degrees of freedom.
+Adv.\ UG: symmetry operators that commute with $\hat{H}$; block-diagonal structure.
+MSc: permutation symmetry of $\hat{H}$; parity; time-reversal; vibrational normal modes.
+PhD: Born--Huang expansion; relativistic corrections (Breit--Pauli); quantum electrodynamic corrections.
+
+\medskip\textbf{Assessment:}
+Set~A --- write $\hat{H}$ for H$_2$, H$_2$O, CH$_4$ in atomic units; count internal DOF.
+Set~B --- symmetry analysis: which symmetry operators commute with $\hat{H}$ for a given point group?
+Projects: (simple) plot potential energy terms vs.\ $r$ for H$_2^+$; (complex) relativistic corrections: mass--velocity, Darwin, spin--orbit for He using perturbation theory.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.1 --- Lecture L02: Born--Oppenheimer Approximation and Adiabaticity}]
+\textbf{90-min pacing:} (0--20~min) Physical motivation: nuclei are $10^3$--$10^5$ times heavier than electrons; electronic motion is ``infinitely fast'' on nuclear timescale; decoupling ansatz $\Psi(\mathbf{r},\mathbf{R})=\psi_e(\mathbf{r};\mathbf{R})\chi(\mathbf{R})$; (20--45~min) Formal BO derivation: expand full wavefunction in adiabatic electronic states; project onto single state; leading BO approximation neglects non-adiabatic coupling $\mathbf{d}_{IJ}=\langle\psi_I|\nabla_\mathbf{R}|\psi_J\rangle/({E_J-E_I})$; adiabatic potential energy surface (PES) $V_I(\mathbf{R})=E_I(\mathbf{R})+V_{nn}(\mathbf{R})$; (45--65~min) Validity of BO: small $m_e/M_n$; large energy gap $E_J-E_I$; breakdown near conical intersections and avoided crossings; derivative couplings and non-adiabatic dynamics; (65--90~min) Beyond BO: Born--Huang expansion; diabatic states; non-adiabatic matrix elements; \emph{ab initio} molecular dynamics; Tully surface hopping; photochemistry and conical intersections (Jahn--Teller, Renner--Teller).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the BO approximation and state its validity conditions.
+  \item Define the adiabatic PES and the derivative coupling $\mathbf{d}_{IJ}$.
+  \item Explain conical intersections and their role in photochemistry.
+  \item Describe the Born--Huang expansion and diabatic representations.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Chemical track:} PES as the foundation of all molecular structure and dynamics; conical intersections in vision, photosynthesis, and photostability of DNA; Jahn--Teller distortions in transition metal complexes.
+  \item \textit{Mathematical track:} Adiabatic theorem; Berry phase accumulated around a conical intersection; $\mathbf{d}_{IJ}$ as a gauge connection; diabatic vs.\ adiabatic gauge.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``nuclei are slow; electrons adjust instantly --- that's the Born--Oppenheimer idea.''
+Beg.\ UG: BO ansatz; PES definition; validity conditions.
+Adv.\ UG: formal BO derivation; derivative couplings; conical intersection definition.
+MSc: Born--Huang expansion; diabatisation; Tully surface hopping.
+PhD: geometric phase around CI; Longuet-Higgins sign change; exact factorisation of electron--nuclear wavefunction.
+
+\medskip\textbf{Assessment:}
+Set~A --- write BO decoupling ansatz; identify conditions for BO validity; sketch a conical intersection seam.
+Set~B --- derive the BO Hamiltonian; show derivative coupling diverges at CI; diabatisation matrix.
+Projects: (simple) PES scan for H$_2$: BO vs.\ exact; (complex) conical intersection in H$_3$: geometric phase and Longuet-Higgins theorem.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.1 --- Lecture L03: Parametric Dependence and the Feynman--Hellmann Theorem}]
+\textbf{90-min pacing:} (0--20~min) Parametric dependence of the electronic energy: $E(\lambda)=\langle\psi(\lambda)|\hat{H}(\lambda)|\psi(\lambda)\rangle$; first-order change in energy; (20--45~min) Feynman--Hellmann theorem: $\partial E/\partial\lambda=\langle\psi|\partial\hat{H}/\partial\lambda|\psi\rangle$; derivation from stationarity of energy; (45--65~min) Applications: nuclear forces from $\partial E/\partial R_{A\alpha}=-\langle\hat{F}_{A\alpha}\rangle$ (Hellmann--Feynman force); geometry optimisation algorithms (steepest descent, BFGS, L-BFGS); vibrational frequencies from second derivatives (Hessian); (65--90~min) Beyond first order: second derivatives and the coupled-perturbed HF/KS equations; analytic vs.\ numerical gradients; computational cost; NMR chemical shifts, IR intensities, polarisability as FH applications; connection to molecular response theory.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Feynman--Hellmann theorem from variational stationarity.
+  \item Apply FH to compute nuclear forces and relate to geometry optimisation.
+  \item Distinguish analytic gradients from numerical finite differences in cost.
+  \item Describe coupled-perturbed equations for second-order properties.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Computational chemistry track:} Geometry optimisation workflow; transition-state search; IRC; force-field parameterisation from ab initio gradients; NMR shielding from FH.
+  \item \textit{Mathematical track:} FH as the quantum mechanical analogue of Darboux's theorem; Wigner's $2n+1$ rule; Dalgarno--Lewis perturbation theory.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``the force on a nucleus equals the electrostatic force from the electron density and other nuclei.''
+Beg.\ UG: FH theorem derivation; HF force on H nucleus; steepest-descent geometry optimisation.
+Adv.\ UG: analytic gradient for HF; BFGS; Hessian for frequencies.
+MSc: coupled-perturbed HF/KS; analytic second derivatives; NMR shielding.
+PhD: Wigner's $2n+1$ rule; Dalgarno--Lewis; response theory for arbitrary-order properties.
+
+\medskip\textbf{Assessment:}
+Set~A --- FH theorem derivation; nuclear force on H in H$_2$; identify minimum from gradient.
+Set~B --- analytic gradient derivation for HF; FH for NMR shielding; cost comparison analytic vs.\ numerical.
+Projects: (simple) geometry optimisation of H$_2$O: energy and gradient at each BFGS step; (complex) FH theorem for polarisability: analytic vs.\ finite-difference comparison for HF/cc-pVDZ.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module III.1 Reading:} Helgaker, J\o rgensen \& Olsen, Ch.~1--2; Born \& Oppenheimer (1927) original paper; Yarkony, Rev.\ Mod.\ Phys.\ \textbf{68}, 985 (1996) --- conical intersections.
 \end{tcolorbox}
 
 %=============================================================
@@ -4434,62 +4530,420 @@ L03 & Parametric Dependence and the Feynman--Hellmann Theorem &
 \label{sec:mod-III2}
 %=============================================================
 
-\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture Overview (Electronic Hamiltonian)}]
-\begin{longtable}{clp{7.2cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module III.2 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & The Quantum Many-Body Problem in Chemistry &
-      Complexity of $\hat{H}_e$; $N$-representability; curse of dimensionality\\
-L02 & Hydrogenic Systems &
-      Exact solution; $Z_{\rm eff}$; quantum defect; one-electron atomic orbitals; radial nodes\\
-L03 & Polyelectronic Systems &
-      Helium as prototype; electron correlation; role of inter-electronic repulsion\\
-L04 & Polyelectronic Wavefunctions, Spin Orbitals, and Slater Screening &
-      Spin orbital $\chi(\mathbf{x})=\phi(\mathbf{r})\sigma(s)$;
-      Slater rules for $Z_{\rm eff}$; shielding constants\\
-L05 & Antisymmetry, Hartree Products, and Slater Determinants &
-      Pauli exclusion; antisymmetric wavefunction;
-      Slater determinant $|\chi_1\cdots\chi_N|$\\
-L06 & Restricted and Unrestricted Methods &
-      RHF vs.\ UHF; spatial orbital constraints;
-      spin contamination $\langle\hat{S}^2\rangle$\\
-L07 & Variational Methods &
-      Basic Ritz; Hylleraas--Mayer canonical form;
-      Hylleraas--Undheim theorem; bracketing theorem\\
-L08 & Electronic Configurations, Aufbau, and Virtual Orbitals &
-      Orbital energy ordering; general Aufbau principle;
-      virtual orbitals; excited configurations\\
-L09 & Configuration Interaction and the Exact Non-Relativistic Limit &
-      Full CI expansion; truncated CI (CISD, CISDT);
-      exact non-relativistic ground state; size consistency\\
-L10 & Hartree--Fock Theory, Koopman's Theorem, and Correlation Energy &
-      SCF procedure; Roothaan--Hall equations;
-      Koopman's theorem for IPs/EAs;
-      $E_{\rm corr}=E_{\rm exact}-E_{\rm HF}$\\
-L11 & Orbital Theories and Bonding Models &
-      MO theory; Valence Bond theory;
-      Coulson--Fischer wavefunction; resonance structures\\
-L12 & Natural and Localised Orbitals &
-      Natural Bond Orbitals (NBO); L\"owdin orbitals;
-      Natural Atomic Orbitals (NAO);
-      Weinhold approximation; Foster--Boys localisation\\
-L13 & Basis Sets I --- Types of Functions &
-      Slater-type orbitals (STO); Gaussian-type orbitals (GTO);
-      contraction; minimal, split-valence, polarised\\
-L14 & Basis Sets II --- Standard Basis Families &
-      Pople (6-31G*); Dunning cc-pVXZ; Karlsruhe def2;
-      frozen-core approximation; effective core potentials (ECP)\\
-L15 & Molecular Integral Schemes &
-      Two-electron integrals; Obara--Saika recurrence;
-      Huzinaga auxiliary; Helgaker density fitting; RI approximation\\
-L16 & Glimpse into Solid State &
-      PAW approximation; plane-wave basis;
-      contrast with GTO; Bloch electrons revisited;
-      band structure vs.\ molecular orbital picture\\
+L01 & The Quantum Many-Body Problem & Complexity; $N$-representability; curse of dimensionality\\
+L02 & Hydrogenic Systems & Exact solution; $Z_{\rm eff}$; quantum defect; radial nodes\\
+L03 & Polyelectronic Systems & He prototype; electron correlation; inter-electronic repulsion\\
+L04 & Spin Orbitals and Slater Screening & $\chi(\mathbf{x})=\phi(\mathbf{r})\sigma(s)$; Slater rules; shielding\\
+L05 & Antisymmetry and Slater Determinants & Pauli exclusion; Slater determinant; properties\\
+L06 & Restricted and Unrestricted Methods & RHF vs.\ UHF; spin contamination; ROHF\\
+L07 & Variational Methods & Ritz; Hylleraas--Undheim; bracketing theorem\\
+L08 & Configurations, Aufbau, and Virtual Orbitals & Aufbau; orbital energies; excited configurations\\
+L09 & Configuration Interaction & FCI; CISD; size consistency; exact non-rel.\ limit\\
+L10 & Hartree--Fock and Correlation Energy & SCF; Roothaan--Hall; Koopman's; $E_{\rm corr}$\\
+L11 & Orbital Theories and Bonding Models & MO theory; VB theory; Coulson--Fischer; resonance\\
+L12 & Natural and Localised Orbitals & NBO; L\"owdin; NAO; Foster--Boys localisation\\
+L13 & Basis Sets I --- Function Types & STO; GTO; contraction; minimal, split-valence, polarised\\
+L14 & Basis Sets II --- Standard Families & Pople; Dunning cc-pVXZ; Karlsruhe def2; ECP\\
+L15 & Molecular Integral Schemes & Two-electron integrals; Obara--Saika; RI approximation\\
+L16 & Glimpse into Solid State & PAW; plane-wave basis; Bloch electrons; band vs.\ MO\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module III.2 Lecture Syllabi}
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L01: The Quantum Many-Body Problem in Chemistry}]
+\textbf{90-min pacing:} (0--20~min) The electronic Schr\"odinger equation $\hat{H}_e\psi_e=E_e\psi_e$; why it cannot be solved exactly for $N_e>2$; exponential wall: Hilbert space dimension grows as $\binom{K}{N_e}$ for $K$ basis functions; (20--45~min) $N$-representability: which density matrices can arise from a physical $N$-electron wavefunction; necessary conditions on 1-RDM and 2-RDM; the $v$-representability problem in DFT; (45--65~min) Curse of dimensionality: wavefunction depends on $3N_e$ (+ spin) coordinates; grid methods infeasible; why we need orbital-based methods; (65--90~min) Systematic approximation hierarchy: HF $\to$ MP2 $\to$ CCSD(T) $\to$ FCI; cost scaling; accuracy benchmarks for small molecules; accuracy vs.\ cost trade-off as the central theme of quantum chemistry.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain the exponential complexity of the $N$-electron problem.
+  \item State the $N$-representability conditions for the 1-RDM.
+  \item Identify the systematic approximation hierarchy in quantum chemistry.
+  \item Quantify the accuracy--cost trade-off for standard methods.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``quantum chemistry is hard because electrons interact and live in high-dimensional space.''
+Beg.\ UG: Hilbert space dimension; method hierarchy; scaling table.
+Adv.\ UG: $N$-representability conditions; $v$-representability; curse of dimensionality.
+MSc: 2-RDM $N$-representability (P,Q,G conditions); Coleman's theorem; SDP.
+PhD: quantum complexity of FCI; MA-hardness; quantum computing for quantum chemistry.
+\medskip\textbf{Assessment:}
+Set~A --- Hilbert space dimension for H$_2$O/STO-3G; accuracy table for methods on H$_2$.
+Set~B --- $N$-representability conditions for 1-RDM; $v$-representability counterexample.
+Projects: (simple) dimension and energy hierarchy for H$_2$ from STO-3G to FCI; (complex) SDP lower bound on FCI energy via 2-RDM.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L02: Hydrogenic Systems}]
+\textbf{90-min pacing:} (0--20~min) Hydrogen-like Hamiltonian $\hat{H}=-\tfrac{1}{2}\nabla^2-Z/r$ (atomic units); separation in spherical coordinates; radial and angular parts; (20--45~min) Exact solution: $\psi_{nlm}(r,\theta,\phi)=R_{nl}(r)Y_l^m(\theta,\phi)$; associated Laguerre polynomials for $R_{nl}$; energy $E_n=-Z^2/2n^2$; radial nodes $n-l-1$; angular nodes $l$; (45--65~min) One-electron atomic orbitals: $1s,2s,2p,3s,3p,3d$; shapes; nodal surfaces; radial probability density $4\pi r^2|R_{nl}|^2$; expectation values $\langle r\rangle,\langle r^2\rangle,\langle r^{-1}\rangle$; (65--90~min) Effective nuclear charge $Z_{\rm eff}$ and orbital exponents in multi-electron atoms; quantum defect for alkali atoms; penetration and shielding; connection to Slater orbitals and GTO basis functions.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write and interpret the hydrogenic wavefunctions $\psi_{nlm}$.
+  \item Compute radial probability densities and expectation values.
+  \item Explain the concept of effective nuclear charge and quantum defect.
+  \item Connect hydrogenic orbitals to Slater-type and Gaussian-type basis functions.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: shapes and nodal structure of atomic orbitals.
+Beg.\ UG: radial wavefunctions; probability density; $\langle r\rangle$; orbital energies.
+Adv.\ UG: derivation via Frobenius; quantum defect; $Z_{\rm eff}$ and shielding.
+MSc: connection to STO exponents; pseudo-potential core replacement.
+PhD: relativistic hydrogenic wavefunctions; Dirac equation for $Z_{\rm eff}\alpha\sim1$.
+\medskip\textbf{Assessment:}
+Set~A --- $\psi_{nlm}$ for $1s,2p_z$; radial density; $\langle r\rangle_{2p}$; energy ordering.
+Set~B --- derive $E_n=-Z^2/2n^2$ from termination; $\langle r^{-1}\rangle$ for $1s$.
+Projects: (simple) radial probability density plotter for all $n\leq3$ AOs; (complex) quantum defect for Li, Na, K: fit from experimental term values.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L03: Polyelectronic Systems and Electron Correlation}]
+\textbf{90-min pacing:} (0--20~min) Helium as prototype: $\hat{H}=-\tfrac{1}{2}\nabla_1^2-\tfrac{1}{2}\nabla_2^2-\tfrac{2}{r_1}-\tfrac{2}{r_2}+\tfrac{1}{r_{12}}$; exact solution impossible; perturbation theory ($1/r_{12}$ as perturbation); zeroth-order: product of hydrogenic $1s$; first-order correction $\langle1/r_{12}\rangle=5Z/8$; (20--45~min) Variational treatment: $Z_{\rm eff}$ as variational parameter; optimal $Z_{\rm eff}=Z-5/16$; comparison to exact; (45--65~min) Electron correlation: definition $E_{\rm corr}=E_{\rm exact}-E_{\rm HF}$; static (near-degeneracy) vs.\ dynamic (short-range) correlation; Coulomb hole and Fermi hole; angular correlation (left--right) in H$_2$; (65--90~min) Survey of correlation effects: dissociation energies; ionisation potentials; electron affinities; geometries; dipole moments; van der Waals interactions (London dispersion = pure correlation).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply PT and variational method to the helium atom.
+  \item Define and distinguish static and dynamic correlation.
+  \item Explain the Coulomb hole and Fermi hole physically.
+  \item Identify properties that are particularly sensitive to electron correlation.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: electrons avoid each other --- that's correlation; why chemistry needs it.
+Beg.\ UG: He PT and variational; $E_{\rm corr}$ definition; static vs.\ dynamic.
+Adv.\ UG: Coulomb and Fermi holes; left--right correlation in H$_2$; dispersion.
+MSc: London dispersion from PT; correlation effects on PES; adiabatic connection.
+PhD: transcorrelated methods; R12/F12 explicitly correlated wavefunctions; cusp condition.
+\medskip\textbf{Assessment:}
+Set~A --- He energy from PT and variational; optimal $Z_{\rm eff}$; $E_{\rm corr}$ for He.
+Set~B --- Coulomb hole derivation; left--right correlation in H$_2$ from CI(2,2).
+Projects: (simple) He energy: PT vs.\ variational vs.\ HF vs.\ FCI; (complex) H$_2$ correlation energy vs.\ bond length: dynamic to static crossover.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L04: Spin Orbitals, Slater Screening, and Effective Nuclear Charge}]
+\textbf{90-min pacing:} (0--20~min) Spin orbitals: $\chi(\mathbf{x})=\phi(\mathbf{r})\sigma(s)$ where $\sigma\in\{\alpha,\beta\}$; $\mathbf{x}=(\mathbf{r},s)$; orthonormality; (20--45~min) Slater's rules for $Z_{\rm eff}$: group electrons by $(1s), (2s,2p), (3s,3p), (3d), \ldots$; shielding contributions from inner and same-shell electrons; worked examples for B, Cl, Fe; limitation of Slater rules vs.\ computed $Z_{\rm eff}$; (45--65~min) Physical effects captured by $Z_{\rm eff}$: penetration of $s$ orbitals; orbital contraction; Clementi--Raimondi refined values; connection to orbital exponents in STO/GTO; (65--90~min) Periodic trends from $Z_{\rm eff}$: atomic radius, ionisation energy, electron affinity, electronegativity along period and down group; comparative analysis with experimental data.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define spin orbitals and state their orthonormality relations.
+  \item Apply Slater's rules to compute $Z_{\rm eff}$ for any element.
+  \item Explain penetration, shielding, and orbital contraction.
+  \item Predict periodic trends from $Z_{\rm eff}$.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: periodic trends from effective nuclear charge.
+Beg.\ UG: spin orbitals; Slater rules for B, Cl, Fe; periodic trends.
+Adv.\ UG: Clementi--Raimondi; connection to STO exponents; limitations of Slater.
+MSc: relativistic contraction of $s,p$ orbitals in heavy atoms; pseudo-potentials from $Z_{\rm eff}$.
+PhD: exact $Z_{\rm eff}$ from computed densities; Kohn--Sham $Z_{\rm eff}$; relativistic effective core potentials.
+\medskip\textbf{Assessment:}
+Set~A --- $Z_{\rm eff}$ for B, Si, Fe by Slater rules; periodic trend in $r_{\rm cov}$.
+Set~B --- Clementi--Raimondi vs.\ Slater; orbital contraction in 4th period.
+Projects: (simple) periodic table of $Z_{\rm eff}$ heatmap using Slater rules; (complex) $Z_{\rm eff}$ from HF electron density vs.\ Slater rules for 3d transition metals.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L05: Antisymmetry, Hartree Products, and Slater Determinants}]
+\textbf{90-min pacing:} (0--20~min) Indistinguishable electrons; Pauli exclusion; antisymmetry postulate $\hat{P}_{ij}\Psi=-\Psi$; (20--45~min) Hartree product: $\Psi_{\rm HP}=\chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)\cdots\chi_N(\mathbf{x}_N)$ --- not antisymmetric; antisymmetriser $\hat{\mathcal{A}}=\tfrac{1}{\sqrt{N!}}\sum_{\hat{P}}(-1)^p\hat{P}$; Slater determinant $\Phi=\hat{\mathcal{A}}[\chi_1\chi_2\cdots\chi_N]$; (45--65~min) Properties of Slater determinants: Pauli exclusion from determinant vanishing; exchange symmetry; overlap $\langle\Phi|\Phi\rangle=1$ for orthonormal spin orbitals; orbital rotation and the non-uniqueness of SDs; (65--90~min) Matrix elements of one- and two-body operators between SDs: Slater--Condon rules; $\langle\hat{O}_1\rangle$, $\langle\hat{O}_2\rangle$; application to the HF energy expression.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct a Slater determinant from a set of spin orbitals.
+  \item Prove Pauli exclusion from the determinant structure.
+  \item Apply Slater--Condon rules to evaluate matrix elements.
+  \item Derive the Hartree--Fock energy from Slater--Condon rules.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``no two electrons can be in the same quantum state'' --- Pauli exclusion from antisymmetry.
+Beg.\ UG: Slater determinant construction; Pauli exclusion; Slater--Condon rules.
+Adv.\ UG: antisymmetriser; $N!$ terms; HF energy from Slater--Condon.
+MSc: generalised Slater--Condon for multi-determinant wavefunctions.
+PhD: second-quantisation derivation of Slater--Condon; matrix elements for CC theory.
+\medskip\textbf{Assessment:}
+Set~A --- construct $\Phi$ for He, Li; verify $\langle\Phi|\Phi\rangle=1$; Pauli exclusion.
+Set~B --- Slater--Condon rules derivation; HF energy $E_{\rm HF}=\sum_i h_{ii}+\tfrac{1}{2}\sum_{ij}(J_{ij}-K_{ij})$.
+Projects: (simple) Slater determinant for H$_2$: evaluate all integrals; (complex) Slater--Condon rules for doubly-substituted configuration: matrix element for CISD.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L06: Restricted and Unrestricted Methods}]
+\textbf{90-min pacing:} (0--20~min) Spin structure of HF: closed-shell (RHF) vs.\ open-shell; restricted open-shell (ROHF) and unrestricted (UHF); (20--45~min) RHF: $\phi_i^\alpha=\phi_i^\beta$; single set of spatial orbitals; correct spin eigenfunction; Roothaan--Hall equations $\mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\boldsymbol\varepsilon$ (details in L10); (45--65~min) UHF: separate $\alpha$ and $\beta$ orbital sets; Pople--Nesbet equations; lower variational energy than RHF; spin contamination $\langle\hat{S}^2\rangle_{\rm UHF}=S(S+1)+N_\beta-\sum_{ij}|\langle\phi_i^\alpha|\phi_j^\beta\rangle|^2$; (65--90~min) ROHF: constrained optimisation; pure spin eigenfunction; applications to radicals; half-open-shell systems; comparison of RHF, UHF, ROHF for dissociation of H$_2$; open-shell singlet states; broken-symmetry DFT.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Distinguish RHF, UHF, and ROHF and state their applicability.
+  \item Compute the spin contamination of a UHF wavefunction.
+  \item Explain why UHF gives lower energy than RHF for open-shell systems.
+  \item Describe broken-symmetry DFT for biradicals.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``restricted'' = paired electrons; ``unrestricted'' = $\alpha$ and $\beta$ electrons optimised independently.
+Beg.\ UG: RHF vs.\ UHF; spin contamination formula; H$_2$ dissociation.
+Adv.\ UG: Pople--Nesbet equations; ROHF constraint; spin projection.
+MSc: broken-symmetry DFT; spin contamination correction; ROHF for excited states.
+PhD: GHF (generalised HF); spin--orbit coupling; non-collinear DFT.
+\medskip\textbf{Assessment:}
+Set~A --- $\langle\hat{S}^2\rangle_{\rm UHF}$ for O atom; energy ordering RHF vs.\ UHF for H$_2$.
+Set~B --- Pople--Nesbet equations derivation; broken-symmetry DFT for H$_2$ at $r=3$~\AA.
+Projects: (simple) RHF vs.\ UHF dissociation curve for H$_2$; (complex) spin contamination and spin projection for biradical singlet.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L07: Variational Methods}]
+\textbf{90-min pacing:} (0--20~min) Variational principle for ground state: $E[\Psi]=\langle\Psi|\hat{H}|\Psi\rangle/\langle\Psi|\Psi\rangle\geq E_0$; (20--45~min) Ritz method: linear ansatz $\ket{\Phi}=\sum_k c_k\ket{\chi_k}$; secular equation $\mathbf{H}\mathbf{c}=E\mathbf{S}\mathbf{c}$; Hylleraas--Undheim theorem: $N$ variational eigenvalues bound the exact ones from above; (45--65~min) Hylleraas function for He: $\psi=e^{-\alpha(r_1+r_2)}(1+\beta r_{12})$; dependence on inter-electron coordinate; cusp condition $(\partial\psi/\partial r_{12})|_{r_{12}=0}=\tfrac{1}{2}\psi(0)$; (65--90~min) Explicitly correlated methods (R12/F12): Slater geminal $e^{-\gamma r_{12}}$; resolution-of-identity; CABS (complementary auxiliary basis sets); accelerated basis-set convergence.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply the Ritz method to set up and solve the secular equation.
+  \item State the Hylleraas--Undheim theorem and apply it.
+  \item Derive the electron--electron cusp condition.
+  \item Describe explicitly correlated R12/F12 methods.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: variational principle as ``upper bound guarantee.''
+Beg.\ UG: secular equation; He with $Z_{\rm eff}$; Hylleraas--Undheim.
+Adv.\ UG: cusp condition; Hylleraas wavefunction; convergence.
+MSc: R12/F12 methods; CABS; explicitly correlated coupled cluster.
+PhD: transcorrelated Hamiltonians; FCIQMC-R12; CCSD(T)-F12 benchmark accuracy.
+\medskip\textbf{Assessment:}
+Set~A --- secular equation for 2-basis He; Hylleraas--Undheim check; cusp condition.
+Set~B --- cusp condition derivation; Hylleraas function for He: compute energy.
+Projects: (simple) He energy from Hylleraas wavefunctions: convergence with terms; (complex) electron--electron cusp: R12 correction to HF energy for He.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L08: Electronic Configurations, Aufbau, and Virtual Orbitals}]
+\textbf{90-min pacing:} (0--20~min) Aufbau principle: fill lowest-energy orbitals first; $1s<2s<2p<3s<3p<4s<3d<\ldots$; anomalies (Cr, Cu); Madelung/$(n+l)$ rule; (20--45~min) Orbital energy ordering in polyelectronic atoms: $\varepsilon_i$ from HF; Koopmans' theorem (preview); orbital degeneracy and symmetry; occupations and electron configurations; term symbols (recap from II.3); (45--65~min) Virtual (unoccupied) orbitals: definition; basis-set dependence; canonical virtual orbitals; natural virtual orbitals (NVOs); their role in CI and CC; (65--90~min) Excited configurations: single, double, triple substitutions $\ket{\Phi_i^a},\ket{\Phi_{ij}^{ab}},\ldots$; excitation operators $\hat{a}^\dagger_a\hat{a}_i$; Brillouin's theorem; orthogonality to HF ground state; matrix elements for CI.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply the Aufbau principle and explain anomalies for Cr, Cu.
+  \item Construct excited Slater determinants using excitation operators.
+  \item Explain the role of virtual orbitals in post-HF methods.
+  \item State Brillouin's theorem and its implication for CI.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: filling orbitals in order: the Aufbau principle and periodic table.
+Beg.\ UG: electron configurations; Aufbau anomalies; excited configurations.
+Adv.\ UG: canonical vs.\ natural virtual orbitals; Brillouin's theorem.
+MSc: NVOs for local correlation; pair natural orbitals; orbital localisation.
+PhD: optimal virtual space for DLPNO; projected AOs; pair correlation theories.
+\medskip\textbf{Assessment:}
+Set~A --- electron configurations for B, Fe, Cr; virtual orbital count for H$_2$O/6-31G*.
+Set~B --- Brillouin's theorem derivation; canonical vs.\ NVO comparison.
+Projects: (simple) aufbau anomalies: energy rationale for Cr vs.\ expected; (complex) NVO localisation for H$_2$O: compare canonical vs.\ Foster--Boys virtual orbitals.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L09: Configuration Interaction and the Exact Non-Relativistic Limit}]
+\textbf{90-min pacing:} (0--20~min) CI expansion: $\ket{\Psi}=c_0\ket{\Phi_0}+\sum_{ia}c_i^a\ket{\Phi_i^a}+\sum_{ijab}c_{ij}^{ab}\ket{\Phi_{ij}^{ab}}+\cdots$; FCI = exact non-relativistic ground state within a given basis; (20--45~min) FCI properties: variational; size-consistent; basis-set limit = exact; FCI dimension $\binom{K}{N_\alpha}\binom{K}{N_\beta}$; exponential scaling; (45--65~min) Truncated CI: CIS (singles only; no correlation for ground state by Brillouin); CISD; CISDT; size inconsistency of truncated CI; $\langle\Psi_{N}|\hat{H}|\Psi_{N}\rangle \neq 2\langle\Psi_{N/2}|\hat{H}|\Psi_{N/2}\rangle$ for non-interacting monomers; Davidson correction $\Delta E_Q\approx(1-c_0^2)E_{\rm CISD}$; (65--90~min) Selected CI (SCI): CIPSI, ASCI, HCI algorithms; stochastic FCI; FCIQMC; convergence toward FCI; comparison with CCSD(T).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the FCI expansion and state its properties.
+  \item Explain size inconsistency of truncated CI and apply the Davidson correction.
+  \item Describe selected CI algorithms (CIPSI, HCI).
+  \item Compare FCI, CISD, and CCSD(T) in accuracy and scaling.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: FCI as the ``exact answer'' and why it's too expensive.
+Beg.\ UG: CI expansion; FCI dimension; size inconsistency.
+Adv.\ UG: Davidson correction; CISD scaling; selected CI idea.
+MSc: CIPSI; FCIQMC; initiator approximation.
+PhD: SCI extrapolation to FCI; stochastic-CASSCF; heat-bath CI.
+\medskip\textbf{Assessment:}
+Set~A --- FCI dimension for H$_2$/STO-3G; size inconsistency for He$_2$; Davidson correction.
+Set~B --- prove size inconsistency of CISD; CIPSI selection criterion.
+Projects: (simple) FCI vs.\ CISD for H$_2$: energy and $c_0^2$ vs.\ bond length; (complex) selected CI for N$_2$: CIPSI convergence toward FCI.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L10: Hartree--Fock Theory, Koopman's Theorem, and Correlation Energy}]
+\textbf{90-min pacing:} (0--20~min) HF as variational optimisation of a Slater determinant; energy $E_{\rm HF}=\sum_i h_{ii}+\tfrac{1}{2}\sum_{ij}(J_{ij}-K_{ij})$; Coulomb $J_{ij}=\langle ij|ij\rangle$ and exchange $K_{ij}=\langle ij|ji\rangle$; (20--45~min) Fock operator $\hat{F}=\hat{h}+\sum_j(\hat{J}_j-\hat{K}_j)$; HF equations $\hat{F}\phi_i=\varepsilon_i\phi_i$; Roothaan--Hall in AO basis: $\mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\boldsymbol\varepsilon$; density matrix $\mathbf{P}=2\mathbf{C}_{\rm occ}\mathbf{C}_{\rm occ}^\dagger$; DIIS convergence acceleration; (45--65~min) Koopman's theorem: $\text{IP}_i\approx-\varepsilon_i$ (frozen-orbital approximation); $\text{EA}_a\approx-\varepsilon_a$; orbital relaxation and correlation corrections; (65--90~min) Correlation energy $E_{\rm corr}=E_{\rm exact}-E_{\rm HF}$; typical magnitudes ($\sim$1~eV per electron pair); dynamic and static contributions; the $T_1$ and $D_1$ diagnostic for multi-reference character; post-HF methods as corrections to HF.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the HF equations from the variational principle.
+  \item Set up and solve the Roothaan--Hall equations in an AO basis.
+  \item Apply Koopman's theorem to estimate IPs and EAs.
+  \item Define correlation energy and identify multi-reference character from diagnostics.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``HF gives 99\% of the energy but the remaining 1\% determines chemistry.''
+Beg.\ UG: Fock operator; DIIS; Koopman's theorem; $E_{\rm corr}$ definition.
+Adv.\ UG: Roothaan--Hall derivation; density matrix; Brillouin's theorem.
+MSc: $T_1/D_1$ diagnostics; orbital relaxation vs.\ correlation; OMP2.
+PhD: Brueckner orbitals; orbital-optimised CC; HF saddle point.
+\medskip\textbf{Assessment:}
+Set~A --- HF energy for He; Koopman's IPs; $E_{\rm corr}$ for Ne.
+Set~B --- Roothaan--Hall derivation; density matrix idempotency; DIIS error vector.
+Projects: (simple) HF SCF for H$_2$O/STO-3G: convergence and Koopman's IPs; (complex) correlation energy per electron pair across noble gas series.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L11: Orbital Theories and Bonding Models}]
+\textbf{90-min pacing:} (0--20~min) Two paradigms: MO theory (delocalised) and Valence Bond theory (localised, resonance); complementary descriptions; (20--45~min) MO theory: LCAO--MO; bonding, antibonding, non-bonding MOs; correlation diagrams; Walsh diagrams; orbital symmetry and frontier MO theory; HOMO--LUMO gap; (45--65~min) VB theory: Heitler--London wavefunction for H$_2$; ionic and covalent resonance structures; Coulson--Fischer wavefunction: intermediate between MO and VB; resonance in benzene; (65--90~min) Modern VB methods: spin-coupled VB; VBSCF; BOVB; GVB; comparison to CASSCF; VB interpretation of chemical bonding.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct and interpret MO correlation diagrams.
+  \item Write the Heitler--London and Coulson--Fischer wavefunctions for H$_2$.
+  \item Explain resonance structures in VB theory.
+  \item Compare MO and VB descriptions and identify when each is more appropriate.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: bonding and antibonding orbitals; resonance structures.
+Beg.\ UG: MO correlation diagrams; Heitler--London; resonance in benzene.
+Adv.\ UG: Coulson--Fischer; GVB; MO--VB connection.
+MSc: VBSCF; spin-coupled VB; BOVB.
+PhD: modern VB theories; VB interpretation of aromaticity; VB-CI.
+\medskip\textbf{Assessment:}
+Set~A --- MO diagram for N$_2$, O$_2$, F$_2$; VB resonance for benzene; Heitler--London for H$_2$.
+Set~B --- Coulson--Fischer wavefunction: ionic/covalent mixing; GVB pair functions.
+Projects: (simple) MO vs.\ VB energy for H$_2$: ionic content vs.\ $R$; (complex) VBSCF for allyl radical: spin-coupled vs.\ delocalised picture.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L12: Natural and Localised Orbitals}]
+\textbf{90-min pacing:} (0--20~min) Why localised orbitals? Chemical intuition; transferability; local correlation methods; (20--45~min) Natural orbitals (NOs) from 1-RDM: eigenfunctions of $\gamma(\mathbf{r};\mathbf{r}')$; occupation numbers $n_i\in[0,2]$; multi-reference diagnostics from NOONs; (45--65~min) Natural Bond Orbitals (NBOs): Lewis-structure-based orthogonal localisation; core, lone-pair, and bond NBOs; NBO charge analysis; Natural Population Analysis (NPA); Natural Atomic Orbitals (NAOs); (65--90~min) Localisation methods for MOs: Foster--Boys ($\sum_i\langle r^2\rangle_i - \langle r\rangle_i^2$ minimised); Pipek--Mezey (maximise atomic populations); Edmiston--Ruedenberg (maximise self-repulsion); comparison; use in DLPNO-CCSD(T) and pair natural orbital methods.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Compute NOONs and interpret them as a multi-reference diagnostic.
+  \item Describe the NBO procedure and NPA charge analysis.
+  \item Apply Foster--Boys and Pipek--Mezey localisation.
+  \item Connect localised orbitals to local correlation methods.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: localised orbitals as ``lone pairs and bonds'' --- connecting quantum chemistry to Lewis structures.
+Beg.\ UG: NOs and NOONs; NBO for water; NPA charges.
+Adv.\ UG: Foster--Boys localisation; NOON diagnostic; Pipek--Mezey.
+MSc: DLPNO connection; PNOs from 2-RDM; BOYS localisation gradient.
+PhD: intrinsic bond orbitals (IBO); AVAS; automatic active space selection from NOONs.
+\medskip\textbf{Assessment:}
+Set~A --- NBO for H$_2$O: identify lone pairs; NPA charges; NOON for H$_2$ at 2$R_e$.
+Set~B --- Foster--Boys localisation criterion; derivation of gradient; comparison with Pipek--Mezey.
+Projects: (simple) NBO/NPA analysis for a series of molecules; (complex) NOON diagnostic: HF vs.\ FCI NOONs for N$_2$ dissociation.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L13: Basis Sets I --- Types of Functions}]
+\textbf{90-min pacing:} (0--20~min) Why basis sets? LCAO expansion; finite basis approximation; basis set error = incompleteness; (20--45~min) Slater-type orbitals (STO): $\chi^{\rm STO}_{nlm}=Nr^{n-1}e^{-\zeta r}Y_l^m$; correct cusp and asymptotic; expensive two-electron integrals (Boys 1950 Gaussian workaround); Gaussian-type orbitals (GTO): $\chi^{\rm GTO}_{lmn}=Nx^ly^mz^ne^{-\alpha r^2}$; product theorem; (45--65~min) Contraction: $\phi_\mu=\sum_k d_{\mu k}\chi_k^{\rm GTO}$; segmented vs.\ general contraction; minimal basis (1 function/occupied AO); split-valence (double/triple zeta); polarisation ($d$ on heavy, $p$ on H); diffuse functions (for anions and Rydbergs); (65--90~min) Quality indicators: basis set superposition error (BSSE); counterpoise correction (Boys--Bernardi); basis set incompleteness error (BSIE); CBS extrapolation; approximate completeness via RI/density fitting.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define STO and GTO and explain why GTOs are used in practice.
+  \item Describe contraction schemes and the meaning of split-valence, polarised, and diffuse.
+  \item Define BSSE and apply the counterpoise correction.
+  \item Explain BSIE and CBS extrapolation.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: basis functions as the ``building blocks'' for molecular orbitals.
+Beg.\ UG: STO vs.\ GTO; contraction; minimal and split-valence; BSSE.
+Adv.\ UG: BSSE counterpoise; BSIE vs.\ correlation error; RI approximation.
+MSc: general contraction; CBS extrapolation formulae; resolution-of-identity.
+PhD: basis set design principles; even-tempered series; optimisation of exponents for FCI.
+\medskip\textbf{Assessment:}
+Set~A --- GTO product theorem; contraction for 6-31G*; BSSE for He$_2$ at 3~\AA.
+Set~B --- STO-nG contraction: fit STO with $n$ Gaussians; counterpoise correction derivation.
+Projects: (simple) BSSE for H$_2$O dimer vs.\ basis set; (complex) CBS extrapolation for He correlation energy: Dunning cc-pVDZ through cc-pV5Z.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L14: Basis Sets II --- Standard Basis Families}]
+\textbf{90-min pacing:} (0--20~min) Overview of the major families: Pople, Dunning correlation-consistent, Karlsruhe def2, ANO, Sapporo; design philosophy of each; (20--45~min) Pople basis sets: 3-21G, 6-31G*, 6-311++G**; notation; polarisation and diffuse; historical prevalence; (45--65~min) Dunning cc-pVXZ ($X=D,T,Q,5,6$): hierarchical; designed for CBS extrapolation; aug-cc-pVXZ (with diffuse); cc-pCVXZ (core--valence); cc-pwCVXZ (weighted); (65--90~min) Karlsruhe def2-SVP, def2-TZVP, def2-QZVP: efficient segmented contraction; ECP for $Z\geq37$; Ahlrichs ECPs; Dunning ECPs (cc-pVXZ-PP); comparison on a benchmark set; practical choice guide.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Decode basis set notation (Pople, Dunning, def2).
+  \item Select an appropriate basis set for a given property and accuracy target.
+  \item Explain effective core potentials and when to use them.
+  \item Apply CBS extrapolation using the Dunning cc-pVXZ hierarchy.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: practical guide to basis set selection.
+Beg.\ UG: decode 6-31G*, cc-pVDZ, def2-TZVP; select for geometry vs.\ energy.
+Adv.\ UG: CBS extrapolation; ECP choice; core--valence cc-pCVXZ.
+MSc: ANO basis sets; CABS for F12; basis set optimisation.
+PhD: basis set extrapolation theory; explicitly correlated basis-set convergence; periodic basis sets.
+\medskip\textbf{Assessment:}
+Set~A --- decode basis set notation; select basis for H$_2$O geometry vs.\ interaction energy.
+Set~B --- CBS extrapolation for Ne: Helgaker formula; core--valence effect on Cu ionisation.
+Projects: (simple) basis set convergence for H$_2$O: geometry and energy from STO-3G to aug-cc-pV5Z; (complex) ECP vs.\ all-electron for Au: relativistic effects on bond length.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L15: Molecular Integral Schemes}]
+\textbf{90-min pacing:} (0--20~min) The two-electron integral bottleneck: $(\mu\nu|\lambda\sigma)=\int\int\phi_\mu(\mathbf{r}_1)\phi_\nu(\mathbf{r}_1)\tfrac{1}{r_{12}}\phi_\lambda(\mathbf{r}_2)\phi_\sigma(\mathbf{r}_2)d\mathbf{r}_1d\mathbf{r}_2$; formally $\mathcal{O}(K^4)$; (20--45~min) Obara--Saika recurrence relations: generate higher angular momentum integrals from $s$-type; vertical and horizontal recurrence; computational savings; (45--65~min) Resolution-of-identity (RI/density fitting) approximation: $(\mu\nu|\lambda\sigma)\approx\sum_{PQ}(\mu\nu|P)(P|Q)^{-1}(Q|\lambda\sigma)$; auxiliary basis $\{P\}$; reduces to $\mathcal{O}(K^3)$; Coulomb and exchange RI; (65--90~min) Modern integral algorithms: linear-scaling methods (J-engine, LinK); screening (Schwarz); GPU implementations; integral-direct algorithms; resolution of identity for MP2 and CC; RIJCOSX for large molecules.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write the two-electron repulsion integral and identify its computational complexity.
+  \item Describe the Obara--Saika recurrence and its efficiency gain.
+  \item Explain the RI approximation and its error and cost.
+  \item Describe Schwarz screening and linear-scaling integral algorithms.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: molecular integrals as the computational cost of quantum chemistry.
+Beg.\ UG: two-electron integral definition; $\mathcal{O}(K^4)$ scaling; RI approximation.
+Adv.\ UG: Obara--Saika recurrence; Schwarz screening; RI error analysis.
+MSc: RIJCOSX; GPU implementation; linear-scaling density fitting.
+PhD: Boys function; McMurchie--Davidson; Gill's PRISM; adaptive integral algorithms.
+\medskip\textbf{Assessment:}
+Set~A --- count two-electron integrals for H$_2$O/STO-3G; RI approximation error estimate.
+Set~B --- Obara--Saika for $s$-$p$ integrals; Schwarz screening criterion derivation.
+Projects: (simple) RI error vs.\ auxiliary basis size for HF/def2-TZVP; (complex) timing benchmark: conventional vs.\ RI-MP2 for linear alkane chain.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture L16: Glimpse into the Solid State}]
+\textbf{90-min pacing:} (0--20~min) Periodic systems: Bloch's theorem $\psi_{n\mathbf{k}}(\mathbf{r})=u_{n\mathbf{k}}(\mathbf{r})e^{i\mathbf{k}\cdot\mathbf{r}}$; crystal momentum; band structure vs.\ MO picture; (20--45~min) Plane-wave basis: $\phi_\mathbf{G}(\mathbf{r})=e^{i(\mathbf{k}+\mathbf{G})\cdot\mathbf{r}}/\sqrt{\Omega}$; kinetic energy cutoff $E_{\rm cut}$; completeness and convergence; (45--65~min) Projector augmented-wave (PAW) method: all-electron quality with plane-wave efficiency; PAW transformation; frozen-core PAW; comparison with pseudopotentials (norm-conserving, ultrasoft); (65--90~min) GTO basis sets for solids (Crystal, CP2K): comparison with plane waves; advantages and disadvantages; k-point sampling; Gamma-point approximation; periodic MP2 and CC with GTOs; $\Gamma$-point CCSD(T) for solids; outlook.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State Bloch's theorem and explain crystal momentum and band structure.
+  \item Describe plane-wave basis sets and the role of the energy cutoff.
+  \item Explain the PAW method and compare with pseudopotentials.
+  \item Compare GTO and plane-wave approaches for periodic quantum chemistry.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: from molecules to crystals --- how symmetry simplifies the problem.
+Beg.\ UG: Bloch's theorem; plane-wave basis; band structure concept.
+Adv.\ UG: PAW method; GTO vs.\ PW; k-point sampling.
+MSc: periodic MP2; CCSD(T) for solids; GTO-based periodic codes.
+PhD: diagrammatic MBPT for periodic systems; stochastic CCSD(T) for solids; quantum Monte Carlo for bulk.
+\medskip\textbf{Assessment:}
+Set~A --- Bloch states for 1D chain; plane-wave cutoff for Si; band gap vs.\ k-point density.
+Set~B --- PAW transformation derivation; GTO vs.\ PW cost comparison for periodic HF.
+Projects: (simple) tight-binding band structure for graphene; (complex) periodic HF/GTO vs.\ DFT/PW for LiH crystal: lattice constant and band gap.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module III.2 Reading:} Helgaker, J\o rgensen \& Olsen, \textit{Molecular Electronic-Structure Theory} (Wiley) --- primary reference; Szabo \& Ostlund, \textit{Modern Quantum Chemistry} (Dover); Jensen, \textit{Introduction to Computational Chemistry}; Cramer, \textit{Essentials of Computational Chemistry}.
 \end{tcolorbox}
 
 %=============================================================
@@ -4497,55 +4951,320 @@ L16 & Glimpse into Solid State &
 \label{sec:mod-III3}
 %=============================================================
 
-\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture Overview (DFT, Effective Models, and Special Methods)}]
-\begin{longtable}{clp{7.2cm}}
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module III.3 Overview}
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
 \toprule
-\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
 \midrule
-\endhead
-L01 & Hohenberg--Kohn Theorems &
-      First theorem ($\rho\to V_{\rm ext}$);
-      second theorem (variational); $v$-representability\\
-L02 & Thomas--Fermi--Weizs\"acker Theory &
-      Orbital-free DFT; TF kinetic energy;
-      gradient correction; limitations\\
-L03 & Kohn--Sham DFT &
-      KS equations; non-interacting reference;
-      XC functional; self-consistent field\\
-L04 & Overview of XC Functionals &
-      Jacob's ladder; LDA, GGA (PBE), meta-GGA,
-      hybrid (B3LYP, PBE0), range-separated, double-hybrid; Perdew's ladder\\
-L05 & Useful DFT Quantities &
-      Fukui functions $f^+,f^-,f^0$;
-      Pearson hardness/softness;
-      Yang--Parr electronegativity $\chi=-\mu$; dual descriptor\\
-L06 & Tight-Binding and Effective Hamiltonians &
-      LCAO tight-binding; Hamiltonian matrix elements;
-      Slater--Koster parameters; SSH model\\
-L07 & H\"uckel and M\"obius Aromaticity Models &
-      Simple H\"uckel MO theory;
-      $4n$ vs.\ $4n+2$ H\"uckel rule;
-      M\"obius topology; Woodward--Hoffmann rules\\
-L08 & Crystal Field Theory &
-      $d$-orbital splitting in octahedral, tetrahedral;
-      $\Delta_o$; high-spin/low-spin; Jahn--Teller effect\\
-L09 & Ligand Field Theory &
-      Nephelauxetic effect; angular overlap model;
-      Tanabe--Sugano diagrams;
-      Racah--Van Vleck parameters $A,B,C$\\
-L10 & Full CI Quantum Monte Carlo &
-      Booth--Alavi FCIQMC algorithm;
-      walker dynamics; sign problem in FCI space;
-      initiator approximation; benchmark applications\\
-L11 & Diffusion Quantum Monte Carlo &
-      Branching random walk; fixed-node approximation;
-      trial wavefunction quality; pseudopotentials in DMC\\
-L12 & Synthesis and Outlook &
-      Method comparison (accuracy, scaling, cost);
-      current challenges: strong correlation,
-      excited states, relativistic effects, periodic systems\\
+L01 & Hohenberg--Kohn Theorems & HK1/HK2; $v$-representability; universal functional\\
+L02 & Thomas--Fermi--Weizs\"acker & Orbital-free DFT; TF kinetic energy; gradient correction; limitations\\
+L03 & Kohn--Sham DFT & KS equations; non-interacting reference; XC functional; SCF\\
+L04 & XC Functionals --- Jacob's Ladder & LDA; GGA; meta-GGA; hybrid; range-separated; double-hybrid\\
+L05 & Useful DFT Quantities & Fukui functions; chemical hardness/softness; dual descriptor; CDFT\\
+L06 & Tight-Binding and Effective Hamiltonians & LCAO; Slater--Koster; SSH model; topological TBM\\
+L07 & H\"uckel and M\"obius Aromaticity & H\"uckel MO; $4n+2$ rule; M\"obius; Woodward--Hoffmann\\
+L08 & Crystal Field Theory & $d$-orbital splitting; $\Delta_o$; high-spin/low-spin; Jahn--Teller\\
+L09 & Ligand Field Theory & Nephelauxetic; AOM; Tanabe--Sugano; Racah parameters\\
+L10 & Full CI QMC (FCIQMC) & Booth--Alavi algorithm; walker dynamics; sign problem; initiator\\
+L11 & Diffusion QMC (DMC) & Fixed-node; branching walk; trial wavefunction; pseudopotentials\\
+L12 & Synthesis and Outlook & Method comparison; strong correlation; excited states; periodic; ML\\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module III.3 Lecture Syllabi}
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L01: Hohenberg--Kohn Theorems}]
+\textbf{90-min pacing:} (0--20~min) Motivation: the electron density $\rho(\mathbf{r})$ is a 3D function vs.\ the $3N_e$-dimensional wavefunction; if $\rho$ determines everything, enormous simplification; (20--45~min) HK Theorem 1: for any system of $N$ electrons under an external potential $v_{\rm ext}$, the ground-state density $\rho_0(\mathbf{r})$ uniquely determines $v_{\rm ext}(\mathbf{r})$ (up to a constant); proof by reductio ad absurdum; (45--65~min) HK Theorem 2: the exact ground-state energy is the minimum of $E_v[\rho]=F_{\rm HK}[\rho]+\int v_{\rm ext}\rho\,d\mathbf{r}$ over all $v$-representable densities; universal functional $F_{\rm HK}[\rho]=T[\rho]+V_{ee}[\rho]$; (65--90~min) Limitations: $v$-representability (not all $\rho$ arise from a ground state of some $v_{\rm ext}$); $N$-representability of densities; the Levy--Lieb constrained-search reformulation avoids $v$-representability; excited states (Gross--Oliveira--Kohn); ensemble DFT.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Prove the first HK theorem by contradiction.
+  \item State the second HK theorem and identify the universal functional.
+  \item Explain the $v$-representability problem.
+  \item Describe the Levy--Lieb constrained-search and its advantage.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``the electron density contains all information about a molecule.''
+Beg.\ UG: HK1 proof sketch; HK2 variational principle; $F_{\rm HK}[\rho]$.
+Adv.\ UG: $v$-representability; Levy--Lieb; ensemble DFT.
+MSc: Lieb's convex conjugate; subdifferential; functional derivatives in DFT.
+PhD: Moreau--Yosida regularisation; N-representability of $\rho$; adiabatic connection.
+\medskip\textbf{Assessment:}
+Set~A --- prove HK1 by contradiction; identify $F_{\rm HK}$ for He; variational principle check.
+Set~B --- Levy--Lieb constrained search derivation; $v$-representability counterexample.
+Projects: (simple) HK1 visualisation: two different $v_{\rm ext}$ cannot give same $\rho_0$; (complex) Levy--Lieb: evaluate $F_{\rm HK}[\rho]$ for He by constrained optimisation.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L02: Thomas--Fermi--Weizs\"acker Theory}]
+\textbf{90-min pacing:} (0--20~min) Orbital-free DFT: express total energy entirely as a functional of $\rho(\mathbf{r})$; Thomas--Fermi kinetic energy $T_{\rm TF}[\rho]=C_F\int\rho^{5/3}d\mathbf{r}$ from homogeneous electron gas; (20--45~min) Thomas--Fermi total energy $E_{\rm TF}[\rho]=T_{\rm TF}+\int v_{\rm ext}\rho\,d\mathbf{r}+J[\rho]+E_{\rm xc}^{\rm LDA}[\rho]$; Euler--Lagrange equation; Thomas--Fermi equation $\mu=C_F\rho^{2/3}+v_{\rm ext}+v_H+v_{\rm xc}$; (45--65~min) Weizs\"acker correction $T_W[\rho]=\tfrac{1}{8}\int|\nabla\rho|^2/\rho\,d\mathbf{r}$; gradient expansion (GEA); performance: wrong shell structure, no binding for atoms, no molecular binding; (65--90~min) Modern orbital-free DFT: Wang--Teter; Carter kinetic energy functionals; application to large-scale simulations of metals; keDF machine learning; limitations for covalent systems.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the TF kinetic energy from the homogeneous electron gas.
+  \item Set up and solve the TF Euler--Lagrange equation.
+  \item State the Weizs\"acker correction and explain its physical origin.
+  \item Describe the limitations of TF theory and modern orbital-free DFT.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``Thomas--Fermi is the simplest density functional theory.''
+Beg.\ UG: TF kinetic energy; TF equation; Weizs\"acker; known failures.
+Adv.\ UG: gradient expansion; $T_W$ derivation; comparison with KS.
+MSc: Wang--Teter functional; orbital-free MD for metals.
+PhD: conjoint gradient expansion; non-local kinetic energy functionals; ML-keDF.
+\medskip\textbf{Assessment:}
+Set~A --- TF equation for H atom; Weizs\"acker correction; identify TF failures.
+Set~B --- derive $T_{\rm TF}$ from HEG; gradient expansion to second order.
+Projects: (simple) TF density for He: compare to exact; (complex) orbital-free DFT for Al: Wang--Teter vs.\ KS.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L03: Kohn--Sham DFT}]
+\textbf{90-min pacing:} (0--20~min) Kohn--Sham idea: introduce a non-interacting reference system with the same density as the interacting system; KS kinetic energy $T_s[\rho]=\sum_i\langle\phi_i|-\tfrac{1}{2}\nabla^2|\phi_i\rangle$; (20--45~min) KS equations: $[-\tfrac{1}{2}\nabla^2+v_{\rm eff}(\mathbf{r})]\phi_i(\mathbf{r})=\varepsilon_i\phi_i(\mathbf{r})$ with $v_{\rm eff}=v_{\rm ext}+v_H+v_{\rm xc}$; XC potential $v_{\rm xc}=\delta E_{\rm xc}/\delta\rho$; self-consistent field loop; (45--65~min) Adiabatic connection formula: $E_{\rm xc}=\int_0^1 d\lambda\langle\Psi^\lambda|\hat{V}_{ee}-\hat{J}|\Psi^\lambda\rangle$; XC hole; exact conditions on $E_{\rm xc}$: negativity of XC hole, sum rule $\int\rho_{\rm xc}d\mathbf{r}=-1$; (65--90~min) KS DFT in practice: basis set expansion of KS orbitals; Coulomb and XC integrals; DIIS; convergence; computational scaling $\mathcal{O}(K^3)$ for hybrid; $\mathcal{O}(K)$ linear-scaling DFT; comparison with HF.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the KS equations from the HK variational principle.
+  \item Define the XC energy and potential and their exact properties.
+  \item Describe the KS SCF algorithm and its scaling.
+  \item Explain the adiabatic connection and the XC hole.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``KS DFT maps the interacting problem onto non-interacting electrons in an effective potential.''
+Beg.\ UG: KS equations; effective potential; SCF loop; LDA.
+Adv.\ UG: adiabatic connection; XC hole; exact conditions.
+MSc: XC sum rule; self-interaction error; linear-response TDDFT.
+PhD: ensemble KS DFT; optimised effective potential (OEP); exact exchange.
+\medskip\textbf{Assessment:}
+Set~A --- KS equations for He with LDA; identify $v_{\rm xc}$; SCF convergence check.
+Set~B --- derive KS equations from $E[\rho]$; adiabatic connection formula.
+Projects: (simple) KS SCF for H$_2$O with LDA: density and KS eigenvalues; (complex) adiabatic connection integrand for He: $\lambda$-dependence of $E_{\rm xc}^\lambda$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L04: Overview of XC Functionals --- Jacob's Ladder}]
+\textbf{90-min pacing:} (0--20~min) Perdew's Jacob's ladder: LDA, GGA, meta-GGA, hybrid GGA, double hybrid --- each rung adds one more ingredient; (20--45~min) LDA: $E_{\rm xc}^{\rm LDA}=\int\epsilon_{\rm xc}^{\rm HEG}(\rho)\rho\,d\mathbf{r}$; Dirac exchange; Vosko--Wilk--Nusair correlation; PW92; accuracy and systematic overbinding; GGA: $E_{\rm xc}^{\rm GGA}[\rho,|\nabla\rho|]$; PBE (parameter-free); B88 exchange; LYP correlation; B3LYP (empirical hybrid); (45--65~min) meta-GGA: kinetic energy density $\tau=\sum_i|\nabla\phi_i|^2/2$; TPSS; SCAN; MN15; range-separated hybrids: $v_{ee}=\tfrac{1-\text{erf}(\omega r)}{r}+\tfrac{\text{erf}(\omega r)}{r}$; CAM-B3LYP; HSE06; (65--90~min) Double hybrids: $E_{\rm xc}^{\rm DH}=a_x E_x^{\rm HF}+(1-a_x)E_x^{\rm GGA}+a_c E_c^{\rm GGA}+b_c E_c^{\rm MP2}$; B2-PLYP; $\mathcal{O}(N^5)$ scaling; accuracy compared to CCSD(T); dispersion corrections: D3, D3BJ, MBD, VV10; practical guidance for choosing functionals.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Describe each rung of Jacob's ladder and its new ingredient.
+  \item State the key properties and failures of LDA, PBE, and B3LYP.
+  \item Explain range-separated hybrids and when to use them.
+  \item Choose an appropriate functional for a given property and accuracy target.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: Jacob's ladder as a guide to increasingly accurate DFT.
+Beg.\ UG: LDA, PBE, B3LYP; when to use each; dispersion corrections.
+Adv.\ UG: meta-GGA; range-separated hybrids; B2-PLYP double hybrid.
+MSc: SCAN; MBD dispersion; GMTKN55 benchmark comparison.
+PhD: self-interaction correction; OEP exact exchange; DFT+U; ACFDT-RPA.
+\medskip\textbf{Assessment:}
+Set~A --- identify rung for SCAN, CAM-B3LYP, B2-PLYP; choose functional for H-bond energy.
+Set~B --- PBE exchange enhancement factor derivation; B2-PLYP energy expression.
+Projects: (simple) Jacob's ladder benchmark for atomisation energies: LDA/PBE/B3LYP/B2-PLYP vs.\ CCSD(T); (complex) dispersion corrections for rare-gas dimers: D3 vs.\ MBD vs.\ VV10.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L05: Useful DFT Quantities --- Fukui Functions and Reactivity Indices}]
+\textbf{90-min pacing:} (0--20~min) Conceptual DFT: chemical potential $\mu=(\partial E/\partial N)_v=-\chi$ (negative of electronegativity); chemical hardness $\eta=\tfrac{1}{2}(\partial^2 E/\partial N^2)_v$; (20--45~min) Fukui functions: $f^+(\mathbf{r})=\rho_{N+1}(\mathbf{r})-\rho_N(\mathbf{r})$ (nucleophilic attack site); $f^-(\mathbf{r})=\rho_N(\mathbf{r})-\rho_{N-1}(\mathbf{r})$ (electrophilic attack); $f^0=\tfrac{1}{2}(f^++f^-)$ (radical); finite-difference approximation; Fukui from frontier orbitals; (45--65~min) Yang--Parr local softness $s^\pm(\mathbf{r})=Sf^\pm(\mathbf{r})$; electrophilicity index $\omega=\mu^2/2\eta$; hardness--softness complementarity; HSAB principle; (65--90~min) Dual descriptor $\Delta f(\mathbf{r})=f^+-f^-$; identifies nucleophilic ($\Delta f<0$) and electrophilic ($\Delta f>0$) sites simultaneously; constrained DFT (CDFT) for charge-transfer states; non-covalent interaction (NCI) plots; reduced density gradient; applications in organic and organometallic reactivity.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define chemical potential, hardness, and electronegativity in DFT.
+  \item Compute Fukui functions $f^\pm$ from frontier orbital densities.
+  \item Apply the HSAB principle using hardness and Fukui functions.
+  \item Interpret the dual descriptor and NCI plots for reactivity analysis.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``Fukui functions point to where a molecule is most reactive.''
+Beg.\ UG: $f^\pm$ from frontier orbitals; HOMO/LUMO as reactivity sites; HSAB.
+Adv.\ UG: Fukui from density difference; dual descriptor; electrophilicity.
+MSc: CDFT for CT states; NCI analysis; chemical softness and polarisability.
+PhD: DFT $N$-derivative discontinuity; derivative of chemical potential; ensemble DFT for Fukui.
+\medskip\textbf{Assessment:}
+Set~A --- compute $f^\pm$ from HOMO/LUMO for formaldehyde; hardness for hard/soft acids.
+Set~B --- dual descriptor for acrolein: identify nucleophilic and electrophilic sites.
+Projects: (simple) Fukui function map for a series of carbonyl compounds; (complex) CDFT for charge transfer in push-pull chromophore: ground vs.\ CT state densities.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L06: Tight-Binding and Effective Hamiltonians}]
+\textbf{90-min pacing:} (0--20~min) LCAO tight-binding Hamiltonian: $H_{ij}=\langle\phi_i|\hat{H}|\phi_j\rangle$; hopping $t_{ij}$ and on-site $\varepsilon_i$; connection to DFT Hamiltonian matrix elements; (20--45~min) Slater--Koster two-centre approximation: parametrise $H_{ij}$ by bond type ($ss\sigma$, $sp\sigma$, $pp\sigma$, $pp\pi$, $\ldots$) and distance; tables of Slater--Koster integrals; applications: Si band structure, graphene Dirac cone; (45--65~min) Su--Schrieffer--Heeger (SSH) model: 1D chain with alternating hoppings $t,t'$; topological insulator; bulk-boundary correspondence; chiral symmetry; edge states; (65--90~min) DFTB (density functional tight-binding): repulsive pair potential from DFT; self-consistent charge (SCC-DFTB); applications to bio- and nano-systems; GFN-xTB for non-covalent interactions; parametrisation strategies.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Set up a tight-binding Hamiltonian using Slater--Koster parameters.
+  \item Compute the band structure for a 1D chain and graphene.
+  \item Describe the SSH model and identify its topological edge states.
+  \item Explain DFTB and its relation to DFT.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: tight-binding as a simple model for electrons in solids.
+Beg.\ UG: 1D chain; hopping; band structure; graphene Dirac cone.
+Adv.\ UG: Slater--Koster; SSH model; topological edge states.
+MSc: SCC-DFTB; GFN-xTB; applications to bio-systems.
+PhD: DFTB parametrisation; non-orthogonal TB; Berry phase in TB models.
+\medskip\textbf{Assessment:}
+Set~A --- 1D TB chain: band structure and DOS; Dirac cone for graphene.
+Set~B --- SSH model: bulk-boundary correspondence; edge state energies.
+Projects: (simple) TB band structure for graphene and hBN: compare Dirac cones; (complex) SSH model: topological phase transition as $t'/t$ varies.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L07: H\"uckel and M\"obius Aromaticity}]
+\textbf{90-min pacing:} (0--20~min) Simple H\"uckel MO theory: $\alpha$ and $\beta$ parameters; secular determinant; MO energies and coefficients for ethylene, allyl, butadiene; (20--45~min) Benzene and aromaticity: $4n+2$ H\"uckel rule; delocalisation energy; resonance energy; anti-aromaticity ($4n$); NICS (nucleus-independent chemical shift) as probe; (45--65~min) M\"obius topology: $4n$ electrons aromatic on M\"obius ring; $4n+2$ anti-aromatic; Heilbronner's prediction (1964); twisted annulene experiments; (65--90~min) Woodward--Hoffmann rules: orbital symmetry conservation; pericyclic reactions; thermal and photochemical; Frontier Molecular Orbital (FMO) theory; HOMO--LUMO interactions; electrocyclic reactions; cycloadditions; sigmatropic rearrangements.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply H\"uckel theory to compute MO energies for $\pi$ systems.
+  \item State H\"uckel's $4n+2$ rule and explain aromaticity/anti-aromaticity.
+  \item Describe M\"obius aromaticity and contrast with H\"uckel.
+  \item Apply Woodward--Hoffmann rules to predict pericyclic reaction outcomes.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: aromaticity from H\"uckel rule; why benzene is stable.
+Beg.\ UG: H\"uckel for ethylene--benzene; aromatic stabilisation energy; W--H rules.
+Adv.\ UG: NICS; M\"obius topology; FMO theory for cycloadditions.
+MSc: beyond H\"uckel: extended H\"uckel; aromatic transition states.
+PhD: magnetic aromaticity indices; ACID plots; spherical aromaticity (fullerenes).
+\medskip\textbf{Assessment:}
+Set~A --- H\"uckel MO energies for benzene; resonance energy; W--H rule for [4+2].
+Set~B --- M\"obius aromatic [8]annulene: H\"uckel vs.\ M\"obius electron count.
+Projects: (simple) H\"uckel MO solver for arbitrary acyclic and cyclic $\pi$ systems; (complex) Woodward--Hoffmann correlation diagram for thermal vs.\ photochemical ring closure.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L08: Crystal Field Theory}]
+\textbf{90-min pacing:} (0--20~min) Transition metal complexes: $d$ orbitals in the field of ligands; point-charge model; electrostatic perturbation of $d$-orbital energies; (20--45~min) Octahedral field: $O_h$ point group; $d$ orbitals split into $t_{2g}$ ($d_{xy},d_{xz},d_{yz}$) and $e_g$ ($d_{z^2},d_{x^2-y^2}$); crystal field splitting $\Delta_o=10Dq$; energy: $t_{2g}=-4Dq$, $e_g=+6Dq$; (45--65~min) High-spin vs.\ low-spin: pairing energy $P$ vs.\ $\Delta_o$; configuration d$^4$--d$^7$ have two possibilities; spectrochemical series $I^-<Br^-<Cl^-<F^-<OH^-<H_2O<NH_3<en<CO<CN^-$; CFSE (crystal field stabilisation energy); (65--90~min) Tetrahedral field: $\Delta_t=\tfrac{4}{9}\Delta_o$; square-planar field: strong field; Jahn--Teller effect: distortion for $e_g^1$, $e_g^3$ ($d^9$, Cu$^{2+}$); elongation vs.\ compression; applications: colour of complexes, magnetic moments.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the $d$-orbital splitting in octahedral and tetrahedral fields.
+  \item Determine high-spin vs.\ low-spin configurations from $\Delta_o$ and $P$.
+  \item Apply the spectrochemical series.
+  \item Explain the Jahn--Teller effect and identify susceptible configurations.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: why transition metal complexes are coloured; high-spin vs.\ low-spin.
+Beg.\ UG: octahedral splitting; $t_{2g}/e_g$; CFSE; spin states.
+Adv.\ UG: tetrahedral; square planar; Jahn--Teller; spectrochemical series.
+MSc: $10Dq$ from group theory; selection rules for $d$--$d$ transitions; Orgel diagrams.
+PhD: CFT from first principles (DFT+U); multiplet theory; dynamical Jahn--Teller.
+\medskip\textbf{Assessment:}
+Set~A --- $d$ orbital splitting for Fe$^{3+}$ in octahedral field; CFSE for high-spin d$^6$; $\Delta_t$ from $\Delta_o$.
+Set~B --- Jahn--Teller distortion for Cu$^{2+}$; derive $t_{2g}$ and $e_g$ energies from point-charge model.
+Projects: (simple) colour of octahedral Ti$^{3+}$ complex from $\Delta_o$; (complex) Jahn--Teller distortion in CuF$_2$: Q-mode potential energy surface.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L09: Ligand Field Theory}]
+\textbf{90-min pacing:} (0--20~min) LFT vs.\ CFT: LFT treats covalency; MO description of metal--ligand bonding; $\sigma$ and $\pi$ donor/acceptor ligands; (20--45~min) Angular overlap model (AOM): $e_\sigma,e_\pi$ parameters; energy from angular overlap geometry factors $F_{lm}(\theta,\phi)$; comparison with Slater--Koster; applications for arbitrary geometries; (45--65~min) Tanabe--Sugano diagrams: energy levels for d$^n$ configurations in octahedral field; Racah parameters $A,B,C$ (electron repulsion); spin-orbit coupling; term symbols for free ion and complex; (65--90~min) Nephelauxetic effect: reduction of Racah $B$ parameter in complex vs.\ free ion; $\beta=B_{\rm complex}/B_{\rm free}$; covalency measure; connection to charge transfer; magnetic moments and spin-orbit coupling in heavy metal complexes; $g$-tensor from EPR.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply the angular overlap model to compute $d$-orbital energies.
+  \item Read and interpret Tanabe--Sugano diagrams.
+  \item Define the nephelauxetic effect and its relation to covalency.
+  \item Compute magnetic moments and $g$-tensors from LFT.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: LFT as the bridge between crystal field and full MO theory.
+Beg.\ UG: AOM; Tanabe--Sugano for Cr$^{3+}$; nephelauxetic ratio.
+Adv.\ UG: $e_\sigma,e_\pi$ for common ligands; Racah parameters; spin-orbit.
+MSc: $g$-tensor from EPR; zero-field splitting; spin Hamiltonian.
+PhD: ab initio LFT (AILFT); multireference CASSCF for spin--orbit; exchange coupling in dinuclear complexes.
+\medskip\textbf{Assessment:}
+Set~A --- Tanabe--Sugano for d$^3$ in octahedral: identify ground state and lowest transitions.
+Set~B --- AOM energies for a trigonal complex; nephelauxetic $\beta$ from UV-vis data.
+Projects: (simple) Tanabe--Sugano diagram for Cr$^{3+}$: spin-allowed transitions vs.\ $\Delta/B$; (complex) AILFT from CASSCF: extract $e_\sigma,e_\pi$ for [Fe(CN)$_6$]$^{3-}$.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L10: Full CI Quantum Monte Carlo (FCIQMC)}]
+\textbf{90-min pacing:} (0--20~min) Motivation: FCI is exact but exponentially expensive; FCIQMC (Booth \& Alavi, 2009) stochastically samples the FCI space without storing all amplitudes; (20--45~min) FCIQMC algorithm: represent $\ket{\Psi}=\sum_i c_i\ket{D_i}$ by signed walkers on Slater determinants; imaginary-time propagation $\partial_\tau c_i=-\hat{H}_{ij}c_j$; three steps per iteration: (1) spawn: walker at $D_i$ creates offspring at $D_j$ with probability $\propto|H_{ij}|$; (2) death: remove walker with probability $\propto E_S-H_{ii}$; (3) annihilation: opposite-sign walkers on same $D_i$ cancel; (45--65~min) Sign problem: positive and negative walkers must be sampled; without intervention the walk decays to a superposition; initiator approximation ($i$-FCIQMC): only ``initiator'' determinants (with $|c_i|>n_a$) can spawn to unvisited determinants; controlled sign error; (65--90~min) Semistochastic FCIQMC: deterministic subspace for the most important determinants; convergence improvement; FCIQMC benchmarks: carbon dimer (Booth 2013), chromium dimer, iron--sulfur clusters; accuracy vs.\ CCSD(T) and DMC; GPU acceleration.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Describe the FCIQMC algorithm: spawn, death, and annihilation steps.
+  \item Explain the sign problem and the initiator approximation.
+  \item Describe semistochastic FCIQMC and its convergence improvement.
+  \item Place FCIQMC in the accuracy hierarchy vs.\ CCSD(T) and DMC.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: ``FCIQMC is a random walk that converges to the exact ground state.''
+Beg.\ UG: imaginary-time propagation; walker concept; annihilation.
+Adv.\ UG: sign problem; initiator approximation; error analysis.
+MSc: semistochastic FCIQMC; benchmark applications; GPU acceleration.
+PhD: FCIQMC for excited states; tailored-CC from FCIQMC; FCIQMC-R12.
+\medskip\textbf{Assessment:}
+Set~A --- FCIQMC steps for H$_2$: spawn/death probabilities; initiator threshold.
+Set~B --- initiator approximation error scaling; semistochastic subspace selection criterion.
+Projects: (simple) FCIQMC for H$_4$ square: energy vs.\ walker number; (complex) i-FCIQMC for N$_2$ at stretched geometry: convergence with initiator threshold.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L11: Diffusion Quantum Monte Carlo for Molecules}]
+\textbf{90-min pacing:} (0--20~min) Recap (from II.1 L06): DMC as imaginary-time projection; $-\partial_\tau\Psi=(\hat{H}-E_T)\Psi$; walker diffusion and branching; (20--45~min) Trial wavefunctions for molecular DMC: Slater--Jastrow $\Psi_T=\mathcal{A}[\Phi]\exp(J)$; Jastrow factor: electron--electron, electron--nuclear, three-body; cusp conditions; optimisation via VMC; fixed-node approximation: constrain walkers to nodal surface of $\Psi_T$; (45--65~min) Quality of nodes: HF nodes vs.\ CASSCF nodes for multi-reference systems; nodal bias; sign problem and fixed-node error as the main source of DMC error; (65--90~min) Pseudopotentials in DMC: non-locality problem; T-moves; Casula's locality approximation; backflow transformation; DMC for molecular energetics: benchmarks for atomisation energies, reaction barriers; comparison with CCSD(T) and FCIQMC; GPU implementation (CASINO, QMCPack, TurboRVB).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct a Slater--Jastrow trial wavefunction and optimise its parameters.
+  \item Explain the fixed-node approximation and identify its main sources of error.
+  \item Describe T-moves for non-local pseudopotentials.
+  \item Assess DMC accuracy for molecular energetics vs.\ other methods.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: DMC as ``the most accurate method for large molecules.''
+Beg.\ UG: Slater--Jastrow; cusp conditions; fixed-node approximation.
+Adv.\ UG: node quality from HF vs.\ CASSCF; T-moves derivation; pseudopotentials.
+MSc: backflow transformation; DMC benchmarks; GPU workflow.
+PhD: exact nodes from FCI; multi-determinant Jastrow; neural-network trial functions.
+\medskip\textbf{Assessment:}
+Set~A --- Jastrow factor construction; cusp condition for H$_2$; fixed-node energy bound.
+Set~B --- T-moves derivation; fixed-node error analysis for N$_2$ at $r=2R_e$.
+Projects: (simple) DMC for H$_2$: fixed-node energy vs.\ HF and CASSCF nodes; (complex) node quality study: HF vs.\ CASSCF(6,6) nodes for O$_3$ dissociation.
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture L12: Synthesis and Outlook}]
+\textbf{90-min pacing:} (0--20~min) Complete method hierarchy for molecular electronic structure: HF $\to$ DFT $\to$ MP2 $\to$ CCSD $\to$ CCSD(T) $\to$ CASSCF $\to$ NEVPT2 $\to$ MRCI $\to$ FCIQMC $\to$ DMC; accuracy and cost at each level; (20--40~min) Open challenges: (1) strong correlation in transition metal and $f$-element chemistry; (2) excited states: TDDFT, EOM-CC, MR methods, quantum computing; (3) relativistic effects: scalar and spin--orbit; four-component DFT; X2C; (20--40~min continued) (4) periodic systems: DFT+U, hybrid DFT, periodic CCSD(T), stochastic CCSD(T), FCIQMC for solids; (5) large molecules and biological systems: DLPNO-CCSD(T), DFTB, ML potentials; (65--80~min) Future directions: machine learning for electronic structure (SchNet, PaiNN, DeepMind AlphaFold-like potentials); neural-network wavefunctions (DeepWF, FermiNet, PauliNet); quantum computing (VQE, QITE, QPE for fault-tolerant); (80--90~min) Synthesis: how all the methods taught in Series III fit together; choosing the right method; the promise of exact quantum simulation.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Place all quantum chemistry methods in a unified accuracy--cost hierarchy.
+  \item Identify the open challenges and describe current frontiers.
+  \item Describe neural-network wavefunctions and their advantages.
+  \item Outline the quantum computing approach to quantum chemistry.
+\end{itemize}
+\medskip\textbf{Tier differentiation:}
+HS: from H$_2$ to drug design --- quantum chemistry shapes the modern world.
+Beg.\ UG: method hierarchy; practical choice guide; exciting frontiers.
+Adv.\ UG: open challenges in detail; ML potentials; VQE concept.
+MSc: neural-network wavefunctions; periodic CCSD(T); relativistic DFT.
+PhD: quantum complexity; resource estimation for QPE; FermiNet for correlated systems.
+\medskip\textbf{Assessment:}
+Set~A --- method selection for: (i) organocatalysis barrier, (ii) Mn$_4$O$_4$ cluster, (iii) singlet oxygen, (iv) protein binding energy.
+Set~B --- VQE ansatz for H$_2$: UCCSD circuit; FermiNet architecture for helium.
+Projects: (simple) decision-tree: method selection for 10 representative chemical problems; (complex) FermiNet energy for He and Li: variational quality vs.\ classical wavefunction ansatz.
+\end{tcolorbox}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Module III.3 Reading:} Koch \& Holthausen, \textit{A Chemist's Guide to DFT} (Wiley); Parr \& Yang, \textit{Density-Functional Theory of Atoms and Molecules} (Oxford); Booth, Thom \& Alavi, J.\ Chem.\ Phys.\ \textbf{131}, 054106 (2009) --- FCIQMC; Foulkes \textit{et al.}, Rev.\ Mod.\ Phys.\ \textbf{73}, 33 (2001) --- QMC review.
 \end{tcolorbox}
 
 \newpage
