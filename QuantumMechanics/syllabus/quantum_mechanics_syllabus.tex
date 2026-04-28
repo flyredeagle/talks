@@ -1,0 +1,3166 @@
+%=============================================================
+%  QUANTUM MECHANICS & QUANTUM CHEMISTRY — COURSE SYLLABUS
+%  Restructured hierarchy: Series > Module > Lecture
+%=============================================================
+\documentclass[11pt,a4paper]{article}
+
+%--- Packages ------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fix-cm}
+\usepackage[activate={false},final]{microtype}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+%--- Colours -------------------------------------------------
+\definecolor{darkblue}{RGB}{10,40,90}
+\definecolor{midblue}{RGB}{30,80,160}
+\definecolor{lightblue}{RGB}{220,233,255}
+\definecolor{accentgold}{RGB}{180,140,20}
+\definecolor{lightgold}{RGB}{255,248,220}
+\definecolor{darkgray}{RGB}{60,60,60}
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{chemgreen}{RGB}{20,100,60}
+\definecolor{lightgreen}{RGB}{220,245,230}
+
+%--- Section fonts via sectsty (no titlesec = no conflict) ---
+\sectionfont{\Large\bfseries\color{darkblue}\sectionrule{0ex}{0pt}{-1ex}{1.5pt}}
+\subsectionfont{\large\bfseries\color{midblue}}
+\subsubsectionfont{\normalsize\bfseries\color{darkgray}}
+
+%--- Hyperref ------------------------------------------------
+\hypersetup{
+  colorlinks  = true,
+  linkcolor   = midblue,
+  urlcolor    = midblue,
+  citecolor   = midblue,
+  pdftitle    = {Quantum Mechanics and Quantum Chemistry -- Course Syllabi},
+  pdfauthor   = {},
+}
+
+%--- Header / Footer -----------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{Quantum Mechanics \& Quantum Chemistry}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{For academic use only}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%--- tcolorbox styles ----------------------------------------
+\tcbset{
+  modulebox/.style={
+    enhanced, breakable,
+    colback=lightblue, colframe=midblue,
+    fonttitle=\bfseries\color{white}, coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=midblue, colframe=darkblue,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south,
+    boxrule=0.8pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+  chembox/.style={
+    enhanced, breakable,
+    colback=lightgreen, colframe=chemgreen,
+    fonttitle=\bfseries\color{white}, coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=chemgreen, colframe=chemgreen!80!black,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south,
+    boxrule=0.8pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+  highlightbox/.style={
+    enhanced,
+    colback=lightgold, colframe=accentgold,
+    boxrule=0.6pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    fontupper=\small\itshape,
+  },
+  seriesbox/.style={
+    enhanced, breakable,
+    colback=lightgold, colframe=accentgold,
+    fonttitle=\bfseries\color{darkblue}, coltitle=darkblue,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=lightgold, colframe=accentgold,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south,
+    boxrule=1pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+}
+
+\newcommand{\coursebadge}[1]{%
+  \begin{tcolorbox}[highlightbox]#1\end{tcolorbox}%
+}
+
+%=============================================================
+\begin{document}
+%=============================================================
+
+%--- Title Page ----------------------------------------------
+\begin{titlepage}
+\pagecolor{darkblue}
+\color{white}
+\vspace*{3cm}
+\begin{center}
+  {\fontsize{28}{34}\selectfont\bfseries Quantum Mechanics}\\[0.4cm]
+  {\fontsize{18}{24}\selectfont\bfseries \& Quantum Chemistry}\\[0.6cm]
+  {\color{accentgold}\rule{10cm}{2pt}}\\[0.6cm]
+  {\large\itshape Comprehensive Course Syllabi}\\[0.3cm]
+  {\normalsize Physics \& Theoretical Chemistry Programme}\\[2.5cm]
+  \begin{tabular}{ll}
+    \textbf{Series~I:}   & Introductory Quantum Mechanics\\
+                         & \quad Module~I.1 --- State Space, Operators, and the Bra-Ket Language (6 lectures)\\
+                         & \quad Module~I.2 --- Bra-Ket Notation and the Language of Quantum Mechanics (12 lectures)\\
+                         & \quad Module~I.3 --- Quantum Dynamics, Perturbation Theory, and Physical Systems (11 lectures)\\[6pt]
+    \textbf{Series~II:}  & Advanced Quantum Mechanics\\
+                         & \quad 7 Modules (II.1--II.7), 12 lectures each\\[6pt]
+    \textbf{Series~III:} & Molecular Electronic Structure \& Quantum Chemistry\\
+                         & \quad 3 Modules (III.1--III.3), approx.\ 36--40 lectures total\\
+  \end{tabular}\\[2.5cm]
+  {\color{accentgold}\rule{10cm}{1pt}}\\[0.4cm]
+  {\small\itshape Each module in Series~I \& II comprises 12 lectures unless otherwise noted.\\
+  Hierarchy: \textbf{Series} $\supset$ \textbf{Module} $\supset$ \textbf{Lecture}}
+\end{center}
+\vfill
+\end{titlepage}
+\nopagecolor
+
+%--- Table of Contents ---------------------------------------
+\tableofcontents
+\newpage
+
+%=============================================================
+\section*{Preamble and Programme Overview}
+\addcontentsline{toc}{section}{Preamble and Programme Overview}
+%=============================================================
+
+\coursebadge{%
+  This document describes a sequential, research-oriented programme in quantum
+  mechanics and quantum chemistry, organised into a three-level hierarchy:
+  \textbf{Series} (broad thematic strand) $\supset$ \textbf{Module} (self-contained
+  teaching unit, typically 12 lectures) $\supset$ \textbf{Lecture} (single 90-minute
+  session).\\[4pt]
+  \textbf{Series~I} introduces the algebraic and dynamical foundations of quantum
+  mechanics across three modules:
+  Module~I.1 introduces the Hilbert-space language of operators and states;
+  Module~I.2 develops the full bra-ket formalism via a dual Dirac--Sakurai approach
+  with five-tier pedagogy;
+  Module~I.3 covers quantum dynamics, all pictures of quantum mechanics, perturbation
+  theory, open systems, and example physical systems.\\[2pt]
+  \textbf{Series~II} deepens the formalism across seven thematic modules.
+  \textbf{Series~III} pivots to molecular electronic structure and computational
+  quantum chemistry.
+}
+
+\medskip
+\noindent\textbf{Notation conventions used throughout:}
+\begin{itemize}[leftmargin=1.5em]
+  \item $\hat{A}, \hat{H}, \hat{U}$ --- operators (hat notation)
+  \item $\ket{\psi}, \bra{\phi}$ --- Dirac ket/bra states
+  \item $\hat{\rho}$ --- density operator/matrix
+  \item $[\hat{A},\hat{B}]=\hat{A}\hat{B}-\hat{B}\hat{A}$ --- commutator
+  \item $\{\hat{A},\hat{B}\}=\hat{A}\hat{B}+\hat{B}\hat{A}$ --- anti-commutator
+\end{itemize}
+
+\medskip
+\noindent\textbf{Hierarchy key:}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Series} --- top-level strand labelled by Roman numeral (I, II, III)
+  \item \textbf{Module} --- self-contained teaching block labelled \textit{Series.Number}
+    (e.g.\ I.1, II.4, III.2)
+  \item \textbf{Lecture} --- individual 90-min session labelled L\textit{NN} within its
+    module (e.g.\ L01, L07, L12)
+\end{itemize}
+
+\newpage
+
+%#############################################################
+%  SERIES I SEPARATOR PAGE
+%#############################################################
+\newpage
+\thispagestyle{empty}
+\pagecolor{darkblue}
+\color{white}
+\vspace*{2.2cm}
+\begin{center}
+  {\color{accentgold}\rule{11cm}{1.5pt}}\\[0.5cm]
+  {\fontsize{11}{14}\selectfont\bfseries\color{accentgold}\MakeUppercase{Series I}}\\[0.3cm]
+  {\fontsize{26}{32}\selectfont\bfseries Introductory Quantum Mechanics}\\[0.4cm]
+  {\color{accentgold}\rule{11cm}{1.5pt}}\\[1.0cm]
+  {\large\itshape Three modules --- 29 lectures $\times$ 90 minutes}\\[0.5cm]
+  {\normalsize\itshape Audience: Advanced undergraduates through early graduate students}\\[0.3cm]
+  {\normalsize\itshape Prerequisites: Linear algebra, classical mechanics, basic complex analysis}\\[1.6cm]
+
+  \begin{tabular}{@{}clr@{}}
+    \toprule
+    \textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
+    \midrule
+    \textbf{I.1} & State Space, Operators, and the Bra-Ket Language & 6\\[3pt]
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   Hilbert space; bounded/unbounded operators; adjoint; unitary maps;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   Hermitian observables; spectral theorem; operator algebra;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   exponential map; BCH lemma; Wigner's theorem; bra-ket formalism.}\\[6pt]
+    \textbf{I.2} & Bra-Ket Notation and the Language of Quantum Mechanics & 12\\[3pt]
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   States as rays; dual space; inner product; linear operators;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   eigenkets; projectors; completeness; continuous bases;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   measurement theory; uncertainty; tensor products; spin; density operators;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   rigged Hilbert spaces. Dual Dirac--Sakurai approach; five-tier pedagogy.}\\[6pt]
+    \textbf{I.3} & Quantum Dynamics, Perturbation Theory, and Physical Systems & 11\\[3pt]
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   Density matrix; discrete/continuous bases; uncertainty; symmetries;}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   Noether's theorem; time evolution (I \& II); Schr\"odinger, Heisenberg,}\\
+                 & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                   and Dirac pictures; perturbation theory; open systems; example systems.}\\[4pt]
+    \midrule
+    & \textbf{Total} & \textbf{29}\\
+    \bottomrule
+  \end{tabular}
+
+  \vfill
+  {\color{accentgold}\rule{11cm}{0.8pt}}\\[0.4cm]
+  {\small\itshape\color{white!80!darkblue}%
+    Each lecture: 90 minutes $\cdot$ Five-tier pedagogy (HS through PhD) $\cdot$
+    Dual Dirac--Sakurai approach}\\[0.3cm]
+  {\color{accentgold}\rule{11cm}{0.8pt}}
+\end{center}
+\newpage
+\nopagecolor
+\color{black}
+
+%#############################################################
+\section{Series I --- Introductory Quantum Mechanics}
+\label{sec:seriesI}
+%#############################################################
+
+\begin{tcolorbox}[seriesbox, title={Series~I Overview}]
+\textbf{Audience:} Advanced undergraduates through early graduate students.\\
+\textbf{Prerequisites:} Linear algebra, classical mechanics, basic complex analysis.\\
+\textbf{Structure:} Three modules totalling 29 lectures $\times$ 90~minutes.\\[4pt]
+\begin{tabular}{llr}
+\toprule
+\textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
+\midrule
+I.1 & State Space, Operators, and the Bra-Ket Language & 6\\
+I.2 & Bra-Ket Notation and the Language of Quantum Mechanics & 12\\
+I.3 & Quantum Dynamics, Perturbation Theory, and Physical Systems & 11\\
+\midrule
+ & \textbf{Total} & \textbf{29}\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module I.1 --- State Space, Operators, and the Bra-Ket Language}
+\label{sec:mod-I1}
+%=============================================================
+
+\coursebadge{%
+  \textbf{Intended audience:} Advanced undergraduates with a solid background in
+  classical mechanics and linear algebra.\\[2pt]
+  \textbf{Scope:} Foundational module covering the algebraic language of quantum
+  mechanics --- from the structure of Hilbert space and operator theory through
+  to the introduction of quantum states, Dirac notation, and the density matrix
+  formalism up to and including the notion of pure and mixed states (\S2.3).\\[2pt]
+  \textbf{Duration:} 6 lectures $\times$ 90 minutes (Lectures~L01--L06,
+  sections 2.1--2.3). Module~I.2 develops the full bra-ket formalism in
+  depth; Module~I.3 continues from \S2.4 onward.
+}
+
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module I.1 Overview}
+
+%------------------------------------------------------------
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module I.1 Overview}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L01 & The Hilbert Space of Quantum States &
+    Hilbert space $\mathcal{H}$; vectors, norms, completeness; bounded vs.\ unbounded operators; adjoint\\
+L02 & Unitary Operators and Symmetry Transformations &
+    $\hat{U}\hat{U}^\dagger=\hat{1}$; inner-product preservation; rotations, translations, time evolution\\
+L03 & Observables, Hermitian Operators, and the Spectral Theorem &
+    Observables $\leftrightarrow$ Hermitian operators; real eigenvalues; orthogonal eigenstates; spectral decomposition\\
+L04 & Operator Algebra and the Exponential Map &
+    Sums, products, functions of operators; $e^{i\theta\hat{A}}$; Baker--Campbell--Hausdorff lemma; commutators\\
+L05 & Types of Symmetry Operators and Wigner's Theorem &
+    Unitary vs.\ anti-unitary symmetries; Wigner's theorem; projectors $\hat{P}^2=\hat{P}$; time-reversal\\
+L06 & Bra-Ket Formalism (\S2.1--2.2) &
+    Dirac notation; ket/bra duality; inner product; outer product; matrix elements; expectation values\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+%------------------------------------------------------------
+\subsubsection*{Five-Tier Layered Pedagogy}
+\addcontentsline{toc}{subsubsection}{Module I.1 Five-Tier Pedagogy}
+
+Each lecture is stratified across five audience levels, enabling delivery to a mixed cohort:
+
+\begin{center}
+\begin{tabular}{llp{9cm}}
+\toprule
+\textbf{Tier} & \textbf{Cohort} & \textbf{Characteristic content}\\
+\midrule
+Tier~1 & HS       & Geometric intuition, analogy with familiar vector spaces, conceptual motivation\\
+Tier~2 & Beg.\ UG & Definitions, worked matrix examples, basic proofs; algebraic facility\\
+Tier~3 & Adv.\ UG & Rigorous derivations, Cauchy--Schwarz, spectral theorem, proof habits\\
+Tier~4 & MSc      & Operator domains, subtle distinctions (Hermitian vs.\ self-adjoint), advanced applications\\
+Tier~5 & PhD      & Functional analysis, deficiency indices, unbounded operators, mathematical physics depth\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module I.1 Lecture Syllabi}
+
+% ------ L01 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.1 --- Lecture L01: The Hilbert Space of Quantum States}]
+\textbf{90-min pacing:} (0--20~min) Motivation --- why ordinary Euclidean space is insufficient;
+infinite-dimensional state spaces and physical necessity;
+(20--45~min) Definition of a Hilbert space $\mathcal{H}$: inner product, norm, completeness (Cauchy sequences);
+(45--70~min) Bounded vs.\ unbounded operators; operator norm; adjoint $\hat{A}^\dagger$ defined via
+$\langle\phi|\hat{A}\psi\rangle = \langle\hat{A}^\dagger\phi|\psi\rangle$;
+(70--90~min) Anti-Hermitian operators; $[\hat{A}^\dagger]^\dagger=\hat{A}$; worked examples.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State the definition of a Hilbert space and verify that $L^2(\mathbb{R})$ is one.
+  \item Distinguish bounded from unbounded operators and give physical examples of each.
+  \item Define the adjoint $\hat{A}^\dagger$ and compute it for $2\times 2$ matrices.
+  \item Classify Hermitian ($\hat{A}=\hat{A}^\dagger$) and anti-Hermitian ($\hat{A}=-\hat{A}^\dagger$) operators.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Geometric track:} Hilbert space as the ``right'' infinite-dimensional generalisation
+    of $\mathbb{R}^n$; inner product $\langle\cdot|\cdot\rangle$ and angles; completeness as
+    ``no missing limits.''
+  \item \textit{Algebraic/axiomatic track:} Formal axioms (conjugate symmetry, linearity, positive
+    definiteness); operator theory; norm from inner product $\|\psi\|=\sqrt{\langle\psi|\psi\rangle}$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: inner product as ``overlap''; norm as ``length''; $\mathbb{R}^2$ and $\mathbb{C}^2$ as tangible examples.
+Beg.\ UG: verify axioms in $\mathbb{C}^n$; compute $\hat{A}^\dagger$ for explicit matrices.
+Adv.\ UG: prove adjoint is unique; show $(\hat{A}\hat{B})^\dagger = \hat{B}^\dagger\hat{A}^\dagger$.
+MSc: $L^2$ space rigorously; operator norm; boundedness and continuity equivalence.
+PhD: spectrum of unbounded operators; domain issues; closed operators; Hellinger--Toeplitz theorem.
+
+\medskip\textbf{Assessment:}
+Set~A --- verify Hilbert space axioms for $\mathbb{C}^n$; compute adjoints of given $3\times 3$ matrices.
+Set~B --- prove $(\hat{A}^\dagger)^\dagger = \hat{A}$; show bounded $\Rightarrow$ continuous.
+Projects: (simple) norm visualiser for $L^2$ functions; (complex) counterexample: unbounded operator with dense domain.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L02 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.1 --- Lecture L02: Unitary Operators and Symmetry Transformations}]
+\textbf{90-min pacing:} (0--15~min) Recap: inner products and adjoint;
+(15--40~min) Definition of unitary operator: $\hat{U}^\dagger\hat{U} = \hat{U}\hat{U}^\dagger = \hat{1}$;
+preservation of inner products and norms $\langle\hat{U}\phi|\hat{U}\psi\rangle = \langle\phi|\psi\rangle$;
+(40--65~min) Physical incarnations: spatial rotations $\hat{U}(\theta)$, spatial translations $\hat{T}(a)$,
+time-evolution operator $\hat{U}(t) = e^{-i\hat{H}t/\hbar}$ (preview);
+(65--90~min) Unitary equivalence of operators; spectral invariance under unitary transformations.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Verify unitarity $\hat{U}^\dagger\hat{U}=\hat{1}$ from definition and examples.
+  \item Prove that unitary maps preserve norms and transition probabilities.
+  \item Identify unitary operators arising from physical symmetries (rotation, translation, phase).
+  \item Understand $\hat{U} = e^{i\hat{G}}$ for Hermitian generator $\hat{G}$ (Stone's theorem preview).
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Symmetry $\to$ conservation law (Noether preview); rotations as $SU(2)$
+    action; phase freedom $e^{i\theta}\hat{1}$ as trivial unitary.
+  \item \textit{Mathematical track:} Unitary group $\mathcal{U}(\mathcal{H})$; isometric isomorphisms;
+    one-parameter unitary groups $\hat{U}(t)$; Stone's theorem (statement).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: rotations as length-preserving maps; ``rotating'' a quantum state without losing information.
+Beg.\ UG: verify $\hat{U}^\dagger\hat{U}=\hat{1}$ for rotation matrices; compute $\hat{U}\ket{\psi}$.
+Adv.\ UG: show eigenvalues of unitary operators lie on the unit circle; prove spectral invariance.
+MSc: one-parameter groups; Stone's theorem; generator $\hat{G}$ and Lie algebra connection.
+PhD: strongly continuous unitary groups on Banach spaces; Hille--Yosida theorem; domain of generator.
+
+\medskip\textbf{Assessment:}
+Set~A --- verify unitarity for $2\times 2$ rotation and phase matrices; compute $\hat{U}\ket{\psi}$.
+Set~B --- prove unitary $\Rightarrow$ isometric; show spectrum of $\hat{U}$ lies on $|z|=1$.
+Projects: (simple) animate unitary evolution of a two-level state; (complex) matrix exponential $e^{i\theta\hat{G}}$ for various generators.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L03 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.1 --- Lecture L03: Observables, Hermitian Operators, and the Spectral Theorem}]
+\textbf{90-min pacing:} (0--20~min) The measurement postulate: physical observables correspond to Hermitian operators;
+motivation from real-valued experimental outcomes;
+(20--45~min) Key properties of Hermitian operators: real eigenvalues, orthogonality of eigenvectors
+($\langle a|a'\rangle = \delta_{aa'}$), completeness of eigenbasis;
+(45--70~min) The spectral theorem (discrete case): $\hat{A} = \sum_a a\ket{a}\bra{a}$;
+functions of Hermitian operators $f(\hat{A})$;
+(70--90~min) Degenerate eigenvalues; continuous spectrum preview; physical examples
+($\hat{x}$, $\hat{p}$, $\hat{H}$ for a particle in a box).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State and apply the measurement postulate linking observables to Hermitian operators.
+  \item Prove that Hermitian operators have real eigenvalues and orthogonal eigenvectors.
+  \item Write the spectral decomposition $\hat{A}=\sum_a a\ket{a}\bra{a}$ and apply it.
+  \item Compute $f(\hat{A})$ from the spectral decomposition for simple functions.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track (Sakurai):} Preparation and measurement; Stern--Gerlach as paradigm;
+    eigenvalues as the only possible measurement outcomes.
+  \item \textit{Abstract track (Dirac):} Spectral theorem as the operational backbone; resolution of
+    identity $\hat{1}=\sum_a\ket{a}\bra{a}$; postulate as \emph{definition} of observable.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``measuring an observable always gives one of its eigenvalues'' --- Stern--Gerlach conceptual story.
+Beg.\ UG: find eigenvalues/vectors of $2\times 2$ Hermitian matrices; write spectral form.
+Adv.\ UG: prove real eigenvalues and orthogonality; handle degenerate case with Gram--Schmidt.
+MSc: spectral theorem in full generality; functions of operators; self-adjoint vs.\ Hermitian distinction preview.
+PhD: spectral measure and projection-valued measure (PVM); Borel functional calculus; continuous spectrum treatment.
+
+\medskip\textbf{Assessment:}
+Set~A --- diagonalise Hermitian matrices; compute $e^{i\hat{A}}$ via spectral decomposition.
+Set~B --- prove spectral theorem for $n\times n$ Hermitian matrices; degenerate subspace orthogonalisation.
+Projects: (simple) eigenvalue/eigenvector visualiser for $2\times 2$ observables; (complex) spectral resolution
+of the harmonic oscillator Hamiltonian.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L04 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.1 --- Lecture L04: Operator Algebra and the Exponential Map}]
+\textbf{90-min pacing:} (0--15~min) Operator arithmetic: sums $(\hat{A}+\hat{B})\ket{\psi}$,
+products $\hat{A}\hat{B}\ket{\psi}$, scalar multiples; non-commutativity;
+(15--40~min) Functions of operators via power series and spectral decomposition;
+the matrix exponential $e^{\hat{A}} = \sum_{n=0}^\infty \hat{A}^n/n!$ and its convergence;
+(40--65~min) The exponential map $e^{i\theta\hat{A}}$ for Hermitian $\hat{A}$: unitarity proof;
+one-parameter families; physical applications (phase, rotation, evolution operators);
+(65--90~min) Baker--Campbell--Hausdorff (BCH) lemma: $e^{\hat{A}}e^{\hat{B}} = e^{\hat{A}+\hat{B}+\frac{1}{2}[\hat{A},\hat{B}]+\cdots}$;
+statement, significance, and low-order applications.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Perform operator arithmetic and recognise non-commutativity.
+  \item Compute matrix exponentials via diagonalisation and power series.
+  \item Prove $\hat{U}=e^{i\theta\hat{A}}$ is unitary when $\hat{A}$ is Hermitian.
+  \item State the BCH lemma and apply it to first order in the commutator.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Algebraic track:} Operator ring structure; Lie brackets and Lie algebras;
+    BCH as the structure theorem linking Lie algebra to Lie group.
+  \item \textit{Computational track:} Step-by-step matrix exponential evaluation;
+    $e^{i\theta\hat{\sigma}_z}$ and $e^{i\phi\hat{\sigma}_x}$ as worked examples; physical interpretation.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``exponential of a matrix'' --- analogy with $e^x$ as infinite sum; rotation by small angles.
+Beg.\ UG: compute $e^{i\theta\hat{\sigma}_z}$; verify unitarity numerically.
+Adv.\ UG: prove unitarity of $e^{i\theta\hat{A}}$ rigorously; derive BCH to first order.
+MSc: full BCH series; Zassenhaus formula; group--algebra correspondence; Magnus expansion preview.
+PhD: convergence of BCH in Banach algebras; analytic extensions; applications in quantum control.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute $e^{i\theta\hat{\sigma}_z}$, $e^{i\phi\hat{\sigma}_y}$; verify unitarity; simple BCH applications.
+Set~B --- prove BCH to second order; derive Hadamard identity $e^{\hat{A}}\hat{B}e^{-\hat{A}}$.
+Projects: (simple) matrix exponential calculator with visualisation; (complex) first-order BCH vs.\ exact
+product comparison for non-commuting $2\times 2$ Hamiltonians.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L05 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.1 --- Lecture L05: Types of Symmetry Operators and Wigner's Theorem}]
+\textbf{90-min pacing:} (0--20~min) Taxonomy of operators: linear vs.\ anti-linear;
+unitary vs.\ anti-unitary; physical motivation from symmetries that reverse arrow of time;
+(20--50~min) Wigner's theorem: every quantum symmetry is either a unitary or anti-unitary operator
+on $\mathcal{H}$; statement, intuition, and significance;
+(50--70~min) Projectors $\hat{P} = \ket{\phi}\bra{\phi}$: idempotency $\hat{P}^2=\hat{P}$,
+Hermiticity, eigenvalues $\{0,1\}$; orthogonal projectors and decomposition of identity;
+(70--90~min) Time-reversal as paradigmatic anti-unitary symmetry; Kramers' theorem preview.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Distinguish linear/unitary from anti-linear/anti-unitary operators with examples.
+  \item State Wigner's theorem and explain its physical necessity.
+  \item Construct rank-1 projectors $\hat{P}=\ket{\phi}\bra{\phi}$ and verify $\hat{P}^2=\hat{P}$.
+  \item Explain how time-reversal is modelled by an anti-unitary operator.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Symmetry as a map on quantum states preserving transition probabilities;
+    Wigner's theorem as the mathematical conclusion; time-reversal and Kramers degeneracy in spin systems.
+  \item \textit{Mathematical track:} Anti-linear maps $\mathcal{H}\to\mathcal{H}$;
+    anti-unitary condition $\langle\Theta\phi|\Theta\psi\rangle = \langle\psi|\phi\rangle$;
+    projector algebra and projection theorem.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: symmetry as ``doing something and the physics looks the same''; time-reversal intuitively.
+Beg.\ UG: compute $\hat{P}^2$ for rank-1 projectors; verify $\hat{P}$ Hermitian.
+Adv.\ UG: prove eigenvalues of $\hat{P}$ are $0$ and $1$; orthogonal projector resolution of identity.
+MSc: Wigner's theorem proof sketch; complex conjugation as anti-unitary; Kramers' theorem statement.
+PhD: full proof of Wigner's theorem via Uhlhorn's theorem; anti-unitary representations; spin-statistics connection preview.
+
+\medskip\textbf{Assessment:}
+Set~A --- verify $\hat{P}^2=\hat{P}$ for explicit projectors; identify unitary vs.\ anti-unitary from action on basis.
+Set~B --- prove eigenvalues of a projector are $\{0,1\}$; show time-reversal squaring gives $\pm\hat{1}$ for integer/half-integer spin.
+Projects: (simple) symmetry classification quiz for common quantum operators;
+(complex) Kramers degeneracy verification for spin-$\tfrac{1}{2}$ Hamiltonian under time-reversal.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L06 (former L02) -----------------------------------
+\begin{tcolorbox}[modulebox, title={Module~I.1 --- Lecture L06: Bra-Ket Formalism (\S2.1--2.2)}]
+\textbf{90-min pacing:} (0--20~min) From column vectors to abstract kets:
+$\ket{\psi}\in\mathcal{H}$; superposition and linearity;
+(20--45~min) The dual space $\mathcal{H}^*$; bra $\bra{\phi}$ as linear functional;
+inner product $\braket{\phi|\psi}$; conjugate symmetry;
+(45--70~min) Outer product $\ket{\psi}\bra{\phi}$; matrix element $\bra{\phi}\hat{A}\ket{\psi}$;
+expectation value $\langle\hat{A}\rangle = \bra{\psi}\hat{A}\ket{\psi}$; variance $(\Delta A)^2$;
+(70--90~min) Notation dictionary: abstract ket $\leftrightarrow$ column vector $\leftrightarrow$ wavefunction;
+connection to previous lectures; bridge to Module~I.2.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Write kets and bras in Dirac notation and perform inner/outer products.
+  \item Evaluate matrix elements $\bra{\phi}\hat{A}\ket{\psi}$ for operators from Lectures L01--L05.
+  \item Compute expectation values and variances of observables.
+  \item Translate freely between abstract Dirac notation, column-vector representation, and wavefunction language.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Sakurai (operational) track:} Notation as a concise bookkeeping device;
+    amplitude $\braket{a|\psi}$ as measurement probability amplitude; $|\braket{a|\psi}|^2$ as Born rule.
+  \item \textit{Dirac (abstract) track:} Bra as element of algebraic dual space $\mathcal{H}^*$;
+    Riesz representation theorem identifies $\bra{\psi}$ with $\ket{\psi}$ via inner product.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``bra'' and ``ket'' as ``row'' and ``column'' in a richer language; inner product as overlap.
+Beg.\ UG: compute $\braket{\phi|\psi}$, outer products, and $\langle\hat{A}\rangle$ for $2\times 2$ examples.
+Adv.\ UG: prove $(\ket{\psi}\bra{\phi})^\dagger = \ket{\phi}\bra{\psi}$; work with sums of projectors.
+MSc: Riesz representation theorem (statement and significance); dual space in infinite dimensions.
+PhD: bounded vs.\ unbounded functionals; Dirac notation in the context of rigged Hilbert spaces.
+
+\medskip\textbf{Assessment:}
+Set~A --- inner products, outer products, expectation values; verify Hermiticity of $\hat{x}$ in position representation.
+Set~B --- prove variance formula $(\Delta A)^2 = \langle\hat{A}^2\rangle - \langle\hat{A}\rangle^2$;
+show $(\hat{A}\ket{\psi}\bra{\phi})^\dagger = \ket{\phi}\bra{\psi}\hat{A}^\dagger$.
+Projects: (simple) Dirac notation calculator for spin-$\tfrac{1}{2}$; (complex) derive Born-rule consequences
+from inner-product axioms and completeness.
+\end{tcolorbox}
+
+\textit{Continued in Module~I.3, Lecture~L01: pure and mixed states,
+density matrix properties, and partial trace (\S2.3--2.5).}
+
+\newpage
+%=============================================================
+\subsection{Module I.2 --- Bra-Ket Notation and the Language of Quantum Mechanics}
+\label{sec:mod-I2}
+%=============================================================
+
+\coursebadge{%
+  \textbf{Module designation:} Series~I, Module~2 --- develops the full bra-ket
+  formalism in depth, bridging the algebraic foundations of Module~I.1 with the
+  dynamical and structural content of Module~I.3.\\[2pt]
+  \textbf{Dual-track approach:} Dirac (abstract axiomatic) + Sakurai (operational/physical),
+  with a \textbf{five-tier layered pedagogy} spanning HS through PhD.\\[2pt]
+  \textbf{Duration:} 12 lectures $\times$ 90 minutes. Spiral curriculum: seven competency
+  threads revisited progressively across lectures.\\[2pt]
+  \textbf{Assessment:} Per-lecture bundles (concept check, Problem Sets A \& B, mini-projects,
+  research questions) plus course-level grading. See Section~\ref{sec:braket-assessment}.
+}
+
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module I.2 Overview}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Content}\\
+\midrule
+L01 & Why Dirac Notation? States as Rays \& Superposition &
+      States, kets, rays, global phase, Born rule preview; Sakurai operational vs.\ Dirac abstract\\
+L02 & Bras, Dual Space \& Inner Product Structure &
+      Dual vectors, conjugate linearity, inner product axioms, Riesz theorem (intuition)\\
+L03 & Linear Operators: Adjoint, Hermitian \& Unitary &
+      Operator algebra, matrix elements $\bra{\phi}\hat{A}\ket{\psi}$, observables \& symmetries\\
+L04 & Eigenkets, Projectors \& Spectral Decomposition &
+      Measurement outcomes, projectors $\hat{P}_a=\ket{a}\bra{a}$, post-measurement state\\
+L05 & Completeness, Change of Basis \& Matrix Mechanics &
+      Identity insertion, basis transforms, matrix representation $A_{mn}=\bra{m}\hat{A}\ket{n}$\\
+L06 & Continuous Bases: $\ket{x}$, $\ket{p}$ \& Delta Functions &
+      Position/momentum bases, wavefunctions, Fourier connection, distributions\\
+L07 & Measurement Theory: Postulates, Compatibility \& Uncertainty &
+      Commutators, Robertson--Schr\"odinger inequality, compatible observables, POVM preview\\
+L08 & Time Evolution \& Pictures of Quantum Mechanics &
+      Unitary evolution, Schr\"odinger/Heisenberg pictures, constants of motion, Ehrenfest\\
+L09 & Tensor Products: Composite Systems \& Entanglement &
+      Product vs.\ entangled states, Schmidt decomposition, partial measurement\\
+L10 & Spin \& Finite-Dimensional Hilbert Spaces ($SU(2)$) &
+      Spin-$\tfrac{1}{2}$, Pauli matrices, rotation operators, Bloch sphere, $SU(2)$ vs.\ $SO(3)$\\
+L11 & Density Operators, Mixed States \& Partial Trace &
+      $\hat{\rho}=\sum_i p_i\ket{\psi_i}\bra{\psi_i}$, $\operatorname{Tr}(\hat{\rho}\hat{A})$,
+      partial trace, Bloch sphere, purity\\
+L12 & Rigged Hilbert Spaces \& Mathematical Foundations &
+      Gel'fand triple $\Phi\subset\mathcal{H}\subset\Phi'$, distributions, self-adjointness
+      vs.\ Hermiticity, safe usage rules\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+%------------------------------------------------------------
+\subsubsection*{Spiral Curriculum --- Competency Threads}
+\addcontentsline{toc}{subsubsection}{Module I.2 Spiral Curriculum}
+
+The module is built around seven interlocking threads, each revisited at increasing depth
+across the 12 lectures:
+
+\begin{center}
+\begin{tabular}{lp{10cm}}
+\toprule
+\textbf{Thread} & \textbf{Content arc}\\
+\midrule
+\textbf{States \& Duality} & Kets/bras, inner products, amplitudes (L01--L02)\\
+\textbf{Representation} & Basis expansion, discrete/continuous, Fourier (L03, L05--L06)\\
+\textbf{Operators} & Adjoint, Hermitian/unitary, spectral theorem (L03--L04)\\
+\textbf{Measurement} & Projectors, collapse, POVM preview (L04, L07)\\
+\textbf{Dynamics} & Unitary evolution, Schr\"odinger/Heisenberg pictures (L08)\\
+\textbf{Composition} & Tensor products, entanglement, partial trace (L09, L11)\\
+\textbf{Foundations} & Distributions, operator domains, rigged Hilbert spaces (L06, L12)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\subsubsection*{Five-Tier Layered Pedagogy}
+\addcontentsline{toc}{subsubsection}{Module I.2 Five-Tier Pedagogy}
+
+Each lecture is explicitly stratified across five audience levels, enabling delivery
+to a mixed cohort:
+
+\begin{center}
+\begin{tabular}{llp{9cm}}
+\toprule
+\textbf{Tier} & \textbf{Cohort} & \textbf{Characteristic content}\\
+\midrule
+Tier~1 & HS       & Complex numbers, amplitudes, vector addition analogy,
+                    intuitive motivation\\
+Tier~2 & Beg.\ UG & Normalization, orthogonality, components $c_n=\braket{n|\psi}$,
+                    computational facility\\
+Tier~3 & Adv.\ UG & Cauchy--Schwarz, spectral theorem, proof habits, rigorous derivations\\
+Tier~4 & MSc      & Projective Hilbert space, density operators, measurement subtleties,
+                    representation theory\\
+Tier~5 & PhD      & Rigged Hilbert space, unbounded operators, functional analysis,
+                    deficiency indices\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%------------------------------------------------------------
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module I.2 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L01: Why Dirac Notation? States as Rays \& Superposition}]
+\textbf{90-min pacing:} (0--15~min) Motivation --- representations vs.\ abstract states;
+(15--45~min) Kets as vectors, rays, normalisation, global phase;
+(45--70~min) Bras (informal), amplitudes, Born rule preview;
+(70--90~min) Notation dictionary: ket $\leftrightarrow$ column vector $\leftrightarrow$ wavefunction.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Understand state as equivalence class $\ket{\psi}\sim e^{i\theta}\ket{\psi}$; global phase unobservable.
+  \item Interpret amplitudes and Born-rule probabilities $P(a)=|\braket{a|\psi}|^2$.
+  \item Build the notation dictionary in a discrete basis.
+  \item Connect Sakurai (operational) and Dirac (abstract) perspectives.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Sakurai track:} Preparation procedures $\to$ stable frequencies; interference motivates
+    complex amplitudes; $P=|A_1+A_2|^2$.
+  \item \textit{Dirac track:} $\ket{\psi}$ as ray in $\mathcal{H}$; completeness
+    $\sum_n\ket{n}\bra{n}=\hat{1}$; $P(a_i)=|\braket{a_i|\psi}|^2$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: $|z|^2$ as probability, interference analogy.
+Beg.\ UG: normalisation $\braket{\psi|\psi}=1$, components.
+Adv.\ UG: Cauchy--Schwarz, triangle inequality.
+MSc: rays and projective Hilbert space $\mathbb{P}(\mathcal{H})$, Wigner preview.
+PhD: separability, precise Hilbert space statements.
+
+\medskip\textbf{Assessment:}
+Set~A --- normalisation + amplitude problems.
+Set~B --- prove Cauchy--Schwarz; phase-invariance exercises.
+Projects: (simple) basis-expansion calculator; (complex) compare physical meaning across representations.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L02: Bras, Dual Space \& Inner Product Structure}]
+\textbf{90-min pacing:} (0--20~min) Define bras as linear functionals on $\mathcal{H}$;
+(20--50~min) Conjugate linearity; inner product axioms;
+(50--70~min) Probability amplitude $\braket{\phi|\psi}$ and Born rule;
+(70--90~min) Orthonormal basis; Gram--Schmidt sketch.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define bra $\bra{\psi}$ as element of dual space $\mathcal{H}^*$.
+  \item Master conjugate linearity and inner product rules.
+  \item Derive Born-rule probability from inner product structure.
+  \item Riesz representation theorem (intuition).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: conjugation rules, dot-product analogy.
+Beg.\ UG: orthonormal bases, Gram--Schmidt.
+Adv.\ UG: Riesz representation theorem intuition, proofs.
+MSc: anti-linear maps, adjoint rigorously, continuity.
+PhD: bounded vs.\ unbounded functionals, Banach space context.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute overlaps, orthogonality checks.
+Set~B --- inequalities, norm properties, inner-product geometry.
+Projects: (simple) visualise state geometry; (complex) derive Born-rule consequences from axioms.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L03: Linear Operators: Adjoint, Hermitian \& Unitary}]
+\textbf{90-min pacing:} (0--20~min) Operators as maps $\mathcal{H}\to\mathcal{H}$; matrix elements;
+(20--50~min) Adjoint $\hat{A}^\dagger$; Hermitian observables; unitary symmetries;
+(50--70~min) Expectation values; operator algebra;
+(70--90~min) Commutators preview; spectral theorem motivation.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Compute matrix elements $\bra{\phi}\hat{A}\ket{\psi}$.
+  \item Define adjoint: $\bra{\phi}\hat{A}\ket{\psi}=\bra{\hat{A}^\dagger\phi}\ket{\psi}$.
+  \item Characterise Hermitian ($\hat{A}=\hat{A}^\dagger$) and unitary ($\hat{U}^\dagger\hat{U}=\hat{1}$) operators.
+  \item Prove expectation value of Hermitian operator is real.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: matrices as machines on vectors, $2\times2$ examples.
+Beg.\ UG: eigenvalues, $\langle\hat{A}\rangle=\bra{\psi}\hat{A}\ket{\psi}$.
+Adv.\ UG: proof Hermitian $\Rightarrow$ real expectation; unitary preserves inner product.
+MSc: spectral theorem preview, commutators, normal operators.
+PhD: domains of unbounded operators, self-adjoint vs.\ merely Hermitian.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute adjoint, check Hermiticity, expectation values.
+Set~B --- prove spectral properties; operator algebra.
+Projects: (simple) classify $2\times 2$ matrices; (complex) commutator algebra and uncertainty preview.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L04: Eigenkets, Projectors \& Spectral Decomposition}]
+\textbf{90-min pacing:} (0--20~min) Eigenvalue equation $\hat{A}\ket{a}=a\ket{a}$;
+(20--50~min) Projectors $\hat{P}_a=\ket{a}\bra{a}$; properties;
+(50--75~min) Spectral decomposition $\hat{A}=\sum_a a\ket{a}\bra{a}$;
+(75--90~min) Measurement postulate; post-measurement state.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Use eigenkets for measurement probabilities.
+  \item Construct projectors $\hat{P}_a$ and verify $\hat{P}_a^2=\hat{P}_a$.
+  \item Write spectral decomposition for discrete observables.
+  \item State measurement postulate (Sakurai formulation).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``filters'' and outcomes intuition --- Stern--Gerlach analogy.
+Beg.\ UG: compute $P(a)=|\braket{a|\psi}|^2$ via projectors.
+Adv.\ UG: degeneracy; resolution of identity in eigenbasis.
+MSc: projection postulate subtleties; L\"uders rule.
+PhD: spectral measures; PVMs and POVMs preview; measurement models.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute probabilities and post-measurement states.
+Set~B --- degeneracy, continuous spectrum cases.
+Projects: (simple) spin-$\tfrac{1}{2}$ measurement simulation; (complex) L\"uders vs.\ von Neumann update comparison.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L05: Completeness, Change of Basis \& Matrix Mechanics}]
+\textbf{90-min pacing:} (0--20~min) Resolution of identity; inserting $\hat{1}$;
+(20--50~min) Basis expansion and change of representation;
+(50--75~min) Matrix multiplication as inserted identities;
+(75--90~min) Coordinate transforms; unitary basis changes.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Use completeness $\sum_n\ket{n}\bra{n}=\hat{1}$ to evaluate any bracket.
+  \item Transform between bases using unitary matrices.
+  \item Derive matrix multiplication from operator composition.
+  \item Express operator matrix elements $A_{mn}=\bra{m}\hat{A}\ket{n}$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: coordinate systems analogy, $2$D rotation.
+Beg.\ UG: compute $A_{mn}$ and transform vectors between bases.
+Adv.\ UG: show equivalence of abstract operator and matrix representation.
+MSc: similarity vs.\ unitary equivalence; trace and spectrum invariants.
+PhD: representation theory framing; direct integrals preview.
+
+\medskip\textbf{Assessment:}
+Set~A --- basis expansions, matrix elements.
+Set~B --- change-of-basis proofs, unitary equivalence.
+Projects: (simple) matrix mechanics calculator; (complex) equivalence of Schr\"odinger and Heisenberg representations.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L06: Continuous Bases: $\ket{x}$, $\ket{p}$ \& Delta Functions}]
+\textbf{90-min pacing:} (0--20~min) Continuous completeness $\int\ket{x}\bra{x}dx=\hat{1}$;
+(20--50~min) Wavefunction as $\psi(x)=\braket{x|\psi}$;
+(50--75~min) Momentum basis; $\braket{x|p}=e^{ipx/\hbar}/\sqrt{2\pi\hbar}$;
+(75--90~min) Fourier connection; delta function identities.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Understand continuous-spectrum orthonormality $\braket{x|x'}=\delta(x-x')$.
+  \item Derive wavefunction as projection onto position basis.
+  \item Connect Fourier transform to $\braket{x|p}$ inner product.
+  \item Handle delta function distributions carefully.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: what ``continuum of outcomes'' means physically.
+Beg.\ UG: basic integrals; qualitative delta function properties.
+Adv.\ UG: careful delta manipulations; normalisation conventions.
+MSc: distribution theory viewpoint; generalised eigenvectors.
+PhD: rigged Hilbert spaces motivation; Gel'fand triple preview.
+
+\medskip\textbf{Assessment:}
+Set~A --- wavefunction integrals, Fourier transforms.
+Set~B --- distribution theory; momentum-space wavefunctions.
+Projects: (simple) Gaussian wavepacket in $x/p$ bases; (complex) prove Parseval--Plancherel from completeness.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L07: Measurement Theory: Postulates, Compatibility \& Uncertainty}]
+\textbf{90-min pacing:} (0--20~min) Compatible observables and commutators $[\hat{A},\hat{B}]$;
+(20--50~min) Uncertainty relation derivation (Robertson);
+(50--75~min) Measurement update; expectation values;
+(75--90~min) POVM preview; state tomography mention.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define compatible observables: $[\hat{A},\hat{B}]=0 \Leftrightarrow$ common eigenbasis.
+  \item Derive Robertson--Schr\"odinger uncertainty inequality.
+  \item Compute variances and uncertainty products.
+  \item Distinguish uncertainty from measurement imprecision.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: uncertainty as ``spread'' not instrument error.
+Beg.\ UG: compute variances; simple commutators $[\hat{x},\hat{p}]=i\hbar$.
+Adv.\ UG: derive Robertson--Schr\"odinger inequality from Cauchy--Schwarz.
+MSc: POVMs, operational view; state tomography preview.
+PhD: measurement models (von Neumann coupling), disturbance, contextuality.
+
+\medskip\textbf{Assessment:}
+Set~A --- commutators, variances, uncertainty products.
+Set~B --- prove Robertson inequality; compatible observable theorems.
+Projects: (simple) uncertainty product plotter; (complex) POVM vs.\ projective measurement comparison.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L08: Time Evolution \& Pictures of Quantum Mechanics}]
+\textbf{90-min pacing:} (0--20~min) Unitary evolution $\hat{U}(t)=e^{-i\hat{H}t/\hbar}$;
+(20--45~min) Schr\"odinger picture: states evolve;
+(45--70~min) Heisenberg picture: operators evolve;
+(70--90~min) Constants of motion; $[\hat{A},\hat{H}]=0\Leftrightarrow$ conserved.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive $\hat{U}(t)$ from unitarity and time-translation invariance.
+  \item Work fluently in both Schr\"odinger and Heisenberg pictures.
+  \item Derive Heisenberg equation of motion $\dot{\hat{A}}_H=\tfrac{i}{\hbar}[\hat{H},\hat{A}_H]$.
+  \item Identify constants of motion via commutator with $\hat{H}$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: exponential as ``repeated tiny evolution steps.''
+Beg.\ UG: differentiate $\langle A\rangle$ with time; simple Hamiltonians.
+Adv.\ UG: Heisenberg equation of motion; Ehrenfest's theorem.
+MSc: time-ordering; interaction picture preview; formal solution.
+PhD: Stone's theorem; one-parameter unitary groups; domain issues.
+
+\medskip\textbf{Assessment:}
+Set~A --- evolve states; compute $\langle A\rangle(t)$.
+Set~B --- prove Heisenberg EOM; constants of motion theorems.
+Projects: (simple) two-level Rabi oscillation; (complex) interaction picture and perturbation theory preview.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L09: Tensor Products: Composite Systems \& Entanglement}]
+\textbf{90-min pacing:} (0--20~min) Tensor product space $\mathcal{H}_A\otimes\mathcal{H}_B$;
+(20--50~min) Product vs.\ entangled states; operator action;
+(50--75~min) Entanglement criterion; Schmidt decomposition;
+(75--90~min) Partial measurement and reduced descriptions.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct product states $\ket{i}_A\otimes\ket{j}_B$ and general bipartite states.
+  \item Identify entanglement by failure of coefficient factorisation.
+  \item Apply Schmidt decomposition to find Schmidt rank.
+  \item Preview partial trace as reduced description of subsystem.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``two systems = bigger space'' --- classical analogy and beyond.
+Beg.\ UG: compute product basis components; tensor product of matrices.
+Adv.\ UG: Schmidt decomposition; maximally entangled states.
+MSc: partial trace introduced lightly; entanglement entropy preview.
+PhD: entanglement measures, operational tasks, reading-based prompts.
+
+\medskip\textbf{Assessment:}
+Set~A --- product basis, operator action on $\mathcal{H}_A\otimes\mathcal{H}_B$.
+Set~B --- Schmidt decomposition; Bell states analysis.
+Projects: (simple) entanglement checker for 2-qubit states; (complex) Schmidt rank and entanglement entropy.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L10: Spin \& Finite-Dimensional Hilbert Spaces ($SU(2)$)}]
+\textbf{90-min pacing:} (0--20~min) Spin-$\tfrac{1}{2}$ as 2D Hilbert space; $\ket{+},\ket{-}$ basis;
+(20--50~min) Pauli matrices; spin operators $\sigma_x,\sigma_y,\sigma_z$;
+(50--75~min) Rotation operators $e^{-i\theta\boldsymbol{\sigma}\cdot\hat{n}/2}$; Bloch sphere;
+(75--90~min) Angular momentum commutation relations preview.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Work with spin-$\tfrac{1}{2}$ as prototype finite-dimensional QM.
+  \item Compute eigenkets and probabilities for all spin components.
+  \item Apply rotation operators $U(\theta,\hat{n})=e^{-i\theta\boldsymbol{\sigma}\cdot\hat{n}/2}$.
+  \item Connect $SU(2)$ group to physical rotations $SO(3)$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: two-state systems as ``qubits'' --- conceptual motivation.
+Beg.\ UG: compute spin measurement probabilities; Stern--Gerlach results.
+Adv.\ UG: rotation operators; verify $[\sigma_i,\sigma_j]=2i\varepsilon_{ijk}\sigma_k$.
+MSc: representation theory touch; angular momentum algebra $\hat{J}_\pm$.
+PhD: $SU(2)$ vs.\ $SO(3)$, projective representations, Wigner theorem link.
+
+\medskip\textbf{Assessment:}
+Set~A --- spin probabilities, expectation values.
+Set~B --- rotation operators; angular momentum algebra.
+Projects: (simple) Bloch sphere visualiser; (complex) $SU(2)\leftrightarrow SO(3)$ double-cover demonstration.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L11: Density Operators, Mixed States \& Partial Trace}]
+\textbf{90-min pacing:} (0--20~min) Pure vs.\ mixed states;
+$\hat{\rho}=\sum_i p_i\ket{\psi_i}\bra{\psi_i}$;
+(20--50~min) $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$; properties of $\hat{\rho}$;
+(50--75~min) Partial trace; reduced density matrices;
+(75--90~min) Bloch sphere for spin-$\tfrac{1}{2}$; purity $\operatorname{Tr}(\hat{\rho}^2)$.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct density operator for ensembles and reduced states.
+  \item Compute expectation values via $\operatorname{Tr}(\hat{\rho}\hat{A})$.
+  \item Apply partial trace to obtain subsystem state.
+  \item Distinguish pure ($\operatorname{Tr}(\hat{\rho}^2)=1$) from mixed ($\operatorname{Tr}(\hat{\rho}^2)<1$) states.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``uncertainty because we don't know'' vs.\ genuine quantum spread.
+Beg.\ UG: compute trace in matrix form; verify $\hat{\rho}$ properties.
+Adv.\ UG: pure vs.\ mixed; Bloch vector parameterisation of $2\times 2$ density matrices.
+MSc: Kraus operators; CPTP maps preview; quantum channels.
+PhD: open systems, master equations, quantum error correction preview.
+
+\medskip\textbf{Assessment:}
+Set~A --- density matrix construction, $\operatorname{Tr}(\hat{\rho}\hat{A})$.
+Set~B --- partial trace, purity, Bloch representation.
+Projects: (simple) density matrix visualiser for 2-level system; (complex) decoherence model via partial trace.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.2 --- Lecture L12: Rigged Hilbert Spaces \& Mathematical Foundations}]
+\textbf{90-min pacing:} (0--20~min) Why $\ket{x}$ is \emph{not} in the Hilbert space;
+(20--50~min) Distributions and test functions; Schwartz space;
+(50--75~min) Self-adjointness vs.\ Hermiticity revisited;
+(75--90~min) What Dirac notation hides --- safe usage rules.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain why $\braket{x|x'}=\delta(x-x')$ requires distribution theory.
+  \item State the Gel'fand triple $\Phi\subset\mathcal{H}\subset\Phi'$.
+  \item Distinguish self-adjoint from Hermitian (deficiency indices).
+  \item Apply Dirac notation safely with awareness of its limits.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: conceptual ``idealised states'' --- measuring infinitely precise position.
+Beg.\ UG: cautionary rules for delta functions in calculations.
+Adv.\ UG: examples of unbounded operators ($\hat{x},\hat{p}$); domain issues.
+MSc: rigged Hilbert space triple $\Phi\subset\mathcal{H}\subset\Phi'$; nuclear spectral theorem.
+PhD: spectral theorem in full measure-theoretic form; deficiency indices; self-adjoint extensions.
+
+\medskip\textbf{Assessment:}
+Set~A --- delta function identities; distribution manipulations.
+Set~B --- self-adjoint extension problems; domain analysis.
+Projects: (simple) ``regularisation'' demonstration; (complex) momentum operator on half-line --- self-adjoint extensions.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsubsection*{Assessment Strategy}
+\addcontentsline{toc}{subsubsection}{Module I.2 Assessment Strategy}
+\label{sec:braket-assessment}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Per-Lecture Assessment Bundle} (every lecture):
+concept check (10--15~min, 5--8 short conceptual questions);
+Problem Set~A (simple, 6--10 computational exercises);
+Problem Set~B (complex, 3--6 multi-step derivations and proofs);
+mini-project simple (1--3 hours);
+mini-project complex (5--10 hours, open-ended);
+research questions well-defined (2--4 scoped prompts);
+research questions fully open (1--2 frontier-style prompts).
+\end{tcolorbox}
+
+\medskip
+\noindent\textbf{Course-level grading template:}
+\begin{itemize}[leftmargin=1.5em]
+  \item Weekly homework (best 10/12): 40\%
+  \item Two mid-course syntheses (after L06 \& L10): 20\%
+  \item Project (simple or complex track): 25\%
+  \item Final oral/whiteboard exam or take-home: 15\%
+\end{itemize}
+Mixed cohorts: HS/UG $\to$ simple track; MSc/PhD $\to$ complex track.
+
+%------------------------------------------------------------
+\subsubsection*{Reading Strategy}
+\addcontentsline{toc}{subsubsection}{Module I.2 Reading Strategy}
+
+\noindent\textbf{Track A --- Core textbooks:}
+Dirac, \textit{The Principles of Quantum Mechanics} (formalism, notation ethos);
+Sakurai \& Napolitano, \textit{Modern Quantum Mechanics} (measurement, symmetry framing).
+
+\noindent\textbf{Track B --- Support:}
+Ballentine (postulates/measurement);
+von Neumann (mathematical structure);
+functional analysis references (PhD tier).
+
+\noindent\textbf{Track C --- Historical sources:}
+Born (1926) probability interpretation;
+Dirac (1927) amplitude formalism;
+von Neumann (1932) foundations;
+Stone (1932) unitary groups;
+Wigner, symmetry principles (MSc/PhD).
+
+%------------------------------------------------------------
+\subsubsection*{Expansion Plan --- Natural Extensions Beyond 12 Lectures}
+\addcontentsline{toc}{subsubsection}{Module I.2 Expansion Plan}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Topic} & \textbf{Duration} & \textbf{Content}\\
+\midrule
+Angular Momentum \& Addition & 2--4 lectures & $\hat{J}_\pm$; Clebsch--Gordan; Wigner--Eckart theorem\\
+Harmonic Oscillator \& Ladder Operators & 2--3 lectures & $\hat{a},\hat{a}^\dagger$; coherent states; squeezed states\\
+Scattering Theory \& $S$-Matrix & 2--4 lectures & Lippmann--Schwinger; T-matrix; partial waves\\
+Path Integrals & 2 lectures & Feynman formulation; propagator; connection to Series~II Module~II.2\\
+Quantum Information Formalism & 2--4 lectures & Quantum channels; CPTP; quantum error correction\\
+Advanced Measurement \& POVMs & 2 lectures & POVM elements; Naimark's theorem; informationally complete\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+%=============================================================
+\subsection{Module I.3 --- Quantum Dynamics, Perturbation Theory, and Physical Systems}
+\label{sec:mod-I3}
+%=============================================================
+
+\coursebadge{%
+  \textbf{Scope:} Continues directly from Module~I.1 (\S2.4 onward). Covers the
+  density matrix in full, bases, commutation relations, symmetries and Noether's
+  theorem, the complete theory of time evolution (time-independent, time-dependent,
+  and non-commuting), all three pictures of quantum mechanics, perturbation theory,
+  open systems, and a survey of canonical example systems and physical effects.\\[2pt]
+  \textbf{Duration:} 11 lectures $\times$ 90 minutes (Lecture~L01 continued + Lectures~L02--L11
+  of the original Series~I programme).\\[2pt]
+  \textbf{Prerequisite:} Module~I.1; Module~I.2 recommended as concurrent or prior study.
+}
+
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module I.3 Overview}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L01\textsuperscript{cont} & Pure/Mixed States and the Density Matrix (\S2.3--2.5) &
+    Pure vs.\ mixed states, $\hat{\rho}$ properties, $\operatorname{Tr}\hat{\rho}=1$, purity, partial trace, entanglement entropy preview\\
+L02 & Bases: Discrete and Continuous &
+    Orthonormal bases, completeness relations, position/momentum representations, Dirac delta\\
+L03 & Uncertainty and Commutation Relations &
+    Robertson--Schr\"odinger inequality, compatible observables, CSCO, simultaneous eigenstates\\
+L04 & Infinitesimal Generators, Symmetries, and Noether's Theorem &
+    Lie algebras, Stone's theorem, Noether's theorem, discrete symmetries\\
+L05 & Time Evolution I --- Time-Independent Hamiltonians &
+    Time evolution operator $\hat{U}(t)$, T-symmetry, stationary states, Schr\"odinger equation\\
+L06 & Time Evolution II --- Time-Dependent and Non-Commuting &
+    Dyson series, time-ordered exponential $\mathcal{T}\exp$, Magnus expansion\\
+L07 & Pictures of Quantum Mechanics and the Heisenberg Picture &
+    Schr\"odinger/Heisenberg pictures, equation of motion, Ehrenfest, virial theorem\\
+L08 & The Dirac (Interaction) Picture &
+    Splitting $\hat{H}=\hat{H}_0+\hat{V}$, interaction picture, $S$-matrix\\
+L09 & Perturbation Theory &
+    Rayleigh--Schr\"odinger PT (degenerate and non-degenerate), Born--Oppenheimer, Feynman--Hellmann\\
+L10 & Time-Dependent PT, Open Systems, and Many-Body Preview &
+    Fermi's golden rule, Lindblad equation, decoherence, two-electron system\\
+L11 & Example Systems and Physical Effects &
+    Free particle, particle in a box, Bloch electron, harmonic oscillator,
+    Rabi model, Zeeman/Stark/spin--orbit\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module I.3 Lecture Syllabi}
+
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L01 (cont.): Pure/Mixed States and the Density Matrix (\S2.3--2.5)}]
+\textbf{90-min pacing:} (0--20~min) Motivation: why a single ket is insufficient to describe
+sub-systems or statistical ensembles; pure state $\hat{\rho}=\ket{\psi}\bra{\psi}$ as
+a special case;
+(20--45~min) Mixed states: statistical mixture $\hat{\rho}=\sum_i p_i\ket{\psi_i}\bra{\psi_i}$;
+physical distinction between classical ignorance and genuine quantum superposition;
+(45--70~min) Properties of the density operator: $\hat{\rho}^\dagger=\hat{\rho}$,
+$\operatorname{Tr}\hat{\rho}=1$, $\hat{\rho}\geq 0$; purity
+$\gamma=\operatorname{Tr}\hat{\rho}^2\leq 1$ (equality iff pure);
+expectation values $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$;
+(70--90~min) Bipartite systems $\mathcal{H}_A\otimes\mathcal{H}_B$; partial trace
+$\hat{\rho}_A=\operatorname{Tr}_B\hat{\rho}_{AB}$; entanglement entropy
+$S=-\operatorname{Tr}(\hat{\rho}_A\ln\hat{\rho}_A)$ (preview).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Construct $\hat{\rho}$ for pure states, mixtures, and subsystems.
+  \item Verify the three defining properties ($\hat{\rho}^\dagger=\hat{\rho}$,
+    $\operatorname{Tr}\hat{\rho}=1$, $\hat{\rho}\geq 0$) for given density matrices.
+  \item Compute expectation values and purity; distinguish pure from mixed states.
+  \item Apply partial trace to obtain reduced density matrices and compute entanglement entropy.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Statistical/physical track:} Ensemble interpretation of $\hat{\rho}$;
+    classical vs.\ quantum uncertainty; Bloch sphere picture for spin-$\tfrac{1}{2}$;
+    why a mixed state cannot be ``purified'' within the same Hilbert space.
+  \item \textit{Mathematical/algebraic track:} $\hat{\rho}$ as a positive semi-definite
+    trace-class operator; spectral decomposition; partial trace as unique linear map
+    satisfying $\operatorname{Tr}_B(\hat{\rho}_{AB}(\hat{1}\otimes\hat{O}_B))
+    =\operatorname{Tr}(\hat{\rho}_B\hat{O}_B)$.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``classical probability of being in a state'' vs.\ genuine quantum superposition ---
+the key conceptual divide; coin-flip analogy and its limits.
+Beg.\ UG: compute $\hat{\rho}$, $\operatorname{Tr}\hat{\rho}^2$, and $\langle\hat{A}\rangle$
+for $2\times 2$ examples; verify properties numerically.
+Adv.\ UG: prove $\operatorname{Tr}\hat{\rho}^2\leq 1$ from spectral decomposition;
+Bloch vector parameterisation for spin-$\tfrac{1}{2}$; partial trace calculation.
+MSc: Purification of mixed states; Schmidt decomposition connection;
+entanglement entropy and its properties (sub-additivity preview).
+PhD: Trace-class operators in infinite dimensions; von Neumann entropy;
+quantum relative entropy; complete positivity preview.
+
+\medskip\textbf{Assessment:}
+Set~A --- construct $\hat{\rho}$ for explicit mixtures; compute purity and $\langle\hat{\sigma}_z\rangle$;
+partial trace for 2-qubit Bell states.
+Set~B --- prove $\operatorname{Tr}\hat{\rho}^2\leq(\operatorname{Tr}\hat{\rho})^2$ with equality
+iff rank-1; show entanglement entropy vanishes for product states.
+Projects: (simple) Bloch sphere trajectory under dephasing noise; (complex) purification of a given
+mixed state and verification of entanglement entropy.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L02: Bases: Discrete and Continuous}]
+\textbf{90-min pacing:} (0--20~min) Discrete orthonormal bases: $\braket{e_i|e_j}=\delta_{ij}$;
+resolution of identity $\hat{1}=\sum_i\ket{e_i}\bra{e_i}$;
+change of basis via unitary matrices; matrix representation in a given basis;
+(20--45~min) Continuous bases: position eigenstates $\hat{x}\ket{x}=x\ket{x}$;
+continuous orthonormality $\braket{x|x'}=\delta(x-x')$; completeness
+$\hat{1}=\int dx\,\ket{x}\bra{x}$; wavefunction as $\psi(x)=\braket{x|\psi}$;
+(45--70~min) Momentum representation: $\tilde{\psi}(p)=\braket{p|\psi}$;
+$\braket{x|p}=e^{ipx/\hbar}/\sqrt{2\pi\hbar}$; Fourier transform as change of basis;
+(70--90~min) The Dirac delta distribution: properties, Fourier representation,
+regularisation; over-completeness and coherent states (preview).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Use resolution of identity in discrete and continuous forms to evaluate any bracket.
+  \item Derive the wavefunction $\psi(x)=\braket{x|\psi}$ as a projection.
+  \item Perform basis changes between position and momentum representations via Fourier transforms.
+  \item Manipulate delta functions and understand their distributional nature.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Computational track:} Concrete calculation of Fourier transforms;
+    Gaussian wavepackets in $x$ and $p$; Parseval--Plancherel theorem;
+    practical use of $\hat{1}$ insertions to convert between representations.
+  \item \textit{Mathematical track:} Generalised eigenvectors; distribution theory
+    and Schwartz space; over-complete frames and the resolution of identity for
+    coherent states; Gel'fand triple motivation.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``snapshots'' of a state in different languages (position vs.\ momentum);
+why the wavefunction $\psi(x)$ is just one way to represent the same ket.
+Beg.\ UG: compute $\psi(x)$ from a given ket in a discrete basis; evaluate simple
+Fourier transforms; use delta function properties.
+Adv.\ UG: prove Parseval--Plancherel from completeness; handle delta function
+carefully in operator matrix elements.
+MSc: distribution theory viewpoint; generalised eigenvectors and their domain;
+Fourier transform as unitary map on $L^2(\mathbb{R})$.
+PhD: Gel'fand triple $\Phi\subset L^2\subset\Phi'$; nuclear spectral theorem;
+coherent states and frame theory; wavelet transforms.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute $\psi(x)$ and $\tilde{\psi}(p)$ for Gaussian and square states;
+evaluate $\braket{x|\hat{p}|\psi}$ via completeness insertion.
+Set~B --- prove Fourier transform is unitary on $L^2$; delta function identities and
+distributional derivatives.
+Projects: (simple) Gaussian wavepacket visualiser in $x$ and $p$; (complex) uncertainty
+product $\Delta x\,\Delta p$ for a family of wavepackets and saturation condition.
+\end{tcolorbox}
+
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L03: Uncertainty and Commutation Relations}]
+\textbf{90-min pacing:} (0--20~min) Commutators as the algebraic fingerprint of incompatibility;
+$[\hat{x},\hat{p}]=i\hbar$; general commutator identities and Jacobi identity;
+(20--45~min) The generalised uncertainty principle: variance definition
+$(\Delta A)^2=\langle\hat{A}^2\rangle-\langle\hat{A}\rangle^2$;
+Robertson inequality $\Delta A\,\Delta B\geq\tfrac{1}{2}|\langle[\hat{A},\hat{B}]\rangle|$
+derived via Cauchy--Schwarz; Schr\"odinger's improvement with anticommutator term;
+(45--65~min) Canonical commutation relations (CCRs):
+$[\hat{x}_i,\hat{p}_j]=i\hbar\delta_{ij}$; Stone--von Neumann theorem (statement);
+complete set of commuting observables (CSCO) and quantum numbers;
+(65--90~min) Compatible and incompatible measurements; projection postulate;
+sequential measurements; quantum Zeno effect; energy--time uncertainty
+(careful treatment of $\Delta E\,\Delta t$).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive Robertson's uncertainty inequality from the Cauchy--Schwarz inequality.
+  \item Evaluate commutators for polynomial functions of $\hat{x}$ and $\hat{p}$.
+  \item Define a CSCO and explain how it labels quantum states uniquely.
+  \item Distinguish compatible from incompatible observables and their measurement implications.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track (Sakurai):} Uncertainty as an intrinsic property of
+    quantum states, not of the measuring apparatus; Stern--Gerlach sequential
+    measurement as the paradigm for incompatibility; energy--time uncertainty as
+    a statement about state lifetime.
+  \item \textit{Mathematical track:} Derivation of Robertson--Schr\"odinger inequality;
+    Cauchy--Schwarz in Hilbert space; conditions for saturation (Gaussian states);
+    Stone--von Neumann uniqueness of CCR representation.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``you cannot know both position and momentum exactly'' --- why it is not
+about clumsy measurements; wave analogy with bandwidth.
+Beg.\ UG: compute $[\hat{x},\hat{p}^2]$, $[\hat{x}^2,\hat{p}]$ from CCR;
+evaluate $\Delta x\,\Delta p$ for Gaussian.
+Adv.\ UG: full derivation of Robertson inequality; conditions for saturation;
+prove that $[\hat{A},\hat{B}]=0 \Leftrightarrow$ common eigenbasis (non-degenerate case).
+MSc: Schr\"odinger's stronger uncertainty relation; CSCO for hydrogen;
+Stone--von Neumann theorem and its physical content.
+PhD: Weyl form of CCR; non-equivalent representations; quantum Zeno effect
+rigorously; information-theoretic uncertainty relations (entropic).
+
+\medskip\textbf{Assessment:}
+Set~A --- evaluate commutators; compute variances for harmonic oscillator eigenstates;
+verify Robertson inequality numerically.
+Set~B --- derive Robertson inequality from scratch; prove saturation condition;
+CSCO construction for a particle in 3D central potential.
+Projects: (simple) uncertainty product plotter for parameterised family of states;
+(complex) entropic uncertainty relation vs.\ Robertson for conjugate bases.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L04: Infinitesimal Generators, Symmetries, and Noether's Theorem}]
+\textbf{90-min pacing:} (0--20~min) One-parameter unitary groups:
+$\hat{U}(\theta)=e^{i\theta\hat{G}}$; Stone's theorem identifying the
+generator $\hat{G}$; momentum as generator of spatial translations,
+angular momentum of rotations, Hamiltonian of time translations;
+(20--45~min) Symmetry of the Hamiltonian: $[\hat{H},\hat{U}]=0
+\Leftrightarrow[\hat{H},\hat{G}]=0$; conservation of $\hat{G}$
+in the Heisenberg picture as Noether's theorem;
+examples: translation invariance $\to$ momentum conservation,
+rotational invariance $\to$ angular momentum conservation;
+(45--65~min) Discrete symmetries: parity $\hat{\Pi}$, charge conjugation $\hat{C}$,
+time reversal $\hat{T}$ (Wigner anti-unitary); $CPT$ theorem (statement and significance);
+(65--90~min) Symmetry breaking: explicit vs.\ spontaneous;
+degenerate ground states; Goldstone modes (qualitative).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Identify the generator of a given one-parameter unitary group.
+  \item Prove Noether's theorem in quantum mechanics via the Heisenberg equation.
+  \item Classify discrete symmetries and their representations (unitary vs.\ anti-unitary).
+  \item Distinguish explicit from spontaneous symmetry breaking and describe physical consequences.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Conservation laws as a direct consequence of symmetry;
+    physical examples (translation $\to$ momentum, rotation $\to$ angular momentum,
+    time $\to$ energy); spontaneous symmetry breaking in ferromagnets and superconductors (qualitative).
+  \item \textit{Mathematical track:} Lie group -- Lie algebra correspondence via exponential map;
+    Stone's theorem; adjoint action and structure constants;
+    Wigner's theorem applied to discrete symmetries.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``if physics looks the same after a transformation, something is conserved'' ---
+Noether's theorem as the deepest connection between symmetry and conservation.
+Beg.\ UG: verify $[\hat{H},\hat{p}]=0$ for translationally invariant $\hat{H}$;
+check parity of simple wavefunctions.
+Adv.\ UG: prove Noether's theorem from Heisenberg equation;
+derive parity selection rules; show $\hat{\Pi}\hat{x}\hat{\Pi}^{-1}=-\hat{x}$.
+MSc: Lie algebra generators; structure constants; $\mathfrak{su}(2)$ algebra;
+full Wigner classification of discrete symmetries.
+PhD: Projective representations; central extensions; spontaneous symmetry breaking
+and Goldstone theorem; Wigner--Eckart theorem preview.
+
+\medskip\textbf{Assessment:}
+Set~A --- identify generators for rotations, translations, phase shifts;
+verify conservation laws for given Hamiltonians; parity of wavefunctions.
+Set~B --- prove Noether's theorem in the Heisenberg picture;
+classify symmetries of the hydrogen Hamiltonian; analyse $CPT$ invariance.
+Projects: (simple) symmetry classification tool for toy Hamiltonians;
+(complex) spontaneous symmetry breaking in double-well potential ---
+ground state degeneracy and perturbative lifting.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L05: Time Evolution I --- Time-Independent Hamiltonians}]
+\textbf{90-min pacing:} (0--15~min) The time-evolution postulate:
+$i\hbar\partial_t\ket{\psi(t)}=\hat{H}\ket{\psi(t)}$; linearity and
+unitarity as fundamental requirements;
+(15--40~min) The time evolution operator $\hat{U}(t,t_0)$: definition,
+group property $\hat{U}(t_2,t_0)=\hat{U}(t_2,t_1)\hat{U}(t_1,t_0)$,
+unitarity $\hat{U}^\dagger\hat{U}=\hat{1}$;
+time-independent case $\hat{U}(t)=e^{-i\hat{H}t/\hbar}$ via spectral decomposition;
+(40--65~min) Stationary states: $\hat{H}\ket{E_n}=E_n\ket{E_n}$;
+general solution as superposition with phase factors $e^{-iE_n t/\hbar}$;
+expectation values of time-independent operators in energy eigenstates;
+(65--90~min) Time-reversal symmetry: anti-unitary $\hat{T}$;
+Kramers degeneracy for half-integer spin;
+$T$-invariant Hamiltonians; Schr\"odinger equation in position representation:
+$\hat{p}=-i\hbar\nabla$; probability current $\mathbf{j}=\tfrac{\hbar}{2mi}(\psi^*\nabla\psi-\psi\nabla\psi^*)$;
+continuity equation $\partial_t|\psi|^2+\nabla\cdot\mathbf{j}=0$.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive $\hat{U}(t)=e^{-i\hat{H}t/\hbar}$ from the time-evolution postulate.
+  \item Evolve an arbitrary initial state by expanding in the energy eigenbasis.
+  \item Identify and exploit stationary state structure for computing expectation values.
+  \item Derive the probability current and continuity equation in position representation.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Wave mechanics track:} Schr\"odinger equation as a PDE; boundary conditions;
+    probability current; stationary states as separable solutions $\psi(x,t)=\phi(x)e^{-iEt/\hbar}$.
+  \item \textit{Abstract operator track:} $\hat{U}$ from Stone's theorem; spectral decomposition
+    of $e^{-i\hat{H}t/\hbar}$; time translation group; anti-unitary time reversal
+    and Kramers theorem.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``the Hamiltonian is the quantum engine of time evolution'' --- energy eigenstates
+oscillate simply; superpositions interfere as time goes on.
+Beg.\ UG: evolve a two-level system; compute $\langle\hat{\sigma}_z\rangle(t)$;
+derive Rabi oscillation frequency.
+Adv.\ UG: full derivation of $\hat{U}$; probability current derivation;
+prove unitarity of $e^{-i\hat{H}t/\hbar}$ for Hermitian $\hat{H}$.
+MSc: time-reversal symmetry; Kramers degeneracy proof for half-integer spin;
+compare time-independent and time-dependent treatments.
+PhD: Stone's theorem; generator domain; self-adjoint extensions and their role in
+determining the evolution; Zeno's paradox and its resolution.
+
+\medskip\textbf{Assessment:}
+Set~A --- evolve superposition states; compute $\langle\hat{E}\rangle(t)$,
+$\langle\hat{x}\rangle(t)$; derive probability current for plane waves.
+Set~B --- prove group property of $\hat{U}$; unitarity; derive continuity equation;
+analyse Kramers degeneracy for spin-$\tfrac{1}{2}$ particle.
+Projects: (simple) time evolution visualiser for a particle in a box;
+(complex) Kramers degeneracy breaking by explicit $T$-violation and energy level
+splitting analysis.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L06: Time Evolution II --- Time-Dependent and Non-Commuting Hamiltonians}]
+\textbf{90-min pacing:} (0--20~min) Failure of $\hat{U}=e^{-i\hat{H}t/\hbar}$ when
+$[\hat{H}(t_1),\hat{H}(t_2)]\neq 0$; integral equation for $\hat{U}(t,t_0)$;
+iterative solution and the Dyson series;
+(20--45~min) Time-ordered exponential
+$\mathcal{T}\exp\!\bigl(-\tfrac{i}{\hbar}\int_{t_0}^{t}\hat{H}(t')dt'\bigr)$;
+Dyson's time-ordering operator $\mathcal{T}$; first- and second-order terms explicitly;
+(45--65~min) Piecewise-constant approximation: product formula
+$\hat{U}\approx\prod_k e^{-i\hat{H}(t_k)\Delta t/\hbar}$;
+connection to Trotter--Suzuki decomposition and quantum simulation;
+(65--90~min) Magnus expansion: exponentiation of the Dyson series;
+Magnus cumulants $\Omega_1,\Omega_2,\ldots$; unitarity preservation;
+convergence radius; physical example: driven spin-$\tfrac{1}{2}$ in an
+oscillating field; preview of Berry phase.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Dyson series for a time-dependent Hamiltonian.
+  \item Write the time-ordered exponential and evaluate its first two terms.
+  \item Explain why the Magnus expansion preserves unitarity while the Dyson series does not term-by-term.
+  \item Apply the piecewise-constant approximation to a simple driven system.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Driven two-level system (Rabi problem exact vs.\ perturbative);
+    rotating wave approximation origin; geometric phase accumulation as a physical effect
+    of non-commutativity; quantum control applications.
+  \item \textit{Mathematical track:} Time-ordering as a resummation of a Neumann series;
+    Magnus expansion as the unique Hermitian exponent; Zassenhaus-type decompositions;
+    convergence of Magnus expansion (Baker norm criterion).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``when the Hamiltonian changes in time, the future depends on the exact history''
+--- analogy with a spinning top being poked at different times.
+Beg.\ UG: first-order Dyson term; transition probability formula;
+numerical piecewise evolution for a two-level system.
+Adv.\ UG: full Dyson series derivation; prove time-ordering is necessary;
+compute $\Omega_1$ and $\Omega_2$ of Magnus expansion.
+MSc: Magnus expansion convergence; Trotter--Suzuki product formula and its error;
+connection to quantum simulation circuits.
+PhD: Magnus expansion in Lie algebraic language; Floquet theory for periodic
+Hamiltonians; geometric phases and holonomy in the Magnus framework.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute first-order Dyson term for oscillating Hamiltonian;
+piecewise evolution of a qubit; transition probability to first order.
+Set~B --- derive Dyson series from integral equation; prove $\Omega_1$ of
+Magnus expansion; convergence criterion application.
+Projects: (simple) numerical Dyson vs.\ Magnus evolution comparison for driven qubit;
+(complex) Floquet Hamiltonian for periodically driven two-level system and
+quasi-energy spectrum.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L07: Pictures of Quantum Mechanics and the Heisenberg Picture}]
+\textbf{90-min pacing:} (0--15~min) The equivalence-class of pictures:
+physical predictions (transition probabilities) are picture-independent;
+the Schr\"odinger picture reviewed --- states evolve, operators fixed;
+(15--40~min) The Heisenberg picture: operators carry the time dependence,
+$\hat{A}_H(t)=\hat{U}^\dagger(t)\hat{A}\hat{U}(t)$; states static
+$\ket{\psi_H}=\ket{\psi(t_0)}$; Heisenberg equation of motion
+$\dot{\hat{A}}_H = \tfrac{i}{\hbar}[\hat{H},\hat{A}_H]+(\partial_t\hat{A})_H$;
+(40--65~min) Consequences: Ehrenfest's theorem
+$\tfrac{d}{dt}\langle\hat{x}\rangle=\langle\hat{p}\rangle/m$,
+$\tfrac{d}{dt}\langle\hat{p}\rangle=-\langle\nabla V\rangle$;
+virial theorem; constants of motion $[\hat{H},\hat{A}]=0\Rightarrow\dot{\hat{A}}_H=0$;
+connection to Noether (Lecture~L04);
+(65--90~min) Canonical quantisation in the Heisenberg picture:
+classical Poisson brackets $\to$ commutators,
+$\{f,g\}_{\rm PB}\to\tfrac{1}{i\hbar}[\hat{f},\hat{g}]$;
+Dirac's quantisation rule; ordering ambiguities.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Transform operators and states between Schr\"odinger and Heisenberg pictures.
+  \item Derive and apply the Heisenberg equation of motion.
+  \item Prove and use Ehrenfest's theorem and the virial theorem.
+  \item Apply Dirac's canonical quantisation rule and identify operator ordering issues.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track (Sakurai):} Heisenberg picture as the quantum analogue
+    of classical mechanics --- operators play the role of dynamical variables;
+    Ehrenfest's theorem as the quantum--classical correspondence;
+    constants of motion as quantum-mechanical conservation laws.
+  \item \textit{Mathematical/structural track:} Heisenberg equation as a derivation on the
+    operator algebra; relationship to Lie bracket structure; canonical quantisation as
+    a map from Poisson manifold to non-commutative algebra.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``in one picture the states move, in the other the measuring devices move'' ---
+the physics is the same; analogy with active vs.\ passive coordinate transformations.
+Beg.\ UG: transform $\hat{x}(t)$ and $\hat{p}(t)$ for a harmonic oscillator;
+verify Ehrenfest's theorem numerically.
+Adv.\ UG: full derivation of Heisenberg EOM; virial theorem proof;
+solve $\hat{x}_H(t)$ and $\hat{p}_H(t)$ for particle in a quadratic potential.
+MSc: Dirac quantisation rule; operator ordering ambiguities (Weyl ordering);
+connection to classical integrability and action--angle variables.
+PhD: Algebraic quantum mechanics; Heisenberg picture in $C^*$-algebra language;
+Moyal bracket and Wigner function as semi-classical bridge.
+
+\medskip\textbf{Assessment:}
+Set~A --- solve Heisenberg EOM for harmonic oscillator; compute $\langle\hat{x}\rangle(t)$
+and $\langle\hat{p}\rangle(t)$; verify Ehrenfest for a cubic potential.
+Set~B --- prove virial theorem; apply canonical quantisation to a classical system;
+analyse ordering ambiguities for $\hat{x}^2\hat{p}$.
+Projects: (simple) comparison of Schr\"odinger and Heisenberg pictures for a
+driven harmonic oscillator; (complex) Moyal bracket vs.\ quantum commutator for
+polynomial observables.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L08: The Dirac (Interaction) Picture}]
+\textbf{90-min pacing:} (0--15~min) Motivation: perturbative treatment of $\hat{V}(t)$
+while exploiting exact knowledge of $\hat{H}_0$ dynamics;
+splitting $\hat{H}(t)=\hat{H}_0+\hat{V}(t)$;
+(15--40~min) Definition of the interaction picture:
+states $\ket{\psi_I(t)}=e^{i\hat{H}_0 t/\hbar}\ket{\psi_S(t)}$;
+operators $\hat{V}_I(t)=e^{i\hat{H}_0 t/\hbar}\hat{V}\,e^{-i\hat{H}_0 t/\hbar}$;
+interaction picture Schr\"odinger equation $i\hbar\partial_t\ket{\psi_I}=\hat{V}_I(t)\ket{\psi_I}$;
+(40--65~min) Interaction picture propagator $\hat{U}_I(t,t_0)$;
+Dyson series in the interaction picture; perturbative expansion of transition amplitudes;
+$S$-matrix $=\hat{U}_I(\infty,-\infty)$; physical interpretation as scattering operator;
+(65--90~min) Comparison table of all three pictures: state and operator evolution,
+equations of motion, preferred use-cases; bridge to time-dependent perturbation theory (L09--L10).
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Transform states and operators into and out of the interaction picture.
+  \item Derive the interaction picture Schr\"odinger equation from the full equation.
+  \item Write the Dyson series in the interaction picture to any desired order.
+  \item Connect the $S$-matrix to the interaction picture propagator.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical track:} Interaction picture as the natural language of
+    perturbation theory and scattering; $S$-matrix elements as transition amplitudes;
+    relationship to measurable cross-sections and decay rates.
+  \item \textit{Mathematical track:} Interaction picture as a unitary equivalence
+    transformation; two-sided action of free evolution; composition with Dyson series
+    to produce $S$-matrix; time-ordering and causality.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``park the easy part of the Hamiltonian in the operators, and let the hard part
+drive the states'' --- interaction picture as a practical bookkeeping device.
+Beg.\ UG: transform a simple interaction $\hat{V}=\lambda\hat{x}$ into the
+interaction picture for a harmonic oscillator $\hat{H}_0$; first-order Dyson term.
+Adv.\ UG: full transformation procedure; Dyson series to second order;
+prove equivalence of all three pictures for physical predictions.
+MSc: $S$-matrix and cross-sections; optical theorem;
+Lippmann--Schwinger equation preview; Feynman diagram structure.
+PhD: $S$-matrix in QFT context; adiabatic switching; Gell-Mann--Low theorem;
+LSZ reduction formula (conceptual).
+
+\medskip\textbf{Assessment:}
+Set~A --- transform given operators and states to interaction picture;
+compute first-order transition amplitude for a harmonic perturbation.
+Set~B --- derive interaction picture EOM; prove unitarity of $S$-matrix;
+second-order Dyson series for a constant perturbation.
+Projects: (simple) three-picture comparison for a driven two-level system;
+(complex) $S$-matrix for two-level system under short pulse: exact vs.\ first/second-order.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L09: Perturbation Theory}]
+\textbf{90-min pacing:} (0--20~min) Setup: $\hat{H}=\hat{H}_0+\lambda\hat{V}$;
+known eigenstates $\hat{H}_0\ket{n^{(0)}}=E_n^{(0)}\ket{n^{(0)}}$;
+perturbative ansatz $E_n=\sum_k\lambda^k E_n^{(k)}$,
+$\ket{n}=\sum_k\lambda^k\ket{n^{(k)}}$; non-degenerate case;
+(20--45~min) Rayleigh--Schr\"odinger PT: first-order energy $E_n^{(1)}=\bra{n^{(0)}}\hat{V}\ket{n^{(0)}}$;
+first-order state correction $\ket{n^{(1)}}=\sum_{m\neq n}\tfrac{\bra{m^{(0)}}\hat{V}\ket{n^{(0)}}}{E_n^{(0)}-E_m^{(0)}}\ket{m^{(0)}}$;
+second-order energy; convergence and breakdown conditions;
+(45--65~min) Degenerate perturbation theory: identify degenerate subspace;
+block diagonalise $\hat{V}$ within it; secular equation; correct zeroth-order states;
+worked example (hydrogen Stark effect);
+(65--90~min) Born--Oppenheimer separation;
+Feynman--Hellmann theorem $\partial_\lambda E_n=\langle n|\partial_\lambda\hat{H}|n\rangle$;
+adiabatic theorem (statement); Ritz variational principle as complementary tool.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive first- and second-order energy corrections in non-degenerate RSPT.
+  \item Compute first-order state corrections and apply them to matrix elements.
+  \item Handle degenerate perturbation theory by diagonalising $\hat{V}$ in the degenerate subspace.
+  \item Apply the Feynman--Hellmann theorem and the Ritz variational principle.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/applied track:} Hydrogen atom in electric field (Stark effect);
+    fine structure as perturbation; Born--Oppenheimer in molecular physics;
+    variational quantum eigensolvers (preview).
+  \item \textit{Mathematical/formal track:} Kato--Rellich theorem on analytic perturbations;
+    convergence of Rayleigh--Schr\"odinger series; resolvent operator
+    $\hat{R}_0(z)=(z-\hat{H}_0)^{-1}$ and Brillouin--Wigner PT.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``a small push changes energy levels slightly'' --- first-order PT as the
+quantum analogue of Taylor expansion for energy levels.
+Beg.\ UG: first-order energy corrections for simple perturbations;
+linear Stark effect for hydrogen $n=2$ by diagonalisation.
+Adv.\ UG: second-order energy; convergence conditions; full degenerate PT
+procedure; Feynman--Hellmann theorem proof.
+MSc: Kato--Rellich theorem; Brillouin--Wigner PT; Born--Oppenheimer rigorously;
+adiabatic theorem statement and proof sketch.
+PhD: Resolvent formalism; Dyson equation for the resolvent;
+divergence of perturbation series and resummation; PT for resonances.
+
+\medskip\textbf{Assessment:}
+Set~A --- first-order corrections for anharmonic oscillator $\lambda\hat{x}^4$;
+linear and quadratic Stark effect for hydrogen; variational bound for ground state.
+Set~B --- second-order energy for harmonic oscillator shifted by linear term;
+degenerate PT for $n=2$ hydrogen in electric field; Feynman--Hellmann for HO.
+Projects: (simple) PT vs.\ exact energy levels for anharmonic oscillator as a function
+of $\lambda$; (complex) Brillouin--Wigner vs.\ Rayleigh--Schr\"odinger comparison and
+convergence.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L10: Time-Dependent PT, Open Systems, and Many-Body Preview}]
+\textbf{90-min pacing:} (0--20~min) Time-dependent perturbation theory:
+first-order transition amplitude
+$c_f^{(1)}(t)=-\tfrac{i}{\hbar}\int_{t_0}^{t}dt'\,e^{i\omega_{fi}t'}\bra{f}\hat{V}(t')\ket{i}$;
+transition probability $|c_f^{(1)}|^2$; sudden and adiabatic limits;
+(20--40~min) Fermi's golden rule:
+continuous spectrum; density of states $\rho(E_f)$;
+$\Gamma_{i\to f}=\tfrac{2\pi}{\hbar}|\bra{f}\hat{V}\ket{i}|^2\rho(E_f)$;
+derivation from first-order TDPT via sinc function limit; selection rules;
+(40--65~min) Open quantum systems: closed (unitary) vs.\ open (environment coupling);
+Lindblad master equation $\dot{\hat{\rho}}=-\tfrac{i}{\hbar}[\hat{H},\hat{\rho}]
++\sum_k({\hat{L}_k\hat{\rho}\hat{L}_k^\dagger-\tfrac{1}{2}\{\hat{L}_k^\dagger\hat{L}_k,\hat{\rho}\}})$;
+jump operators; decay channels; dephasing;
+(65--90~min) Decoherence and the measurement problem:
+environment-induced superselection; pointer states;
+many-body preview: two-electron system, exchange interaction, singlet and triplet states,
+para- and ortho-helium.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive Fermi's golden rule from first-order TDPT.
+  \item Write the Lindblad master equation and identify physical contributions of each term.
+  \item Explain decoherence as environment-induced suppression of off-diagonal density matrix elements.
+  \item Construct two-electron spin states (singlet and triplet) and explain their exchange origin.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/applied track:} Fermi's golden rule in atomic spectroscopy,
+    nuclear decay, and solid-state (electron--phonon scattering); Lindblad equation in
+    quantum optics (spontaneous emission) and quantum computing (gate errors);
+    decoherence as the bridge between quantum and classical.
+  \item \textit{Mathematical/structural track:} Derivation of Fermi's golden rule rigorously;
+    Lindblad equation from complete positivity and the GKSL theorem;
+    pointer states as preferred bases selected by the environment.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``open systems'' as a leaky box --- energy and information escaping to the environment;
+radioactive decay as Fermi's golden rule in action.
+Beg.\ UG: compute $\Gamma_{i\to f}$ for a constant perturbation;
+simple Lindblad evolution (amplitude damping) for a qubit.
+Adv.\ UG: derive Fermi's golden rule from TDPT; verify Lindblad equation
+preserves $\operatorname{Tr}\hat{\rho}=1$ and positivity; singlet/triplet construction.
+MSc: GKSL theorem and complete positivity; Kraus representation;
+decoherence in the spin-boson model; Born--Markov approximation.
+PhD: Nakajima--Zwanzig projection technique; non-Markovian dynamics;
+Floquet--Lindblad equation; entanglement in many-body systems.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute $\Gamma_{i\to f}$ for an atom in an oscillating field;
+simple Lindblad evolution; singlet/triplet state construction and symmetry.
+Set~B --- derive Fermi's golden rule; prove Lindblad equation trace-preserving;
+exchange interaction from antisymmetry of two-electron wavefunction.
+Projects: (simple) decoherence visualiser: off-diagonal decay under Lindblad dephasing;
+(complex) Born--Markov derivation of Lindblad equation for a qubit coupled to a harmonic bath.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[modulebox, title={Module~I.3 --- Lecture L11: Example Systems and Physical Effects}]
+\textbf{90-min pacing:} (0--20~min) Free particle and particle in a box:
+plane waves and group velocity; wave packets; infinite square well: quantisation,
+zero-point energy, parity; simple Bloch electron: periodic potential, Bloch's theorem,
+crystal momentum, band structure (elementary), Brillouin zone;
+(20--40~min) Harmonic oscillator: ladder operators $\hat{a},\hat{a}^\dagger$;
+spectrum $E_n=(n+\tfrac{1}{2})\hbar\omega$; coherent states; Fock states;
+driven and damped anharmonic oscillator: resonance, anharmonic perturbations
+$\lambda\hat{x}^3,\lambda\hat{x}^4$;
+(40--60~min) Rabi model and two-level systems:
+Jaynes--Cummings Hamiltonian; Rabi oscillations; rotating wave approximation;
+$\pi$- and $\pi/2$-pulses; minimal coupling Hamiltonian
+$\hat{H}=\tfrac{1}{2m}(\hat{\mathbf{p}}-e\mathbf{A})^2+e\phi$;
+gauge invariance; Landau levels;
+(60--90~min) Zeeman and Stark effects: normal and anomalous Zeeman effect;
+linear and quadratic Stark effect; selection rules;
+spin--orbit coupling: relativistic origin, Thomas precession,
+$\hat{H}_{\rm SO}=\xi(r)\hat{\mathbf{L}}\cdot\hat{\mathbf{S}}$;
+$j$-$j$ vs.\ $L$-$S$ coupling; fine structure of hydrogen.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Solve the harmonic oscillator algebraically using ladder operators and derive the spectrum.
+  \item Derive Rabi oscillations and apply the rotating wave approximation.
+  \item Compute Zeeman and Stark energy shifts using first-order perturbation theory.
+  \item Explain spin--orbit coupling physically and compute fine-structure splittings.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical survey track:} Each system as a worked example of the formalism
+    developed in L01--L10; emphasis on physical interpretation (zero-point energy, coherent
+    states as classical-like states, Rabi cycling as quantum control, Zeeman spectroscopy);
+    connections to atomic and condensed matter experiments.
+  \item \textit{Mathematical/algebraic track:} Ladder operator algebra and its generalisation;
+    Bloch's theorem from translation symmetry; minimal coupling and gauge invariance;
+    angular momentum addition and Clebsch--Gordan coefficients in spin--orbit coupling.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``quantum mechanics in action'' --- particle in a box as the simplest real system;
+why atoms have sharp spectral lines (energy quantisation); laser pulses as $\pi$-pulses.
+Beg.\ UG: solve harmonic oscillator with $\hat{a},\hat{a}^\dagger$; compute
+first-order Zeeman splitting; Rabi oscillation frequency.
+Adv.\ UG: derive Bloch's theorem from translation invariance;
+rotating wave approximation derivation; anomalous Zeeman from spin;
+spin--orbit splitting in hydrogen via first-order PT.
+MSc: coherent states as eigenstates of $\hat{a}$; over-completeness; Landau levels;
+$j$-$j$ vs.\ $L$-$S$ coupling comparison; Thomas precession derivation.
+PhD: Jaynes--Cummings model exactly; dressed states; polaritons;
+gauge invariance and Aharonov--Bohm effect; Dirac equation origin of spin--orbit.
+
+\medskip\textbf{Assessment:}
+Set~A --- harmonic oscillator matrix elements $\bra{m}\hat{x}^2\ket{n}$;
+Rabi oscillation period; linear Stark shift of hydrogen ground state.
+Set~B --- derive Bloch's theorem; anharmonic oscillator perturbation to second order;
+spin--orbit fine structure of hydrogen $2p$ level.
+Projects: (simple) energy level diagram for hydrogen with Zeeman, Stark, and spin--orbit;
+(complex) Jaynes--Cummings model dynamics: collapse and revival of Rabi oscillations.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsubsection*{Assessment Strategy}
+\addcontentsline{toc}{subsubsection}{Module I.3 Assessment Strategy}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Per-Lecture Assessment Bundle} (every lecture):
+concept check (10--15~min, 5--8 short conceptual questions);
+Problem Set~A (simple, 6--10 computational exercises);
+Problem Set~B (complex, 3--6 multi-step derivations and proofs);
+mini-project simple (1--3 hours);
+mini-project complex (5--10 hours, open-ended);
+research questions well-defined (2--4 scoped prompts);
+research questions fully open (1--2 frontier-style prompts).
+\end{tcolorbox}
+
+\medskip
+\noindent\textbf{Course-level grading template:}
+\begin{itemize}[leftmargin=1.5em]
+  \item Weekly homework (best 9/11): 40\%
+  \item Mid-course synthesis (after L06): 20\%
+  \item Project (simple or complex track): 25\%
+  \item Final oral/whiteboard exam or take-home: 15\%
+\end{itemize}
+Mixed cohorts: HS/UG $\to$ simple track; MSc/PhD $\to$ complex track.
+
+%------------------------------------------------------------
+\subsubsection*{Reading Strategy}
+\addcontentsline{toc}{subsubsection}{Module I.3 Reading Strategy}
+
+\noindent\textbf{Track A --- Core textbooks:}
+Sakurai \& Napolitano, \textit{Modern Quantum Mechanics} Ch.~2--5 (dynamics, symmetry, perturbation theory);
+Shankar, \textit{Principles of Quantum Mechanics} (perturbation theory and example systems).
+
+\noindent\textbf{Track B --- Support:}
+Messiah, \textit{Quantum Mechanics} (density matrix, open systems);
+Cohen-Tannoudji, Diu \& Lalo\"e (time-dependent PT, Fermi's golden rule).
+
+\noindent\textbf{Track C --- Specialised:}
+Lindblad (1976) original paper on master equations (MSc/PhD);
+Born \& Oppenheimer (1927) original paper;
+Bloch (1929) for Bloch's theorem in solids.
+
+\newpage
+
+%#############################################################
+%  SERIES II SEPARATOR PAGE
+%#############################################################
+\newpage
+\thispagestyle{empty}
+\pagecolor{darkblue}
+\color{white}
+\vspace*{2.2cm}
+\begin{center}
+  {\color{accentgold}\rule{11cm}{1.5pt}}\\[0.5cm]
+  {\fontsize{11}{14}\selectfont\bfseries\color{accentgold}\MakeUppercase{Series II}}\\[0.3cm]
+  {\fontsize{26}{32}\selectfont\bfseries Advanced Quantum Mechanics}\\[0.4cm]
+  {\color{accentgold}\rule{11cm}{1.5pt}}\\[1.0cm]
+  {\large\itshape Seven modules --- 84 lectures $\times$ 90 minutes}\\[0.5cm]
+  {\normalsize\itshape Audience: Graduate students}\\[0.3cm]
+  {\normalsize\itshape Prerequisite: Series~I or equivalent}\\[1.4cm]
+
+  \begin{tabular}{@{}clr@{}}
+    \toprule
+    \textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
+    \midrule
+    \textbf{II.1} & Ground-State Approximation Methods & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Ritz; linear variational; Hartree--Fock; coupled-cluster;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    QMC (variational \& diffusion); DMRG; tensor networks; natural orbitals.}\\[6pt]
+    \textbf{II.2} & Path Integrals in Quantum Mechanics & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Feynman postulate; Gaussian integrals; WKB; imaginary-time formalism;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    coherent states; instantons; gauge fields; Berry phase.}\\[6pt]
+    \textbf{II.3} & Theory of Angular Momentum & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    $\mathfrak{su}(2)$ algebra; orbital and spin AM; Clebsch--Gordan;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Wigner--Eckart theorem; hydrogen; fine/hyperfine structure; $D$-matrices.}\\[6pt]
+    \textbf{II.4} & Second Quantisation and Introductory Many-Body Theory & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Fock space; normal ordering; Wick's theorem; HF in 2nd quantisation;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Hubbard model; Green's functions; Dyson equation; BCS theory.}\\[6pt]
+    \textbf{II.5} & Non-Equilibrium Quantum Many-Body Green's Functions & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Keldysh contour; NEGF; Kadanoff--Baym equations; self-energies;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    quantum transport; Meir--Wingreen formula; TDDFT connection.}\\[6pt]
+    \textbf{II.6} & Light--Matter Interaction, Linear Response, and Spectroscopy & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Minimal coupling; electric dipole approximation; Kubo formula;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    linear response; dielectric function; optical spectroscopy; Casimir effect.}\\[6pt]
+    \textbf{II.7} & Quantum Statistical Mechanics in Equilibrium & 12\\[3pt]
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Density matrix in stat.\ mech.; grand canonical; Bose--Einstein condensation;}\\
+                  & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                    Fermi liquid; Matsubara formalism; phase transitions; quantum criticality.}\\[4pt]
+    \midrule
+    & \textbf{Total} & \textbf{84}\\
+    \bottomrule
+  \end{tabular}
+
+  \vfill
+  {\color{accentgold}\rule{11cm}{0.8pt}}\\[0.4cm]
+  {\small\itshape\color{white!80!darkblue}%
+    Each module: 12 lectures $\times$ 90 minutes $\cdot$
+    Prerequisite: Series~I $\cdot$ Research-oriented depth}\\[0.3cm]
+  {\color{accentgold}\rule{11cm}{0.8pt}}
+\end{center}
+\newpage
+\nopagecolor
+\color{black}
+
+%#############################################################
+\section{Series II --- Advanced Quantum Mechanics}
+\label{sec:seriesII}
+%#############################################################
+
+\begin{tcolorbox}[seriesbox, title={Series~II Overview}]
+\textbf{Prerequisite:} Completion of Series~I or equivalent.\\
+\textbf{Duration:} Each module comprises 12 lectures $\times$ 90 minutes.\\
+\textbf{Core aim:} Systematically deepen the formalism and connect quantum
+mechanics to modern research areas.\\[4pt]
+\begin{tabular}{llr}
+\toprule
+\textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
+\midrule
+II.1 & Ground-State Approximation Methods & 12\\
+II.2 & Path Integrals in Quantum Mechanics & 12\\
+II.3 & Theory of Angular Momentum & 12\\
+II.4 & Second Quantisation and Introductory Many-Body Theory & 12\\
+II.5 & Non-Equilibrium Quantum Many-Body Green's Functions & 12\\
+II.6 & Light--Matter Interaction, Linear Response, and Spectroscopy & 12\\
+II.7 & Quantum Statistical Mechanics in Equilibrium & 12\\
+\midrule
+ & \textbf{Total} & \textbf{84}\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module II.1 --- Ground-State Approximation Methods}
+\label{sec:mod-II1}
+%=============================================================
+
+%------------------------------------------------------------
+\subsubsection*{Module Overview}
+\addcontentsline{toc}{subsubsection}{Module II.1 Overview}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{clX}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Key Concepts}\\
+\midrule
+L01 & Variational Principle & Ritz method; Rayleigh quotient; upper bound theorem; trial states\\
+L02 & Linear Variational Method & Secular determinant; basis expansion; H\"uckel MO theory\\
+L03 & Hartree and Hartree--Fock & Mean-field; Fock operator; self-consistency; Koopman's theorem\\
+L04 & Coupled-Cluster Methods & Cluster operator $e^{\hat{T}}$; CCSD(T); connected diagrams; size consistency\\
+L05 & Quantum Monte Carlo I & Variational QMC; importance sampling; Metropolis algorithm\\
+L06 & Quantum Monte Carlo II & Diffusion QMC; fixed-node approximation; sign problem\\
+L07 & Density Matrix Renormalisation Group & Entanglement area laws; SVD; renormalisation group idea\\
+L08 & Tensor Networks & MPS, MERA; contraction algorithms; bond dimension\\
+L09 & Natural Orbitals & 1-RDM; NO expansion; occupation numbers; multi-configurational methods\\
+L10 & Multi-Reference Methods & CASSCF; MRCI; NEVPT2; active space selection\\
+L11 & Benchmark Systems & H$_2$, LiH, N$_2$ dissociation; accuracy hierarchy; error analysis\\
+L12 & Method Selection in Practice & Cost scaling; applicability regimes; crossover criteria\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection*{Five-Tier Layered Pedagogy}
+\addcontentsline{toc}{subsubsection}{Module II.1 Five-Tier Pedagogy}
+
+\begin{center}
+\begin{tabular}{llp{9cm}}
+\toprule
+\textbf{Tier} & \textbf{Cohort} & \textbf{Characteristic content}\\
+\midrule
+Tier~1 & HS       & Conceptual motivation; energy minimisation intuition; analogy with curve fitting\\
+Tier~2 & Beg.\ UG & Definitions; matrix secular equations; basic HF; worked 2-electron examples\\
+Tier~3 & Adv.\ UG & Rigorous derivations; convergence proofs; algorithm implementation; error analysis\\
+Tier~4 & MSc      & Advanced methods (CC, QMC, DMRG); diagrammatic techniques; active space design\\
+Tier~5 & PhD      & Frontiers: stochastic CC, FCIQMC, tensor hypercontraction, cost-scaling optimisation\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection*{Lecture-by-Lecture Syllabi}
+\addcontentsline{toc}{subsubsection}{Module II.1 Lecture Syllabi}
+
+% ------ L01 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L01: The Variational Principle}]
+\textbf{90-min pacing:} (0--20~min) Motivation: exact diagonalisation is exponentially hard;
+variational methods as the first systematic route around this wall;
+statement of the variational theorem: for any normalised trial state $\ket{\phi}$,
+$\langle\phi|\hat{H}|\phi\rangle \geq E_0$, with equality iff $\ket{\phi}=\ket{0}$;
+(20--45~min) Proof from spectral decomposition; Rayleigh quotient
+$R[\phi]=\langle\phi|\hat{H}|\phi\rangle/\langle\phi|\phi\rangle$;
+optimisation as a constrained minimisation; Lagrange multiplier and the stationarity
+condition $\delta R=0 \Leftrightarrow \hat{H}\ket{\phi}=E\ket{\phi}$;
+(45--70~min) Excited states: Hylleraas--Undheim--MacDonald theorem
+(eigenvalues of a truncated Hamiltonian interlace the exact eigenvalues);
+upper bounds on excited-state energies;
+Temple's lower bound;
+(70--90~min) Practical trial states: Gaussian-type orbitals;
+Pad\'e approximants; neural-network wavefunctions (VMC preview);
+error analysis: how a variational error $\delta E_{\rm var}$ in the energy
+corresponds to a first-order error in the wavefunction.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State and prove the variational theorem from spectral decomposition.
+  \item Compute the Rayleigh quotient for a trial wavefunction and minimise it analytically.
+  \item State the Hylleraas--Undheim theorem and apply it to excited-state bounds.
+  \item Explain why a second-order error in the wavefunction gives only a fourth-order energy error.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/intuitive track:} Energy minimisation as ``best guess in a restricted
+    class of states''; analogy with curve-fitting subject to a norm constraint; Gaussian
+    orbitals as computationally convenient trial states.
+  \item \textit{Mathematical track:} Ritz--Galerkin theory; min-max characterisation of eigenvalues;
+    Temple's lower bound; error propagation from wavefunction to energy.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``the ground-state energy is the lowest possible expectation value of the Hamiltonian'' ---
+variational principle as quantum minimisation.
+Beg.\ UG: compute $\langle\hat{H}\rangle$ for Gaussian trial state in a harmonic potential;
+optimise over the width parameter $\alpha$.
+Adv.\ UG: full proof of variational theorem; Hylleraas--Undheim theorem; Temple lower bound.
+MSc: error analysis; Pad\'e and Hylleraas-type trial functions; multi-parameter optimisation
+with gradient and Hessian.
+PhD: neural-network wavefunctions; stochastic reconfiguration; natural gradient descent;
+connection to variational Monte Carlo.
+
+\medskip\textbf{Assessment:}
+Set~A --- Rayleigh quotient for Gaussian trial in hydrogen; optimise $\alpha$; bound on $E_0$.
+Set~B --- prove variational theorem; derive stationarity condition; Hylleraas--Undheim theorem proof.
+Projects: (simple) variational parameter scan for helium with $Z_{\rm eff}$;
+(complex) multi-parameter Hylleraas wavefunction for helium and convergence to exact energy.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L02 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L02: The Linear Variational Method}]
+\textbf{90-min pacing:} (0--20~min) Linear ansatz:
+$\ket{\phi}=\sum_{k=1}^N c_k\ket{\chi_k}$ for a fixed basis $\{\ket{\chi_k}\}$;
+Rayleigh quotient in matrix form;
+Hamiltonian matrix $H_{kl}=\braket{\chi_k|\hat{H}|\chi_l}$ and
+overlap matrix $S_{kl}=\braket{\chi_k|\chi_l}$;
+(20--45~min) Secular (generalised eigenvalue) equation $\mathbf{H}\mathbf{c}=E\mathbf{S}\mathbf{c}$;
+Cholesky decomposition of $\mathbf{S}$ to convert to standard eigenvalue problem;
+$N$ variational eigenvalues as upper bounds to exact eigenvalues (Hylleraas--Undheim);
+orthonormalisation of basis via L\"owdin symmetric or canonical procedures;
+(45--65~min) H\"uckel molecular orbital theory as a paradigm application:
+$\pi$ system of ethylene, butadiene, benzene;
+H\"uckel parameters $\alpha$, $\beta$; secular determinant; MO energies and coefficients;
+aromaticity from H\"uckel rule $4n+2$;
+(65--90~min) Extended H\"uckel and limitations; basis set convergence in general;
+non-orthogonal basis subtleties; condition number of $\mathbf{S}$; linear dependence and
+near-linear dependence; canonical truncation.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Set up and solve the secular equation for a given basis.
+  \item Apply H\"uckel MO theory to simple $\pi$ systems and interpret results.
+  \item Orthonormalise a non-orthogonal basis via L\"owdin or canonical procedures.
+  \item Diagnose and handle linear dependence in a basis set.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Chemical/applied track:} H\"uckel MO energies and their relation to
+    reactivity; aromatic stabilisation energy; frontier MO theory (HOMO/LUMO); extended H\"uckel.
+  \item \textit{Mathematical track:} Generalised eigenvalue problem; Cholesky and L\"owdin
+    orthogonalisation; condition number; linear dependence detection via SVD of overlap matrix.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: H\"uckel MO theory for benzene --- why $\pi$ electrons delocalise and stabilise the ring.
+Beg.\ UG: set up and solve $2\times 2$ secular equation; H\"uckel for ethylene and allyl.
+Adv.\ UG: Hylleraas--Undheim theorem for variational eigenvalues; L\"owdin orthogonalisation derivation.
+MSc: condition number analysis; canonical truncation; extended H\"uckel parameterisation.
+PhD: connection to finite-element Galerkin methods; adaptively contracted basis sets;
+DIIS convergence acceleration.
+
+\medskip\textbf{Assessment:}
+Set~A --- secular equation for particle-in-a-box with polynomial basis;
+H\"uckel MO diagram for butadiene and benzene.
+Set~B --- prove Hylleraas--Undheim theorem for linear variational method;
+L\"owdin orthogonalisation derivation; condition number of Gaussian overlap matrix.
+Projects: (simple) H\"uckel MO solver for arbitrary planar $\pi$ systems;
+(complex) L\"owdin orthogonalisation vs.\ canonical truncation: numerical comparison
+for near-linearly-dependent Gaussian basis.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L03 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L03: Hartree and Hartree--Fock Theory}]
+\textbf{90-min pacing:} (0--20~min) The $N$-electron problem; exponential wall;
+Hartree product ansatz $\Psi=\prod_i\phi_i(\mathbf{r}_i)$; variational optimisation
+gives Hartree equations $[\hat{h}+\hat{v}^{\rm H}_i]\phi_i=\varepsilon_i\phi_i$;
+Hartree potential as classical mean field; self-consistency loop;
+(20--50~min) Antisymmetry requirement: Slater determinant;
+Hartree--Fock energy from variational principle on Slater determinant;
+Fock operator $\hat{F}_i=\hat{h}_i+\hat{J}_i-\hat{K}_i$;
+Coulomb $\hat{J}$ and exchange $\hat{K}$ operators defined and compared;
+HF equations $\hat{F}\phi_i=\varepsilon_i\phi_i$;
+canonical vs.\ localised orbitals;
+(50--70~min) Self-consistent field (SCF) algorithm: Roothaan--Hall equations
+$\mathbf{F}\mathbf{C}=\mathbf{S}\mathbf{C}\boldsymbol{\varepsilon}$ in an AO basis;
+density matrix $\mathbf{P}=2\mathbf{C}_{\rm occ}\mathbf{C}_{\rm occ}^\dagger$;
+convergence and DIIS; Koopman's theorem ($-\varepsilon_i \approx$ ionisation energy);
+(70--90~min) Properties of HF: size consistency; variational; missing correlation;
+correlation energy $E_{\rm corr}=E_{\rm exact}-E_{\rm HF}$;
+restricted (RHF), unrestricted (UHF), and restricted-open-shell (ROHF);
+spin contamination in UHF.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the Hartree and Hartree--Fock equations from a variational principle.
+  \item Define the Coulomb and exchange operators and state their physical meaning.
+  \item Describe the SCF algorithm and the Roothaan--Hall equations.
+  \item Apply Koopman's theorem and state the limitations of HF theory.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/chemical track:} Mean-field picture; exchange as a purely quantum
+    effect from antisymmetry; HF as the starting point for all post-HF methods;
+    correlation hole; Fermi hole vs.\ Coulomb hole.
+  \item \textit{Mathematical/formal track:} Functional derivative of the HF energy;
+    Brillouin's theorem; Koopman's theorem derivation; relation of HF to DFT
+    (Kohn--Sham as an orbital-optimised density-functional analogue).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``each electron moves in the average field of all others'' --- mean field as an
+approximation to avoid solving a coupled 3$N$-dimensional problem exactly.
+Beg.\ UG: Hartree equations for helium; two-electron integrals; SCF iteration by hand.
+Adv.\ UG: HF equations from variational principle; Brillouin's theorem; Koopman's theorem proof.
+MSc: Roothaan--Hall in AO basis; DIIS convergence; symmetry breaking in UHF; RHF vs.\ UHF for H$_2$.
+PhD: Brueckner orbitals; natural orbitals from 1-RDM; HF as saddle point of full CI energy;
+orbital-optimised MP2.
+
+\medskip\textbf{Assessment:}
+Set~A --- HF energy of helium by direct integration; Koopman's theorem for first ionisation;
+identify Coulomb vs.\ exchange terms in a given two-electron integral.
+Set~B --- derive HF equations from $\delta E_{\rm HF}=0$; prove Brillouin's theorem;
+show SCF density matrix idempotency $\mathbf{P}^2=\mathbf{P}$ at convergence.
+Projects: (simple) HF SCF loop for $\rm H_2$ in a minimal (STO-3G) basis with convergence plot;
+(complex) RHF vs.\ UHF dissociation curve for $\rm H_2$: spin contamination and correlation energy.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L04 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L04: Coupled-Cluster Methods}]
+\textbf{90-min pacing:} (0--20~min) Limitations of truncated CI: size inconsistency;
+Brillouin--Wigner vs.\ Rayleigh--Schr\"odinger CI; size consistency defined;
+the exponential ansatz: $\ket{\Psi_{\rm CC}}=e^{\hat{T}}\ket{\Phi_0}$ with cluster
+operator $\hat{T}=\hat{T}_1+\hat{T}_2+\cdots$;
+why the exponential structure guarantees size consistency;
+(20--50~min) CC amplitude equations: project $\bra{\Phi_i^a}e^{-\hat{T}}\hat{H}e^{\hat{T}}\ket{\Phi_0}=0$
+(doubles) and similarly for singles; Baker--Campbell--Hausdorff expansion of $e^{-\hat{T}}\hat{H}e^{\hat{T}}$
+terminates at quartic in $\hat{T}$ (for two-body $\hat{H}$);
+CCSD: $\hat{T}=\hat{T}_1+\hat{T}_2$; $\mathcal{O}(N^6)$ scaling;
+(50--70~min) Perturbative triples: CCSD(T) --- the ``gold standard'';
+$\mathcal{O}(N^7)$ scaling; relative cost and accuracy;
+equation-of-motion CC (EOM-CC) for excited states; CCSD(T)-F12 for basis set
+convergence acceleration;
+(70--90~min) Diagrammatic representation of CC equations: Goldstone diagrams;
+connected vs.\ disconnected; Wick's theorem applied to CC;
+local correlation methods: PNO-CCSD(T), DLPNO-CCSD(T) and linear scaling.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain why the exponential ansatz ensures size consistency.
+  \item Derive the CCSD amplitude equations via BCH expansion.
+  \item State the computational scaling of CCSD and CCSD(T) and place them in the accuracy hierarchy.
+  \item Describe PNO-based local correlation and its scaling advantage.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Computational chemistry track:} CCSD(T) as the de facto gold standard;
+    benchmark accuracy for thermochemistry (sub-kJ/mol); EOM-CC for spectra;
+    DLPNO-CCSD(T) for large molecules; software packages (ORCA, MOLPRO, CFOUR).
+  \item \textit{Many-body theory track:} Diagrammatic CC; linked-cluster theorem;
+    CC as a resummation of MBPT; connection to coupled-cluster Green's functions (CCGF).
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``instead of writing the wavefunction as a sum, write it as an exponential'' ---
+why this small change guarantees that two well-separated molecules have independent energies.
+Beg.\ UG: CCD amplitude equations in schematic form; size consistency demonstration for He$+$He.
+Adv.\ UG: BCH expansion to quartic; derive CCSD equations; perturbative triples derivation.
+MSc: EOM-CCSD; CCSD(T)-F12; PNO-CCSD(T) and local correlation ideas.
+PhD: Diagrammatic CC; CCGF and ionisation potentials; transcorrelated CC; FCIQMC-tailored CC.
+
+\medskip\textbf{Assessment:}
+Set~A --- verify size consistency of CCSD for He dimer; CCD energy in schematic notation;
+rank CCSD(T) in the accuracy hierarchy.
+Set~B --- derive BCH expansion of $e^{-\hat{T}}\hat{H}e^{\hat{T}}$ to quartic; linked-cluster theorem.
+Projects: (simple) CCSD vs.\ FCI energy curve for H$_2$ as function of bond length;
+(complex) EOM-CCSD excitation energies for ethylene vs.\ TDDFT and experiment.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L05 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L05: Quantum Monte Carlo I --- Variational QMC}]
+\textbf{90-min pacing:} (0--20~min) Monte Carlo integration: basic idea; central limit theorem;
+error $\propto 1/\sqrt{N_{\rm samples}}$; importance sampling to reduce variance;
+application to high-dimensional integrals (the QMC motivation);
+(20--45~min) Variational QMC (VMC): evaluate $E_{\rm var}=\langle\Psi_T|\hat{H}|\Psi_T\rangle/
+\langle\Psi_T|\Psi_T\rangle$ stochastically; local energy $E_L(\mathbf{R})=\hat{H}\Psi_T/\Psi_T$;
+variance minimisation vs.\ energy minimisation;
+the Metropolis--Hastings algorithm: proposal, acceptance ratio
+$A=\min(1,|\Psi_T(\mathbf{R}')|^2/|\Psi_T(\mathbf{R})|^2)$;
+detailed balance and ergodicity;
+(45--70~min) Trial wavefunction design: Slater--Jastrow form
+$\Psi_T=\mathcal{A}[\phi]\exp(J)$;
+Jastrow factor: electron--electron, electron--nuclear, three-body terms;
+cusp conditions: $\partial_r E_L$ finite requires $(\partial_r\Psi_T/\Psi_T)|_{r=0}$ to
+cancel the $1/r$ divergence ($s$-wave cusp: $a_{ee}=1/2$ for unlike spin, $1/4$ for like);
+(70--90~min) Parameter optimisation: stochastic reconfiguration (SR) and the natural
+gradient; ADAM and gradient descent in stochastic setting; correlated sampling;
+VMC scaling: $\mathcal{O}(N^3)$--$\mathcal{O}(N^4)$ for determinant evaluation.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Explain importance sampling and the Metropolis algorithm.
+  \item Compute the local energy for a Slater--Jastrow trial wavefunction.
+  \item Derive and apply the electron--electron cusp condition.
+  \item Compare energy minimisation and variance minimisation for parameter optimisation.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Computational/algorithmic track:} Metropolis algorithm implementation;
+    autocorrelation time and statistical efficiency; blocking analysis for error estimation;
+    GPU acceleration; practical VMC workflows.
+  \item \textit{Mathematical/stochastic track:} Markov chain theory; detailed balance;
+    ergodicity; central limit theorem for correlated samples; stochastic reconfiguration
+    as natural gradient descent on the manifold of quantum states.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``roll the dice millions of times to estimate an integral in 3$N$ dimensions'' ---
+Monte Carlo as a solution to the curse of dimensionality.
+Beg.\ UG: Metropolis walk for a harmonic oscillator; blocking analysis; variance estimate.
+Adv.\ UG: Slater--Jastrow VMC; cusp conditions derivation; variance minimisation.
+MSc: stochastic reconfiguration; natural gradient; correlated sampling for forces.
+PhD: neural-network Jastrow and backflow; transcorrelated VMC; ab initio QMC for solids.
+
+\medskip\textbf{Assessment:}
+Set~A --- Metropolis walk for $|\psi_0|^2$ in HO; local energy for Gaussian trial; cusp check.
+Set~B --- derive electron cusp condition; prove detailed balance for Metropolis; variance minimisation
+stationarity condition.
+Projects: (simple) VMC for helium with one-parameter Jastrow; convergence with $N_{\rm samples}$;
+(complex) stochastic reconfiguration optimisation of multi-parameter Jastrow for LiH.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L06 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L06: Quantum Monte Carlo II --- Diffusion QMC}]
+\textbf{90-min pacing:} (0--20~min) From VMC to exact: the diffusion QMC (DMC) idea;
+imaginary-time Schr\"odinger equation $-\partial_\tau\Psi=(\hat{H}-E_T)\Psi$;
+large-$\tau$ projection onto ground state; analogy with diffusion + branching process;
+Green's function $G(\mathbf{R}',\mathbf{R};\tau)$ as the propagator;
+(20--45~min) DMC algorithm: walkers (configurations) undergo diffusion steps $\Delta\tau$;
+branching (replication/death) with weight $\exp[-(E_L(\mathbf{R})-E_T)\Delta\tau]$;
+importance sampling with trial function: modified Green's function;
+drift velocity $\mathbf{F}=\nabla\ln|\Psi_T|$; guided diffusion;
+(45--65~min) The fermion sign problem: positive and negative walkers annihilate;
+fixed-node approximation: constrain walker crossings of nodal surface of $\Psi_T$;
+fixed-node energy as an upper bound; quality of nodes determines accuracy;
+release-node (unphysical) and its failure for electrons;
+(65--90~min) Pseudopotentials in DMC: non-locality and T-moves; relativistic effects;
+lattice regularised DMC; twist-averaged boundary conditions for periodic systems;
+scaling: $\mathcal{O}(N^3)$; DMC for solids --- computational workflow and accuracy benchmarks.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Derive the imaginary-time Schr\"odinger equation and explain ground-state projection.
+  \item Describe the DMC algorithm with importance sampling and branching.
+  \item Explain the sign problem and the fixed-node approximation.
+  \item Assess the accuracy of DMC for atoms and molecules relative to CCSD(T).
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Physical/computational track:} DMC as the most accurate practical
+    method for large systems; solid-state applications (transition metal oxides, ice polymorphs);
+    comparison with CCSD(T) for benchmark sets; practical workflow with CASINO or QMCPack.
+  \item \textit{Mathematical track:} Feynman--Kac formula; Green's function Monte Carlo;
+    variational fixed-node theorem; node optimisation; relation to path-integral MC.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``walkers explore space like diffusing particles, and the ones in low-energy regions
+survive'' --- projection onto the ground state as a survival-of-the-fittest process.
+Beg.\ UG: one-dimensional DMC for a particle in a box; branching and population control.
+Adv.\ UG: fixed-node theorem proof; importance sampling derivation; timestep bias analysis.
+MSc: T-moves for non-local pseudopotentials; twist-averaged boundary conditions; node optimisation.
+PhD: Feynman--Kac formula; lattice regularisation; backflow nodes; auxiliary field QMC.
+
+\medskip\textbf{Assessment:}
+Set~A --- 1D DMC for HO; branching weight calculation; timestep extrapolation.
+Set~B --- prove fixed-node variational theorem; derive importance-sampled Green's function.
+Projects: (simple) DMC for helium: fixed-node energy vs.\ VMC and exact;
+(complex) node quality study --- HF vs.\ CASSCF nodes for N$_2$ at various bond lengths.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L07 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L07: Density Matrix Renormalisation Group}]
+\textbf{90-min pacing:} (0--20~min) Exponential wall revisited: why the Hilbert space
+dimension is $d^N$ for a spin-$\tfrac{1}{2}$ chain; entanglement as the key to efficient
+representation; area law vs.\ volume law for ground states of gapped local Hamiltonians;
+entanglement entropy $S = -\operatorname{Tr}(\hat{\rho}_A \ln\hat{\rho}_A)$
+and its area law $S \leq c \cdot L^{d-1}$ in $d$ spatial dimensions;
+(20--45~min) Schmidt decomposition and its cost: $\ket{\Psi}=\sum_\alpha \lambda_\alpha
+\ket{\alpha}_L\ket{\alpha}_R$; singular value decomposition (SVD);
+truncation to bond dimension $m$: approximation error bounded by discarded weights
+$\epsilon = \sum_{\alpha>m}\lambda_\alpha^2$;
+the renormalisation group idea: keep the $m$ most relevant states;
+(45--70~min) Matrix Product State (MPS) representation:
+$\ket{\Psi}=\sum_{\{s_i\}}\text{Tr}[A^{s_1}A^{s_2}\cdots A^{s_N}]\ket{s_1\cdots s_N}$;
+bond dimension $m$ as the key parameter; DMRG as variational optimisation over MPS;
+two-site DMRG algorithm: superblock Hamiltonian; Lanczos diagonalisation; SVD truncation;
+(70--90~min) DMRG in quantum chemistry (DMRG-SCF / DMRG-CASSCF):
+orbital ordering and entanglement; mutual information $I_{ij}$;
+active space beyond CAS(18,18); scaling $\mathcal{O}(m^3 N + m^2 N d^2)$;
+convergence with $m$ and comparison with CASSCF/MRCI.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item State the area law and explain why it justifies MPS representations.
+  \item Perform a Schmidt decomposition and estimate the SVD truncation error.
+  \item Describe the MPS ansatz and the two-site DMRG algorithm.
+  \item Explain DMRG-CASSCF and its advantage over conventional CASSCF.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Quantum chemistry/applications track:} DMRG as a large-active-space method;
+    orbital selection via mutual information; applications to transition metal complexes,
+    $f$-electron systems, and spin chains; software: ITensor, CheMPS2, Block2.
+  \item \textit{Quantum information/mathematical track:} MPS as a variational class;
+    area-law proof sketch (Hastings); entanglement spectrum; connection to topological order.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``instead of keeping all $2^N$ amplitudes, keep only the most entangled ones'' ---
+DMRG as smart truncation guided by quantum information.
+Beg.\ UG: Schmidt decomposition for a 4-site chain; SVD truncation and error.
+Adv.\ UG: MPS canonical forms; two-site DMRG algorithm; area law statement.
+MSc: DMRG-CASSCF; orbital ordering optimisation; mutual information; convergence with $m$.
+PhD: DMRG as tensor network; time-evolving block decimation (TEBD); finite-temperature DMRG;
+DMRG for periodic systems.
+
+\medskip\textbf{Assessment:}
+Set~A --- Schmidt decomposition for a 4-qubit state; truncation error estimate;
+MPS representation of a product state.
+Set~B --- prove area-law scaling for 1D gapped systems (Hastings, sketch);
+derive the variational condition in two-site DMRG.
+Projects: (simple) DMRG energy vs.\ bond dimension $m$ for Heisenberg chain;
+(complex) DMRG-CASSCF active space selection via mutual information for Cr$_2$ dimer.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L08 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L08: Tensor Networks}]
+\textbf{90-min pacing:} (0--20~min) MPS as a special case of a general tensor network (TN);
+graphical notation: tensors as nodes, contracted indices as edges;
+review of MPS canonical forms (left/right canonical);
+why generalising beyond 1D requires new network geometries;
+(20--45~min) Tree tensor networks (TTN): branching structure; efficient contraction;
+multi-scale entanglement renormalisation ansatz (MERA): disentanglers and isometries;
+causal cone; critical systems and logarithmic entanglement;
+Projected Entangled Pair States (PEPS) for 2D systems: exponentially hard contraction;
+practical approximations (boundary MPS, Monte Carlo sampling of PEPS);
+(45--65~min) Contraction algorithms: optimal contraction order ($\mathcal{NP}$-hard in
+general); DMRG as MPS contraction; tensor train decomposition;
+Tucker decomposition and its connection to HOSVD;
+tensor hypercontraction (THC) in quantum chemistry: $\mathcal{O}(N^4)\to\mathcal{O}(N^2)$
+for two-electron integrals;
+(65--90~min) Tensor network methods in machine learning: tensor trains as efficient
+neural network layers; Born machine; quantum-inspired ML;
+connection to renormalisation group in field theory;
+overview of software: ITensor (Julia), TensorFlow Quantum, Quimb.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Read and draw tensor network diagrams and identify contraction patterns.
+  \item Distinguish MPS, TTN, MERA, and PEPS in terms of entanglement structure and cost.
+  \item Explain tensor hypercontraction and its computational advantage.
+  \item Connect tensor networks to renormalisation group and machine learning.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Quantum chemistry/algorithms track:} THC for two-electron integrals;
+    PEPS for 2D correlated materials; tensor-network quantum embedding; software workflows.
+  \item \textit{Quantum information/mathematical track:} Entanglement structure of different TN
+    geometries; holographic duality (AdS/MERA); MERA as a discrete realisation of AdS/CFT;
+    complexity of TN contraction.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``data stored as a network of multiplications rather than one giant array'' ---
+tensor networks as efficient compression of high-dimensional data.
+Beg.\ UG: matrix product of three matrices as a 3-tensor MPS; DMRG as 1D TN.
+Adv.\ UG: MERA causal cone; PEPS contraction complexity; Tucker decomposition.
+MSc: THC for electron repulsion integrals; Born machine; quantum-inspired ML.
+PhD: AdS/MERA connection; PEPS for frustrated magnets; real-space RG from TN perspective.
+
+\medskip\textbf{Assessment:}
+Set~A --- draw and evaluate simple TN contractions (matrix chain, star network);
+MPS representation of a GHZ state; MERA causal cone width.
+Set~B --- derive SVD-based truncation error in TTN; THC factorisation of a $2\times2$ ERI block.
+Projects: (simple) MPS compression of a random state: truncation error vs.\ bond dimension;
+(complex) MERA ansatz for Ising critical point: scaling exponents from entanglement spectrum.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L09 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L09: Natural Orbitals and the One-Particle Density Matrix}]
+\textbf{90-min pacing:} (0--20~min) The one-particle reduced density matrix (1-RDM):
+$\gamma(\mathbf{x};\mathbf{x}')=N\int\Psi^*(\mathbf{x}',\mathbf{x}_2,\ldots)\Psi(\mathbf{x},\mathbf{x}_2,\ldots)d\mathbf{x}_2\cdots d\mathbf{x}_N$;
+one- and two-electron properties from the 1-RDM and 2-RDM;
+$N$-representability of the 1-RDM: necessary conditions (eigenvalues in $[0,1]$, trace $=N$);
+(20--45~min) Natural orbitals (NOs): eigenfunctions of the 1-RDM;
+occupation numbers $n_i\in[0,1]$ (NOONs); $n_i=0$ or $1$ iff single Slater determinant;
+fractional occupations as a measure of correlation; natural orbital expansion of $\Psi$
+converges faster than canonical MO expansion; analogy with PCA / SVD of the wavefunction;
+(45--65~min) Natural orbitals in practice: NOON-based active space selection;
+iterative NO-based CI (iterative MRCI); CASSCF natural orbitals;
+pair natural orbitals (PNO): biorthogonal pair functions defined from the 2-RDM;
+PNO-CCSD(T) and DLPNO-CCSD(T): local correlation with PNO truncation;
+(65--90~min) The 2-RDM and $N$-representability: P, Q, G conditions;
+direct variational optimisation of the 2-RDM (2-RDM methods);
+semidefinite programming (SDP) formulation; accuracy and scaling;
+antisymmetric geminal power (AGP) and generalised valence bond (GVB) as
+correlated pair wavefunctions.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Define the 1-RDM and compute it for a two-electron wavefunction.
+  \item Interpret NOONs as a measure of static correlation.
+  \item Explain NOON-based active space selection and PNO local correlation.
+  \item State the $N$-representability problem for the 2-RDM and the SDP approach.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Computational chemistry track:} NOONs as diagnostics for multireference character;
+    DLPNO-CCSD(T) active space from PNOs; GVB for bond breaking; SDP-2RDM software (Maple QMC).
+  \item \textit{Mathematical/formal track:} 1-RDM as a Hermitian trace-class operator;
+    Coleman's $N$-representability conditions; SDP duality; connection to quantum marginal problem.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``occupation numbers tell you how many electrons are in each orbital'' ---
+NOONs of 1 or 0 mean no correlation; numbers in between signal strong correlation.
+Beg.\ UG: compute 1-RDM for He with two-configuration CI; diagonalise to get NOs; interpret NOONs.
+Adv.\ UG: proof that NOs diagonalise the 1-RDM; NOON-based active space selection criterion.
+MSc: PNO construction from 2-RDM; DLPNO truncation thresholds; $N$-representability P, Q, G conditions.
+PhD: SDP for 2-RDM; Coleman's theorem; connection to quantum marginal problem; v2RDM.
+
+\medskip\textbf{Assessment:}
+Set~A --- compute NOONs for H$_2$ at stretched geometry; identify multireference character;
+compare natural orbital expansion rate with canonical MO expansion.
+Set~B --- prove that eigenfunctions of 1-RDM are NOs; derive the P condition for $N$-representability;
+PNO truncation error bound.
+Projects: (simple) NOON diagnostic: HF vs.\ FCI NOONs for H$_2$ dissociation;
+(complex) 2-RDM SDP for H$_2$: comparison with FCI and CCSD.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L10 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L10: Multi-Reference Methods}]
+\textbf{90-min pacing:} (0--20~min) When single-reference fails: near-degeneracies,
+bond breaking, transition metal chemistry, conical intersections;
+static vs.\ dynamic correlation; multireference diagnostics: $T_1$ and $D_1$ amplitudes,
+NOONs, $\langle\hat{S}^2\rangle$ deviation;
+the complete active space (CAS) concept: partitioning MOs into inactive (doubly occupied),
+active (variably occupied), and virtual (empty);
+(20--45~min) CASSCF: simultaneous optimisation of CI coefficients and orbitals;
+Newton--Raphson and DIIS for orbital rotations; super-CI and DIIS;
+second-order CASSCF (CASSCF-2) and RASSCF (restricted active space);
+active space selection heuristics: chemical intuition, NOON-based, automated (AVAS, DMET);
+(45--70~min) MRCI: configuration expansion from CASSCF reference; MRCI+Q (Davidson correction)
+for size-extensivity; NEVPT2 (strongly-contracted, partially-contracted):
+second-order perturbation theory on a CASSCF reference; CASPT2 and RASPT2;
+MRMP2 and QDPT; accuracy and applicability comparison;
+(70--90~min) Automated active space methods: AutoCAS; AVAS (atomic valence active space);
+embedding: DMET (density matrix embedding theory); SEET (self-energy embedding theory);
+multireference methods in periodic systems: CASSCF for solids (preview);
+MR-EOM-CC for excited states; summary and method choice guidelines.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Identify situations where multireference methods are necessary using diagnostic criteria.
+  \item Describe the CASSCF algorithm and the role of orbital optimisation.
+  \item Compare MRCI+Q, NEVPT2, and CASPT2 in accuracy and computational cost.
+  \item Apply automated active space selection (AVAS, DMET) to a chemical problem.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Applied computational chemistry track:} Method selection for transition metals,
+    photochemistry, and bond breaking; benchmark datasets (GMTKN55, MR-TDDFT comparison);
+    active space size limitations and DMRG as the remedy.
+  \item \textit{Formal/mathematical track:} MRCI as a truncated CI from a multi-determinant
+    reference; Davidson correction and its size-extensivity restoration; NEVPT2 from
+    second-order Rayleigh--Schr\"odinger PT on a CAS Hamiltonian.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``when one configuration is not enough, use a committee'' ---
+CASSCF as choosing the most important configurations from a controlled active space.
+Beg.\ UG: minimal active space for H$_2$ bond breaking; CASSCF(2,2) energy curve.
+Adv.\ UG: CASSCF orbital gradient and Hessian; Davidson correction derivation; NEVPT2 Hamiltonian.
+MSc: RASSCF partitioning; AutoCAS/AVAS; DMET embedding; multireference diagnostics.
+PhD: MRCI internal contraction; NEVPT2 strongly vs.\ partially contracted; MR-EOM-CC;
+CASSCF for solids.
+
+\medskip\textbf{Assessment:}
+Set~A --- choose active space for O$_3$, Fe(CO)$_5$, and a Cr complex using NOONs;
+CASSCF(2,2) energy for H$_2$; $T_1$ diagnostic interpretation.
+Set~B --- derive Davidson correction; NEVPT2 second-order energy formula derivation;
+CASSCF orbital gradient equation.
+Projects: (simple) CASSCF vs.\ RHF potential energy surface for N$_2$ dissociation;
+(complex) NEVPT2 vs.\ CASPT2 excitation energies for a transition metal complex.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L11 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L11: Benchmark Systems and Accuracy Hierarchies}]
+\textbf{90-min pacing:} (0--20~min) Philosophy of benchmarking: what does ``accurate'' mean?
+Comparison to experiment vs.\ to higher-level theory; error cancellation; basis set vs.\
+method error; systematic and non-systematic errors; error statistics: MAE, RMSE, MAX;
+(20--45~min) Benchmark systems and datasets:
+H$_2$ potential energy curve --- analytic benchmarks;
+helium atom: exact (Pekeris) vs.\ HF vs.\ MP2 vs.\ CCSD(T) vs.\ FCI;
+LiH: basis set convergence; N$_2$ dissociation: multireference character onset;
+GMTKN55 composite benchmark: thermochemistry (W4-11), reaction barriers (BH76),
+non-covalent interactions (S66, WATER27);
+(45--65~min) Accuracy hierarchy:
+HF $\to$ MP2 $\to$ CCSD $\to$ CCSD(T) $\to$ CCSDT $\to$ FCI;
+scaling: $N^4$, $N^5$, $N^6$, $N^7$, $N^8$, exponential;
+DFT comparison: relative accuracy and cost;
+QMC in the hierarchy: DMC vs.\ CCSD(T) and FCI;
+basis set convergence: CBS extrapolation schemes (Helgaker, Peterson);
+composite methods: G3, W4, HEAT;
+(65--90~min) Error analysis in practice: basis set incompleteness error (BSIE);
+core--valence correlation; scalar relativistic effects; spin--orbit coupling;
+diagonal Born--Oppenheimer correction; zero-point vibrational energy;
+thermochemical accuracy: sub-kJ/mol goal; error budget for atomisation energies.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Rank electronic structure methods by accuracy and computational scaling.
+  \item Apply CBS extrapolation to estimate the basis set limit.
+  \item Decompose the total error budget for a thermochemical property.
+  \item Interpret benchmark statistics (MAE, RMSE, MAX) for method comparison.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Applied track:} GMTKN55 and HEAT benchmarks as standards of chemical accuracy;
+    composite methods for thermochemistry; relativistic and DBOC corrections; choosing
+    method for a given system and accuracy target.
+  \item \textit{Formal/statistical track:} Error propagation; CBS extrapolation theory;
+    Helgaker $n^{-3}$ correlation energy extrapolation; systematic error cancellation
+    in isodesmic reactions.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``higher-level methods are more accurate but cost more time on the computer'' ---
+accuracy ladder as a trade-off between exactness and feasibility.
+Beg.\ UG: compare HF, MP2, CCSD(T) for H$_2$O geometry; CBS extrapolation for a simple molecule.
+Adv.\ UG: full error budget for N$_2$ atomisation energy; W4 methodology components.
+MSc: GMTKN55 analysis; relativistic corrections; DBOC evaluation; composite method design.
+PhD: complete basis set limit theory; stochastic error in QMC benchmarks; renormalised MBPT.
+
+\medskip\textbf{Assessment:}
+Set~A --- rank methods by accuracy and cost; CBS extrapolation for He and H$_2$O;
+compute MAE for a set of 5 atomisation energies.
+Set~B --- derive Helgaker CBS formula; error budget for N$_2$ dissociation energy;
+design a composite method for sub-kJ/mol thermochemistry.
+Projects: (simple) accuracy ladder plot for H$_2$O: HF through CCSD(T)/CBS with error bars;
+(complex) full W4-style error budget for C$_2$H$_2$: CCSD(T), core--valence, relativity, DBOC, ZPE.
+\end{tcolorbox}
+
+\medskip
+
+% ------ L12 -----------------------------------------------
+\begin{tcolorbox}[modulebox, title={Module~II.1 --- Lecture L12: Method Selection in Practice}]
+\textbf{90-min pacing:} (0--20~min) The method selection problem: given a molecule, property,
+and accuracy target, which method is optimal?
+Decision tree: system size $N$; required accuracy; multireference character;
+available computational resources; time constraints;
+(20--45~min) Cost-scaling summary: HF $\mathcal{O}(N^3)$--$\mathcal{O}(N^4)$ (conventional);
+MP2 $\mathcal{O}(N^5)$; CCSD $\mathcal{O}(N^6)$; CCSD(T) $\mathcal{O}(N^7)$;
+CASSCF $\mathcal{O}(e^{N_{\rm act}})$; DMRG $\mathcal{O}(m^3 N)$; DMC $\mathcal{O}(N^3)$;
+DFT $\mathcal{O}(N^3)$ (hybrid); linear-scaling DFT $\mathcal{O}(N)$;
+crossover system sizes for practical use cases;
+(45--65~min) Applicability regimes:
+single-reference systems: CCSD(T)/CBS as gold standard; DFT for large single-reference;
+multireference: CASSCF/NEVPT2 for moderate active spaces; DMRG for large active spaces;
+solids and extended systems: DFT, periodic HF, embedding (DMET, QMMM);
+excited states: EOM-CC, TDDFT, MR-EOM-CC, ADC;
+non-equilibrium and dynamics: TDDFT, MCTDH, ML potentials;
+(65--90~min) Practical workflow design: choosing basis set, method, software, and hardware;
+black-box vs.\ expert use; automation and high-throughput screening;
+machine learning potentials (MLPs): how DFT or CCSD(T) data trains MLPs;
+future outlook: quantum computing approaches (VQE, QITE); fault-tolerant quantum chemistry.
+
+\medskip\textbf{Core learning outcomes:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item Apply the decision tree to select an appropriate method for a given system and target.
+  \item Compare formal scaling with practical crossover sizes for common methods.
+  \item Design a complete computational workflow from structure to property.
+  \item Describe the role of ML potentials and quantum computing in the future of the field.
+\end{itemize}
+
+\medskip\textbf{Dual-track content:}
+\begin{itemize}[leftmargin=1.4em,topsep=2pt,itemsep=1pt]
+  \item \textit{Practical/industrial track:} High-throughput screening; automation with AiiDA
+    or ASE; ORCA and MOLPRO workflows; ML potential training pipelines; QM/MM for enzymes.
+  \item \textit{Foundational track:} Formal complexity and why crossovers occur;
+    locality of correlation; quantum computing resources for quantum chemistry;
+    resource estimation for fault-tolerant quantum chemistry.
+\end{itemize}
+
+\medskip\textbf{Tier differentiation:}
+HS: ``match the tool to the job'' --- a pocket guide to choosing a method;
+analogy with choosing the right level of map detail for your journey.
+Beg.\ UG: method decision tree for 5 representative molecules; identify bottleneck.
+Adv.\ UG: crossover analysis; formal scaling vs.\ prefactor discussion; workflow design.
+MSc: high-throughput screening design; ML potential training workflow; embedding strategy.
+PhD: quantum computing resource estimation for FeMoco; fault-tolerant vs.\ NISQ;
+future of the field: where will the next major accuracy gains come from?
+
+\medskip\textbf{Assessment:}
+Set~A --- method selection for: (i) drug-like molecule geometry, (ii) transition metal
+  reaction barrier, (iii) solid-state band gap, (iv) photochemical conical intersection.
+Set~B --- derive crossover size between CCSD(T) and DMC; design an error budget and workflow
+for sub-kJ/mol prediction of the N$_2$ dissociation energy.
+Projects: (simple) decision-tree web app for method selection;
+(complex) full computational study of a reaction: method convergence, basis set extrapolation,
+and comparison to experiment.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsubsection*{Assessment Strategy}
+\addcontentsline{toc}{subsubsection}{Module II.1 Assessment Strategy}
+
+\begin{tcolorbox}[highlightbox]
+\textbf{Per-Lecture Assessment Bundle} (every lecture):
+concept check (10--15~min, 5--8 short conceptual questions);
+Problem Set~A (simple, 6--10 computational exercises);
+Problem Set~B (complex, 3--6 multi-step derivations and proofs);
+mini-project simple (1--3 hours);
+mini-project complex (5--10 hours, open-ended);
+research questions well-defined (2--4 scoped prompts);
+research questions fully open (1--2 frontier-style prompts).
+\end{tcolorbox}
+
+\medskip
+\noindent\textbf{Course-level grading template:}
+\begin{itemize}[leftmargin=1.5em]
+  \item Weekly homework (best 10/12): 40\%
+  \item Method comparison project (after L06): 20\%
+  \item Computational research project: 25\%
+  \item Final exam (take-home or whiteboard): 15\%
+\end{itemize}
+Mixed cohorts: Beg.\ UG $\to$ Set~A + simple projects; MSc/PhD $\to$ Set~B + complex projects.
+
+%------------------------------------------------------------
+\subsubsection*{Reading Strategy}
+\addcontentsline{toc}{subsubsection}{Module II.1 Reading Strategy}
+
+\noindent\textbf{Track A --- Core textbooks:}
+Helgaker, J\o rgensen \& Olsen, \textit{Molecular Electronic-Structure Theory} (Wiley, 2000) ---
+the definitive reference for Chapters 3--14;
+Szabo \& Ostlund, \textit{Modern Quantum Chemistry} (Dover) --- HF and post-HF primer.
+
+\noindent\textbf{Track B --- Methods references:}
+Jensen, \textit{Introduction to Computational Chemistry} (Wiley) --- accessible survey;
+Cramer, \textit{Essentials of Computational Chemistry} (Wiley);
+Nightingale \& Umrigar (eds.), \textit{Quantum Monte Carlo Methods in Physics and Chemistry} (Kluwer).
+
+\noindent\textbf{Track C --- Advanced and frontier:}
+Schollw\"ock, Rev.\ Mod.\ Phys.\ \textbf{77} (2005) and \textbf{82} (2011) --- DMRG reviews;
+Or\'us, Ann.\ Phys.\ \textbf{349} (2014) --- tensor networks;
+Needs \textit{et al.}, J.\ Chem.\ Phys.\ \textbf{152} (2020) --- CASINO DMC review.
+
+%=============================================================
+\subsection{Module II.2 --- Path Integrals in Quantum Mechanics}
+\label{sec:mod-II2}
+%=============================================================
+
+\begin{tcolorbox}[modulebox, title={Module~II.2 --- Lecture Overview}]
+\begin{longtable}{clp{7cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & Feynman's Postulate & Sum over histories; Lagrangian action; classical limit\\
+L02 & Derivation of the Path Integral & Trotter factorisation; discretisation; continuum limit\\
+L03 & Gaussian Path Integrals & Harmonic oscillator; stationary phase; fluctuation determinant\\
+L04 & Saddle Point and WKB & Semiclassical expansion; tunnelling amplitude\\
+L05 & Imaginary-Time Path Integrals & Wick rotation; partition function; Euclidean action\\
+L06 & Statistical Mechanics Connection & $Z=\operatorname{Tr}e^{-\beta\hat{H}}$ as path integral\\
+L07 & Coherent State Path Integral & Bosonic/fermionic coherent states; Grassmann variables\\
+L08 & Instantons and Tunnelling & Bounce solution; decay rate; double-well potential\\
+L09 & Path Integrals in Field Theory & $\phi^4$ theory; Feynman rules; propagator\\
+L10 & Gauge Fields & Aharonov--Bohm; minimal coupling; Wilson loop\\
+L11 & Numerical Path Integrals & Monte Carlo; path integral MD\\
+L12 & Berry Phase from Path Integrals & Geometric action; holonomy; applications\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module II.3 --- Theory of Angular Momentum}
+\label{sec:mod-II3}
+%=============================================================
+
+\begin{tcolorbox}[modulebox, title={Module~II.3 --- Lecture Overview}]
+\begin{longtable}{clp{7cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & $\mathfrak{su}(2)$ Algebra & $[\hat{J}_i,\hat{J}_j]=i\hbar\epsilon_{ijk}\hat{J}_k$; Casimir $\hat{\mathbf{J}}^2$\\
+L02 & Ladder Operators and Spectrum & $\hat{J}_\pm$; $\ket{j,m}$; quantisation of $j$\\
+L03 & Orbital Angular Momentum & $\hat{\mathbf{L}}=-i\hbar(\mathbf{r}\times\nabla)$; spherical harmonics\\
+L04 & Spin Angular Momentum & Pauli matrices; spinors; $SU(2)$ double cover of $SO(3)$\\
+L05 & Addition of Angular Momenta & Clebsch--Gordan coefficients; $j_1\otimes j_2$\\
+L06 & Wigner $3j$-Symbols and Racah Algebra & Selection rules; Wigner--Eckart theorem\\
+L07 & Spherical Tensor Operators & Rank-$k$ tensors; matrix element theorems\\
+L08 & Hydrogen Atom Full Solution & $SO(4)$ symmetry; $n,l,m,m_s$ quantum numbers\\
+L09 & Fine and Hyperfine Structure & Relativistic corrections; spin--orbit; contact term\\
+L10 & Wigner $D$-matrices & $D^{(j)}_{mm'}(\alpha,\beta,\gamma)$; applications\\
+L11 & Angular Momentum in Many-Body Systems & Shell model; $LS$ and $jj$ coupling\\
+L12 & Rotational Spectroscopy Connection & Rigid rotor; selection rules; molecular spectra\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module II.4 --- Second Quantisation and Introductory Many-Body Theory}
+\label{sec:mod-II4}
+%=============================================================
+
+\begin{tcolorbox}[modulebox, title={Module~II.4 --- Lecture Overview}]
+\begin{longtable}{clp{7cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & Fock Space & Occupation number representation; bosons and fermions;
+     $[\hat{a}_i,\hat{a}_j^\dagger]=\delta_{ij}$ vs.\ $\{\hat{c}_i,\hat{c}_j^\dagger\}=\delta_{ij}$\\
+L02 & Operators in Second Quantisation & One- and two-body operators; normal ordering; Wick's theorem\\
+L03 & Homogeneous Electron Gas & Jellium model; Fermi sea; exchange energy\\
+L04 & Hartree--Fock in Second Quantisation & Mean-field decoupling; HF equations; Koopman's theorem\\
+L05 & Beyond Mean Field & Configuration interaction; MP2; diagrammatics\\
+L06 & Green's Functions I & Single-particle GF; Lehmann representation; spectral function\\
+L07 & Green's Functions II & Dyson equation; self-energy; quasiparticles\\
+L08 & Interacting Bosons: BEC & Bogoliubov transformation; phonon spectrum; superfluidity\\
+L09 & Interacting Fermions: BCS & Cooper pairs; gap equation; Bogoliubov--Valatin transformation\\
+L10 & The Hubbard Model & Tight-binding + interactions; half-filling; Mott transition\\
+L11 & Quantum Magnetism & Heisenberg exchange; spin waves; Holstein--Primakoff\\
+L12 & Towards Non-Equilibrium & Keldysh formalism motivation; drive-dissipation balance\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module II.5 --- Non-Equilibrium Quantum Many-Body Green's Functions}
+\label{sec:mod-II5}
+%=============================================================
+
+\begin{tcolorbox}[modulebox, title={Module~II.5 --- Lecture Overview}]
+\begin{longtable}{clp{7cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & Motivation and Scope & Transport; ultrafast dynamics; driven systems; failures of equilibrium\\
+L02 & The Keldysh Contour & Closed time path; forward/backward branches; contour ordering\\
+L03 & Contour-Ordered Green's Functions & $G^c$, $G^<$, $G^>$, $G^R$, $G^A$, $G^K$\\
+L04 & Langreth Rules & Analytic continuation; convolution on contour\\
+L05 & Kadanoff--Baym Equations & Functional derivation; two-time structure; initial correlations\\
+L06 & Self-Energies and Approximations & Hartree--Fock; GW; second Born; T-matrix\\
+L07 & Quantum Boltzmann Equation & Gradient expansion; kinetic limit; quasi-classical transport\\
+L08 & Steady-State Transport & Meir--Wingreen formula; Landauer--B\"uttiker; molecular junctions\\
+L09 & Electron--Phonon Coupling & Fr\"ohlich Hamiltonian; polaron; phonon self-energy\\
+L10 & Pump--Probe Dynamics & Two-time spectra; transient absorption; non-equilibrium spectral functions\\
+L11 & Driven-Dissipative Systems & Lindblad from Keldysh; NEGF + bath; Floquet--Keldysh\\
+L12 & Numerical Methods & Time-stepping KB equations; HPC considerations; benchmarks\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module II.6 --- Light--Matter Interaction, Linear Response, and Spectroscopy}
+\label{sec:mod-II6}
+%=============================================================
+
+\begin{tcolorbox}[modulebox, title={Module~II.6 --- Lecture Overview}]
+\begin{longtable}{clp{7cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & Classical and Quantum EM Fields & Vector potential; Coulomb gauge; quantisation; photon\\
+L02 & Light--Matter Coupling & Minimal coupling; dipole approximation; PZW transformation\\
+L03 & Linear Response Theory & Kubo formula; retarded response $\chi^R(\omega)$; causality\\
+L04 & Fluctuation--Dissipation Theorem & FDT; fluctuations from dissipation; thermal equilibrium\\
+L05 & Optical Conductivity & Drude model from Kubo; $f$-sum rule; Kramers--Kronig relations\\
+L06 & Absorption and Emission & Fermi golden rule for radiation; Einstein $A$ and $B$ coefficients\\
+L07 & Selection Rules & Dipole, quadrupole; parity; angular momentum conservation; Laporte rule\\
+L08 & Non-Linear Response & $\chi^{(2)},\chi^{(3)}$; two-photon absorption; harmonic generation\\
+L09 & Time-Domain Spectroscopy & Free-induction decay; response from correlation function\\
+L10 & Raman and Resonance Raman & Vibronic coupling; Kramers--Heisenberg formula\\
+L11 & Photoelectron Spectroscopy & XPS/UPS; sudden approximation; Dyson orbital; shake-up\\
+L12 & Cavity QED and Strong Coupling & Jaynes--Cummings; vacuum Rabi splitting; polaritons\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module II.7 --- Quantum Statistical Mechanics in Equilibrium}
+\label{sec:mod-II7}
+%=============================================================
+
+\begin{tcolorbox}[modulebox, title={Module~II.7 --- Lecture Overview}]
+\begin{longtable}{clp{7cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & Density Operators in Thermodynamics & Gibbs state $\hat{\rho}=e^{-\beta\hat{H}}/Z$; entropy\\
+L02 & Canonical and Grand-Canonical Ensembles & Partition function; chemical potential; grand potential\\
+L03 & Quantum Ideal Gases & Bose--Einstein and Fermi--Dirac statistics; degeneracy pressure\\
+L04 & Bose--Einstein Condensation & Critical temperature; condensate fraction; superfluid helium\\
+L05 & Fermi Liquid Theory & Quasiparticles; Landau parameters; specific heat; compressibility\\
+L06 & Imaginary-Time Formalism & Matsubara Green's functions; fermionic/bosonic frequencies $\omega_n$\\
+L07 & Perturbation Theory at Finite $T$ & Diagrammatics; Dyson equation; self-energy at $T>0$\\
+L08 & Phase Transitions I & Landau theory; order parameter; spontaneous symmetry breaking\\
+L09 & Phase Transitions II & Ising model; mean-field; universality; quantum phase transitions\\
+L10 & Quantum Criticality & Quantum critical point; $\omega/T$ scaling; non-Fermi liquid\\
+L11 & Entanglement in Many-Body Systems & Area vs.\ volume law; topological entropy\\
+L12 & Open Problems and Frontiers & High-$T_c$ superconductivity; fractional QH; quantum simulation\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+\newpage
+
+%#############################################################
+%  SERIES III SEPARATOR PAGE
+%#############################################################
+\newpage
+\thispagestyle{empty}
+\pagecolor{darkblue}
+\color{white}
+\vspace*{2.2cm}
+\begin{center}
+  {\color{accentgold}\rule{11cm}{1.5pt}}\\[0.5cm]
+  {\fontsize{11}{14}\selectfont\bfseries\color{accentgold}\MakeUppercase{Series III}}\\[0.3cm]
+  {\fontsize{22}{28}\selectfont\bfseries Molecular Electronic Structure}\\[0.2cm]
+  {\fontsize{22}{28}\selectfont\bfseries \& Quantum Chemistry}\\[0.4cm]
+  {\color{accentgold}\rule{11cm}{1.5pt}}\\[1.0cm]
+  {\large\itshape Three modules --- 31 lectures $\times$ 90 minutes}\\[0.5cm]
+  {\normalsize\itshape Audience: Graduate students in chemistry and chemical physics}\\[0.3cm]
+  {\normalsize\itshape Prerequisites: Series~I required; Modules II.1 and II.4 strongly recommended}\\[1.6cm]
+
+  \begin{tabular}{@{}clr@{}}
+    \toprule
+    \textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
+    \midrule
+    \textbf{III.1} & Basic Premises of Quantum Chemistry & 3\\[3pt]
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     Molecular Hamiltonian ($\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$);}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     Born--Oppenheimer approximation; adiabatic potential energy surfaces;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     non-adiabatic couplings; Feynman--Hellmann theorem; force calculations.}\\[6pt]
+    \textbf{III.2} & Principles of Molecular and Atomic Electronic Structure & 16\\[3pt]
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     Hydrogenic systems; polyelectronic wavefunctions; spin orbitals;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     Slater determinants; Hartree--Fock; Roothaan--Hall; Koopman's theorem;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     configuration interaction; orbital theories; natural and localised orbitals;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     basis sets (STO, GTO, Pople, Dunning, Karlsruhe); molecular integrals.}\\[6pt]
+    \textbf{III.3} & Density Functional Theory and Beyond & 12\\[3pt]
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     Hohenberg--Kohn theorems; Thomas--Fermi--Weizs\"acker; Kohn--Sham DFT;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     XC functionals (LDA, GGA, hybrid, double-hybrid); Fukui functions;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     tight-binding; H\"uckel/M\"obius; crystal/ligand field theory;}\\
+                   & \multicolumn{2}{@{}l}{\small\color{accentgold}%
+                     full CI QMC; diffusion QMC; method comparison and outlook.}\\[4pt]
+    \midrule
+    & \textbf{Total} & \textbf{31}\\
+    \bottomrule
+  \end{tabular}
+
+  \vfill
+  {\color{accentgold}\rule{11cm}{0.8pt}}\\[0.4cm]
+  {\small\itshape\color{white!80!darkblue}%
+    Focus: first-principles molecular physics $\cdot$
+    From exact wavefunction methods to DFT $\cdot$
+    Computational \& theoretical depth}\\[0.3cm]
+  {\color{accentgold}\rule{11cm}{0.8pt}}
+\end{center}
+\newpage
+\nopagecolor
+\color{black}
+
+%#############################################################
+\section{Series III --- Molecular Electronic Structure \& Quantum Chemistry}
+\label{sec:seriesIII}
+%#############################################################
+
+\begin{tcolorbox}[seriesbox, title={Series~III Overview}]
+\textbf{Prerequisite:} Series~I required; Series~II Modules II.1, II.4 strongly recommended.\\
+\textbf{Structure:} Three modules totalling approximately 31 lectures.\\
+\textbf{Core aim:} Rigorous, graduate-level understanding of molecular electronic structure
+from first principles through to modern computational methods.\\[4pt]
+\begin{tabular}{llr}
+\toprule
+\textbf{Module} & \textbf{Title} & \textbf{Lectures}\\
+\midrule
+III.1 & Basic Premises of Quantum Chemistry & 3\\
+III.2 & Principles of Molecular and Atomic Electronic Structure & 16\\
+III.3 & Density Functional Theory and Beyond & 12\\
+\midrule
+ & \textbf{Total} & \textbf{31}\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module III.1 --- Basic Premises of Quantum Chemistry}
+\label{sec:mod-III1}
+%=============================================================
+
+\begin{tcolorbox}[chembox, title={Module~III.1 --- Lecture Overview}]
+\begin{longtable}{clp{8cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & The Molecular Hamiltonian &
+     $\hat{H}=\hat{T}_n+\hat{T}_e+\hat{V}_{ne}+\hat{V}_{ee}+\hat{V}_{nn}$;
+     atomic units; degrees of freedom\\
+L02 & Born--Oppenheimer Approximation and Adiabaticity &
+     Electronic vs.\ nuclear time scales; adiabatic PES;
+     non-adiabatic couplings; derivative couplings\\
+L03 & Parametric Dependence and the Feynman--Hellmann Theorem &
+     $\partial_\lambda E = \langle\partial_\lambda\hat{H}\rangle$;
+     force calculations; geometry optimisation; potential energy gradients\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module III.2 --- Principles of Molecular and Atomic Electronic Structure}
+\label{sec:mod-III2}
+%=============================================================
+
+\begin{tcolorbox}[chembox, title={Module~III.2 --- Lecture Overview (Electronic Hamiltonian)}]
+\begin{longtable}{clp{7.2cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & The Quantum Many-Body Problem in Chemistry &
+      Complexity of $\hat{H}_e$; $N$-representability; curse of dimensionality\\
+L02 & Hydrogenic Systems &
+      Exact solution; $Z_{\rm eff}$; quantum defect; one-electron atomic orbitals; radial nodes\\
+L03 & Polyelectronic Systems &
+      Helium as prototype; electron correlation; role of inter-electronic repulsion\\
+L04 & Polyelectronic Wavefunctions, Spin Orbitals, and Slater Screening &
+      Spin orbital $\chi(\mathbf{x})=\phi(\mathbf{r})\sigma(s)$;
+      Slater rules for $Z_{\rm eff}$; shielding constants\\
+L05 & Antisymmetry, Hartree Products, and Slater Determinants &
+      Pauli exclusion; antisymmetric wavefunction;
+      Slater determinant $|\chi_1\cdots\chi_N|$\\
+L06 & Restricted and Unrestricted Methods &
+      RHF vs.\ UHF; spatial orbital constraints;
+      spin contamination $\langle\hat{S}^2\rangle$\\
+L07 & Variational Methods &
+      Basic Ritz; Hylleraas--Mayer canonical form;
+      Hylleraas--Undheim theorem; bracketing theorem\\
+L08 & Electronic Configurations, Aufbau, and Virtual Orbitals &
+      Orbital energy ordering; general Aufbau principle;
+      virtual orbitals; excited configurations\\
+L09 & Configuration Interaction and the Exact Non-Relativistic Limit &
+      Full CI expansion; truncated CI (CISD, CISDT);
+      exact non-relativistic ground state; size consistency\\
+L10 & Hartree--Fock Theory, Koopman's Theorem, and Correlation Energy &
+      SCF procedure; Roothaan--Hall equations;
+      Koopman's theorem for IPs/EAs;
+      $E_{\rm corr}=E_{\rm exact}-E_{\rm HF}$\\
+L11 & Orbital Theories and Bonding Models &
+      MO theory; Valence Bond theory;
+      Coulson--Fischer wavefunction; resonance structures\\
+L12 & Natural and Localised Orbitals &
+      Natural Bond Orbitals (NBO); L\"owdin orbitals;
+      Natural Atomic Orbitals (NAO);
+      Weinhold approximation; Foster--Boys localisation\\
+L13 & Basis Sets I --- Types of Functions &
+      Slater-type orbitals (STO); Gaussian-type orbitals (GTO);
+      contraction; minimal, split-valence, polarised\\
+L14 & Basis Sets II --- Standard Basis Families &
+      Pople (6-31G*); Dunning cc-pVXZ; Karlsruhe def2;
+      frozen-core approximation; effective core potentials (ECP)\\
+L15 & Molecular Integral Schemes &
+      Two-electron integrals; Obara--Saika recurrence;
+      Huzinaga auxiliary; Helgaker density fitting; RI approximation\\
+L16 & Glimpse into Solid State &
+      PAW approximation; plane-wave basis;
+      contrast with GTO; Bloch electrons revisited;
+      band structure vs.\ molecular orbital picture\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+%=============================================================
+\subsection{Module III.3 --- Density Functional Theory and Beyond}
+\label{sec:mod-III3}
+%=============================================================
+
+\begin{tcolorbox}[chembox, title={Module~III.3 --- Lecture Overview (DFT, Effective Models, and Special Methods)}]
+\begin{longtable}{clp{7.2cm}}
+\toprule
+\textbf{Lec.} & \textbf{Title} & \textbf{Content}\\
+\midrule
+\endhead
+L01 & Hohenberg--Kohn Theorems &
+      First theorem ($\rho\to V_{\rm ext}$);
+      second theorem (variational); $v$-representability\\
+L02 & Thomas--Fermi--Weizs\"acker Theory &
+      Orbital-free DFT; TF kinetic energy;
+      gradient correction; limitations\\
+L03 & Kohn--Sham DFT &
+      KS equations; non-interacting reference;
+      XC functional; self-consistent field\\
+L04 & Overview of XC Functionals &
+      Jacob's ladder; LDA, GGA (PBE), meta-GGA,
+      hybrid (B3LYP, PBE0), range-separated, double-hybrid; Perdew's ladder\\
+L05 & Useful DFT Quantities &
+      Fukui functions $f^+,f^-,f^0$;
+      Pearson hardness/softness;
+      Yang--Parr electronegativity $\chi=-\mu$; dual descriptor\\
+L06 & Tight-Binding and Effective Hamiltonians &
+      LCAO tight-binding; Hamiltonian matrix elements;
+      Slater--Koster parameters; SSH model\\
+L07 & H\"uckel and M\"obius Aromaticity Models &
+      Simple H\"uckel MO theory;
+      $4n$ vs.\ $4n+2$ H\"uckel rule;
+      M\"obius topology; Woodward--Hoffmann rules\\
+L08 & Crystal Field Theory &
+      $d$-orbital splitting in octahedral, tetrahedral;
+      $\Delta_o$; high-spin/low-spin; Jahn--Teller effect\\
+L09 & Ligand Field Theory &
+      Nephelauxetic effect; angular overlap model;
+      Tanabe--Sugano diagrams;
+      Racah--Van Vleck parameters $A,B,C$\\
+L10 & Full CI Quantum Monte Carlo &
+      Booth--Alavi FCIQMC algorithm;
+      walker dynamics; sign problem in FCI space;
+      initiator approximation; benchmark applications\\
+L11 & Diffusion Quantum Monte Carlo &
+      Branching random walk; fixed-node approximation;
+      trial wavefunction quality; pseudopotentials in DMC\\
+L12 & Synthesis and Outlook &
+      Method comparison (accuracy, scaling, cost);
+      current challenges: strong correlation,
+      excited states, relativistic effects, periodic systems\\
+\bottomrule
+\end{longtable}
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\section*{Appendix A --- Programme Roadmap}
+\addcontentsline{toc}{section}{Appendix A --- Programme Roadmap}
+%=============================================================
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Module} & \textbf{Title (abbreviated)} & \textbf{Core Prerequisites} & \textbf{Lectures}\\
+\midrule
+\textbf{I.1} & State Space, Operators, Bra-Ket & Linear algebra, classical mechanics & 6\\
+\textbf{I.2} & Bra-Ket Notation (Dirac + Sakurai) & I.1 (concurrent or prior) & 12\\
+\textbf{I.3} & Dynamics, Perturbation Theory, Systems & I.1; I.2 recommended & 11\\
+\midrule
+\textbf{II.1} & Ground-State Methods & Series~I & 12\\
+\textbf{II.2} & Path Integrals & Series~I & 12\\
+\textbf{II.3} & Angular Momentum & Series~I & 12\\
+\textbf{II.4} & Second Quantisation & Series~I, II.3 & 12\\
+\textbf{II.5} & NEGF & II.4, II.7 & 12\\
+\textbf{II.6} & Light-Matter/Spectroscopy & Series~I, II.4 & 12\\
+\textbf{II.7} & Quantum Stat.\ Mech. & Series~I & 12\\
+\midrule
+\textbf{III.1} & Basic Premises & Series~I & 3\\
+\textbf{III.2} & Electronic Structure & Series~I, II.4 (rec.) & 16\\
+\textbf{III.3} & DFT and Beyond & III.1, III.2 & 12\\
+\midrule
+ & \textbf{Grand total} & & \textbf{144}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================
+\section*{Appendix B --- Suggested Textbooks}
+\addcontentsline{toc}{section}{Appendix B --- Suggested Textbooks}
+%=============================================================
+
+\medskip\noindent{\large\bfseries\color{midblue}Quantum Mechanics --- Foundations}\par\smallskip
+\begin{itemize}[leftmargin=1.5em]
+  \item Dirac, P.A.M.\ --- \textit{The Principles of Quantum Mechanics}, 4th ed.\ (Oxford)
+  \item Sakurai, J.J.\ \& Napolitano, J.\ --- \textit{Modern Quantum Mechanics}, 3rd ed.
+  \item Weinberg, S.\ --- \textit{Lectures on Quantum Mechanics}, 2nd ed.
+  \item Galindo, A.\ \& Pascual, P.\ --- \textit{Quantum Mechanics} (2 vols., Springer)
+\end{itemize}
+
+\medskip\noindent{\large\bfseries\color{midblue}Many-Body and Advanced Topics}\par\smallskip
+\begin{itemize}[leftmargin=1.5em]
+  \item Fetter, A.L.\ \& Walecka, J.D.\ --- \textit{Quantum Theory of Many-Particle Systems}
+  \item Bruus, H.\ \& Flensberg, K.\ --- \textit{Introduction to Many-Body Quantum Theory in Condensed Matter Physics}
+  \item Stefanucci, G.\ \& van Leeuwen, R.\ --- \textit{Nonequilibrium Many-Body Theory of Quantum Systems} (Cambridge)
+  \item Negele, J.W.\ \& Orland, H.\ --- \textit{Quantum Many-Particle Systems}
+\end{itemize}
+
+\medskip\noindent{\large\bfseries\color{midblue}Quantum Chemistry and Electronic Structure}\par\smallskip
+\begin{itemize}[leftmargin=1.5em]
+  \item Szabo, A.\ \& Ostlund, N.S.\ --- \textit{Modern Quantum Chemistry}
+  \item Helgaker, T., Jorgensen, P.\ \& Olsen, J.\ --- \textit{Molecular Electronic-Structure Theory} (Wiley)
+  \item Jensen, F.\ --- \textit{Introduction to Computational Chemistry}, 3rd ed.
+  \item Koch, W.\ \& Holthausen, M.C.\ --- \textit{A Chemist's Guide to Density Functional Theory}
+  \item Martin, R.M., Reining, L.\ \& Ceperley, D.\ --- \textit{Interacting Electrons} (Cambridge)
+\end{itemize}
+
+%=============================================================
+\end{document}
