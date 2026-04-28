@@ -1,0 +1,155 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox} 
+\geometry{margin=0.8in}
+
+\title{Comprehensive Derivation of Geometrical Optics: \\ From Maxwell's Lagrangian to Snell's Law}
+\author{Physics Reference}
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+\section{Derivation of the Eikonal Equation from Maxwell's Lagrangian}
+We start with the Maxwell Lagrangian density $\mathcal{L}$ for an electromagnetic field in a linear, isotropic, non-conducting medium:
+\begin{equation}
+\mathcal{L} = \frac{1}{2} \left( \epsilon \mathbf{E}^2 - \frac{1}{\mu} \mathbf{B}^2 \right)
+\end{equation}
+Expressing the fields in terms of the vector potential $\mathbf{A}$ (in the Lorenz gauge with $\phi=0$ for simplicity), the resulting Euler-Lagrange equations yield the wave equation:
+\begin{equation}
+\nabla^2 \mathbf{A} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} = 0
+\end{equation}
+where $n = \sqrt{\epsilon \mu / \epsilon_0 \mu_0}$ is the refractive index.
+
+
+
+
+\subsubsection{Detail 1: From Field Theory to Wave Equation}
+The foundation of classical electromagnetism lies in the Maxwell Lagrangian. To derive the propagation of light in a medium, we first establish the governing wave equation.
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Box 1: Deriving the Wave Equation from $\mathcal{L}$]
+We start with the Lagrangian density for EM fields in a linear, isotropic medium:
+$$\mathcal{L} = \frac{1}{2} \left( \epsilon \mathbf{E}^2 - \frac{1}{\mu} \mathbf{B}^2 \right)$$
+Using the vector potential $\mathbf{A}$ (setting $\phi = 0$ in a source-free region), we define $\mathbf{E} = -\dot{\mathbf{A}}$ and $\mathbf{B} = \nabla \times \mathbf{A}$. The Lagrangian becomes:
+$$\mathcal{L} = \frac{\epsilon}{2} \left( \frac{\partial \mathbf{A}}{\partial t} \right)^2 - \frac{1}{2\mu} (\nabla \times \mathbf{A})^2$$
+The Euler-Lagrange equation for the field is:
+$$\frac{\partial}{\partial t} \left( \frac{\partial \mathcal{L}}{\partial \dot{\mathbf{A}}} \right) + \nabla \cdot \left( \frac{\partial \mathcal{L}}{\partial (\nabla \mathbf{A})} \right) = 0$$
+Evaluating the terms:
+\begin{enumerate}
+    \item \textbf{Time derivative:} $\frac{\partial \mathcal{L}}{\partial \dot{\mathbf{A}}} = \epsilon \dot{\mathbf{A}} \implies \frac{\partial}{\partial t}(\dots) = \epsilon \frac{\partial^2 \mathbf{A}}{\partial t^2}$
+    \item \textbf{Space derivative:} The variation of the curl term yields $\frac{1}{\mu} \nabla \times (\nabla \times \mathbf{A})$.
+\end{enumerate}
+Combining these and using the identity $\nabla \times (\nabla \times \mathbf{A}) = \nabla(\nabla \cdot \mathbf{A}) - \nabla^2 \mathbf{A}$ with the Lorenz gauge ($\nabla \cdot \mathbf{A} = 0$):
+$$\epsilon \mu \frac{\partial^2 \mathbf{A}}{\partial t^2} - \nabla^2 \mathbf{A} = 0 \implies \nabla^2 \mathbf{A} - \frac{n^2}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} = 0$$
+This is the \textbf{Wave Equation} (Eq. 2).
+\end{tcolorbox}
+
+\subsection{the ray limit}
+To find the ray limit, we use the \textbf{Eikonal Ansatz} (Short Wavelength Limit):
+\begin{equation}
+\mathbf{A}(\mathbf{r}, t) = \mathbf{A}_0(\mathbf{r}) e^{i [k_0 S(\mathbf{r}) - \omega t]}
+\end{equation}
+where $k_0 = \omega/c$. Substituting this into the wave equation and keeping only the dominant terms as $k_0 \to \infty$ (order $k_0^2$):
+\begin{equation}
+-k_0^2 |\nabla S|^2 \mathbf{A}_0 + \frac{n^2 \omega^2}{c^2} \mathbf{A}_0 = 0
+\end{equation}
+Dividing by $-k_0^2 \mathbf{A}_0$, we obtain the \textbf{Eikonal Equation}:
+\begin{equation}
+|\nabla S|^2 = n^2
+\end{equation}
+
+
+\subsubsection{Detail 2: The Short-Wavelength Limit (WKB)}
+To transition from waves to rays, we assume the wavelength is much smaller than the scale of the medium's variations ($k_0 \to \infty$).
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=Box 2: Detailed WKB Computation for the Eikonal Equation]
+Substitute the Ansatz $\mathbf{A} = \mathbf{A}_0 e^{i(k_0 S(\mathbf{r}) - \omega t)}$ into the wave equation, where $k_0 = \omega/c$. 
+\\ \\
+\textbf{1. Time Term:} $\frac{n^2}{c^2} \frac{\partial^2 \mathbf{A}}{\partial t^2} = -\frac{n^2 \omega^2}{c^2} \mathbf{A}_0 e^{i\Phi} = -n^2 k_0^2 \mathbf{A}_0 e^{i\Phi}$
+\\ \\
+\textbf{2. Spatial Term ($\nabla^2$):}
+Applying the Laplacian to the product $\mathbf{A}_0 e^{ik_0 S}$:
+$$\nabla^2 (\mathbf{A}_0 e^{ik_0 S}) = e^{ik_0 S} \left[ \nabla^2 \mathbf{A}_0 + 2ik_0 (\nabla S \cdot \nabla)\mathbf{A}_0 + ik_0 \mathbf{A}_0 \nabla^2 S - k_0^2 \mathbf{A}_0 |\nabla S|^2 \right]$$
+\\
+\textbf{3. The Limit $k_0 \to \infty$:}
+Grouping by powers of $k_0$:
+$$k_0^2 \mathbf{A}_0 (n^2 - |\nabla S|^2) + ik_0 [2(\nabla S \cdot \nabla)\mathbf{A}_0 + \mathbf{A}_0 \nabla^2 S] + \dots = 0$$
+To satisfy the equation for large $k_0$, the leading $O(k_0^2)$ coefficient must be zero:
+$$|\nabla S|^2 = n^2$$
+This is the \textbf{Eikonal Equation} (Eq. 4).
+\end{tcolorbox}
+
+
+
+\section{From Eikonal Equation to Fermat's Principle}
+The phase $S(\mathbf{r})$ represents the Optical Path Length (OPL). For a ray traveling along a path $\mathbf{r}(s)$, the change in phase is:
+\begin{equation}
+S(B) - S(A) = \int_A^B \nabla S \cdot d\mathbf{r}
+\end{equation}
+Since the ray direction $\mathbf{u} = \frac{d\mathbf{r}}{ds}$ is parallel to $\nabla S$ and $|\nabla S| = n$, we have $\nabla S = n \mathbf{u}$. Thus:
+\begin{equation}
+S = \int_A^B n \, ds
+\end{equation}
+By the Principle of Stationary Phase (the high-frequency limit of wave interference), the observed path must be a stationary point of the phase:
+\begin{equation}
+\delta S = \delta \int_A^B n(\mathbf{r}) ds = 0
+\end{equation}
+This is \textbf{Fermat's Principle}.
+
+\section{Derivation of the Ray Equation}
+To extremize the OPL, we define the Lagrangian $F(\mathbf{r}, \dot{\mathbf{r}}) = n(\mathbf{r}) \sqrt{\dot{\mathbf{r}} \cdot \dot{\mathbf{r}}}$. The Euler-Lagrange Equation is:
+\begin{equation}
+\frac{d}{d\tau} \left( \frac{\partial F}{\partial \dot{\mathbf{r}}} \right) - \frac{\partial F}{\partial \mathbf{r}} = 0
+\end{equation}
+Evaluating the derivatives:
+\begin{enumerate}
+    \item $\frac{\partial F}{\partial \dot{\mathbf{r}}} = n \frac{d\mathbf{r}}{ds}$
+    \item $\frac{\partial F}{\partial \mathbf{r}} = \nabla n \frac{ds}{d\tau}$
+\end{enumerate}
+Substituting and dividing by $ds/d\tau$:
+\begin{equation}
+\frac{d}{ds} \left( n \frac{d\mathbf{r}}{ds} \right) = \nabla n
+\end{equation}
+This is the \textbf{Ray Equation}.
+
+\section{Equivalence of Ray and Eikonal Equations}
+Differentiating the gradient of the eikonal $\nabla S = n \frac{d\mathbf{r}}{ds}$ with respect to $s$:
+\begin{equation}
+\frac{d}{ds} (n \frac{d\mathbf{r}}{ds}) = \frac{1}{n} (\nabla S \cdot \nabla) \nabla S = \frac{1}{2n} \nabla |\nabla S|^2
+\end{equation}
+Using the Eikonal equation $|\nabla S|^2 = n^2$:
+\begin{equation}
+\frac{1}{2n} \nabla (n^2) = \nabla n
+\end{equation}
+which recovers the Ray Equation.
+
+\subsection{Detail 3: Fermat's Principle and the Ray Equation}
+From the local Eikonal equation, we derive the global variational principle.
+
+The phase $S$ is the integral of the refractive index along the path: $S = \int n ds$. By the Principle of Stationary Phase, the physical ray follows a path where the variation $\delta S = 0$. This is \textbf{Fermat's Principle}:
+$$\delta \int_{A}^{B} n(\mathbf{r}) ds = 0$$
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=orange!75!black,title=Box 3: Deriving the Ray Equation]
+Using $F = n \sqrt{\dot{\mathbf{r}} \cdot \dot{\mathbf{r}}}$, the Euler-Lagrange equations $\frac{d}{d\tau} \frac{\partial F}{\partial \dot{\mathbf{r}}} = \frac{\partial F}{\partial \mathbf{r}}$ yield:
+$$\frac{d}{ds} \left( n \frac{d\mathbf{r}}{ds} \right) = \nabla n$$
+\end{tcolorbox}
+\section{Derivation of Snell's Law}
+For an interface where $n$ changes only in the $z$-direction, $\nabla_{\text{tangential}} n = 0$. Integrating the ray equation across the interface:
+\begin{equation}
+n_1 \sin \theta_1 = n_2 \sin \theta_2
+\end{equation}
+where $\theta$ is the angle with the normal.
+
+
+
+\subsection{Detail 4: Equivalence and Snell's Law}
+\textbf{Equivalence:} Taking the gradient of the Eikonal equation $|\nabla S|^2 = n^2$ and using the identity $(\mathbf{a} \cdot \nabla)\mathbf{a} = \frac{1}{2}\nabla a^2$ shows that $\frac{d}{ds}(n \frac{d\mathbf{r}}{ds}) = \nabla n$, proving that the wave's phase fronts and the ray trajectories are mathematically consistent.
+
+\textbf{Snell's Law:} At an interface between $n_1$ and $n_2$, $\nabla n$ is non-zero only in the direction of the normal $\mathbf{\hat{k}}$. Thus, the tangential component of the ray vector $n \frac{d\mathbf{r}}{ds}$ must be conserved:
+$$n_1 \sin \theta_1 = n_2 \sin \theta_2$$
+
+\end{document}
