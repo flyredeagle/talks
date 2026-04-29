@@ -2,15 +2,43 @@
   STANDARD PROMPT: LECTURE GENERATION
   Quantum Mechanics & Quantum Chemistry Programme
   Series > Module > Lecture Hierarchy
+  Artifact taxonomy v2: UG track / Grad track / Research track
 ================================================================================
 
 PURPOSE
 -------
-This prompt template is used to generate a complete, fully-specified lecture
-for any module in the QM/QC programme. Fill in the [BRACKETED] fields before
-submitting. All output should be consistent with the programme's three-level
-hierarchy (Series > Module > Lecture), five-tier pedagogy, and seven-artifact
-assessment system as defined in the Pedagogical Support Material document.
+This prompt template generates a complete, fully-specified lecture for any module
+in the QM/QC programme. Fill in the [BRACKETED] fields before submitting. All
+output must be consistent with the programme's three-level hierarchy
+(Series > Module > Lecture), five-tier pedagogy, and the 14-type artifact taxonomy
+(6 UG + 6 Grad + 2 Research) defined in the Pedagogical Support Material.
+
+
+================================================================================
+ARTIFACT TAXONOMY REFERENCE
+================================================================================
+
+UNDERGRADUATE TRACK (Tiers 1-3: HS, BegUG, AdvUG)
+  SCQU  Simple Concept Questions --- UG          10 questions
+  CCQU  Complex Concept Questions --- UG         10 questions
+  SPSU  Simple Problem Set --- UG                10 problems
+  CPSU  Complex Problem Set --- UG                5 problems
+  SPJU  Simple Project --- UG                     1 project
+  CPJU  Complex Project --- UG                    1 project
+
+GRADUATE TRACK (Tiers 4-5: MSc, PhD)
+  SCQG  Simple Concept Questions --- Grad        10 questions
+  CCQG  Complex Concept Questions --- Grad       10 questions
+  SPSG  Simple Problem Set --- Grad              10 problems
+  CPSG  Complex Problem Set --- Grad              5 problems
+  SPJG  Simple Projects --- Grad                  5 projects
+  CPJG  Complex Projects --- Grad                 5 projects
+
+RESEARCH TRACK (Tiers 4-5, shared)
+  WRQ   Well-Defined Research Questions           5 questions
+  ORQ   Open-Ended Research Questions             5 questions
+
+TOTAL PER LECTURE: 92 items
 
 
 ================================================================================
@@ -19,27 +47,25 @@ PROMPT TEMPLATE (copy from here)
 
 You are generating a complete lecture document for the following course:
 
-  Programme : Quantum Mechanics & Quantum Chemistry
-  Hierarchy : Series [SERIES_NUMBER] > Module [MODULE_CODE] > Lecture [LECTURE_CODE]
-  Series    : [SERIES_TITLE]
-              e.g. "Series I — Introductory Quantum Mechanics"
-  Module    : [MODULE_CODE] — [MODULE_TITLE]
-              e.g. "Module I.2 — Bra-Ket Notation and the Language of QM"
-  Lecture   : [LECTURE_CODE] — [LECTURE_TITLE]
-              e.g. "L05 — Completeness, Change of Basis & Matrix Mechanics"
-  Duration  : 90 minutes
-  Target tiers (check all that apply):
-    [ ] Tier 1 — High School (HS)
-    [ ] Tier 2 — Beginning Undergraduate (BegUG)
-    [ ] Tier 3 — Advanced Undergraduate (AdvUG)
-    [ ] Tier 4 — Master's (MSc)
-    [ ] Tier 5 — PhD
+  Programme  : Quantum Mechanics & Quantum Chemistry
+  Hierarchy  : Series [SERIES_NUMBER] > Module [MODULE_CODE] > Lecture [LECTURE_CODE]
+  Series     : [SERIES_TITLE]
+               e.g. "Series I — Introductory Quantum Mechanics"
+  Module     : [MODULE_CODE] — [MODULE_TITLE]
+               e.g. "Module I.2 — Bra-Ket Notation and the Language of QM"
+  Lecture    : [LECTURE_CODE] — [LECTURE_TITLE]
+               e.g. "L05 — Completeness, Change of Basis & Matrix Mechanics"
+  Duration   : 90 minutes
+  Active tracks (check all that apply):
+    [ ] Undergraduate track  (Tiers 1-3: HS, BegUG, AdvUG)
+    [ ] Graduate track       (Tiers 4-5: MSc, PhD)
+    [ ] Research track       (Tiers 4-5, shared)
 
 
 CONTEXT FROM SYLLABUS
 ---------------------
-Preceding lecture  : [PREV_LECTURE_CODE] — [PREV_LECTURE_TITLE]
-Following lecture  : [NEXT_LECTURE_CODE] — [NEXT_LECTURE_TITLE]
+Preceding lecture   : [PREV_LECTURE_CODE] — [PREV_LECTURE_TITLE]
+Following lecture   : [NEXT_LECTURE_CODE] — [NEXT_LECTURE_TITLE]
 Module prerequisites: [LIST_PREREQUISITES]
 Key concepts from this lecture (from syllabus overview table):
   [COPY KEY CONCEPTS CELL FROM SYLLABUS TABLE]
@@ -50,199 +76,340 @@ GENERATE THE FOLLOWING SECTIONS
 
 1. LECTURE HEADER (metadata block)
    - Series / Module / Lecture codes and titles
-   - Duration, target tiers, prerequisites
-   - Summary (2–3 sentences): what this lecture covers and why it matters
+   - Duration, active tracks, tiers, prerequisites
+   - Summary (2-3 sentences): what this lecture covers and why it matters
+   - Track routing: which artifacts are generated for which cohort
 
 2. LEARNING OBJECTIVES (per tier)
-   For each active tier, provide 3–5 bullet-point objectives in the form:
+   For each active tier (1-5), provide 3-5 bullet objectives:
    "By the end of this lecture, a [TIER] student should be able to..."
-   Use action verbs calibrated to tier:
-     HS     → identify, describe, compute (simple), interpret
-     BegUG  → apply, calculate, expand, translate
-     AdvUG  → prove, derive, construct, verify
-     MSc    → analyse, generalise, connect, reformulate
-     PhD    → formalise, extend, critique, classify rigorously
+   Action verb calibration:
+     Tier 1 (HS)    → identify, describe, compute (simple), interpret
+     Tier 2 (BegUG) → apply, calculate, expand, translate
+     Tier 3 (AdvUG) → prove, derive, construct, verify
+     Tier 4 (MSc)   → analyse, generalise, connect, reformulate
+     Tier 5 (PhD)   → formalise, extend, critique, classify rigorously
 
 3. 90-MINUTE PACING PLAN
-   Divide into 4–6 time blocks (e.g. 0–15 min, 15–45 min, etc.)
-   For each block state:
-     - Time range
-     - Topic / activity
-     - Tier-specific depth note (brief)
-     - Transition sentence to next block
+   4-6 time blocks (e.g. 0-15 min, 15-45 min, etc.)
+   Per block: time range, topic/activity, tier depth note, transition.
 
 4. SECTION-BY-SECTION CONTENT (lecture body)
-   Number sections as [LECTURE_CODE].[SECTION_NUMBER]
-   e.g. L05.1, L05.2, L05.3 ...
-   For each section:
-     a) Statement of the main result or concept
-     b) Key definitions (with notation consistent with programme conventions)
-     c) Core derivation or argument (tier AdvUG baseline; mark PhD extensions)
-     d) Physical/geometric interpretation
-     e) Worked example (one per section minimum)
-     f) Tier differentiation note (what HS/BegUG see vs. MSc/PhD extensions)
+   Number: [LECTURE_CODE].[SECTION_NUMBER]  e.g. L05.1, L05.2 ...
+   Per section:
+     a) Main result or concept statement
+     b) Key definitions (programme notation — see below)
+     c) Core derivation (AdvUG / Tier 3 baseline; mark Grad/PhD extensions)
+     d) Physical / geometric interpretation
+     e) Worked example (minimum one per section)
+     f) Tier differentiation note (UG engagement vs. Grad extensions)
 
    Programme notation conventions (always use these):
-     - Operators        : hat notation  \hat{A}, \hat{H}, \hat{U}
-     - States           : Dirac ket/bra  |\psi\rangle, \langle\phi|
-     - Density operator : \hat{\rho}
-     - Commutator       : [\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}
-     - Anti-commutator  : \{\hat{A},\hat{B}\} = \hat{A}\hat{B} + \hat{B}\hat{A}
-     - Identity         : \hat{\mathbb{1}}  (or \hat{1})
-     - Inner product    : \langle\phi|\psi\rangle
-     - Partial trace    : \operatorname{Tr}_B
+     Operators        : \hat{A}, \hat{H}, \hat{U}   (hat notation)
+     States           : |\psi\rangle, \langle\phi|   (Dirac ket/bra)
+     Density operator : \hat{\rho}
+     Commutator       : [\hat{A},\hat{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}
+     Anti-commutator  : \{\hat{A},\hat{B}\} = \hat{A}\hat{B} + \hat{B}\hat{A}
+     Identity         : \hat{\mathbb{1}}
+     Inner product    : \langle\phi|\psi\rangle
+     Partial trace    : \operatorname{Tr}_B
 
 5. CONNECTIONS
-   - Backward: explicit link to preceding lecture(s) by code + concept
-   - Forward:  explicit link to upcoming lecture(s) by code + concept
-   - Cross-module: any relevant connection to other Series II / III modules
+   - Backward: link to preceding lecture(s) by code + concept
+   - Forward:  link to upcoming lecture(s) by code + concept
+   - Cross-module: connections to other Series II / III modules
 
 6. ASSESSMENT ARTIFACT BUNDLE
-   Generate one complete artifact for each of the following types.
-   Each artifact must be consistent with the target tiers specified above.
+   Generate one complete item (or set) for each of the 14 artifact types below.
+   Always specify which track and which tier(s) each artifact targets.
 
-   [A] CONCEPT QUESTIONS (CQ) — 8 questions
-       Mix: multiple choice (3), true/false + justify (3), short answer (2)
-       10–15 minutes. Cover all main concepts of the lecture.
+   -------------------------------------------------------------------
+   UNDERGRADUATE TRACK ARTIFACTS (Tiers 1-3)
+   -------------------------------------------------------------------
 
-   [B] SIMPLE PROBLEM SET (SPS) — 10 problems
-       Structure: Part A (mechanics, 4 problems), Part B (interpretation, 3),
-       Part C (translation, 3). Each 1–5 steps. Include answer key.
+   [A] SCQU — Simple Concept Questions (UG)  — 10 questions
+       Mix: multiple-choice (4), true/false + 1-sentence justify (4),
+            short answer (2)
+       Duration: 15-20 minutes
+       Tier routing: HS = fully qualitative; BegUG = qualitative + brief check;
+                     AdvUG = includes near-equivalent option discrimination
 
-   [C] COMPLEX PROBLEM SET (CPS) — 4 problems
-       Multi-part (a)(b)(c). Proof/derivation based. 3–6 hours total work.
-       Include: problem statement layer only (hints in separate file).
+   [B] CCQU — Complex Concept Questions (UG) — 10 questions
+       Mix: "explain why" (4), "what would change if..." (3),
+            "identify the flaw in this argument" (3)
+       Duration: 25-35 minutes (homework/tutorial)
+       Tier routing: BegUG = trace through argument; AdvUG = counterexample
 
-   [D] SIMPLE PROJECT (SPJ) — 1 project
-       2–6 hours. Structured. Deliverable: code/worksheet + 1–3 page report.
-       Include: full spec with inputs, outputs, required checks, rubric.
+   [C] SPSU — Simple Problem Set (UG)        — 10 problems
+       Structure: Part A mechanics (4), Part B interpretation (3),
+                  Part C translation (3)
+       Tier routing: HS = arithmetic; BegUG = components + probs;
+                     AdvUG = representation-independence check
 
-   [E] COMPLEX PROJECT (CPJ) — 1 project
-       8–15 hours. Open-ended. Deliverable: 5–8 page report + appendix.
-       Include: full spec, analysis questions, rubric.
+   [D] CPSU — Complex Problem Set (UG)       — 5 problems
+       Multi-part (a)(b)(c); proof/derivation based; 3-6 hrs total
+       Include: problem statement only (hints in separate layer file)
+       Tier routing: primarily AdvUG; parts (a) accessible to BegUG
 
-   [F] WELL-DEFINED RESEARCH QUESTION (WRQ) — 1 question
-       5–10 hours. Answerable with literature + calculation.
-       Include: question, method guide, deliverable format, rubric.
+   [E] SPJU — Simple Project (UG)            — 1 project
+       2-6 hours; structured; deliverable = code/worksheet + 1-3 pg report
+       Include: full spec with inputs, outputs, required checks, rubric
 
-   [G] OPEN-ENDED RESEARCH QUESTION (ORQ) — 1 question
-       10–20 hours. No single correct answer.
-       Include: question, framing notes, deliverable format, rubric.
+   [F] CPJU — Complex Project (UG)           — 1 project
+       8-15 hours; open-ended; deliverable = 5-8 pg report + appendix
+       Include: full spec, analysis questions, rubric
 
-   Rubric weights for all artifacts:
-     CQ  → 2 pts each; total 16 pts
-     SPS → Correct result 60%, Method/notation 30%, Interpretation 10%
-     CPS → Assumptions 15%, Proof structure 45%, Algebra 25%, Insight 15%
-     SPJ → Correctness 40%, Tests 25%, Clarity 25%, Reproducibility 10%
-     CPJ → Technical 30%, Synthesis 35%, Depth 25%, Originality 10%
-     WRQ → Scope/method 25%, Evidence 25%, Technical 25%, Argument 25%
-     ORQ → Clarity 25%, Depth 25%, Novelty 25%, Limitations 25%
+   -------------------------------------------------------------------
+   GRADUATE TRACK ARTIFACTS (Tiers 4-5)
+   -------------------------------------------------------------------
+
+   [G] SCQG — Simple Concept Questions (Grad) — 10 questions
+       Mix: short statement (4), true/false with proof sketch (3),
+            "identify the precise error" (3)
+       Duration: 20-25 minutes
+       Tier routing: MSc = standard results + rays/operators;
+                     PhD = domain/boundedness conditions, named theorems
+
+   [H] CCQG — Complex Concept Questions (Grad) — 10 questions
+       Mix: "distinguish and explain" (4), "what fails without X" (3),
+            "connect these two results" (3)
+       Duration: 35-50 minutes
+       Tier routing: MSc = conceptual connections; PhD = mathematical precision
+
+   [I] SPSG — Simple Problem Set (Grad)       — 10 problems
+       Structure: Part A operator mechanics (4), Part B rigorous translation (3),
+                  Part C symmetry & invariance (3)
+       Tier routing: MSc = density-matrix formalism + trace-class conditions;
+                     PhD = domain checks + functional calculus
+
+   [J] CPSG — Complex Problem Set (Grad)      — 5 problems
+       Multi-part; 5-10 hours total; no guidance scaffolding
+       Problems at graduate proof standard (functional analysis level)
+
+   [K] SPJG — Simple Projects (Grad)          — 5 projects
+       3-8 hours each; structured; deliverable = tech note (2-4 pp) + code
+       Five distinct projects, each independently completable
+
+   [L] CPJG — Complex Projects (Grad)         — 5 projects
+       10-20 hours each; open-ended; deliverable = 6-10 pg report + appendix
+       Five distinct open problems requiring graduate synthesis
+
+   -------------------------------------------------------------------
+   RESEARCH TRACK ARTIFACTS (Tiers 4-5, shared)
+   -------------------------------------------------------------------
+
+   [M] WRQ — Well-Defined Research Questions  — 5 questions
+       5-10 hours each; answerable with literature + calculation
+       Deliverable per question: 2-6 pg memo
+         (question, method, evidence, conclusion, 5-10 references)
+
+   [N] ORQ — Open-Ended Research Questions    — 5 questions
+       10-20 hours each; no single correct answer
+       Deliverable per question: 4-10 pg proposal
+         (motivation, what's known, proposal, how to test, limitations)
+
+   -------------------------------------------------------------------
+   RUBRIC WEIGHTS (apply to all artifacts of each type)
+   -------------------------------------------------------------------
+   SCQU / SCQG: Correct answer 1.5 pts + justification 0.5 pts = 2 pts each → 20 pts total
+   CCQU / CCQG: Key point 1.0 pt + argument/example 1.0 pt = 2 pts each → 20 pts total
+   SPSU: Result 60% + Method 30% + Interpretation 10%
+   CPSU: Assumptions 15% + Proof structure 45% + Algebra 25% + Insight 15%
+   SPJU: Correctness 40% + Tests 25% + Clarity 25% + Reproducibility 10%
+   CPJU: Technical 30% + Synthesis 35% + Depth 25% + Originality 10%
+   SPSG: Result+conditions 50% + Method 35% + Meaning 15%
+   CPSG: Hypotheses 15% + Proof structure 40% + Analysis 30% + Insight 15%
+   SPJG: Correctness 40% + Rigour 25% + Clarity 25% + Reproducibility 10%
+   CPJG: Rigour 30% + Synthesis 30% + Depth 25% + Originality 15%
+   WRQ:  Scope/method 25% + Evidence 25% + Technical 25% + Argument 25%
+   ORQ:  Clarity 25% + Depth 25% + Novelty 25% + Limitations 25%
 
 7. EXERCISE PACKAGING (four-layer format)
-   For the two hardest CPS problems and the SPJ, provide all four layers:
-     Layer 1: Problem Statement (no hints)
+   Apply to: all CPSU and CPSG problems; the SPJU project; one SPJG project.
+   For each:
+     Layer 1: Problem Statement (no hints — student-facing)
      Layer 2: Suggestions / Hints (scaffolded)
      Layer 3: Advanced Suggestions (structural hints, alternative approaches)
      Layer 4: Detailed Solution (full derivation + commentary + pitfalls)
+   File naming: ex##_problem.tex / ex##_hints.tex / ex##_adv_hints.tex / ex##_solution.tex
 
 8. READING AND RESOURCES
-   - Primary textbook references (chapter/section where possible)
-   - Recommended: Dirac (Principles), Sakurai & Napolitano (Modern QM),
-     and any module-specific texts from Appendix B of the syllabus
-   - One historical source if appropriate
-   - One research article for MSc/PhD tier (with brief annotation)
+   - Primary textbook references (chapter/section)
+   - Required: Dirac (Principles), Sakurai & Napolitano (Modern QM)
+   - Module-specific texts from Appendix B of the syllabus
+   - Historical source if appropriate
+   - Research article for Grad/Research track (with brief annotation)
 
 
 OUTPUT FORMAT INSTRUCTIONS
 ---------------------------
-- Produce LaTeX source, fully compilable with the programme's standard preamble
-  (packages: amsmath, amssymb, physics, braket, tcolorbox, enumitem, booktabs,
-   tabularx, geometry, hyperref, fancyhdr, xcolor)
-- Use tcolorbox [modulebox] style for all lecture content boxes
-- Use tcolorbox [artifactbox] style for all assessment artifact boxes
-- Use tcolorbox [rubricbox] style for all rubric boxes
-- Number all equations with \label{eq:LECTURE_CODE.N}
-- Use \label{sec:LECTURE_CODE.N} for all section labels
-- Mathematical notation: follow programme conventions above exactly
-- Tier tags: mark tier-specific content with \tiertag{tierNcol}{Tier N} inline
-- Do NOT use \maketitle; begin with \section*{[LECTURE_TITLE]} inside the
-  document body (this file will be \input{} into the module master file)
+- Produce LaTeX source, compilable with the programme's standard preamble
+  (amsmath, amssymb, physics, braket, tcolorbox, enumitem, booktabs,
+   tabularx, geometry, hyperref, fancyhdr, xcolor, longtable, array)
+- tcolorbox styles:
+    UG concept artifacts    → [ugconceptbox]  (blue)
+    UG problem artifacts    → [ugprobbox]     (green)
+    Grad concept artifacts  → [gradconceptbox](red)
+    Grad problem artifacts  → [gradprobbox]   (orange)
+    Research artifacts      → [researchbox]   (purple)
+    Rubrics                 → [rubricbox]
+    Notes/examples          → [goldbox]
+    Instructor notes        → [notebox] via \instructornote{}
+- Number equations: \label{eq:LECTURE_CODE.N}
+- Number sections: \label{sec:LECTURE_CODE.N}
+- Mark grad-only extensions inline: \tiertag{tier4col}{Tier 4} or \tiertag{tier5col}{Tier 5}
+- UG-only content: \tiertag{tier2col}{Tier 2} / \tiertag{tier3col}{Tier 3}
+- Do NOT use \maketitle; begin with \section*{[LECTURE_TITLE]} (file will be \input{})
 
 
-QUALITY CHECKS BEFORE SUBMITTING OUTPUT
------------------------------------------
-Before finalising, verify:
-  [ ] All section numbers follow [LECTURE_CODE].[N] format
+QUALITY CHECKLIST BEFORE SUBMITTING OUTPUT
+-------------------------------------------
+Before finalising, confirm:
+  [ ] Section numbers follow [LECTURE_CODE].[N] format throughout
   [ ] All notation matches programme conventions
-  [ ] Each tier has at least 3 distinct learning objectives
-  [ ] Pacing plan adds up to exactly 90 minutes
-  [ ] All 7 artifact types are present and complete
-  [ ] CPS has exactly 4 problems, SPS exactly 10 problems, CQ exactly 8 questions
-  [ ] Four-layer packaging is present for 2 CPS problems and 1 SPJ
-  [ ] Forward/backward connections reference correct lecture codes
+  [ ] Each active tier has at least 3 distinct learning objectives
+  [ ] Pacing plan sums to exactly 90 minutes
+  [ ] Artifact counts: SCQU=10, CCQU=10, SPSU=10, CPSU=5, SPJU=1, CPJU=1
+  [ ] Artifact counts: SCQG=10, CCQG=10, SPSG=10, CPSG=5, SPJG=5, CPJG=5
+  [ ] Artifact counts: WRQ=5, ORQ=5
+  [ ] Rubric weights match the taxonomy table above for each artifact type
+  [ ] Four-layer packaging present for all CPSU, CPSG problems and SPJU
+  [ ] Forward/backward connections reference correct lecture codes from syllabus
+  [ ] Track headers present: UG section, Grad section, Research section
   [ ] LaTeX compiles without errors using the programme preamble
+
+
+================================================================================
+USAGE VARIANTS
+================================================================================
+
+VARIANT A — UNDERGRADUATE-ONLY GENERATION
+  Add: "Generate ONLY the Undergraduate track artifacts (SCQU, CCQU, SPSU, CPSU,
+        SPJU, CPJU). Omit all Graduate and Research track content."
+  Use when: mixed Tier 1-3 only cohort; modules without grad students enrolled.
+
+VARIANT B — GRADUATE-ONLY GENERATION
+  Add: "Generate ONLY the Graduate track artifacts (SCQG, CCQG, SPSG, CPSG,
+        SPJG, CPJG) and Research track (WRQ, ORQ). Omit UG track."
+  Use when: advanced seminar or research module; Tier 4-5 cohort only.
+
+VARIANT C — RESEARCH TRACK ONLY
+  Add: "Generate ONLY the Research track (WRQ x5, ORQ x5).
+        Assume the reader has access to the full lecture body."
+  Use when: adding a research component to an existing lecture.
+
+VARIANT D — CONCEPT QUESTIONS ONLY (rapid check generation)
+  Add: "Generate ONLY: SCQU (10 questions) and SCQG (10 questions).
+        Format as a single-page handout, not as a full artifact bundle."
+  Use when: quick in-class warm-up needed without full assessment bundle.
+
+VARIANT E — SERIES III (QUANTUM CHEMISTRY) ADAPTATION
+  Add: "Use [chembox] tcolorbox style for all content boxes.
+        Replace blue/green/red scheme with chemgreen/lightgreen palette.
+        Add to notation conventions:
+          Molecular Hamiltonian : \hat{H} = \hat{T}_n + \hat{T}_e + \hat{V}_{ne}
+                                            + \hat{V}_{ee} + \hat{V}_{nn}
+          Basis functions       : STO or GTO as appropriate
+          XC functional         : E_{xc}[\rho]
+        Adjust SPJG and CPJG project topics toward computational chemistry tasks
+        (e.g. basis set convergence, SCF cycle implementation, DFT benchmark)."
+
+VARIANT F — LECTURE CHAINING (sequence consistency)
+  Add: "This is lecture [N] of [TOTAL] in module [MODULE_CODE].
+        Already generated: [LIST_OF_CODES].
+        Ensure all WRQ and ORQ research questions form a coherent five-question
+        arc across lectures; avoid repeating themes already used in [LIST]."
+
+
+================================================================================
+EXAMPLE: FILLED-IN PROMPT — MODULE I.2 LECTURE L05
+================================================================================
+
+  Programme  : Quantum Mechanics & Quantum Chemistry
+  Hierarchy  : Series I > Module I.2 > Lecture L05
+  Series     : Series I — Introductory Quantum Mechanics
+  Module     : Module I.2 — Bra-Ket Notation and the Language of QM
+  Lecture    : L05 — Completeness, Change of Basis & Matrix Mechanics
+  Duration   : 90 minutes
+  Active tracks: [x] Undergraduate  [x] Graduate  [x] Research
+
+  Preceding lecture  : L04 — Eigenkets, Projectors & Spectral Decomposition
+  Following lecture  : L06 — Continuous Bases: |x>, |p> & Delta Functions
+  Module prerequisites: Module I.1 (L01-L02)
+  Key concepts: Resolution of identity, completeness sum \sum_n |n><n| = 1-hat,
+                basis transforms, matrix elements A_{mn} = <m|A|n>,
+                unitary basis changes, matrix multiplication from operator composition.
+
+  Active tiers: [x] Tier 2 (BegUG)  [x] Tier 3 (AdvUG)  [x] Tier 4 (MSc)  [x] Tier 5 (PhD)
+
+  Generate all 8 sections as specified above.
+  Produce the full 14-type artifact bundle:
+    UG:  SCQU(10), CCQU(10), SPSU(10), CPSU(5), SPJU(1), CPJU(1)
+    Grad: SCQG(10), CCQG(10), SPSG(10), CPSG(5), SPJG(5), CPJG(5)
+    Research: WRQ(5), ORQ(5)
 
 ================================================================================
 END OF PROMPT TEMPLATE
 ================================================================================
 
 
-USAGE NOTES
------------
-
-1. MINIMAL VERSION (quick generation)
-   If you only need the lecture body and CQ + SPS (no full artifact bundle),
-   replace section 6 with:
-     "Generate only: [A] CQ (8 questions) and [B] SPS (10 problems)."
-   and omit sections 7 and 8.
-
-2. ASSESSMENT-ONLY MODE
-   To generate just the artifact bundle for an existing lecture, replace
-   sections 1–5 with:
-     "The lecture content is provided below. Generate only sections 6–8."
-   Then paste the existing lecture body.
-
-3. TIER-SPECIFIC VERSION
-   To generate a version for a single tier only, add:
-     "Generate all content exclusively for Tier [N] ([TIER_LABEL]).
-      Do not include multi-tier differentiation tables."
-
-4. SERIES III (Quantum Chemistry) ADAPTATION
-   For Series III modules, additionally include:
-     "Use [chembox] tcolorbox style instead of [modulebox].
-      Replace programme colour scheme: chemgreen / lightgreen."
-   And add to notation conventions:
-     - Molecular Hamiltonian: \hat{H} = \hat{T}_n + \hat{T}_e + \hat{V}_{ne}
-                               + \hat{V}_{ee} + \hat{V}_{nn}
-     - Basis functions: Slater-type (STO) or Gaussian-type (GTO) as appropriate
-     - Density functional: E_{xc}[\rho]
-
-5. CHAINING LECTURES
-   To generate a sequence of lectures consistently, add to the prompt:
-     "This is lecture [N] of [TOTAL] in module [MODULE_CODE].
-      The following lectures have already been generated: [LIST].
-      Ensure all cross-references and forward connections are consistent."
-
 ================================================================================
-EXAMPLE: FILLED-IN PROMPT FOR MODULE I.2 LECTURE L05
+SECTION 9 (NEW): TIERED BIBLIOGRAPHY ENTRIES
 ================================================================================
 
-  Programme : Quantum Mechanics & Quantum Chemistry
-  Hierarchy : Series I > Module I.2 > Lecture L05
-  Series    : Series I — Introductory Quantum Mechanics
-  Module    : Module I.2 — Bra-Ket Notation and the Language of QM
-  Lecture   : L05 — Completeness, Change of Basis & Matrix Mechanics
-  Duration  : 90 minutes
-  Target tiers: [x] Tier 2 (BegUG)  [x] Tier 3 (AdvUG)  [x] Tier 4 (MSc)
+For each new lecture generated, also produce the following bibliography additions
+to be incorporated into the companion "QM Programme: Tiered Bibliography" document.
 
-  Preceding lecture  : L04 — Eigenkets, Projectors & Spectral Decomposition
-  Following lecture  : L06 — Continuous Bases: |x>, |p> & Delta Functions
-  Module prerequisites: Module I.1 (L01–L02)
-  Key concepts: Identity insertion, basis transforms, matrix representation
-                A_{mn} = <m|A|n>, unitary basis changes
+BIBLIOGRAPHY ENTRY FORMAT
+--------------------------
+For each entry provide:
+  - Author(s), Title, Publisher/Journal, Year
+  - Tier badge(s): [T1] [T2] [T3] [T4] [T5]
+  - Category tag: [N] [P] [T] [M]
+  - Star rating: ★★★ / ★★ / ★
+  - Annotation (2-4 sentences): link to specific module/lecture codes and
+    to specific artifact types (SPSU problems, WRQ/ORQ prompts, etc.)
 
-  [Generate all 8 sections as specified above.]
+GENERATE THE FOLLOWING BIBLIOGRAPHY BLOCKS:
+
+[BIB-T1] Tier 1 additions (if any new [N] entries apply to this lecture)
+  Format: 0-2 entries; popular/narrative only; no formalism required.
+
+[BIB-T2] Tier 2 additions
+  Format: 1-2 new textbook entries with chapter-level annotation.
+
+[BIB-T3] Tier 3 additions
+  Format: 1 textbook entry (bridge text) + 1 primary paper [P] with
+  annotation linking to Tier 3 CPSU problems and WRQ prompts.
+
+[BIB-T4] Tier 4 additions
+  Format: 1-2 graduate textbook or review entries + 1-2 key papers [P]
+  with annotation linking to CPSG problems and WRQ/ORQ prompts.
+
+[BIB-T5] Tier 5 additions
+  Format: 1 monograph [M] + 1-2 primary papers [P] with annotation
+  linking to CPJG projects and ORQ prompts.
+
+[BIB-CAT] Catalogue entries
+  Format: Provide the entry as it would appear in each relevant category
+  (A through F) of the full alphabetical catalogue, with tier badge(s).
+
+CATALOGUE CATEGORY ASSIGNMENTS:
+  [N] entries → Category A (Popular)
+  [T] Tiers 1-3 → Category B (Undergraduate Textbooks)
+  [T] Tiers 4-5 → Category C (Graduate Textbooks)
+  [M] entries → Category D (Research Monographs)
+  [P] entries → Category E (Primary Papers)
+  [R] entries → Category F (Review Articles)
+
+QUALITY CHECKS FOR BIBLIOGRAPHY ENTRIES:
+  [ ] Every entry annotated with at least one module code and lecture code
+  [ ] Every entry linked to at least one artifact type
+  [ ] Star ratings consistent with tier expectations
+  [ ] Category assignment matches type tag
+  [ ] No duplicate entries from existing catalogue [A1-A7, B1-B12, C1-C15,
+      D1-D7, E1-E14, F1-F3]
 
 ================================================================================
-END OF FILE
+END OF SECTION 9
 ================================================================================

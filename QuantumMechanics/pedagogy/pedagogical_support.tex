@@ -1,13 +1,14 @@
 %=============================================================
 %  PEDAGOGICAL SUPPORT MATERIAL
 %  Quantum Mechanics & Quantum Chemistry Programme
-%  Learning Tiers + Assessment Artifact Set
+%  Learning Tiers + Assessment Artifact Set (Revised Taxonomy)
 %=============================================================
 \documentclass[11pt,a4paper]{article}
 
 %--- Packages ------------------------------------------------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{fix-cm}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
@@ -22,8 +23,7 @@
 \usepackage{hyperref}
 \usepackage{parskip}
 \usepackage{tcolorbox}
-\usepackage{mdframed}
-\tcbuselibrary{skins,breakable,listings}
+\tcbuselibrary{skins,breakable}
 
 %--- Colours -------------------------------------------------
 \definecolor{darkblue}{RGB}{10,40,90}
@@ -33,13 +33,26 @@
 \definecolor{lightgold}{RGB}{255,248,220}
 \definecolor{darkgray}{RGB}{60,60,60}
 \definecolor{lightgray}{RGB}{245,245,245}
+% Tier colours
 \definecolor{tier1col}{RGB}{180,230,180}
 \definecolor{tier2col}{RGB}{150,210,240}
 \definecolor{tier3col}{RGB}{200,180,240}
 \definecolor{tier4col}{RGB}{255,210,150}
 \definecolor{tier5col}{RGB}{255,170,150}
-\definecolor{artteal}{RGB}{20,110,100}
-\definecolor{lightartteal}{RGB}{210,240,238}
+% Undergrad track colours
+\definecolor{ugblue}{RGB}{25,90,170}
+\definecolor{lightugblue}{RGB}{215,230,255}
+\definecolor{uggreen}{RGB}{20,120,70}
+\definecolor{lightuggreen}{RGB}{210,245,225}
+% Grad track colours
+\definecolor{gradred}{RGB}{160,30,30}
+\definecolor{lightgradred}{RGB}{255,220,215}
+\definecolor{gradorange}{RGB}{170,80,10}
+\definecolor{lightgradorange}{RGB}{255,235,210}
+% Research track colours
+\definecolor{respath}{RGB}{90,20,130}
+\definecolor{lightrespath}{RGB}{240,220,255}
+% Rubric colour
 \definecolor{artpurple}{RGB}{100,30,130}
 \definecolor{lightartpurple}{RGB}{235,215,245}
 
@@ -71,23 +84,66 @@
     enhanced, breakable,
     colframe=#1!80!black,
     colback=#1!15!white,
-    fonttitle=\bfseries\color{white},
-    coltitle=white,
+    fonttitle=\bfseries\color{white}, coltitle=white,
     attach boxed title to top left={yshift=-2mm, xshift=4mm},
     boxed title style={colback=#1!80!black, sharp corners, boxrule=0.5pt},
     sharp corners=south, boxrule=0.8pt,
     left=6pt, right=6pt, top=8pt, bottom=6pt,
   },
-  artifactbox/.style={
+  % Undergrad concept/problem boxes
+  ugconceptbox/.style={
     enhanced, breakable,
-    colback=lightartteal, colframe=artteal,
+    colback=lightugblue, colframe=ugblue,
     fonttitle=\bfseries\color{white}, coltitle=white,
     attach boxed title to top left={yshift=-2mm, xshift=4mm},
-    boxed title style={colback=artteal, colframe=artteal!80!black,
+    boxed title style={colback=ugblue, colframe=ugblue!80!black,
       sharp corners, boxrule=0.5pt},
     sharp corners=south, boxrule=0.8pt,
     left=6pt, right=6pt, top=8pt, bottom=6pt,
   },
+  ugprobbox/.style={
+    enhanced, breakable,
+    colback=lightuggreen, colframe=uggreen,
+    fonttitle=\bfseries\color{white}, coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=uggreen, colframe=uggreen!80!black,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south, boxrule=0.8pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+  % Grad concept/problem boxes
+  gradconceptbox/.style={
+    enhanced, breakable,
+    colback=lightgradred, colframe=gradred,
+    fonttitle=\bfseries\color{white}, coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=gradred, colframe=gradred!80!black,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south, boxrule=0.8pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+  gradprobbox/.style={
+    enhanced, breakable,
+    colback=lightgradorange, colframe=gradorange,
+    fonttitle=\bfseries\color{white}, coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=gradorange, colframe=gradorange!80!black,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south, boxrule=0.8pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+  % Research track
+  researchbox/.style={
+    enhanced, breakable,
+    colback=lightrespath, colframe=respath,
+    fonttitle=\bfseries\color{white}, coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=respath, colframe=respath!80!black,
+      sharp corners, boxrule=0.5pt},
+    sharp corners=south, boxrule=0.8pt,
+    left=6pt, right=6pt, top=8pt, bottom=6pt,
+  },
+  % Rubric and utility boxes
   rubricbox/.style={
     enhanced,
     colback=lightartpurple, colframe=artpurple,
@@ -111,20 +167,38 @@
     left=5pt, right=5pt, top=4pt, bottom=4pt,
     fontupper=\small\itshape,
   },
+  trackheaderUG/.style={
+    enhanced,
+    colback=ugblue!12!white, colframe=ugblue,
+    boxrule=1.2pt, sharp corners,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+    fontupper=\bfseries\large\color{ugblue},
+  },
+  trackheaderGRAD/.style={
+    enhanced,
+    colback=gradred!12!white, colframe=gradred,
+    boxrule=1.2pt, sharp corners,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+    fontupper=\bfseries\large\color{gradred},
+  },
+  trackheaderRES/.style={
+    enhanced,
+    colback=respath!12!white, colframe=respath,
+    boxrule=1.2pt, sharp corners,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+    fontupper=\bfseries\large\color{respath},
+  },
 }
 
 \newcommand{\instructornote}[1]{%
-  \begin{tcolorbox}[notebox]
-    \textbf{Instructor note:} #1
-  \end{tcolorbox}%
+  \begin{tcolorbox}[notebox]\textbf{Instructor note:} #1\end{tcolorbox}%
 }
-
-\newcommand{\capabilityrow}[2]{\textbf{#1} & #2 \\}
-
-%--- Tier colour commands ------------------------------------
 \newcommand{\tiertag}[2]{%
   \colorbox{#1}{\small\bfseries\color{darkblue}\ #2\ }%
 }
+\newcommand{\essential}{$\bigstar\bigstar\bigstar$}
+\newcommand{\recommended}{$\bigstar\bigstar$}
+\newcommand{\usefulsup}{$\bigstar$}
 
 %=============================================================
 \begin{document}
@@ -139,23 +213,28 @@
   {\fontsize{26}{32}\selectfont\bfseries Pedagogical Support Material}\\[0.5cm]
   {\fontsize{16}{22}\selectfont Quantum Mechanics \& Quantum Chemistry Programme}\\[0.6cm]
   {\color{accentgold}\rule{10cm}{2pt}}\\[0.6cm]
-  {\large\itshape For Students and Instructors}\\[2.5cm]
+  {\large\itshape For Students and Instructors}\\[2cm]
   \begin{tabular}{cl}
-    \textbf{Section~1:} & Learning Tiers (HS $\to$ PhD) --- Definitions, Competencies\\[4pt]
-                        & \quad and a Worked Example from Bra-Ket Module I.2\\[8pt]
-    \textbf{Section~2:} & Assessment Artifact Set --- Full Taxonomy,\\[4pt]
-                        & \quad Templates, Rubrics, and Packaging Standard\\
-  \end{tabular}\\[3cm]
+    \textbf{Section~1:} & Learning Tiers (HS $\to$ PhD)\\[2pt]
+                        & \quad Definitions, Competencies \& Worked Example (Module~I.2)\\[8pt]
+    \textbf{Section~2:} & Assessment Artifact Set --- Revised Taxonomy\\[2pt]
+                        & \quad \textit{Undergraduate Track} (SCQU, CCQU, SPSU, CPSU, SPJU, CPJU)\\[2pt]
+                        & \quad \textit{Graduate Track} (SCQG, CCQG, SPSG, CPSG, SPJG, CPJG)\\[2pt]
+                        & \quad \textit{Research Track} (WRQ $\times$5, ORQ $\times$5)\\[8pt]
+    \textbf{Section~3:} & Tiered Bibliography --- Structure \& Design Principles\\[2pt]
+                        & \quad (Full reading lists in companion document\\[2pt]
+                        & \quad \textit{QM Programme: Tiered Bibliography})\\
+  \end{tabular}\\[2cm]
   {\color{accentgold}\rule{10cm}{1pt}}\\[0.5cm]
-  {\small\itshape This document is a companion to the Course Syllabus.\\
-  It sets out the shared language for \emph{how} material is taught and assessed\\
-  across all Series and Modules of the programme.}
+  {\small\itshape v3 --- Companion to the Course Syllabus.\\
+  Sets the shared language for \emph{how} material is taught and assessed\\
+  across all Series and Modules of the programme.\\[4pt]
+  See also: \textbf{QM Programme: Tiered Bibliography} (separate companion document)}
 \end{center}
 \vfill
 \end{titlepage}
 \nopagecolor
 
-%--- Table of Contents ---------------------------------------
 \tableofcontents
 \newpage
 
@@ -167,28 +246,29 @@
 \begin{tcolorbox}[goldbox]
 This document serves two audiences simultaneously.
 
-\medskip
-\noindent\textbf{For students:} It explains exactly what is expected of you at each stage of
-your education, and what kinds of tasks you will be asked to perform. Understanding the
-tier system and the artifact taxonomy before a course begins removes ambiguity about
-difficulty levels and grading expectations.
+\medskip\noindent\textbf{For students:} It explains what is expected at each stage of your
+education and what kinds of tasks you will be asked to perform. Understanding the tier
+system and the artifact taxonomy before a course begins removes ambiguity about difficulty
+levels and grading expectations.
 
-\medskip
-\noindent\textbf{For instructors:} It provides a reusable, course-independent specification
-for how to differentiate content and assessment. The tier system and artifact set described
-here apply uniformly across \emph{every lecture} in \emph{every module} of the programme.
-Consistency of language across Series~I, II, and III is a deliberate design choice.
+\medskip\noindent\textbf{For instructors:} It provides a reusable, course-independent
+specification for how to differentiate content and assessment. The tier system and
+revised artifact set described here apply uniformly across \emph{every lecture} of
+every module in the programme.
 \end{tcolorbox}
 
 \medskip
 \noindent\textbf{How the two sections connect.}
-Section~1 defines the \emph{audience} dimension: who is in the room and what they can be
-expected to bring. Section~2 defines the \emph{assessment} dimension: what tasks reveal
-mastery at each level.
-Together they answer the two questions every educator and student needs:
+Section~1 defines the \emph{audience} dimension. Section~2 defines the
+\emph{assessment} dimension, now organised into three tracks:
+
 \begin{itemize}[leftmargin=1.8em]
-  \item \textit{What level is this material pitched at?}
-  \item \textit{What does ``mastery'' look like for me at my level?}
+  \item \textcolor{ugblue}{\textbf{Undergraduate track}} (Tiers~1--3): six artifact types,
+        each with a simple and complex variant labelled \texttt{U}
+  \item \textcolor{gradred}{\textbf{Graduate track}} (Tiers~4--5): six parallel artifact
+        types with deeper scope, labelled \texttt{G}
+  \item \textcolor{respath}{\textbf{Research track}} (Tiers~4--5): five well-defined
+        and five open-ended research questions
 \end{itemize}
 
 \newpage
@@ -199,84 +279,80 @@ Together they answer the two questions every educator and student needs:
 
 \begin{tcolorbox}[goldbox]
 \textbf{Overview.}
-The programme is designed to be taught to a \emph{mixed cohort}: a single lecture or module
-may be attended simultaneously by high-school students with strong mathematical aptitude
-and PhD researchers extending their foundations.
-The five-tier system ensures every student finds appropriate entry points, stretch goals,
-and assessment tasks, without fragmenting the cohort into separate tracks.
+The programme is designed for a \emph{mixed cohort}: a lecture may be attended
+simultaneously by students with only secondary-school mathematics and PhD
+researchers extending their foundations.
+The five-tier system ensures every student finds appropriate entry points and
+stretch goals without fragmenting the cohort into separate tracks.
 
-\medskip
-\noindent The tiers are \emph{not grade labels}. They describe the prerequisite
-competency set a student brings and therefore what kind of engagement they can
-immediately sustain. A student may operate at different tiers for different topics
-(e.g.\ Tier~3 for linear algebra, Tier~2 for group theory).
+\medskip\noindent The tiers are \emph{not grade labels}. They describe the prerequisite
+competency set a student brings. A student may operate at different tiers for
+different topics (e.g.\ Tier~3 for linear algebra, Tier~2 for group theory).
+
+\medskip\noindent\textbf{Track alignment:}
+Tiers~1--3 correspond to the \textcolor{ugblue}{\textbf{Undergraduate track}};
+Tiers~4--5 correspond to the \textcolor{gradred}{\textbf{Graduate track}}
+and \textcolor{respath}{\textbf{Research track}}.
 \end{tcolorbox}
 
 %-------------------------------------------------------------
 \subsection{Tier Ladder at a Glance}
 
 \begin{center}
-\begin{tabular}{clp{8.5cm}}
+\begin{tabular}{cllp{6cm}}
 \toprule
-\textbf{Tier} & \textbf{Label} & \textbf{One-line description}\\
+\textbf{Tier} & \textbf{Label} & \textbf{Track} & \textbf{One-line description}\\
 \midrule
-1 & High School (HS)    & Amplitudes are complex arrows; probabilities are squared lengths\\
-2 & Beginning UG (BegUG) & Bases and components; compute probabilities with $\langle n|\psi\rangle$\\
-3 & Advanced UG (AdvUG)  & Inequalities; geometry and internal consistency of the formalism\\
-4 & Master's (MSc)       & Rays and projective space; symmetries via Wigner's theorem\\
-5 & PhD                  & Rigorous Hilbert space; separability; domain subtleties\\
+1 & High School (HS)       & \textcolor{ugblue}{Undergrad}  &
+    Amplitudes are complex arrows; probabilities are squared lengths\\
+2 & Beginning UG (BegUG)   & \textcolor{ugblue}{Undergrad}  &
+    Bases and components; compute probabilities with $\langle n|\psi\rangle$\\
+3 & Advanced UG (AdvUG)    & \textcolor{ugblue}{Undergrad}  &
+    Inequalities; geometry and internal consistency of the formalism\\
+4 & Master's (MSc)         & \textcolor{gradred}{Graduate}  &
+    Rays and projective space; symmetries via Wigner's theorem\\
+5 & PhD                    & \textcolor{gradred}{Graduate}  &
+    Rigorous Hilbert space; separability; domain subtleties\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\medskip
-The five tiers form a \emph{cumulative} ladder: every competency at Tier $k$ is assumed
-at Tier $k{+}1$.
-Instructors should always state which tier(s) a given lecture segment targets.
-
 %-------------------------------------------------------------
 \subsection{Tier Definitions and Competencies}
 
-%--- Tier 1 --------------------------------------------------
-\begin{tcolorbox}[tierbox=tier1col, title={Tier 1 --- High School (HS)}]
+\begin{tcolorbox}[tierbox=tier1col, title={Tier 1 --- High School (HS)\ \ \normalfont\small[\textcolor{ugblue}{Undergraduate track}]}]
 \textbf{Goal:} Build the \emph{intuition tools} needed for amplitudes and interference.
 
-\medskip
-\noindent\textbf{Core competencies:}
+\medskip\noindent\textbf{Core competencies:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Complex numbers as ``2D arrows'': $a+ib$, magnitude $|z|$, phase $\arg z$
-  \item \textbf{Magnitude squared} as probability: $P \propto |A|^2$
-  \item \textbf{Vector addition analogy}: adding complex amplitudes before squaring gives
-        interference
+  \item Magnitude squared as probability: $P\propto|A|^2$
+  \item Vector addition analogy: adding complex amplitudes before squaring gives interference
   \item Basic probability: events, normalisation (``total probability = 1'')
 \end{itemize}
 
-\medskip
-\noindent\textbf{You should be able to:}
+\medskip\noindent\textbf{You should be able to:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Compute $|a+ib|^2$
-  \item Understand why $|A_1+A_2|^2\neq |A_1|^2+|A_2|^2$ in general
+  \item Understand why $|A_1+A_2|^2\neq|A_1|^2+|A_2|^2$ in general
 \end{itemize}
 \end{tcolorbox}
 
 \medskip
-%--- Tier 2 --------------------------------------------------
-\begin{tcolorbox}[tierbox=tier2col, title={Tier 2 --- Beginning Undergraduate (BegUG)}]
+\begin{tcolorbox}[tierbox=tier2col, title={Tier 2 --- Beginning Undergraduate (BegUG)\ \ \normalfont\small[\textcolor{ugblue}{Undergraduate track}]}]
 \textbf{Goal:} Become fluent in the \emph{working language} of bras, kets, bases,
 and probabilities.
 
-\medskip
-\noindent\textbf{Core competencies:}
+\medskip\noindent\textbf{Core competencies:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Normalisation: $\langle\psi|\psi\rangle=1$
   \item Orthonormal bases: $\langle m|n\rangle=\delta_{mn}$
   \item Components as inner products: $c_n=\langle n|\psi\rangle$
   \item Probabilities: $P(n)=|c_n|^2$
-  \item ``Insert identity'' in discrete form: $\displaystyle\sum_n |n\rangle\langle n|=\hat{\mathbb{1}}$
+  \item Insert identity (discrete): $\displaystyle\sum_n|n\rangle\langle n|=\hat{\mathbb{1}}$
 \end{itemize}
 
-\medskip
-\noindent\textbf{You should be able to:}
+\medskip\noindent\textbf{You should be able to:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Expand a state in a basis and compute probabilities
   \item Translate between $|\psi\rangle$ and its coordinate column vector in a chosen basis
@@ -284,24 +360,18 @@ and probabilities.
 \end{tcolorbox}
 
 \medskip
-%--- Tier 3 --------------------------------------------------
-\begin{tcolorbox}[tierbox=tier3col, title={Tier 3 --- Advanced Undergraduate (AdvUG)}]
+\begin{tcolorbox}[tierbox=tier3col, title={Tier 3 --- Advanced Undergraduate (AdvUG)\ \ \normalfont\small[\textcolor{ugblue}{Undergraduate track}]}]
 \textbf{Goal:} Understand why the formalism is \emph{internally consistent} and geometric.
 
-\medskip
-\noindent\textbf{Core competencies:}
+\medskip\noindent\textbf{Core competencies:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item \textbf{Cauchy--Schwarz inequality}:
-        $|\langle\phi|\psi\rangle|^2 \le \langle\phi|\phi\rangle\langle\psi|\psi\rangle$
-  \item \textbf{Triangle inequality} for norms:
-        $\|\phi+\psi\|\le\|\phi\|+\|\psi\|$
-  \item Metric/geometric viewpoint:
-        overlaps behave like cosines of angles (up to phase);
-        distance from $\|\phi-\psi\|$ (with phase caveats)
+  \item Cauchy--Schwarz inequality:
+        $|\langle\phi|\psi\rangle|^2\le\langle\phi|\phi\rangle\langle\psi|\psi\rangle$
+  \item Triangle inequality: $\|\phi+\psi\|\le\|\phi\|+\|\psi\|$
+  \item Metric/geometric viewpoint: overlaps as cosines, distance from $\|\phi-\psi\|$
 \end{itemize}
 
-\medskip
-\noindent\textbf{You should be able to:}
+\medskip\noindent\textbf{You should be able to:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Prove basic inequalities in Hilbert space
   \item Explain why overlaps and probabilities are bounded by 1 for normalised states
@@ -310,368 +380,362 @@ and probabilities.
 \end{tcolorbox}
 
 \medskip
-%--- Tier 4 --------------------------------------------------
-\begin{tcolorbox}[tierbox=tier4col, title={Tier 4 --- Master's (MSc)}]
+\begin{tcolorbox}[tierbox=tier4col, title={Tier 4 --- Master's (MSc)\ \ \normalfont\small[\textcolor{gradred}{Graduate track}]}]
 \textbf{Goal:} Shift from ``vectors as states'' to \emph{rays as states} and connect
 to symmetry theory.
 
-\medskip
-\noindent\textbf{Core competencies:}
+\medskip\noindent\textbf{Core competencies:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item \textbf{Rays / projective Hilbert space}: physical states are equivalence classes
+  \item Rays / projective Hilbert space: physical states are equivalence classes
         $|\psi\rangle\sim e^{i\theta}|\psi\rangle$; pure states are points in
         $\mathbb{P}(\mathcal{H})$
-  \item \textbf{Wigner theorem preview}: transformations preserving transition probabilities
-        $|\langle\phi|\psi\rangle|^2$ are implemented by \emph{unitary or antiunitary} operators
+  \item Wigner theorem preview: transformations preserving
+        $|\langle\phi|\psi\rangle|^2$ are unitary or antiunitary
 \end{itemize}
 
-\medskip
-\noindent\textbf{You should be able to:}
+\medskip\noindent\textbf{You should be able to:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Explain why global phase is unphysical and why rays are the correct objects
-  \item State what Wigner's theorem says and why it matters for symmetries
+  \item State Wigner's theorem and why it matters for symmetries
 \end{itemize}
 \end{tcolorbox}
 
 \medskip
-%--- Tier 5 --------------------------------------------------
-\begin{tcolorbox}[tierbox=tier5col, title={Tier 5 --- PhD}]
+\begin{tcolorbox}[tierbox=tier5col, title={Tier 5 --- PhD\ \ \normalfont\small[\textcolor{gradred}{Graduate track}]}]
 \textbf{Goal:} Make all foundational statements \emph{mathematically precise} and know
 where physics shorthand hides subtleties.
 
-\medskip
-\noindent\textbf{Core competencies:}
+\medskip\noindent\textbf{Core competencies:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Precise definition of \textbf{Hilbert space} (inner product + completeness)
-  \item \textbf{Separability} (existence of a countable orthonormal basis / countable dense subset)
-        and why it is assumed in most QM
-  \item Rays as \textbf{1D subspaces} (not just ``vectors up to phase'')
-  \item Operator subtleties: Hermitian vs.\ self-adjoint (domains matter);
-        generalised eigenvectors and distributional states (rigged Hilbert spaces)
+  \item Precise definition of Hilbert space (inner product + completeness)
+  \item Separability (countable orthonormal basis / countable dense subset)
+  \item Rays as 1D subspaces; $\mathbb{P}(\mathcal{H})$ as a metric space
+  \item Operator subtleties: Hermitian vs.\ self-adjoint; generalised eigenvectors;
+        rigged Hilbert spaces
 \end{itemize}
 
-\medskip
-\noindent\textbf{You should be able to:}
+\medskip\noindent\textbf{You should be able to:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Distinguish informal bra-ket manipulations from rigorous operator statements
+  \item Distinguish informal bra-ket from rigorous operator statements
   \item Discuss why separability matters for spectral decompositions
   \item Frame state space as a projective object and symmetry as structure on that space
 \end{itemize}
 \end{tcolorbox}
 
 %-------------------------------------------------------------
-\subsection{What Changes Across Tiers (Without Changing the Artifact)}
+\subsection{What Changes Across Tiers (Same Artifact, Different Depth)}
 
-\instructornote{%
-  The same assignment can be given to all tiers simultaneously. What changes is the
-  \emph{language}, the required \emph{rigor}, and the \emph{scope}.
-  The table below illustrates this for the ``phase invariance'' concept.
-}
+\instructornote{The same assignment can be given to all tiers simultaneously.
+What changes is the \emph{language}, the required \emph{rigor}, and the \emph{scope}.
+Below: ``phase invariance'' across all five tiers.}
 
 \begin{center}
 \begin{tabular}{lp{10.5cm}}
 \toprule
 \textbf{Tier} & \textbf{How ``phase invariance'' is engaged}\\
 \midrule
-HS     & ``Why doesn't the arrow's overall rotation matter for length?'' ---
-         intuitive analogy, no algebra required\\
-BegUG  & Compute $|e^{i\theta}c_n|^2 = |c_n|^2$; verify numerically for
-         a 2-component example\\
-AdvUG  & Prove phase invariance of all probabilities for an arbitrary orthonormal
-         basis expansion\\
-MSc    & Interpret as well-definedness of the map $|\psi\rangle\mapsto$ probabilities
-         on rays in projective space $\mathbb{P}(\mathcal{H})$\\
-PhD    & Formalise rays as 1D subspaces; identify the $U(1)$ fiber structure of the
-         Hopf fibration $S^1\to S^{2n+1}\to\mathbb{CP}^n$\\
+HS     & ``Why doesn't the arrow's overall rotation matter for length?'' --- intuitive analogy\\
+BegUG  & Compute $|e^{i\theta}c_n|^2=|c_n|^2$; verify for a 2-component example\\
+AdvUG  & Prove phase invariance for all probabilities in any orthonormal basis expansion\\
+MSc    & Well-definedness of Born-rule map on rays in $\mathbb{P}(\mathcal{H})$\\
+PhD    & Formalise as $U(1)$ fiber structure; Hopf fibration
+        $S^1\to S^{2n+1}\to\mathbb{CP}^n$\\
 \bottomrule
 \end{tabular}
 \end{center}
 
 %-------------------------------------------------------------
-\subsection{Worked Example: Bra-Ket Module I.2, Lecture L01}
+\subsection{Worked Example: Module I.2 --- Lecture L01}
 
-The following shows how a single lecture --- \textbf{Module~I.2, Lecture~L01:
-\textit{Why Dirac Notation? States as Rays \& Superposition}} --- is differentiated
-across all five tiers. This is the template for every lecture in the programme.
+The following shows how \textbf{Lecture L01: \textit{Why Dirac Notation? States as
+Rays \& Superposition}} is differentiated across all five tiers. This pattern repeats
+for every lecture in the programme.
 
 \begin{tcolorbox}[goldbox]
-\textbf{Lecture L01 topic:} States, kets, rays, global phase, Born rule preview.
+\textbf{L01 topic:} States, kets, rays, global phase, Born rule preview.
 Dual Sakurai (operational) and Dirac (abstract) perspectives.
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[tierbox=tier1col, title={Tier 1 (HS) --- L01 engagement}]
-\textbf{Key question:} What is a quantum state, informally?
-
-\medskip
-\textbf{Content focus:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item $|z|^2$ as probability; interference example with two paths
-  \item Ket as a ``direction arrow'' in an abstract space
-  \item Born rule as ``probability = squared amplitude''
-  \item Why rotating the arrow globally (multiplying by $e^{i\theta}$) does
-        not change any measurement outcome
-\end{itemize}
-
-\textbf{Signature problem:}
-Given $A_1=\tfrac{1}{\sqrt{2}}$, $A_2=\tfrac{i}{\sqrt{2}}$, compute the
-total probability for a detector that sums both amplitudes. Verify it equals 1.
+\begin{tcolorbox}[tierbox=tier1col, title={Tier 1 (HS) --- L01}]
+\textbf{Focus:} $|z|^2$ as probability; interference with two paths; ket as a
+``direction arrow''; why global rotation of the arrow changes nothing.\\[4pt]
+\textbf{Signature problem:} Given $A_1=\tfrac{1}{\sqrt{2}}$, $A_2=\tfrac{i}{\sqrt{2}}$,
+compute total probability; verify it equals 1.
 \end{tcolorbox}
 
 \medskip
-\begin{tcolorbox}[tierbox=tier2col, title={Tier 2 (BegUG) --- L01 engagement}]
-\textbf{Key question:} How do I write and work with quantum states?
-
-\medskip
-\textbf{Content focus:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Normalisation $\langle\psi|\psi\rangle=1$; components $c_n=\langle n|\psi\rangle$
-  \item Notation dictionary: ket $\leftrightarrow$ column vector $\leftrightarrow$ wavefunction
-  \item Build a 2-state example (spin-$\tfrac{1}{2}$) explicitly
-\end{itemize}
-
-\textbf{Signature problem:}
-Write $|\psi\rangle = \tfrac{3}{5}|+\rangle+\tfrac{4}{5}|-\rangle$.
-Verify normalization. Find $P(+)$ and $P(-)$. Change the global phase by
-$e^{i\pi/3}$ and confirm probabilities are unchanged.
+\begin{tcolorbox}[tierbox=tier2col, title={Tier 2 (BegUG) --- L01}]
+\textbf{Focus:} Normalisation; components $c_n=\langle n|\psi\rangle$; notation dictionary.\\[4pt]
+\textbf{Signature problem:} $|\psi\rangle=\tfrac{3}{5}|{+}\rangle+\tfrac{4}{5}|{-}\rangle$.
+Verify normalisation; find $P(+)$ and $P(-)$; multiply by $e^{i\pi/3}$; confirm
+probabilities unchanged.
 \end{tcolorbox}
 
 \medskip
-\begin{tcolorbox}[tierbox=tier3col, title={Tier 3 (AdvUG) --- L01 engagement}]
-\textbf{Key question:} Why is global phase exactly unobservable?
-
-\medskip
-\textbf{Content focus:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Cauchy--Schwarz as bound on all overlaps
-  \item Prove that $|\psi\rangle$ and $e^{i\theta}|\psi\rangle$ give identical
-        probabilities for \emph{any} observable in \emph{any} orthonormal basis
-  \item Discuss why \emph{relative} phase (between components) is physical
-\end{itemize}
-
-\textbf{Signature problem:}
-Prove that for any normalised $|\psi\rangle$, any orthonormal basis $\{|n\rangle\}$,
-and any $\theta\in\mathbb{R}$: $|\langle n|e^{i\theta}|\psi\rangle|^2 = |\langle n|\psi\rangle|^2$
-for all $n$, and conclude the total probability is also invariant.
+\begin{tcolorbox}[tierbox=tier3col, title={Tier 3 (AdvUG) --- L01}]
+\textbf{Focus:} Prove global phase is exactly unobservable; distinguish global from
+relative phase.\\[4pt]
+\textbf{Signature problem:} Prove that for any normalised $|\psi\rangle$, any ONB
+$\{|n\rangle\}$, and any $\theta\in\mathbb{R}$:
+$|\langle n|e^{i\theta}|\psi\rangle|^2=|\langle n|\psi\rangle|^2$ for all $n$.
 \end{tcolorbox}
 
 \medskip
-\begin{tcolorbox}[tierbox=tier4col, title={Tier 4 (MSc) --- L01 engagement}]
-\textbf{Key question:} What is the correct mathematical object for a quantum state?
-
-\medskip
-\textbf{Content focus:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Rays as equivalence classes; projective Hilbert space $\mathbb{P}(\mathcal{H})$
-  \item The Born-rule map $\mathbb{P}(\mathcal{H})\to[0,1]$ is well-defined on rays
-  \item Preview: Wigner's theorem classifies symmetries of $\mathbb{P}(\mathcal{H})$
-\end{itemize}
-
-\textbf{Signature problem:}
-Define the equivalence relation on $\mathcal{H}\setminus\{0\}$ that defines rays.
-Show the Born-rule probability $|\langle a|\psi\rangle|^2$ depends only on the ray $[\psi]$,
-not the representative $|\psi\rangle$. What would it mean for a map between physical states
-to be a ``symmetry''?
+\begin{tcolorbox}[tierbox=tier4col, title={Tier 4 (MSc) --- L01}]
+\textbf{Focus:} Rays as equivalence classes; projective Hilbert space
+$\mathbb{P}(\mathcal{H})$; Born-rule map well-defined on rays; preview of Wigner's theorem.\\[4pt]
+\textbf{Signature problem:} Define the ray equivalence relation; show Born-rule probability
+depends only on $[\psi]$, not the representative; frame what a ``symmetry'' of physical
+states means.
 \end{tcolorbox}
 
 \medskip
-\begin{tcolorbox}[tierbox=tier5col, title={Tier 5 (PhD) --- L01 engagement}]
-\textbf{Key question:} What foundational structures does quantum mechanics actually require?
-
-\medskip
-\textbf{Content focus:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Precise Hilbert space definition; role of completeness and separability
-  \item Rays as 1D subspaces; $\mathbb{P}(\mathcal{H})$ as a metric space
-        (Fubini--Study metric)
-  \item Wigner's theorem (statement in full): every symmetry of $\mathbb{P}(\mathcal{H})$
-        lifts to a unitary or antiunitary operator on $\mathcal{H}$
-\end{itemize}
-
-\textbf{Signature problem:}
-(a) State the definition of a separable Hilbert space.
-(b) Why does separability guarantee a countable orthonormal basis?
-(c) State Wigner's theorem precisely, including the lifting ambiguity ($\pm$ and $U(1)$ phase).
-(d) Give one example of an antiunitary symmetry in QM and explain its physical significance.
+\begin{tcolorbox}[tierbox=tier5col, title={Tier 5 (PhD) --- L01}]
+\textbf{Focus:} Hilbert space completeness; separability; rays as 1D subspaces;
+Fubini--Study metric; full statement of Wigner's theorem.\\[4pt]
+\textbf{Signature problem:} (a) State the definition of a separable Hilbert space.
+(b) Why does separability guarantee a countable ONB?
+(c) State Wigner's theorem precisely, including the $U(1)$ lifting ambiguity.
+(d) Give one example of an antiunitary symmetry and explain its physical significance.
 \end{tcolorbox}
 
 \newpage
 %#############################################################
-\section{Assessment Artifact Set}
+\section{Assessment Artifact Set --- Revised Taxonomy}
 \label{sec:artifacts}
 %#############################################################
 
 \begin{tcolorbox}[goldbox]
-\textbf{Design goals.} Each lecture should assess \emph{four distinct capabilities}:
+\textbf{Design goals.} Each lecture assesses four capabilities:
 \begin{enumerate}[leftmargin=2em,itemsep=2pt]
   \item \textbf{Conceptual understanding} --- can you explain it?
   \item \textbf{Procedural fluency} --- can you compute it?
   \item \textbf{Structural mastery} --- can you prove or derive it?
-  \item \textbf{Transfer \& creation} --- can you apply it to a new context, or
-        ask new questions?
+  \item \textbf{Transfer \& creation} --- can you apply it to a new context or ask new questions?
 \end{enumerate}
 
 \medskip
-The six artifact types defined in this section map cleanly onto these capabilities and
-are reusable across every lecture of every module in the programme.
+The revised taxonomy provides \textbf{parallel sets} for the undergraduate and
+graduate tracks, plus a shared research track, for a total of \textbf{14 artifact
+types} per lecture. Each type has a defined count, scope, and rubric.
 \end{tcolorbox}
+
+%-------------------------------------------------------------
+\subsection{Complete Artifact Taxonomy at a Glance}
+
+\begin{center}
+\begin{tabular}{llllr}
+\toprule
+\textbf{Code} & \textbf{Full Name} & \textbf{Track} & \textbf{Tiers} & \textbf{Count}\\
+\midrule
+\multicolumn{5}{l}{\textit{\textcolor{ugblue}{\textbf{Undergraduate Concept \& Problem Artifacts}}}}\\
+SCQU & Simple Concept Questions --- Undergrad   & UG & 1--3 & 10 questions\\
+CCQU & Complex Concept Questions --- Undergrad  & UG & 2--3 & 10 questions\\
+SPSU & Simple Problem Set --- Undergrad         & UG & 1--3 & 10 problems\\
+CPSU & Complex Problem Set --- Undergrad        & UG & 3    & 5 problems\\
+SPJU & Simple Project --- Undergrad             & UG & 2--3 & 1 project\\
+CPJU & Complex Project --- Undergrad            & UG & 3    & 1 project\\
+\midrule
+\multicolumn{5}{l}{\textit{\textcolor{gradred}{\textbf{Graduate Concept \& Problem Artifacts}}}}\\
+SCQG & Simple Concept Questions --- Grad        & Grad & 4--5 & 10 questions\\
+CCQG & Complex Concept Questions --- Grad       & Grad & 4--5 & 10 questions\\
+SPSG & Simple Problem Set --- Grad              & Grad & 4--5 & 10 problems\\
+CPSG & Complex Problem Set --- Grad             & Grad & 4--5 & 5 problems\\
+SPJG & Simple Project --- Grad                  & Grad & 4--5 & 5 projects\\
+CPJG & Complex Project --- Grad                 & Grad & 4--5 & 5 projects\\
+\midrule
+\multicolumn{5}{l}{\textit{\textcolor{respath}{\textbf{Research Track (shared Tiers 4--5)}}}}\\
+WRQ  & Well-Defined Research Question           & Research & 4--5 & 5 questions\\
+ORQ  & Open-Ended Research Question             & Research & 4--5 & 5 questions\\
+\midrule
+ & \multicolumn{3}{l}{\textbf{Total artifacts per lecture}} & \textbf{92 items}\\
+\bottomrule
+\end{tabular}
+\end{center}
 
 %-------------------------------------------------------------
 \subsection{Capability--Artifact Mapping}
 
 \begin{center}
-\begin{tabularx}{\textwidth}{lX}
+\begin{tabularx}{\textwidth}{lXX}
 \toprule
-\textbf{Capability} & \textbf{Artifact(s)}\\
+\textbf{Capability} & \textbf{UG artifacts} & \textbf{Grad artifacts}\\
 \midrule
-Conceptual understanding  & Concept Questions (CQ)\\
-Procedural fluency        & Simple Problem Set (SPS)\\
-Structural mastery        & Complex Problem Set (CPS)\\
-Transfer (engineering)    & Simple Project (SPJ)\\
-Transfer (synthesis)      & Complex Project (CPJ)\\
-Creation \& frontier thinking & Well-Defined Research Question (WRQ);
-                                Open-Ended Research Question (ORQ)\\
+Conceptual understanding & SCQU, CCQU & SCQG, CCQG\\
+Procedural fluency       & SPSU       & SPSG\\
+Structural mastery       & CPSU       & CPSG\\
+Transfer (engineering)   & SPJU       & SPJG ($\times 5$)\\
+Transfer (synthesis)     & CPJU       & CPJG ($\times 5$)\\
+Creation / frontier      & ---        & WRQ ($\times 5$), ORQ ($\times 5$)\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-%-------------------------------------------------------------
-\subsection{Artifact 1: Concept Questions (CQ)}
+\newpage
+%=============================================================
+\subsection{Undergraduate Track Artifacts}
+\label{sec:ug-artifacts}
+%=============================================================
 
-\begin{tcolorbox}[artifactbox, title={CQ --- Concept Questions}]
+\begin{tcolorbox}[trackheaderUG]
+UNDERGRADUATE TRACK \ \ (Tiers 1--3: HS, BegUG, AdvUG)
+\end{tcolorbox}
 
-\textbf{Purpose:} Fast checks that a student has the \emph{right mental model},
-not just algebra.
+\bigskip
 
-\medskip
-\textbf{Deliverable format:}
+%--- SCQU ----------------------------------------------------
+\subsubsection{SCQU --- Simple Concept Questions (Undergrad)}
+
+\begin{tcolorbox}[ugconceptbox, title={SCQU --- Simple Concept Questions, Undergraduate \hfill\normalfont 10 questions}]
+
+\textbf{Purpose:} Fast checks that a Tier~1--3 student has the \emph{right mental model},
+not just algebra. Pitched at intuition and working-language levels.
+
+\medskip\textbf{Format:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item 6--10 short questions: mix of multiple-choice, true/false + justify,
-        and 2--3 sentence prompts
-  \item Designed for 10--15 minutes in class or as pre-lecture warmup
+  \item 10 questions --- mix of multiple-choice (4), true/false + one-sentence justify (4),
+        and 1--2 sentence short answer (2)
+  \item 15--20 minutes in class or as pre-lecture warmup
 \end{itemize}
 
-\medskip
-\textbf{Recommended counts by tier:}
+\medskip\textbf{Tier targeting:}
 \begin{center}
-\begin{tabular}{ll}
+\begin{tabular}{lp{9cm}}
 \toprule
-\textbf{Tier} & \textbf{Question count \& character}\\
-\midrule
-HS    & 6 (mostly qualitative)\\
-BegUG & 8 (qualitative + very short computations)\\
-AdvUG & 10 (include ``explain why'')\\
-MSc / PhD & 10 (include ``state assumptions'' + ``what fails if\ldots'')\\
+HS     & Qualitative only; language avoids formalism; diagrams welcome\\
+BegUG  & Qualitative + brief algebraic check (e.g.\ verify $|c_1|^2+|c_2|^2=1$)\\
+AdvUG  & Include ``identify the correct statement'' from near-equivalent options\\
 \bottomrule
 \end{tabular}
 \end{center}
-\end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[rubricbox, title={CQ Rubric}]
+\medskip\textbf{Example prompts (L01 style):}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item \textbf{2 points each:} correct answer \emph{and} explanation consistent
-  \item Total: 12--20 points depending on count
+  \item Why is $|\psi\rangle$ not ``a column vector'' until a basis is chosen?
+  \item What is physically meaningful: $\langle a|\psi\rangle$ or $|\langle a|\psi\rangle|^2$?
+  \item True/False: multiplying $|\psi\rangle$ by $e^{i\theta}$ changes the probability of
+        any outcome. (Justify.)
+  \item In what sense is ``superposition'' basis-dependent?
 \end{itemize}
 \end{tcolorbox}
 
-\medskip
-\instructornote{%
-  Example CQ prompts (Module~I.2 Lecture~L01 style):\\[2pt]
-  (1)~Why is $|\psi\rangle$ not ``a column vector'' until a basis is chosen?\\
-  (2)~What is physically meaningful: $\langle a|\psi\rangle$ or $|\langle a|\psi\rangle|^2$?\\
-  (3)~Why does a global phase not change probabilities?\\
-  (4)~In what sense is ``superposition'' basis-dependent?
-}
+\begin{tcolorbox}[rubricbox, title={SCQU Rubric}]
+\begin{tabular}{ll}
+  Correct answer                & 1.5 pts each\\
+  Brief justification consistent & 0.5 pts each\\
+\end{tabular}\\[4pt]
+\textbf{Total: 20 points} (10 questions $\times$ 2 pts)
+\end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Artifact 2: Simple Problem Set (SPS)}
+\bigskip
+%--- CCQU ----------------------------------------------------
+\subsubsection{CCQU --- Complex Concept Questions (Undergrad)}
 
-\begin{tcolorbox}[artifactbox, title={SPS --- Simple Problem Set}]
+\begin{tcolorbox}[ugconceptbox, title={CCQU --- Complex Concept Questions, Undergraduate \hfill\normalfont 10 questions}]
 
-\textbf{Purpose:} Build \emph{fluency}: compute probabilities, normalise states,
-insert identity, perform basic basis changes.
+\textbf{Purpose:} Test \emph{structural understanding} at the UG level: not just ``what''
+but ``why the formalism is consistent.'' Requires short arguments, not full proofs.
 
-\medskip
-\textbf{Deliverable format:}
+\medskip\textbf{Format:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item 8--12 problems
-  \item Mostly 1--5 steps each
-  \item Minimal proofs; focus on correct use of notation and technique
+  \item 10 questions --- mix of ``explain why'' (4), ``what would change if\ldots'' (3),
+        and ``identify the flaw in this argument'' (3)
+  \item 25--35 minutes; homework or tutorial context
 \end{itemize}
 
-\medskip
-\textbf{Suggested internal structure:}
+\medskip\textbf{Tier targeting:}
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+BegUG  & Explain consequences of definitions; trace through an argument\\
+AdvUG  & Identify logical gaps; construct a counterexample; compare two approaches\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip\textbf{Example prompts (L01 style):}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item \textbf{Part A --- mechanics:} normalisation, components, overlaps
-  \item \textbf{Part B --- interpretation:} what does the computed number mean?
-  \item \textbf{Part C --- translation:}
+  \item Why is the global phase of a quantum state unobservable, but the \emph{relative}
+        phase between components is not? Give a concrete example.
+  \item A student claims: ``$|\psi\rangle = \tfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle)$
+        and $|\phi\rangle = \tfrac{1}{\sqrt{2}}(|0\rangle-|1\rangle)$ describe the
+        same physical state.'' What is wrong with this claim?
+  \item If Hilbert space were defined over the real numbers instead of complex numbers,
+        which aspect of quantum mechanics would immediately fail? Justify briefly.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CCQU Rubric}]
+\begin{tabular}{ll}
+  Correct identification of the key point & 1.0 pt each\\
+  Coherent short argument or example       & 1.0 pt each\\
+\end{tabular}\\[4pt]
+\textbf{Total: 20 points} (10 questions $\times$ 2 pts)
+\end{tcolorbox}
+
+\bigskip
+%--- SPSU ----------------------------------------------------
+\subsubsection{SPSU --- Simple Problem Set (Undergrad)}
+
+\begin{tcolorbox}[ugprobbox, title={SPSU --- Simple Problem Set, Undergraduate \hfill\normalfont 10 problems}]
+
+\textbf{Purpose:} Build \emph{procedural fluency}: compute probabilities, normalise
+states, insert identity, perform basic basis changes.
+
+\medskip\textbf{Format:} 10 problems; 1--5 steps each; minimal proofs.
+
+\medskip\textbf{Internal structure:}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item \textbf{Part A --- mechanics} (4 problems): normalisation, components, overlaps
+  \item \textbf{Part B --- interpretation} (3 problems): what does the computed number mean?
+  \item \textbf{Part C --- translation} (3 problems):
         ket $\leftrightarrow$ coordinates $\leftrightarrow$ wavefunction preview
 \end{itemize}
 
-\medskip
-\textbf{Tier scaling:}
+\medskip\textbf{Tier scaling:}
 \begin{center}
-\begin{tabular}{lp{9cm}}
+\begin{tabular}{lp{8.5cm}}
 \toprule
-HS    & Numeric complex arithmetic + simple amplitude-to-probability\\
-BegUG & Normalisation + components $c_n=\langle n|\psi\rangle$ + probabilities\\
-AdvUG & Include ``show that'' using completeness, but not full proofs\\
-MSc/PhD & Fewer but deeper; emphasise representation-independence checks\\
+HS    & Numeric complex arithmetic + amplitude-to-probability conversion\\
+BegUG & Normalisation + components $c_n=\langle n|\psi\rangle$ + probability sums\\
+AdvUG & Include representation-change: verify result independent of basis choice\\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[rubricbox, title={SPS Rubric}]
+\begin{tcolorbox}[rubricbox, title={SPSU Rubric (per problem)}]
 \begin{tabular}{ll}
-  Correct result         & 60\%\\
-  Correct method/notation & 30\%\\
-  Interpretation sentence & 10\%\\
+  Correct result           & 60\%\\
+  Correct method/notation  & 30\%\\
+  Interpretation sentence  & 10\%\\
 \end{tabular}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Artifact 3: Complex Problem Set (CPS)}
+\bigskip
+%--- CPSU ----------------------------------------------------
+\subsubsection{CPSU --- Complex Problem Set (Undergrad)}
 
-\begin{tcolorbox}[artifactbox, title={CPS --- Complex Problem Set}]
+\begin{tcolorbox}[ugprobbox, title={CPSU --- Complex Problem Set, Undergraduate \hfill\normalfont 5 problems}]
 
-\textbf{Purpose:} Assess \emph{structural mastery}: proofs, derivations, multi-step
-synthesis, ``why the formalism works.''
+\textbf{Purpose:} Assess \emph{structural mastery} at UG level: proofs, derivations,
+and multi-step synthesis accessible to Tier~3 students.
 
-\medskip
-\textbf{Deliverable format:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item 4--6 problems, multi-part (a)(b)(c)\ldots
-  \item Often proof-based or derivation-based
-  \item Designed for 3--6 hours total work
-\end{itemize}
+\medskip\textbf{Format:} 5 multi-part problems (a)(b)(c)\ldots; 3--6 hours total.
 
-\medskip
-\textbf{Canonical CPS themes in early lectures:}
+\medskip\textbf{Canonical themes:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Prove Cauchy--Schwarz and/or triangle inequality
-  \item Prove phase invariance and ray equivalence
+  \item Prove phase invariance and ray equivalence (with guidance)
   \item Show unitaries preserve probabilities and inner products
   \item Derive completeness consequences (Parseval identity)
+  \item Construct a worked proof of the spectral theorem for a $2\times 2$ Hermitian matrix
 \end{itemize}
 
-\medskip
-\textbf{Tier scaling:}
-\begin{center}
-\begin{tabular}{lp{9cm}}
-\toprule
-AdvUG & Full proofs with guidance allowed\\
-MSc   & Proofs + conceptual interpretation + links to projective space\\
-PhD   & Proofs + additional conditions (boundedness, domains, separability)\\
-\bottomrule
-\end{tabular}
-\end{center}
+\medskip\textbf{Tier targeting:} Primarily AdvUG (Tier~3); parts (a) accessible to BegUG.
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[rubricbox, title={CPS Rubric}]
+\begin{tcolorbox}[rubricbox, title={CPSU Rubric (per problem)}]
 \begin{tabular}{ll}
   Correct statement of assumptions & 15\%\\
   Logical proof structure           & 45\%\\
@@ -680,44 +744,31 @@ PhD   & Proofs + additional conditions (boundedness, domains, separability)\\
 \end{tabular}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Artifact 4: Simple Project (SPJ)}
+\bigskip
+%--- SPJU ----------------------------------------------------
+\subsubsection{SPJU --- Simple Project (Undergrad)}
 
-\begin{tcolorbox}[artifactbox, title={SPJ --- Simple Project}]
+\begin{tcolorbox}[ugprobbox, title={SPJU --- Simple Project, Undergraduate \hfill\normalfont 1 project}]
 
 \textbf{Purpose:} Hands-on transfer: ``I can build something that uses the formalism.''
 
-\medskip
-\textbf{Scope:} 2--6 hours; structured, well-scaffolded; works for mixed cohorts.
+\medskip\textbf{Scope:} 2--6 hours; structured, scaffolded; works for mixed Tier~1--3 cohort.
 
-\medskip
-\textbf{Deliverable format:}
+\medskip\textbf{Deliverable:} Short report (1--3 pages) \emph{and} a small artifact
+(code, worksheet, or visualisation).
+
+\medskip\textbf{Example --- Basis Expansion Calculator (L01):}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Short report (1--3 pages) \emph{and} a small artifact:
-        code, worksheet, or visualisation
+  \item \textit{Inputs:} coefficients $c$ in basis $\{|n\rangle\}$; unitary $U$
+  \item \textit{Outputs:} new coefficients $c'=Uc$
+  \item \textit{Required checks:} normalisation preserved; probabilities sum to 1;
+        global phase invariance verified
+  \item \textit{Deliverables:} code + README; one worked example; short explanation
+        of what changed and what did not
 \end{itemize}
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[goldbox]
-\textbf{Example SPJ Template --- Basis Expansion Calculator (Module~I.2, L01)}
-
-\medskip
-\noindent\textbf{Inputs:} coefficients $c$ in basis $\{|n\rangle\}$; unitary matrix $U$.\\
-\textbf{Outputs:} new coefficients $c'=Uc$.\\[4pt]
-\textbf{Required checks:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Normalisation preserved: $\|c'\|^2=\|c\|^2=1$
-  \item Probabilities sum to 1 in new basis
-  \item Global phase invariance: multiplying $c$ by $e^{i\theta}$ leaves all $|c'_n|^2$
-        unchanged
-\end{itemize}
-\textbf{Deliverables:} code + README; one worked example; short explanation of what
-changed and what did not.
-\end{tcolorbox}
-
-\medskip
-\begin{tcolorbox}[rubricbox, title={SPJ Rubric}]
+\begin{tcolorbox}[rubricbox, title={SPJU Rubric}]
 \begin{tabular}{ll}
   Correctness                    & 40\%\\
   Verification tests included    & 25\%\\
@@ -726,70 +777,302 @@ changed and what did not.
 \end{tabular}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Artifact 5: Complex Project (CPJ)}
+\bigskip
+%--- CPJU ----------------------------------------------------
+\subsubsection{CPJU --- Complex Project (Undergrad)}
 
-\begin{tcolorbox}[artifactbox, title={CPJ --- Complex Project}]
+\begin{tcolorbox}[ugprobbox, title={CPJU --- Complex Project, Undergraduate \hfill\normalfont 1 project}]
 
 \textbf{Purpose:} Synthesis and conceptual transfer: ``I can compare frameworks and
 defend choices.''
 
-\medskip
-\textbf{Scope:} 8--15 hours; open-ended but guided; should produce a mini-essay or
-mini-tool with reflection.
+\medskip\textbf{Scope:} 8--15 hours; open-ended but guided; mini-essay or mini-tool
+with reflection.
 
-\medskip
-\textbf{Deliverable format:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item 5--8 page report + appendix with computations + optional code for
-        basis transforms/plots
-\end{itemize}
-\end{tcolorbox}
+\medskip\textbf{Deliverable:} 5--8 page report + appendix with computations +
+optional code.
 
-\medskip
-\begin{tcolorbox}[goldbox]
-\textbf{Example CPJ Template --- Compare Representations (Module~I.2, L01)}
-
-\medskip
-\noindent Choose a state and represent it in four ways:
+\medskip\textbf{Example --- Compare Representations (L01):}
 \begin{enumerate}[leftmargin=2em,itemsep=2pt]
-  \item Abstract ket $|\psi\rangle$ (representation-free)
-  \item Coordinates in basis A: $c_n=\langle n|\psi\rangle$
-  \item Coordinates in basis B (unitarily related to A)
-  \item Preview: wavefunction $\psi(x)=\langle x|\psi\rangle$ (conceptual only)
+  \item Represent a chosen state as: (i) abstract ket, (ii) coordinates in basis A,
+        (iii) coordinates in basis B, (iv) wavefunction preview $\psi(x)=\langle x|\psi\rangle$
+  \item Analyse: what is invariant (norm, probabilities)? What changes (coordinates)?
 \end{enumerate}
-
-\noindent\textbf{Analyse:}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item What is \emph{invariant} (norm, transition probabilities)?
-  \item What \emph{changes} (coordinates, basis-dependent ``superposition'')?
-\end{itemize}
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[rubricbox, title={CPJ Rubric}]
+\begin{tcolorbox}[rubricbox, title={CPJU Rubric}]
 \begin{tabular}{ll}
-  Technical correctness    & 30\%\\
-  Conceptual synthesis     & 35\%\\
-  Depth \& structure       & 25\%\\
-  Originality / insight    & 10\%\\
+  Technical correctness   & 30\%\\
+  Conceptual synthesis    & 35\%\\
+  Depth \& structure      & 25\%\\
+  Originality / insight   & 10\%\\
 \end{tabular}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Artifact 6: Well-Defined Research Question (WRQ)}
+\newpage
+%=============================================================
+\subsection{Graduate Track Artifacts}
+\label{sec:grad-artifacts}
+%=============================================================
 
-\begin{tcolorbox}[artifactbox, title={WRQ --- Well-Defined Research Question}]
+\begin{tcolorbox}[trackheaderGRAD]
+GRADUATE TRACK \ \ (Tiers 4--5: MSc, PhD)
+\end{tcolorbox}
 
-\textbf{Purpose:} Train ``research-like thinking'' while still being \emph{bounded}:
-clear scope, clear output, answerable within a few days.
+\bigskip
 
-\medskip
-\textbf{Scope:} 5--10 hours; must be answerable with literature + calculation +
-interpretation.
+%--- SCQG ----------------------------------------------------
+\subsubsection{SCQG --- Simple Concept Questions (Grad)}
 
-\medskip
-\textbf{Deliverable format --- 2--6 page memo containing:}
+\begin{tcolorbox}[gradconceptbox, title={SCQG --- Simple Concept Questions, Graduate \hfill\normalfont 10 questions}]
+
+\textbf{Purpose:} Rapid check that a Tier~4--5 student can \emph{state and navigate}
+the rigorous formalism without hesitation.
+
+\medskip\textbf{Format:} 10 questions; mix of short statement (4), true/false with proof
+sketch (3), and ``identify the precise error'' (3); 20--25 minutes.
+
+\medskip\textbf{Tier targeting:}
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+MSc & Conceptual statements about rays, operators, measurement; standard results\\
+PhD & Include precise domain/boundedness conditions; statement of named theorems\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip\textbf{Example prompts (L01 style):}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item State precisely what it means for a Hilbert space to be separable.
+  \item True/False (with proof sketch): every Hermitian operator on $\mathcal{H}$ is
+        self-adjoint.
+  \item What is a ray in $\mathcal{H}$, and why are rays the correct mathematical objects
+        for pure quantum states?
+  \item Give the exact statement of Wigner's theorem (including the $U(1)$ ambiguity).
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={SCQG Rubric}]
+\begin{tabular}{ll}
+  Precise correct statement       & 1.5 pts each\\
+  Brief justification or proof sketch & 0.5 pts each\\
+\end{tabular}\\[4pt]
+\textbf{Total: 20 points}
+\end{tcolorbox}
+
+\bigskip
+%--- CCQG ----------------------------------------------------
+\subsubsection{CCQG --- Complex Concept Questions (Grad)}
+
+\begin{tcolorbox}[gradconceptbox, title={CCQG --- Complex Concept Questions, Graduate \hfill\normalfont 10 questions}]
+
+\textbf{Purpose:} Test \emph{deep structural understanding} at graduate level: connecting
+formalism to mathematical foundations, identifying subtle distinctions, and engaging with
+open or contested points.
+
+\medskip\textbf{Format:} 10 questions; mix of ``distinguish and explain'' (4),
+``what fails without assumption X'' (3), and ``connect these two results'' (3);
+35--50 minutes.
+
+\medskip\textbf{Example prompts (L01 style):}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item Distinguish Hermitian from self-adjoint operators. Give an example of an operator
+        that is one but not the other.
+  \item Why does the Fubini--Study metric on $\mathbb{P}(\mathcal{H})$ encode transition
+        probabilities? Show the connection explicitly.
+  \item What additional structure, beyond a Hilbert space, is needed to define the
+        Gel'fand triple? Why is this structure physically necessary?
+  \item Wigner's theorem guarantees every symmetry lifts to a unitary or antiunitary
+        operator. What happens if we drop the assumption that the map preserves
+        $|\langle\phi|\psi\rangle|^2$? Is there still a useful structure theorem?
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CCQG Rubric}]
+\begin{tabular}{ll}
+  Correct identification of key distinction/connection & 1.0 pt each\\
+  Rigorous short argument or counterexample            & 1.0 pt each\\
+\end{tabular}\\[4pt]
+\textbf{Total: 20 points}
+\end{tcolorbox}
+
+\bigskip
+%--- SPSG ----------------------------------------------------
+\subsubsection{SPSG --- Simple Problem Set (Grad)}
+
+\begin{tcolorbox}[gradprobbox, title={SPSG --- Simple Problem Set, Graduate \hfill\normalfont 10 problems}]
+
+\textbf{Purpose:} Build \emph{fluency with the rigorous formalism}: operator domains,
+spectral theory computations, density matrices, and representation-independence checks.
+
+\medskip\textbf{Format:} 10 problems; each 2--8 steps; representation-independence
+always verified.
+
+\medskip\textbf{Internal structure:}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item \textbf{Part A --- operator mechanics} (4 problems): adjoint, spectrum,
+        domain checks, expectation values in density-matrix form
+  \item \textbf{Part B --- rigorous translation} (3 problems): continuous bases,
+        delta distributions, Fourier connection
+  \item \textbf{Part C --- symmetry \& invariance} (3 problems): commutator algebra,
+        unitary equivalence, Wigner theorem applications
+\end{itemize}
+
+\medskip\textbf{Tier scaling:}
+\begin{center}
+\begin{tabular}{lp{8.5cm}}
+\toprule
+MSc & Work in density-matrix formalism; verify trace-class and positivity conditions\\
+PhD & Additionally check domain conditions; apply functional calculus\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={SPSG Rubric (per problem)}]
+\begin{tabular}{ll}
+  Correct result with domain/condition check & 50\%\\
+  Correct method and rigorous notation       & 35\%\\
+  Interpretation or physical meaning         & 15\%\\
+\end{tabular}
+\end{tcolorbox}
+
+\bigskip
+%--- CPSG ----------------------------------------------------
+\subsubsection{CPSG --- Complex Problem Set (Grad)}
+
+\begin{tcolorbox}[gradprobbox, title={CPSG --- Complex Problem Set, Graduate \hfill\normalfont 5 problems}]
+
+\textbf{Purpose:} Assess \emph{graduate-level structural mastery}: complete rigorous
+proofs, functional analysis arguments, and graduate-level derivations.
+
+\medskip\textbf{Format:} 5 multi-part problems; 5--10 hours total; no guidance scaffolding.
+
+\medskip\textbf{Canonical themes:}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item Prove the nuclear spectral theorem in rigged Hilbert space context
+  \item Prove Stone's theorem (statement + sketch of key steps)
+  \item Prove that $\hat{p}=-i\hbar d/dx$ is self-adjoint on $H^1(\mathbb{R})$
+        but only symmetric on $L^2([0,\infty))$
+  \item Prove the Riesz representation theorem and connect to the bra as linear functional
+  \item Derive the Fubini--Study metric on $\mathbb{CP}^n$ from the Hilbert space
+        inner product
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CPSG Rubric (per problem)}]
+\begin{tabular}{ll}
+  Precise statement of hypotheses         & 15\%\\
+  Logical proof structure                 & 40\%\\
+  Correct analysis / functional arguments & 30\%\\
+  Contextual insight / connections        & 15\%\\
+\end{tabular}
+\end{tcolorbox}
+
+\bigskip
+%--- SPJG ----------------------------------------------------
+\subsubsection{SPJG --- Simple Projects (Grad)}
+
+\begin{tcolorbox}[gradprobbox, title={SPJG --- Simple Projects, Graduate \hfill\normalfont 5 projects}]
+
+\textbf{Purpose:} Structured transfer at graduate level: ``I can implement and test a
+rigorous idea.'' Five independent projects, each with a clear deliverable.
+
+\medskip\textbf{Scope per project:} 3--8 hours; structured, with defined inputs and outputs.
+
+\medskip\textbf{Deliverable per project:} Technical note (2--4 pages) + code or
+formal derivation document.
+
+\medskip\textbf{Typical SPJG project types (L01 style):}
+\begin{enumerate}[leftmargin=2em,itemsep=4pt]
+  \item \textbf{Operator domain explorer:} For $\hat{p}$ on various domains, classify
+        Hermitian/symmetric/self-adjoint; tabulate deficiency indices.
+  \item \textbf{Density matrix diagnostics:} Given $4\times 4$ matrices, test
+        $\hat{\rho}\ge 0$, $\operatorname{Tr}\hat{\rho}=1$, purity; classify mixed/pure/entangled.
+  \item \textbf{Wigner function sampler:} Compute and plot the Wigner quasi-probability
+        for a set of states; identify negativity signatures.
+  \item \textbf{Spectral measure calculator:} For a simple Hamiltonian, construct the
+        spectral projection $E_\lambda$ and verify the spectral theorem numerically.
+  \item \textbf{Ray geometry visualiser:} Implement and visualise the Fubini--Study
+        metric for $\mathbb{CP}^1$ (Bloch sphere); compute geodesic distances between
+        given states.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={SPJG Rubric (per project)}]
+\begin{tabular}{ll}
+  Mathematical correctness               & 40\%\\
+  Rigour of conditions/checks            & 25\%\\
+  Clarity of technical note              & 25\%\\
+  Reproducibility                        & 10\%\\
+\end{tabular}
+\end{tcolorbox}
+
+\bigskip
+%--- CPJG ----------------------------------------------------
+\subsubsection{CPJG --- Complex Projects (Grad)}
+
+\begin{tcolorbox}[gradprobbox, title={CPJG --- Complex Projects, Graduate \hfill\normalfont 5 projects}]
+
+\textbf{Purpose:} Open synthesis at graduate level: ``I can connect frameworks, identify
+limitations, and produce research-quality output.''
+Five independent projects, each requiring significant independent work.
+
+\medskip\textbf{Scope per project:} 10--20 hours; open-ended but guided by a question.
+
+\medskip\textbf{Deliverable per project:} 6--10 page technical report + appendix.
+
+\medskip\textbf{Typical CPJG project types (L01 style):}
+\begin{enumerate}[leftmargin=2em,itemsep=4pt]
+  \item \textbf{Real vs.\ complex Hilbert space:} Identify which quantum phenomena
+        fail in a real Hilbert space; connect to Wigner's theorem over $\mathbb{R}$.
+  \item \textbf{Self-adjoint extensions:} For $\hat{p}$ on $[0,1]$ with varied boundary
+        conditions, classify all self-adjoint extensions; compute their spectra.
+  \item \textbf{Rigged Hilbert space construction:} Build explicitly the Gel'fand triple
+        $\Phi\subset L^2(\mathbb{R})\subset\Phi'$ for the harmonic oscillator; identify
+        the generalised eigenvectors of $\hat{x}$.
+  \item \textbf{Projective space and entanglement:} Characterise the image of the
+        Segre embedding $\mathbb{CP}^1\times\mathbb{CP}^1\hookrightarrow\mathbb{CP}^3$;
+        interpret the complement as entangled states.
+  \item \textbf{Measurement model analysis:} Compare von Neumann, L\"uders, and
+        POVM update rules; identify conditions under which they agree and diverge.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CPJG Rubric (per project)}]
+\begin{tabular}{ll}
+  Technical rigour and correctness  & 30\%\\
+  Conceptual synthesis              & 30\%\\
+  Depth, structure, and exposition  & 25\%\\
+  Originality / critical insight    & 15\%\\
+\end{tabular}
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\subsection{Research Track Artifacts}
+\label{sec:research-artifacts}
+%=============================================================
+
+\begin{tcolorbox}[trackheaderRES]
+RESEARCH TRACK \ \ (Tiers 4--5: MSc, PhD) \ \ shared across both graduate tracks
+\end{tcolorbox}
+
+\bigskip
+
+%--- WRQ ----------------------------------------------------
+\subsubsection{WRQ --- Well-Defined Research Questions ($\times$5)}
+
+\begin{tcolorbox}[researchbox, title={WRQ --- Well-Defined Research Questions \hfill\normalfont 5 questions}]
+
+\textbf{Purpose:} Train ``research-like thinking'' while remaining \emph{bounded}:
+clear scope, clear deliverable, answerable within a defined time.
+
+\medskip\textbf{Scope per question:} 5--10 hours; answerable with literature +
+calculation + interpretation.
+
+\medskip\textbf{Deliverable per question --- 2--6 page memo:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Question statement
   \item Method (how you will answer it)
@@ -798,18 +1081,23 @@ interpretation.
   \item 5--10 references
 \end{itemize}
 
-\medskip
-\textbf{Example prompts (Module~I.2, early bra-ket):}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+\medskip\textbf{Five example WRQ prompts (Module I.2, bra-ket context):}
+\begin{enumerate}[leftmargin=2em,itemsep=4pt]
   \item ``How did Born's probabilistic interpretation change the meaning of the
-        wavefunction between 1926--1927?''
-  \item ``What exactly does `state is a ray' buy us operationally?
-        Provide examples where vectors fail but rays succeed.''
-\end{itemize}
+        wavefunction between 1926--1927? Trace the primary sources.''
+  \item ``What exactly does `state is a ray' buy us operationally? Provide
+        examples where vectors fail but rays succeed.''
+  \item ``When and why did von Neumann introduce the density operator? What problem
+        was it designed to solve that pure states cannot address?''
+  \item ``What is the minimal set of axioms on an inner product space that forces
+        the Born rule to take the form $P=|\langle a|\psi\rangle|^2$? Compare
+        Gleason's theorem with the Dirac--von Neumann axioms.''
+  \item ``How does the choice of complex vs.\ real Hilbert space affect the
+        structure of pure-state spaces? What operational consequence follows?''
+\end{enumerate}
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[rubricbox, title={WRQ Rubric}]
+\begin{tcolorbox}[rubricbox, title={WRQ Rubric (per question)}]
 \begin{tabular}{ll}
   Clear scope and method    & 25\%\\
   Evidence quality          & 25\%\\
@@ -818,138 +1106,150 @@ interpretation.
 \end{tabular}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Artifact 7: Open-Ended Research Question (ORQ)}
+\bigskip
+%--- ORQ ----------------------------------------------------
+\subsubsection{ORQ --- Open-Ended Research Questions ($\times$5)}
 
-\begin{tcolorbox}[artifactbox, title={ORQ --- Open-Ended Research Question}]
+\begin{tcolorbox}[researchbox, title={ORQ --- Open-Ended Research Questions \hfill\normalfont 5 questions}]
 
-\textbf{Purpose:} Expose the frontier: no single correct answer; evaluates
+\textbf{Purpose:} Expose the frontier. No single correct answer; evaluates
 \emph{quality of reasoning}, not correctness of conclusion.
 
-\medskip
-\textbf{Scope:} 10--20 hours (or ongoing); may include proposing a new definition,
-comparing frameworks, or designing a thought experiment.
+\medskip\textbf{Scope per question:} 10--20 hours (or ongoing); may include proposing
+a new definition, comparing frameworks, or designing a thought experiment.
 
-\medskip
-\textbf{Deliverable format --- 4--10 page proposal-style note:}
+\medskip\textbf{Deliverable per question --- 4--10 page proposal-style note:}
 \begin{itemize}[leftmargin=1.5em,itemsep=2pt]
   \item Motivation
   \item What is known (brief review)
-  \item What you propose
+  \item What you propose or conjecture
   \item How you would test or argue it
   \item Risks and limitations
 \end{itemize}
 
-\medskip
-\textbf{Example prompts (Module~I.2, early bra-ket):}
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item ``What minimal operational axioms force complex Hilbert space rather than real?''
+\medskip\textbf{Five example ORQ prompts (Module I.2, bra-ket context):}
+\begin{enumerate}[leftmargin=2em,itemsep=4pt]
+  \item ``What minimal operational axioms force complex Hilbert space rather than
+        real or quaternionic? Is the complex structure fundamental or emergent?''
   \item ``Can you formulate measurement and state update without projective collapse
-        but still reproduce observed statistics?''
-\end{itemize}
+        but still reproduce all observed statistics? What would such a framework
+        look like mathematically?''
+  \item ``The Gel'fand triple extends the Hilbert space to accommodate
+        distributions. Can you propose an alternative foundation that avoids
+        distributions entirely while retaining the continuous spectrum?''
+  \item ``Wigner's theorem guarantees symmetries are unitary or antiunitary.
+        Are there physically motivated generalisations (e.g.\ to mixed states, open
+        systems, or approximate symmetries) that require a different structural
+        result?''
+  \item ``Is separability of the Hilbert space a physical assumption or merely a
+        mathematical convenience? Design an operational test that would distinguish
+        a separable from a non-separable state space in principle.''
+\end{enumerate}
 \end{tcolorbox}
 
-\medskip
-\begin{tcolorbox}[rubricbox, title={ORQ Rubric}]
+\begin{tcolorbox}[rubricbox, title={ORQ Rubric (per question)}]
 \begin{tabular}{ll}
-  Clarity + framing             & 25\%\\
-  Depth of engagement           & 25\%\\
-  Novelty and plausibility      & 25\%\\
-  Awareness of limitations      & 25\%\\
+  Clarity and framing of the question  & 25\%\\
+  Depth of engagement with literature  & 25\%\\
+  Novelty and plausibility of proposal & 25\%\\
+  Awareness of limitations / open ends & 25\%\\
 \end{tabular}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Exercise Packaging Standard (Multi-page Format)}
+\newpage
+%=============================================================
+\subsection{Exercise Packaging Standard}
+%=============================================================
 
-\instructornote{%
-  Every individual problem --- whether in an SPS or CPS --- should be packaged in
-  the following four-layer format. This supports self-study, allows automated
-  assembly into different deliverables, and makes solution-writing consistent.
-}
+\instructornote{Every individual problem in CPSU, CPSG, or any project type should
+be packaged in the four-layer format below. This supports self-study, tiered hints
+delivery, and automated repository assembly.}
 
 \begin{tcolorbox}[goldbox]
-\textbf{Four-layer exercise packet structure} (one file-set per problem):
+\textbf{Four-layer exercise packet} (one file-set per problem):
 
 \medskip
-\begin{tabular}{lp{10cm}}
+\begin{tabular}{lp{9.5cm}}
 \toprule
 \textbf{Layer} & \textbf{Content}\\
 \midrule
-1. Problem Statement   & Clean, no hints; the only document students receive at the
-                         start\\
-2. Suggestions / Hints & Scaffolded prompts; released at student request or after
-                         first attempt\\
-3. Advanced Suggestions & Structural hints, alternative approaches, connections to
-                          other results\\
-4. Detailed Solution   & Full derivation + commentary + common pitfall warnings\\
+1. Problem Statement    & Clean statement; no hints; the only file students receive initially\\
+2. Suggestions / Hints  & Scaffolded prompts; released after first attempt\\
+3. Advanced Suggestions & Structural hints, alternative approaches, cross-references\\
+4. Detailed Solution    & Full derivation + commentary + common pitfall warnings\\
 \bottomrule
 \end{tabular}
 
-\medskip
-\noindent\textbf{File naming convention for repository automation:}\\
-\texttt{ex\#\#\_problem.tex}, \texttt{ex\#\#\_hints.tex},
-\texttt{ex\#\#\_adv\_hints.tex}, \texttt{ex\#\#\_solution.tex}
+\medskip\noindent\textbf{File naming convention:}\\
+\texttt{ex\#\#\_problem.tex} \quad
+\texttt{ex\#\#\_hints.tex} \quad
+\texttt{ex\#\#\_adv\_hints.tex} \quad
+\texttt{ex\#\#\_solution.tex}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
-\subsection{Recommended Per-Lecture Minimum Bundle}
+%=============================================================
+\subsection{Per-Lecture Minimum Bundle}
+%=============================================================
 
 \begin{tcolorbox}[goldbox]
-For each 90-minute lecture, a sustainable and scalable package is:
+\textbf{Complete artifact bundle for one 90-minute lecture:}
 
 \medskip
 \begin{center}
-\begin{tabular}{lr}
+\begin{tabular}{llrr}
 \toprule
-\textbf{Artifact} & \textbf{Count}\\
+\textbf{Code} & \textbf{Name} & \textbf{Track} & \textbf{Count}\\
 \midrule
-Concept Questions (CQ)           & 8\\
-Simple Problem Set (SPS)         & 10 problems\\
-Complex Problem Set (CPS)        & 4 problems\\
-Simple Project (SPJ)             & 1\\
-Complex Project (CPJ)            & 1\\
-Well-Defined Research Q.\ (WRQ)  & 1\\
-Open-Ended Research Q.\ (ORQ)    & 1\\
+SCQU & Simple Concept Questions --- UG   & UG       & 10 questions\\
+CCQU & Complex Concept Questions --- UG  & UG       & 10 questions\\
+SPSU & Simple Problem Set --- UG         & UG       & 10 problems\\
+CPSU & Complex Problem Set --- UG        & UG       & 5 problems\\
+SPJU & Simple Project --- UG             & UG       & 1 project\\
+CPJU & Complex Project --- UG            & UG       & 1 project\\
+\midrule
+SCQG & Simple Concept Questions --- Grad & Grad     & 10 questions\\
+CCQG & Complex Concept Questions --- Grad& Grad     & 10 questions\\
+SPSG & Simple Problem Set --- Grad       & Grad     & 10 problems\\
+CPSG & Complex Problem Set --- Grad      & Grad     & 5 problems\\
+SPJG & Simple Projects --- Grad         & Grad     & 5 projects\\
+CPJG & Complex Projects --- Grad        & Grad     & 5 projects\\
+\midrule
+WRQ  & Well-Defined Research Questions   & Research & 5 questions\\
+ORQ  & Open-Ended Research Questions     & Research & 5 questions\\
+\midrule
+ & \textbf{Total per lecture}           &          & \textbf{92 items}\\
 \bottomrule
 \end{tabular}
 \end{center}
-
-\medskip
-\noindent This yields:
-\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
-  \item Enough material for a mixed cohort (simple through PhD tracks)
-  \item A manageable grading load per lecture cycle
-  \item A consistent cadence across the entire programme
-\end{itemize}
 \end{tcolorbox}
 
-%-------------------------------------------------------------
+%=============================================================
 \subsection{Suggested Assessment Weights}
+%=============================================================
 
 \begin{center}
-\begin{tabular}{lrp{7cm}}
+\begin{tabular}{llrp{5.5cm}}
 \toprule
-\textbf{Artifact type} & \textbf{Weight} & \textbf{Rationale}\\
+\textbf{Track} & \textbf{Artifact group} & \textbf{Weight} & \textbf{Rationale}\\
 \midrule
-Concept Questions (CQ) & 10\% & Fast feedback; keeps students on track\\
-Simple Problem Set (SPS) & 30\% & Core fluency; highest volume\\
-Complex Problem Set (CPS) & 30\% & Structural mastery; differentiates tracks\\
-Projects (SPJ + CPJ) & 20\% & Transfer and synthesis; project-based learning\\
-Research Questions (WRQ + ORQ) & 10\% & Frontier thinking; rewards initiative\\
+\multirow{4}{*}{\textcolor{ugblue}{UG}}
+  & SCQU + CCQU (concept)  & 15\% & Mental models and structural understanding\\
+  & SPSU (fluency)         & 25\% & Core procedural skills; highest volume\\
+  & CPSU (mastery)         & 30\% & Proof and derivation ability\\
+  & SPJU + CPJU (transfer) & 30\% & Application and synthesis\\
 \midrule
-\textbf{Total} & \textbf{100\%} & \\
+\multirow{4}{*}{\textcolor{gradred}{Grad}}
+  & SCQG + CCQG (concept)  & 15\% & Rigorous conceptual command\\
+  & SPSG (fluency)         & 20\% & Formal computation fluency\\
+  & CPSG (mastery)         & 30\% & Graduate proof standards\\
+  & SPJG + CPJG (transfer) & 35\% & Research-quality synthesis\\
+\midrule
+\multirow{2}{*}{\textcolor{respath}{Research}}
+  & WRQ ($\times$5)        & 50\% & Scoped research capacity\\
+  & ORQ ($\times$5)        & 50\% & Frontier reasoning\\
 \bottomrule
 \end{tabular}
 \end{center}
-
-\medskip
-\noindent\textbf{Track-based grading policy:}
-\begin{itemize}[leftmargin=1.5em]
-  \item HS / BegUG $\to$ \textbf{Simple track}: CQ + SPS + SPJ only
-  \item AdvUG / MSc / PhD $\to$ \textbf{Complex track}: all artifacts;
-        CPS and CPJ are mandatory
-\end{itemize}
 
 \newpage
 %=============================================================
@@ -958,38 +1258,324 @@ Research Questions (WRQ + ORQ) & 10\% & Frontier thinking; rewards initiative\\
 %=============================================================
 
 \begin{center}
-\textbf{\large Tier $\times$ Artifact Grid}\\[6pt]
+{\large\textbf{Tier $\times$ Artifact Eligibility Grid}}\\[8pt]
 \small
-\begin{tabular}{l|ccccccc}
+\begin{tabular}{l|cc|cc|cc|cc|cc|cc|cc}
 \toprule
- & \textbf{CQ} & \textbf{SPS} & \textbf{CPS} & \textbf{SPJ} & \textbf{CPJ} & \textbf{WRQ} & \textbf{ORQ}\\
+ & \multicolumn{2}{c|}{\textbf{Concept Q.}}
+ & \multicolumn{2}{c|}{\textbf{Problem Set}}
+ & \multicolumn{2}{c|}{\textbf{Projects}}
+ & \multicolumn{2}{c|}{\textbf{Concept Q.}}
+ & \multicolumn{2}{c|}{\textbf{Problem Set}}
+ & \multicolumn{2}{c|}{\textbf{Projects}}
+ & \multicolumn{2}{c}{\textbf{Research}}\\
+ & S & C & S & C & S & C & S & C & S & C & S & C & W & O\\
+ & C & C & P & P & P & P & C & C & P & P & J & J & R & R\\
+ & Q & Q & S & S & J & J & Q & Q & S & S & G & G & Q & Q\\
+ & U & U & U & U & U & U & G & G & G & G & & & &\\
 \midrule
-HS    & \checkmark & \checkmark &            & \checkmark &            &            &\\
-BegUG & \checkmark & \checkmark &            & \checkmark & (optional) &            &\\
-AdvUG & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &\\
-MSc   & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark\\
-PhD   & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark\\
+HS     & \checkmark &            & \checkmark &            & \checkmark &            &            &            &            &            &            &            &            &\\
+BegUG  & \checkmark & \checkmark & \checkmark &            & \checkmark & opt.       &            &            &            &            &            &            &            &\\
+AdvUG  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &            &            &            &            &            &            &            &\\
+MSc    &            &            &            &            &            &            & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark\\
+PhD    &            &            &            &            &            &            & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark\\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \bigskip
 \begin{center}
-\textbf{\large Artifact Duration Summary}\\[6pt]
-\begin{tabular}{llll}
+{\large\textbf{Artifact Duration and Output Summary}}\\[8pt]
+\begin{tabular}{llllr}
 \toprule
-\textbf{Artifact} & \textbf{Format} & \textbf{Est.\ time} & \textbf{Primary output}\\
+\textbf{Code} & \textbf{Format} & \textbf{Est.\ time} & \textbf{Primary output} & \textbf{Pts}\\
 \midrule
-CQ  & 6--10 questions & 10--15 min   & Answers + brief justifications\\
-SPS & 8--12 problems  & 2--4 hours   & Worked solutions\\
-CPS & 4--6 problems   & 3--6 hours   & Proofs + derivations\\
-SPJ & Structured task & 2--6 hours   & Code / worksheet + 1--3 pg report\\
-CPJ & Open task       & 8--15 hours  & 5--8 pg report + appendix\\
-WRQ & Scoped question & 5--10 hours  & 2--6 pg memo\\
-ORQ & Open question   & 10--20 hours & 4--10 pg proposal\\
+SCQU & 10 questions & 15--20 min  & Answers + brief justifications & 20\\
+CCQU & 10 questions & 25--35 min  & Short arguments + examples     & 20\\
+SPSU & 10 problems  & 2--4 hrs    & Worked solutions               & 100\\
+CPSU & 5 problems   & 3--6 hrs    & Proofs + derivations           & 50\\
+SPJU & 1 project    & 2--6 hrs    & Code/worksheet + 1--3 pg report& 100\\
+CPJU & 1 project    & 8--15 hrs   & 5--8 pg report + appendix      & 100\\
+\midrule
+SCQG & 10 questions & 20--25 min  & Precise statements + sketches  & 20\\
+CCQG & 10 questions & 35--50 min  & Rigorous arguments             & 20\\
+SPSG & 10 problems  & 3--6 hrs    & Formal solutions + checks      & 100\\
+CPSG & 5 problems   & 5--10 hrs   & Graduate-level proofs          & 50\\
+SPJG & 5 projects   & 3--8 hrs ea.& Tech notes + code              & 5$\times$100\\
+CPJG & 5 projects   & 10--20 hrs ea.& Full technical reports       & 5$\times$100\\
+\midrule
+WRQ  & 5 memos      & 5--10 hrs ea. & 2--6 pg research memo       & 5$\times$100\\
+ORQ  & 5 proposals  & 10--20 hrs ea.& 4--10 pg proposal note      & 5$\times$100\\
 \bottomrule
 \end{tabular}
 \end{center}
+
+\newpage
+%#############################################################
+\section{Tiered Bibliography --- Structure \& Design Principles}
+\label{sec:bibdesign}
+%#############################################################
+
+\begin{tcolorbox}[goldbox]
+\textbf{This section explains how the companion bibliography document is built and why.}
+The full reading lists --- one per learning tier, plus a complete alphabetical catalogue
+--- are published as a separate document: \textbf{\textit{QM Programme: Tiered Bibliography}}.
+This section gives instructors and students the conceptual framework needed to
+\emph{use}, \emph{extend}, and \emph{adapt} that bibliography for other modules and disciplines.
+\end{tcolorbox}
+
+%-------------------------------------------------------------
+\subsection{Purpose of a Tiered Bibliography}
+%-------------------------------------------------------------
+
+A flat reading list attached to a syllabus has a fundamental problem: it collapses
+five very different audiences into one list. A Tier~1 student who opens Reed \& Simon's
+\textit{Methods of Modern Mathematical Physics} will be lost; a PhD student assigned
+Feynman's \textit{QED} may feel patronised. The tiered bibliography solves this by
+providing \textbf{one list per tier}, each answering a single question:
+\begin{quote}\itshape
+  What should I read \emph{next}, at \emph{my} level, to go deeper into the material
+  of this lecture?
+\end{quote}
+
+\noindent The tier structure mirrors exactly the five-tier pedagogy described in
+Section~\ref{sec:tiers} of this document, and the reading strategy at each tier
+aligns with the artifact types described in Section~\ref{sec:artifacts}.
+
+%-------------------------------------------------------------
+\subsection{Four Categories of Material}
+%-------------------------------------------------------------
+
+Every entry in the bibliography belongs to exactly one of four categories,
+marked by a tag in bold square brackets:
+
+\begin{center}
+\begin{tabular}{lp{10cm}}
+\toprule
+\textbf{Tag} & \textbf{Category and description}\\
+\midrule
+\textbf{[N]} & \textit{Popular / narrative.} Builds intuition and historical context;
+               no formal prerequisites. Assigned at Tier~1; useful context at Tier~2.\\[4pt]
+\textbf{[T]} & \textit{Pedagogical textbook.} Structured course reading with exercises;
+               the backbone of Tiers~1--4. These are the books students read
+               chapter-by-chapter alongside lectures.\\[4pt]
+\textbf{[P]} & \textit{Primary research paper.} Original source; accessed at Tier~3
+               (abstract + introduction), read fully from Tier~4; mandatory at Tier~5.
+               The companion bibliography identifies 14 primary papers spanning
+               quantum mechanics and nonlinear dynamics.\\[4pt]
+\textbf{[M]} & \textit{Research monograph or review article.} Graduate-level and
+               research-level consolidation; Tiers~4--5 and the Research track.
+               Monographs are read selectively (relevant chapters); reviews are
+               read in full as literature surveys.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%-------------------------------------------------------------
+\subsection{Annotation System}
+%-------------------------------------------------------------
+
+Each entry in the tiered bibliography carries three elements beyond the citation:
+
+\medskip
+\begin{center}
+\begin{tabular}{lp{10.5cm}}
+\toprule
+\textbf{Element} & \textbf{Meaning and use}\\
+\midrule
+Star rating & \textbf{\large$\bigstar\bigstar\bigstar$} Essential --- read in full
+             \quad\textbf{\large$\bigstar\bigstar$} Strongly recommended --- read
+             relevant chapters
+             \quad\textbf{\large$\bigstar$} Useful supplement --- consult as needed\\[6pt]
+Type tag    & [N] [T] [P] [M] --- see categories above\\[6pt]
+Annotation  & 2--4 sentences linking the entry to specific programme modules and
+             lecture codes (e.g.\ ``Chapters~1--3 support Module~I.2 Lectures L01--L05'').
+             This is what distinguishes a tiered programme bibliography from a generic
+             reading list: every entry is \emph{placed} in the curriculum.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%-------------------------------------------------------------
+\subsection{How the Tiers Map to Reading Strategies}
+%-------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{clp{3.8cm}p{5cm}}
+\toprule
+\textbf{Tier} & \textbf{Label} & \textbf{Primary material type} & \textbf{Reading strategy}\\
+\midrule
+1 & HS       & [N] popular books     & Read cover-to-cover before the course\\
+2 & BegUG    & [T] textbooks         & One chapter per lecture; do all exercises\\
+3 & AdvUG    & [T] + [P] first reads & Textbook main; read abstracts/intros of primary papers\\
+4 & MSc      & [P] + [M] selected    & Primary papers as main reading; textbooks as reference\\
+5 & PhD      & [M] + [P] all         & Monographs + full primary literature + arXiv\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+The tiers are \textbf{cumulative}: Tier~$k$ reading is assumed as background for
+Tier~$k{+}1$. Instructors assigning material to a mixed cohort can use the tier badges
+in the bibliography to route students automatically.
+
+%-------------------------------------------------------------
+\subsection{Structure of the Companion Bibliography Document}
+%-------------------------------------------------------------
+
+The companion document \textbf{\textit{QM Programme: Tiered Bibliography}} is organised
+as follows:
+
+\begin{center}
+\begin{tabular}{lp{10cm}}
+\toprule
+\textbf{Part} & \textbf{Content}\\
+\midrule
+Introduction & How-to-use guide; annotation key; tier--strategy table\\
+Section~1 (T1) & Popular science \& first introductions --- QM + Nonlinear Dynamics\\
+Section~2 (T2) & Core undergraduate textbooks --- QM + Mathematics support + QChem\\
+Section~3 (T3) & Rigorous undergraduate \& bridge texts --- QM + primary papers (first encounter)\\
+Section~4 (T4) & Graduate textbooks, many-body theory, quantum chemistry + key papers\\
+Section~5 (T5) & Functional analysis monographs, advanced QM, essential PhD papers\\
+Cat.~A--F     & Full alphabetical catalogue: Popular [A], UG textbooks [B],
+                Grad textbooks [C], Monographs [D], Primary papers [E], Reviews [F]\\
+Quick-index   & Tier--category cross-index for rapid navigation\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%-------------------------------------------------------------
+\subsection{How to Extend the Bibliography to a New Module or Discipline}
+%-------------------------------------------------------------
+
+\instructornote{%
+The following protocol allows any instructor to build a compliant tiered bibliography
+for a new module (e.g.\ a new Series~II or Series~III module not yet covered).
+}
+
+\begin{tcolorbox}[goldbox]
+\textbf{Five-step bibliography construction protocol:}
+
+\medskip
+\begin{enumerate}[leftmargin=2em,itemsep=6pt]
+  \item \textbf{Identify one [N] entry per Tier~1.}
+        Choose a popular/narrative book that gives physical intuition for the
+        module's core concept without formalism. If none exists, a well-written
+        Wikipedia article or a Nobel lecture can substitute.
+
+  \item \textbf{Identify two or three [T] entries for Tiers~2--3.}
+        One standard course textbook (Tier~2) and one more rigorous text or
+        bridge text (Tier~3). Annotate each with the specific chapters covering
+        this module's lectures.
+
+  \item \textbf{Identify the 2--3 primary papers [P] that every Tier~3--5 student
+        must encounter.}
+        These are typically: the paper that first introduced the concept, the paper
+        that proved the central theorem, and (optionally) the most-cited modern
+        review. Annotate with which lecture code they support and which WRQ/ORQ
+        prompts they feed into.
+
+  \item \textbf{Identify one or two [M] monographs for Tiers~4--5.}
+        One standard graduate reference (Tier~4) and one advanced monograph
+        or review survey (Tier~5). Annotate with chapters, not whole books.
+
+  \item \textbf{Assign tier badges and star ratings.}
+        Use the three-star system. Essential (\essential) means: a student at this
+        tier \emph{must} read this to pass the Complex Problem Set (CPSU/CPSG)
+        and Research Questions (WRQ/ORQ) for this module.
+\end{enumerate}
+\end{tcolorbox}
+
+%-------------------------------------------------------------
+\subsection{Relationship Between Bibliography and Assessment Artifacts}
+%-------------------------------------------------------------
+
+The tiered bibliography is not decorative --- it feeds directly into the assessment
+artifacts defined in Section~\ref{sec:artifacts}. The table below makes the
+connections explicit:
+
+\begin{center}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Artifact} & \textbf{Track} & \textbf{Bibliography connection}\\
+\midrule
+SCQU / CCQU & UG    & Students check answers against [N] and Tier~2 [T] entries\\
+SPSU        & UG    & Problems drawn from exercises in starred Tier~2 [T] texts\\
+CPSU        & UG    & Proofs derived from Tier~3 [T] and first [P] papers;
+                      students cite the source of each theorem they use\\
+SPJU        & UG    & Implementations reproduce a result from a starred [T] text\\
+CPJU        & UG    & Report situates the student's comparison within the
+                      Tier~2--3 textbook literature\\
+SCQG / CCQG & Grad  & Precise statements verified against Tier~4--5 [T] and [M] entries\\
+CPSG        & Grad  & Full proofs reference Tier~5 [M] sources (Reed--Simon, Rudin, etc.)\\
+SPJG        & Grad  & Each of the 5 projects implements or verifies a result from
+                      a specific [P] or [M] entry\\
+CPJG        & Grad  & Each of the 5 complex projects requires a mini literature review
+                      using Cat.~C--D entries\\
+WRQ         & Res.  & Each of the 5 questions is directly seeded by a [P] entry;
+                      the memo must cite at least 5 items from the bibliography\\
+ORQ         & Res.  & Each of the 5 questions pushes beyond the bibliography;
+                      students must identify at least 2 items \emph{not} in the
+                      current catalogue and justify their inclusion\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\medskip
+\noindent The ORQ's requirement to find items \emph{not} in the bibliography is
+deliberate: it trains the research skill of \emph{extending} a curated list, not
+just consuming it.
+
+%-------------------------------------------------------------
+\subsection{Cross-Discipline Transfer: The Nonlinear Dynamics Example}
+%-------------------------------------------------------------
+
+The companion bibliography includes cross-reference entries from the
+\textbf{Nonlinear Dynamics \& Chaos} (logistic map) course at each tier.
+These serve two purposes:
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+  \item \textbf{Structural illustration:} They show concretely how the same
+        five-tier architecture transfers to a completely different field.
+        Gleick's \textit{Chaos} [T1] plays the same role as Feynman's \textit{QED} [T1];
+        May (1976) [P, T3] plays the same role as Born (1926) [P, T3];
+        de Melo \& van Strien [M, T5] plays the same role as Reed \& Simon [M, T5].
+
+  \item \textbf{Interdisciplinary resonance:} Several quantum mechanics modules
+        (especially Series~II Modules~II.7 and~II.5) touch phenomena --- ergodicity,
+        invariant measures, spectral statistics --- that have direct nonlinear
+        dynamics analogues. The cross-references make these connections visible
+        to students at the right tier.
+\end{itemize}
+
+%-------------------------------------------------------------
+\subsection{Maintenance and Version Control}
+%-------------------------------------------------------------
+
+\begin{tcolorbox}[goldbox]
+\textbf{Recommended update cycle for the bibliography companion:}
+
+\medskip
+\begin{itemize}[leftmargin=1.5em,itemsep=4pt]
+  \item \textbf{Annual review:} Check all URLs, update edition numbers, and scan
+        arXiv/journal alerts for new papers that should replace or supplement
+        existing [P] or [M] entries in Tiers~4--5.
+
+  \item \textbf{Module release:} Whenever a new module is added to the programme,
+        apply the five-step protocol (Section~3.6 above) to generate its
+        bibliography entries and add them to the relevant tier sections.
+
+  \item \textbf{Student feedback loop:} ORQ submissions frequently surface
+        high-quality papers not in the catalogue. A nominated student each year
+        can maintain a ``candidates'' list; the instructor reviews it and incorporates
+        the best additions in the next annual update.
+
+  \item \textbf{Version labelling:} The bibliography document carries a version
+        number (e.g.\ \texttt{bib-v1.0}) separate from this PSM document. The
+        two are linked but versioned independently so the bibliography can be
+        updated without triggering a full PSM revision.
+\end{itemize}
+\end{tcolorbox}
 
 %=============================================================
 \end{document}
