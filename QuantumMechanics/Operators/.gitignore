@@ -22,7 +22,7 @@ Thumbs.db
 *~
 
 ## Build artifacts
-*.pdf
+# *.pdf
 slide-*.jpg
 thumbnails-*.jpg
 
