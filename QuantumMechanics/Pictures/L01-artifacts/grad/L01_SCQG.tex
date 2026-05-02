@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- SCQG --- Simple Concept Questions (Graduate)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 4--5 $\cdot$ 20--30 minutes $\cdot$ 20 points total}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=gradred,pdftitle={L01-SCQG}}
+
+\begin{document}
+
+\section*{SCQG --- Simple Concept Questions, Graduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier4col}{T4 MSc}\quad\tiertag{tier5col}{T5 PhD}
+  \qquad Duration: 20--30 min\qquad Total: 20 pts
+\end{center}
+
+\instructornote{T4 students complete Q1--Q7. T5 students complete all 10,
+with Q8--Q10 requiring functional-analytic precision.}
+
+\bigskip
+
+%--- Concept probes (5) ---------------------------------------
+\begin{tcolorbox}[gradconceptbox, title={Part I --- Structural Concept Probes \hfill\normalfont 5 $\times$ 2 pts = 10 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=10pt]
+
+\item \tiertag{tier4col}{T4}
+  State precisely the three conditions that a bounded operator $\hat{\rho}$
+  on a Hilbert space $\mathcal{H}$ must satisfy to qualify as a density operator.
+  For each condition, give one physical reason why relaxing it leads to contradiction.
+
+  \vspace{2cm}
+
+\item \tiertag{tier4col}{T4}
+  The convex set $\mathcal{S}(\mathcal{H})$ of density operators is a proper convex subset
+  of the space of Hermitian, unit-trace operators.
+  \begin{enumerate}[label=(\alph*)]
+    \item Identify the extreme points of $\mathcal{S}(\mathcal{H})$.
+    \item Is $\mathcal{S}(\mathcal{H})$ a simplex? Why or why not (for $\dim\mathcal{H}\ge 2$)?
+  \end{enumerate}
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier4col}{T4}
+  The partial trace satisfies: for all operators $\hat{A}$ on $\mathcal{H}_A$,
+  $\operatorname{Tr}_A(\hat{\rho}_A\hat{A})=\operatorname{Tr}_{AB}(\hat{\rho}_{AB}(\hat{A}\otimes\hat{\mathbb{1}}_B))$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Verify this identity for a product state $\hat{\rho}_{AB}=\hat{\rho}_A\otimes\hat{\rho}_B$.
+    \item State what this identity says physically about local measurements on $A$.
+  \end{enumerate}
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier4col}{T4}
+  Define the quantum relative entropy
+  $S(\hat{\rho}\|\hat{\sigma})=\operatorname{Tr}(\hat{\rho}(\ln\hat{\rho}-\ln\hat{\sigma}))$
+  and state (without proof) Klein's inequality: $S(\hat{\rho}\|\hat{\sigma})\ge 0$.
+  How does this imply the concavity of von~Neumann entropy?
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier4col}{T4}
+  Sub-additivity of von~Neumann entropy states $S(\hat{\rho}_{AB})\le S(\hat{\rho}_A)+S(\hat{\rho}_B)$.
+  \begin{enumerate}[label=(\alph*)]
+    \item What does equality $S(\hat{\rho}_{AB})=S(\hat{\rho}_A)+S(\hat{\rho}_B)$ imply about $\hat{\rho}_{AB}$?
+    \item What is the \emph{mutual information} $I(A:B)$, and how does it quantify total correlations?
+  \end{enumerate}
+
+  \vspace{2.5cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Functional analysis probes (5) ---------------------------
+\begin{tcolorbox}[gradconceptbox, title={Part II --- Functional-Analytic Probes \hfill\normalfont 5 $\times$ 2 pts = 10 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=10pt, start=6]
+
+\item \tiertag{tier4col}{T4}
+  The \emph{purification} of a mixed state $\hat{\rho}_A$ is a pure state
+  $|\Psi\rangle_{AB}$ in an extended Hilbert space such that
+  $\hat{\rho}_A=\operatorname{Tr}_B(|\Psi\rangle\langle\Psi|)$.
+  \begin{enumerate}[label=(\alph*)]
+    \item State Uhlmann's theorem: $F(\hat{\rho},\hat{\sigma})=\max_{|\Psi\rangle,|\Phi\rangle}|\langle\Psi|\Phi\rangle|^2$
+          where the maximum is over purifications.
+    \item What does this imply about the operational meaning of fidelity?
+  \end{enumerate}
+
+  \vspace{2cm}
+
+\item \tiertag{tier4col}{T4}
+  State and prove the \emph{Cauchy--Schwarz inequality} for the Hilbert--Schmidt
+  inner product $\langle\hat{A},\hat{B}\rangle_{\rm HS}=\operatorname{Tr}(\hat{A}^\dagger\hat{B})$.
+  Use it to bound $|\operatorname{Tr}(\hat{\rho}\hat{A})|$ for a density operator $\hat{\rho}$
+  and a bounded observable $\hat{A}$.
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier5col}{T5}
+  In infinite dimensions, define the trace-class norm
+  $\|\hat{\rho}\|_1=\operatorname{Tr}|\hat{\rho}|=\operatorname{Tr}\sqrt{\hat{\rho}^\dagger\hat{\rho}}$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that a density operator satisfies $\|\hat{\rho}\|_1=1$.
+    \item Explain why the set of density operators is \emph{not} norm-closed in the operator
+          norm $\|\cdot\|_\infty$ but \emph{is} closed in $\|\cdot\|_1$.
+  \end{enumerate}
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier5col}{T5}
+  A quantum channel $\mathcal{E}:\mathcal{T}_1(\mathcal{H})\to\mathcal{T}_1(\mathcal{K})$
+  is completely positive and trace-preserving (CPTP).
+  \begin{enumerate}[label=(\alph*)]
+    \item Define \emph{complete positivity}: what is the difference from mere positivity?
+    \item Give the canonical example of a positive-but-not-completely-positive map.
+  \end{enumerate}
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier5col}{T5}
+  The Stinespring dilation theorem asserts that every CPTP map
+  $\mathcal{E}(\hat{\rho})=\operatorname{Tr}_E(\hat{V}\hat{\rho}\hat{V}^\dagger)$
+  for some isometry $\hat{V}:\mathcal{H}\to\mathcal{H}\otimes\mathcal{H}_E$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that the partial trace is a special case.
+    \item State what this says about the physical origin of all quantum noise.
+  \end{enumerate}
+
+  \vspace{2.5cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={SCQG Rubric}]
+\begin{tabular}{lll}
+\toprule
+Part & Scoring & Total\\
+\midrule
+I (Structural, Q1--Q5) & 1.5 pts precise statement + 0.5 pt physical reason & 10 pts\\
+II (Functional, Q6--Q10) & 1.0 pt correct definition + 1.0 pt proof/application & 10 pts\\
+\midrule
+\textbf{Total} & & \textbf{20 pts}\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

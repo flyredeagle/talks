@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- CPSG --- Complex Problem Set (Graduate)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 4--5 $\cdot$ 5 problems $\cdot$ Rubric: Setup 20\% / Structure 45\% / Algebra 20\% / Insight 15\%}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=gradred,pdftitle={L01-CPSG}}
+
+\begin{document}
+
+\section*{CPSG --- Complex Problem Set, Graduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier4col}{T4 MSc}\quad\tiertag{tier5col}{T5 PhD}\\[6pt]
+  \textit{Problems 1--3 are required for T4. Problems 4--5 required for T5.
+  All five are available to T4 students seeking stretch.}
+\end{center}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Problem 1 --- Uhlmann Fidelity and Purification (T4)}]
+Let $\hat{\rho},\hat{\sigma}$ be density operators on $\mathcal{H}$.
+The \emph{fidelity} is defined as
+$F(\hat{\rho},\hat{\sigma})=\left(\operatorname{Tr}\sqrt{\sqrt{\hat{\rho}}\,\hat{\sigma}\,\sqrt{\hat{\rho}}}\right)^2$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item For pure states $\hat{\rho}=|\psi\rangle\langle\psi|$ and
+        $\hat{\sigma}=|\phi\rangle\langle\phi|$, show $F=|\langle\phi|\psi\rangle|^2$.
+  \item Prove $F(\hat{\rho},\hat{\sigma})=F(\hat{\sigma},\hat{\rho})$ (symmetry).
+  \item State Uhlmann's theorem and use it to show $F\in[0,1]$.
+  \item Prove the monotonicity under quantum channels:
+        $F(\mathcal{E}(\hat{\rho}),\mathcal{E}(\hat{\sigma}))\ge F(\hat{\rho},\hat{\sigma})$
+        for any CPTP map $\mathcal{E}$.
+  \item Interpret: what does $F(\hat{\rho},\hat{\sigma})=1$ imply? What does
+        $F(\hat{\rho},\hat{\sigma})=0$ imply?
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Problem 2 --- Schmidt Decomposition and Entanglement (T4)}]
+Let $|\Psi\rangle_{AB}\in\mathcal{H}_A\otimes\mathcal{H}_B$ with
+$\dim\mathcal{H}_A=m\le n=\dim\mathcal{H}_B$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Prove the Schmidt decomposition theorem:
+        $|\Psi\rangle=\sum_{k=1}^r\sqrt{\lambda_k}|u_k\rangle_A|v_k\rangle_B$
+        with $\lambda_k>0$, $\sum_k\lambda_k=1$, $r\le m$,
+        where $\{|u_k\rangle\}$ and $\{|v_k\rangle\}$ are orthonormal sets.
+        (Hint: use the singular value decomposition of the coefficient matrix.)
+  \item Show $\hat{\rho}_A=\sum_k\lambda_k|u_k\rangle\langle u_k|$ and
+        $\hat{\rho}_B=\sum_k\lambda_k|v_k\rangle\langle v_k|$,
+        and deduce they have the same non-zero eigenvalues.
+  \item Prove $S(\hat{\rho}_A)=S(\hat{\rho}_B)=-\sum_k\lambda_k\ln\lambda_k$
+        for the pure bipartite state.
+  \item The Schmidt rank $r$ is an entanglement measure.
+        Show $r=1$ iff $|\Psi\rangle$ is a product state.
+  \item For the state
+        $|\Psi\rangle=\alpha|00\rangle+\beta|01\rangle+\gamma|10\rangle+\delta|11\rangle$
+        with $|\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1$,
+        set up (do not solve) the SVD that gives the Schmidt decomposition.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Problem 3 --- Data-Processing Inequality (T4)}]
+Let $\mathcal{E}$ be a CPTP map and define the quantum mutual information
+$I(A:B)_\rho=S(\hat{\rho}_A)+S(\hat{\rho}_B)-S(\hat{\rho}_{AB})$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Prove $I(A:B)_\rho\ge 0$ using sub-additivity.
+  \item State the data-processing inequality:
+        $I(A:B)_{(\mathrm{id}_A\otimes\mathcal{E}_B)(\rho)}\le I(A:B)_\rho$.
+  \item Explain why this inequality captures the physical principle that
+        local operations cannot increase correlations.
+  \item For the depolarising channel
+        $\mathcal{E}_p(\hat{\rho})=(1-p)\hat{\rho}+p\hat{\mathbb{1}}/2$,
+        compute $I(A:B)$ before and after applying $\mathcal{E}_p$ to subsystem
+        $B$ of a maximally entangled state $|\Phi^+\rangle$.
+        Verify the inequality for all $p\in[0,1]$.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Problem 4 --- GKSL Master Equation: Derivation Outline (T5)}]
+A quantum dynamical semigroup $\{\mathcal{E}_t\}_{t\ge 0}$ satisfies
+$\mathcal{E}_{t+s}=\mathcal{E}_t\circ\mathcal{E}_s$ (semigroup property)
+and $\mathcal{E}_0=\mathrm{id}$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Define the generator $\mathcal{L}$ by
+        $\mathcal{L}(\hat{\rho})=\lim_{t\to 0^+}\tfrac{1}{t}(\mathcal{E}_t(\hat{\rho})-\hat{\rho})$.
+        Show $\partial_t\hat{\rho}(t)=\mathcal{L}(\hat{\rho}(t))$.
+  \item State the GKSL (Lindblad) theorem: $\mathcal{L}$ is the generator
+        of a quantum dynamical semigroup of CPTP maps if and only if
+        \[
+          \mathcal{L}(\hat{\rho})=-\frac{i}{\hbar}[\hat{H},\hat{\rho}]
+          +\sum_k\!\left(\hat{L}_k\hat{\rho}\hat{L}_k^\dagger
+          -\tfrac{1}{2}\{\hat{L}_k^\dagger\hat{L}_k,\hat{\rho}\}\right)
+        \]
+        for some Hermitian $\hat{H}$ and operators $\{\hat{L}_k\}$.
+  \item Verify that $\mathcal{L}$ is trace-preserving: $\operatorname{Tr}(\mathcal{L}(\hat{\rho}))=0$.
+  \item Show that the coherent part $-\tfrac{i}{\hbar}[\hat{H},\hat{\rho}]$
+        preserves purity and the dissipative part generically decreases purity.
+  \item For a single qubit with one jump operator $\hat{L}=\sqrt{\gamma}\hat{\sigma}_-$
+        (spontaneous emission), write out the GKSL equation component-by-component
+        and solve for $\hat{\rho}_{11}(t)$, $\hat{\rho}_{00}(t)$, $\hat{\rho}_{01}(t)$.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Problem 5 --- Trace-Class Operators and Density Matrices in $\ell^2$ (T5)}]
+Let $\mathcal{H}=\ell^2(\mathbb{N})$ be the Hilbert space of square-summable
+sequences with standard basis $\{|n\rangle\}_{n=0}^\infty$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item For $\hat{\rho}=\sum_{n=0}^\infty p_n|n\rangle\langle n|$ with
+        $p_n\ge 0$, $\sum_n p_n=1$, verify $\hat{\rho}$ is a valid density operator
+        (trace-class, positive, unit trace).
+  \item Show that $\hat{\rho}$ is trace-class:
+        $\|\hat{\rho}\|_1=\operatorname{Tr}(|\hat{\rho}|)=\sum_n p_n=1<\infty$.
+  \item Compute the von~Neumann entropy $S(\hat{\rho})=-\sum_n p_n\ln p_n$
+        for the choice $p_n=\frac{6}{\pi^2}\frac{1}{(n+1)^2}$.
+        Show that $S$ is finite for this state (convergence of the series).
+  \item Construct a density operator on $\ell^2(\mathbb{N})$ for which
+        $S(\hat{\rho})=+\infty$ (entropy diverges). Verify it is nonetheless
+        a valid density operator.
+  \item State what additional condition is needed (beyond the three defining properties)
+        for the von~Neumann entropy to be finite in infinite dimensions.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CPSG Rubric (per problem)}]
+\begin{tabular}{lll}
+\toprule
+Component & Weight & Notes\\
+\midrule
+Setup and problem formulation & 20\% & Correct notation, hypotheses stated\\
+Proof structure               & 45\% & Logical completeness, correct lemma citations\\
+Algebraic correctness         & 20\% & No computational errors\\
+Insight / discussion          & 15\% & Physical or mathematical depth\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,165 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- CPSU --- Complex Problem Set (UG) --- Layer 1: Problem Statements}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tier 3 (AdvUG) primary $\cdot$ 3--6 hrs total $\cdot$ Rubric: Assumptions 15\% / Structure 45\% / Algebra 25\% / Insight 15\%}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=uggreen,pdftitle={L01-CPSU}}
+
+\begin{document}
+
+\section*{CPSU --- Complex Problem Set, Undergraduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier3col}{T3 AdvUG} (parts (a) accessible to \tiertag{tier2col}{T2 BegUG})\\[6pt]
+  \textbf{Layer 1 --- Problem Statements Only (no hints)}\\[4pt]
+  Companion files: \texttt{L01\_CPSU\_hints.tex} (Layer 2),
+  \texttt{L01\_CPSU\_adv\_hints.tex} (Layer 3),
+  \texttt{L01\_CPSU\_solutions.tex} (Layer 4)
+\end{center}
+
+\instructornote{Distribute this file to students. Release Layer 2 after one week; Layer 3 before the assessed tutorial; Layer 4 after submission.}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Problem 1 --- Spectral Decomposition and Purity Bound}]
+\label{prob:CPSU.1}
+
+Let $\hat{\rho}$ be a density operator on a $d$-dimensional Hilbert space $\mathcal{H}$.
+Denote its eigenvalues by $\{\lambda_k\}_{k=1}^d$ with $\lambda_k\ge 0$
+and $\sum_k\lambda_k=1$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Prove that $\operatorname{Tr}(\hat{\rho}^2)=\sum_k\lambda_k^2$.
+  \item Prove the purity bound $\operatorname{Tr}(\hat{\rho}^2)\le 1$, with equality
+        if and only if exactly one $\lambda_k$ equals~1 and all others vanish.
+  \item Prove the lower bound: $\operatorname{Tr}(\hat{\rho}^2)\ge 1/d$,
+        with equality if and only if $\hat{\rho}=\hat{\mathbb{1}}/d$.
+  \item Define the \emph{linear entropy} $S_L=1-\operatorname{Tr}(\hat{\rho}^2)$.
+        Show that $S_L\in[0,1-1/d]$ and interpret the endpoints physically.
+  \item For a qubit ($d=2$), express $S_L$ in terms of the Bloch vector magnitude
+        $|\mathbf{r}|$ and sketch $S_L(|\mathbf{r}|)$.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Problem 2 --- Bloch-Vector Parameterisation}]
+\label{prob:CPSU.2}
+
+Consider the most general Hermitian, unit-trace $2\times 2$ matrix $\hat{\rho}$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Show that $\hat{\rho}$ can be written uniquely as
+        $\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+\mathbf{r}\cdot\hat{\boldsymbol{\sigma}})$
+        for some $\mathbf{r}\in\mathbb{R}^3$.
+        Identify $r_x,r_y,r_z$ in terms of the matrix elements $\rho_{ij}$.
+  \item Show that $\hat{\rho}\ge 0$ if and only if $|\mathbf{r}|\le 1$.
+  \item Prove that $\hat{\rho}$ is pure if and only if $|\mathbf{r}|=1$,
+        and derive $\gamma=\tfrac{1}{2}(1+|\mathbf{r}|^2)$.
+  \item Two distinct Bloch vectors $\mathbf{r}$ and $\mathbf{r}'$ give
+        operators $\hat{\rho}$ and $\hat{\rho}'$.
+        Prove $\operatorname{Tr}(\hat{\rho}\hat{\rho}')=\tfrac{1}{2}(1+\mathbf{r}\cdot\mathbf{r}')$.
+  \item Using (d), show that two pure states $|\psi\rangle,|\phi\rangle$ satisfy
+        $|\langle\phi|\psi\rangle|^2=\tfrac{1}{2}(1+\mathbf{r}\cdot\mathbf{r}')$.
+        Interpret geometrically.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Problem 3 --- Partial Trace and Entanglement}]
+\label{prob:CPSU.3}
+
+Consider a bipartite pure state on $\mathcal{H}_A\otimes\mathcal{H}_B$
+(each qubit) of the form
+\[
+  |\Psi\rangle=\cos\theta\,|00\rangle+\sin\theta\,|11\rangle,
+  \quad\theta\in[0,\pi/2].
+\]
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Compute the full density operator $\hat{\rho}_{AB}=|\Psi\rangle\langle\Psi|$
+        as a $4\times 4$ matrix.
+  \item Compute $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$ and
+        $\hat{\rho}_B=\operatorname{Tr}_A(\hat{\rho}_{AB})$.
+  \item Show that $\hat{\rho}_A$ and $\hat{\rho}_B$ have the same eigenvalues.
+        What is the general principle at work?
+  \item Compute the von~Neumann entropy $S(\hat{\rho}_A)=-\operatorname{Tr}(\hat{\rho}_A\ln\hat{\rho}_A)$
+        as a function of $\theta$.
+  \item Evaluate $S(\hat{\rho}_A)$ at $\theta=0$, $\theta=\pi/4$, $\theta=\pi/2$.
+        Identify which values correspond to product and maximally entangled states.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Problem 4 --- Ensemble Ambiguity}]
+\label{prob:CPSU.4}
+
+A qubit density matrix $\hat{\rho}=\tfrac{1}{2}\hat{\mathbb{1}}$ can be
+decomposed as an ensemble in infinitely many ways.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Show that the decomposition
+        $\hat{\rho}=\tfrac{1}{2}|\uparrow\rangle\langle\uparrow|+\tfrac{1}{2}|\downarrow\rangle\langle\downarrow|$
+        is valid.
+  \item Show that the decomposition
+        $\hat{\rho}=\tfrac{1}{2}|{+}\rangle\langle{+}|+\tfrac{1}{2}|{-}\rangle\langle{-}|$
+        (where $|\pm\rangle=\tfrac{1}{\sqrt{2}}(|\uparrow\rangle\pm|\downarrow\rangle)$)
+        is also valid.
+  \item Construct a \emph{third} distinct ensemble decomposition of $\hat{\rho}=\tfrac{1}{2}\hat{\mathbb{1}}$.
+  \item Prove that any convex decomposition of $\tfrac{1}{2}\hat{\mathbb{1}}$ into pure states
+        uses states whose Bloch vectors sum to zero.
+  \item Discuss the physical implications: does the density matrix fully determine the
+        preparation procedure? What is the operational content of $\hat{\rho}$?
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Problem 5 --- Time Evolution and Purity Conservation}]
+\label{prob:CPSU.5}
+
+Let $\hat{\rho}(0)$ be an initial density operator and
+$\hat{U}(t)=e^{-i\hat{H}t/\hbar}$ the unitary time-evolution operator
+for a closed system with time-independent Hamiltonian $\hat{H}$.
+
+\begin{enumerate}[label=(\alph*), itemsep=8pt]
+  \item Write down the Schr\"odinger-picture equation of motion for $\hat{\rho}(t)$
+        (the Liouville--von~Neumann equation).
+  \item Show that $\hat{\rho}(t)=\hat{U}(t)\hat{\rho}(0)\hat{U}^\dagger(t)$
+        solves the Liouville--von~Neumann equation.
+  \item Prove that purity $\gamma(t)=\operatorname{Tr}(\hat{\rho}(t)^2)$ is conserved
+        under unitary evolution.
+  \item Prove that the von~Neumann entropy $S(\hat{\rho}(t))$ is conserved under
+        unitary evolution.
+  \item Explain (without detailed calculation) why purity and entropy are
+        \emph{not} conserved when the system is open (coupled to an environment).
+        Connect to the Lindblad equation in L10.
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+\begin{tcolorbox}[rubricbox, title={CPSU Rubric (per problem, 5 parts each)}]
+\begin{tabular}{lll}
+\toprule
+Component & Weight & Description\\
+\midrule
+Assumptions / setup   & 15\% & Correct statement of given conditions; notation\\
+Proof structure       & 45\% & Logical flow; use of correct theorems/lemmas\\
+Algebra               & 25\% & Error-free computation; index handling\\
+Insight / discussion  & 15\% & Physical interpretation; connection to broader picture\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

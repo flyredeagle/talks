@@ -1,0 +1,169 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- SPJU --- Simple Projects (UG)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tier 2--3 $\cdot$ 1--2 weeks $\cdot$ 500--800 words or equivalent computation}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=uggreen,pdftitle={L01-SPJU}}
+
+\begin{document}
+
+\section*{SPJU --- Simple Projects, Undergraduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier2col}{T2 BegUG}\quad\tiertag{tier3col}{T3 AdvUG}
+  \qquad Duration: 1--2 weeks self-directed\\[6pt]
+  \textit{Choose \textbf{one} project. Submit a short written report (500--800 words) or
+  a commented Jupyter notebook. All three projects are of equal credit.}
+\end{center}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Project J1 --- The Bloch Sphere: A Complete Map of Qubit States}]
+
+\textbf{Overview.}
+The Bloch sphere is the complete geometric picture of all single-qubit states.
+In this project you will derive it from first principles, compute representative
+states, and visualise the state space using a tool of your choice
+(Python/\texttt{matplotlib}, GeoGebra, or pencil-and-paper sketches).
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item \textbf{Derivation (T3).}
+        Starting from the most general Hermitian, unit-trace $2\times 2$ matrix,
+        derive the Bloch-vector representation
+        $\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+\mathbf{r}\cdot\hat{\boldsymbol{\sigma}})$
+        and show that $\hat{\rho}\ge 0 \Leftrightarrow |\mathbf{r}|\le 1$.
+  \item \textbf{Catalogue (T2--T3).}
+        Locate the following states on a hand-drawn or plotted Bloch sphere:
+        $|\uparrow\rangle$, $|\downarrow\rangle$,
+        $|{+}\rangle=\tfrac{1}{\sqrt{2}}(|\uparrow\rangle+|\downarrow\rangle)$,
+        $|{-}\rangle$, $|{+}i\rangle=\tfrac{1}{\sqrt{2}}(|\uparrow\rangle+i|\downarrow\rangle)$,
+        $\hat{\rho}=\tfrac{1}{2}\hat{\mathbb{1}}$.
+  \item \textbf{Purity contours (T2--T3).}
+        Draw (or compute) the surface of constant purity $\gamma=0.8$ inside
+        the Bloch sphere. What geometric object is it?
+  \item \textbf{Physical interpretation.}
+        Explain in 2--3 paragraphs: why can't we visualise the state space of a
+        qutrit ($d=3$) as a sphere? What changes?
+\end{enumerate}
+
+\medskip\textbf{Deliverable.}
+A report of 500--800 words including at least one clearly labelled diagram
+of the Bloch sphere, a brief derivation of the parameterisation, and a
+table of the six states above with their Bloch vectors and purities.
+
+\medskip\textbf{Assessment criteria.}
+Correctness of derivation (30\%), quality of diagram (20\%),
+catalogue accuracy (20\%), clarity of written discussion (30\%).
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Project J2 --- Numerical Exploration of Partial Traces}]
+
+\textbf{Overview.}
+You will write a short Python function to compute the partial trace of an
+arbitrary bipartite state and use it to investigate how entanglement
+manifests in reduced density matrices.
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item \textbf{Implementation.}
+        Write a Python function \texttt{partial\_trace(rho, dims, axis)}
+        that accepts a density matrix \texttt{rho} of a bipartite system
+        with subsystem dimensions \texttt{dims = [dA, dB]}, and returns
+        the reduced density matrix after tracing out subsystem \texttt{axis}
+        (0 for $A$, 1 for $B$).
+        Verify correctness on the product state
+        $|\uparrow\rangle_A\otimes|\downarrow\rangle_B$.
+  \item \textbf{Bell states.}
+        Apply your function to all four Bell states
+        $\{|\Phi^\pm\rangle,|\Psi^\pm\rangle\}$.
+        Tabulate $\hat{\rho}_A$, purity $\gamma_A$, and von~Neumann entropy
+        $S(\hat{\rho}_A)$ for each.
+  \item \textbf{Parameterised family.}
+        For the family
+        $|\Psi(\theta)\rangle=\cos\theta|00\rangle+\sin\theta|11\rangle$
+        with $\theta\in[0,\pi/2]$:
+        plot $S(\hat{\rho}_A(\theta))$ vs.\ $\theta$.
+        Identify the product and maximally entangled points.
+  \item \textbf{Discussion.}
+        In 200--300 words, explain: (i) why $S(\hat{\rho}_A)=S(\hat{\rho}_B)$
+        for a pure bipartite state; (ii) what $S(\hat{\rho}_A)=0$ and
+        $S(\hat{\rho}_A)=\ln 2$ mean physically.
+\end{enumerate}
+
+\medskip\textbf{Deliverable.}
+A commented Jupyter notebook (\texttt{.ipynb}) plus a PDF export.
+The notebook must be reproducible (all cells executable top-to-bottom).
+
+\medskip\textbf{Assessment criteria.}
+Function correctness (35\%), Bell-state table (20\%),
+entropy plot (20\%), written discussion (25\%).
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Project J3 --- Density Matrices in NMR and Quantum Optics}]
+
+\textbf{Overview.}
+The density matrix is the workhorse of magnetic resonance spectroscopy (NMR/MRI)
+and quantum optical state tomography. In this project you will read a short
+primary source and connect its formalism to the lecture content.
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item \textbf{Primary source.}
+        Read the first five pages of:
+        Fano, U.\ (1957). Description of states in quantum mechanics by density
+        matrix and operator techniques.
+        \textit{Rev.\ Mod.\ Phys.}\ \textbf{29}, 74--93. [\textbf{P}; see L01 reading list]
+  \item \textbf{Summary.}
+        In 200 words, summarise Fano's motivation for introducing the density
+        matrix formalism in 1957. What experimental context did he have in mind?
+  \item \textbf{Connection.}
+        Fano writes the density matrix for a spin-$\tfrac{1}{2}$ particle in
+        an external field. Identify his notation for the density matrix and map
+        it onto the lecture notation $\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+\mathbf{r}\cdot\hat{\boldsymbol{\sigma}})$.
+        What is his ``polarisation vector'' in our language?
+  \item \textbf{Extension.}
+        A modern NMR experiment prepares the spin in thermal equilibrium with a
+        magnetic field at temperature $T$. The state is
+        $\hat{\rho}=Z^{-1}e^{-\hat{H}/k_BT}$ where $\hat{H}=-\mu_0 B\hat{\sigma}_z$
+        and $Z=\operatorname{Tr}(e^{-\hat{H}/k_BT})$.
+        Compute $\hat{\rho}$ explicitly for the qubit case and find the Bloch vector
+        as a function of $\beta=1/k_BT$.
+        What happens as $T\to\infty$ and $T\to 0$?
+\end{enumerate}
+
+\medskip\textbf{Deliverable.}
+A report of 500--800 words with equation blocks and at least one comparison
+table linking Fano's notation to the lecture notation.
+
+\medskip\textbf{Assessment criteria.}
+Accurate primary-source summary (25\%), notation mapping (30\%),
+thermal state calculation (30\%), written clarity (15\%).
+\end{tcolorbox}
+
+\bigskip
+\begin{tcolorbox}[rubricbox, title={SPJU Global Rubric}]
+\begin{tabular}{ll}
+\toprule
+Component & Weight\\
+\midrule
+Technical correctness (derivations, computations) & 50\%\\
+Quality of visualisations / code / notebook       & 20\%\\
+Written clarity and physical interpretation       & 20\%\\
+Connection to lecture content and reading list    & 10\%\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,263 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- SPJG / CPJG --- Graduate Projects}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 4--5 $\cdot$ SPJG: 2--3 weeks $\cdot$ CPJG: 4--6 weeks}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=gradred,pdftitle={L01-SPJG-CPJG}}
+
+\begin{document}
+
+%=============================================================
+\section*{SPJG --- Simple Projects, Graduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier4col}{T4 MSc}\quad\tiertag{tier5col}{T5 PhD}
+  \qquad Duration: 2--3 weeks self-directed\\[6pt]
+  \textit{Choose one project. Deliverable: a 2000--3000 word report or equivalent
+  annotated notebook. All three projects of equal credit.}
+\end{center}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project SG1 --- Quantum Tomography Beyond Qubits}]
+
+\textbf{Overview.}
+Single-qubit quantum state tomography (Project CJ1) generalises to $d$-dimensional
+systems and to process tomography. This project develops the general theory.
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item \textbf{SIC-POVMs.}
+        A \emph{symmetric informationally complete POVM} (SIC-POVM) in $\mathbb{C}^d$
+        is a set of $d^2$ rank-1 projectors $\{\hat{\Pi}_k\}$ with equal trace
+        and equal pairwise Hilbert--Schmidt inner products.
+        For $d=2$: construct the four SIC-POVM elements and verify the
+        completeness relation $\sum_k\hat{\Pi}_k=\hat{\mathbb{1}}$.
+  \item \textbf{Reconstruction formula.}
+        Derive the formula $\hat{\rho}=(d+1)\sum_k p_k\hat{\Pi}_k-\hat{\mathbb{1}}$
+        where $p_k=\operatorname{Tr}(\hat{\rho}\hat{\Pi}_k)$.
+  \item \textbf{Numerical implementation.}
+        Implement SIC-POVM tomography for $d=2$ and $d=3$ in Python.
+        Compare the sample complexity (number of measurements to achieve
+        fidelity $F\ge 0.99$) with Pauli tomography for $d=2$.
+  \item \textbf{Maximum likelihood.}
+        Describe the maximum-likelihood estimation (MLE) approach:
+        why does it guarantee a physically valid (positive semi-definite) result?
+\end{enumerate}
+
+\medskip\textbf{Assessment:} Theory (35\%), implementation (30\%), comparison (20\%), writing (15\%).
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project SG2 --- Entanglement Measures Beyond von Neumann Entropy}]
+
+\textbf{Overview.}
+The von~Neumann entropy $S(\hat{\rho}_A)$ measures entanglement for \emph{pure} bipartite
+states. This project surveys and compares measures applicable to mixed states.
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item \textbf{Entanglement of formation.}
+        Define $E_F(\hat{\rho})=\min_{\{p_i,|\psi_i\rangle\}}\sum_i p_i S(\hat{\rho}_A^{(i)})$
+        where the minimum is over all pure-state decompositions of $\hat{\rho}$.
+        State the Wootters formula for qubit states.
+  \item \textbf{Concurrence.}
+        For a two-qubit state, define the concurrence $C(\hat{\rho})$ and express
+        $E_F$ in terms of $C$.
+        Compute $C$ for the Werner state $\hat{\rho}_W=p|\Phi^+\rangle\langle\Phi^+|+(1-p)\hat{\mathbb{1}}/4$.
+  \item \textbf{Negativity.}
+        Define the negativity $\mathcal{N}(\hat{\rho})=\tfrac{\|\hat{\rho}^{T_A}\|_1-1}{2}$
+        and show it vanishes for separable states (Peres criterion).
+  \item \textbf{Comparison table.}
+        Compute $S(\hat{\rho}_A)$, $E_F$, $\mathcal{N}$ for:
+        (a)~$|\Phi^+\rangle$; (b)~the Werner state at $p=1/2$; (c)~a product state.
+\end{enumerate}
+
+\medskip\textbf{Assessment:} Derivations (40\%), computations (30\%), comparison (20\%), writing (10\%).
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project SG3 --- The Wigner Function and Phase-Space Density Matrices}]
+
+\textbf{Overview.}
+The Wigner function $W(x,p)$ is a phase-space representation of the density
+operator: $W(x,p)=\tfrac{1}{\pi\hbar}\int dy\,e^{2ipy/\hbar}\langle x-y|\hat{\rho}|x+y\rangle$.
+This project develops its properties and connects it to the density matrix.
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item \textbf{Marginals.}
+        Show $\int dp\,W(x,p)=\langle x|\hat{\rho}|x\rangle$ (position marginal)
+        and $\int dx\,W(x,p)=\langle p|\hat{\rho}|p\rangle$ (momentum marginal).
+  \item \textbf{Negativity.}
+        Show that the Wigner function of a pure Gaussian state (coherent state) is non-negative,
+        but that of the Fock state $|1\rangle$ takes negative values.
+        What does Wigner negativity indicate about the state?
+  \item \textbf{Purity.}
+        Prove the purity formula in phase space:
+        $\gamma=\operatorname{Tr}(\hat{\rho}^2)=2\pi\hbar\int dx\,dp\,W(x,p)^2$.
+  \item \textbf{Computation.}
+        Compute and plot $W(x,p)$ for:
+        (a)~the vacuum $|0\rangle$; (b)~a thermal state with mean photon number $\bar{n}$;
+        (c)~the cat state $\tfrac{1}{\sqrt{2}}(|\alpha\rangle+|-\alpha\rangle)$.
+\end{enumerate}
+
+\medskip\textbf{Assessment:} Marginal proofs (30\%), Wigner plots (25\%), purity proof (25\%), writing (20\%).
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\section*{CPJG --- Complex Projects, Graduate}
+\begin{center}
+  \tiertag{tier5col}{T5 PhD} (parts accessible to advanced \tiertag{tier4col}{T4 MSc})\\[6pt]
+  \textit{Choose one project. Deliverable: a 4000--6000 word research-level report,
+  suitable as a practice literature review or extended term paper.
+  Duration: 4--6 weeks.}
+\end{center}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project CG1 --- Density Operators on Infinite-Dimensional Hilbert Spaces}]
+\textbf{Core question:} What breaks when $\dim\mathcal{H}=\infty$, and what survives?
+
+\medskip\textbf{Sections required in report:}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item The Banach space $\mathcal{T}_1(\mathcal{H})$ of trace-class operators:
+        definition, norm, completeness. [Reed \& Simon, Vol.~I, Ch.~VI]
+  \item Density operators as the positive unit-ball of $\mathcal{T}_1(\mathcal{H})$:
+        topology, extreme points, purification.
+  \item The Schatten $p$-class hierarchy: $\mathcal{T}_1\subset\mathcal{T}_2\subset\mathcal{K}\subset\mathcal{B}$.
+        Density operators are in $\mathcal{T}_1$ but the identity is in none.
+  \item Von~Neumann entropy in infinite dimensions: when it is finite,
+        the quantum microcanonical ensemble, Gibbs states.
+  \item One research application: quantum field theory density matrices and
+        the Reeh--Schlieder theorem (why any local state is mixed in QFT).
+\end{enumerate}
+
+\medskip\textbf{Key references:} Reed \& Simon (1972); Bratteli \& Robinson (1987);
+Haag (1996). See L01 bibliography.
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project CG2 --- Complete Positivity, Quantum Channels, and the GKSL Theorem}]
+\textbf{Core question:} Why is complete positivity — not mere positivity — the right
+condition for physical quantum maps?
+
+\medskip\textbf{Sections required in report:}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item Positive vs.\ completely positive maps: definitions, examples, and the
+        failure of positivity under extension (the transpose).
+  \item The Kraus representation theorem: proof sketch and uniqueness (up to
+        unitary on the environment Hilbert space).
+  \item The Stinespring dilation: every CPTP map arises from unitary evolution on
+        system+environment.
+  \item Derivation of the GKSL master equation: from the Markov approximation
+        on the Stinespring dilation to the Lindblad form.
+  \item One research application: the Born--Markov master equation in quantum optics.
+        [Breuer \& Petruccione, \textit{The Theory of Open Quantum Systems}]
+\end{enumerate}
+
+\medskip\textbf{Key references:} Kraus (1983); Lindblad (1976); Gorini et al.\ (1976);
+Breuer \& Petruccione (2002). See L01 bibliography.
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project CG3 --- Quantum Entropy Inequalities and the Petz Recovery Map}]
+\textbf{Core question:} Can quantum information lost during a channel be recovered?
+
+\medskip\textbf{Sections required in report:}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item Strong sub-additivity of von~Neumann entropy (Lieb--Ruskai theorem):
+        $S(\hat{\rho}_{ABC})+S(\hat{\rho}_B)\le S(\hat{\rho}_{AB})+S(\hat{\rho}_{BC})$.
+  \item The data-processing inequality and its equality conditions.
+  \item The Petz recovery map: for which channels can lost information be recovered?
+        Statement of the Petz theorem.
+  \item Approximate quantum error correction and recoverability inequalities
+        (Fawzi--Renner, 2015).
+  \item Research frontier: universal recovery maps and the connection to
+        holographic quantum error correction.
+\end{enumerate}
+
+\medskip\textbf{Key references:} Lieb \& Ruskai (1973); Petz (1988);
+Fawzi \& Renner (2015); Wilde (2017). See L01 bibliography.
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project CG4 --- Many-Body Density Matrices and Reduced Density Matrices}]
+\textbf{Core question:} How does the density matrix generalise to $N$-particle systems,
+and what is the structure of physically realizable reduced density matrices?
+
+\medskip\textbf{Sections required in report:}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item The $N$-body density operator and its hierarchy of $k$-body reduced density
+        matrices $\hat{\gamma}^{(k)}$.
+  \item The representability problem: which positive, unit-trace operators are
+        valid 2-body reduced density matrices of an $N$-body state?
+  \item Natural orbitals and natural occupation numbers (eigenvalues of
+        $\hat{\gamma}^{(1)}$); the Pauli exclusion principle as a constraint.
+  \item The Coleman--Yukalov theorem and $N$-representability.
+  \item Research application: density matrix functional theory (DMFT) and
+        the challenge of 2-RDM methods.
+\end{enumerate}
+
+\medskip\textbf{Key references:} Coleman (1963); Löwdin (1955);
+Mazziotti (2007). See L01 bibliography.
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[gradprobbox, title={Project CG5 --- The Quantum de Finetti Theorem}]
+\textbf{Core question:} Under what conditions does an exchangeable sequence of
+quantum states reduce to a mixture of identical independent states?
+
+\medskip\textbf{Sections required in report:}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=6pt]
+  \item Classical de Finetti: exchangeable probability distributions are mixtures
+        of i.i.d.\ distributions (de Finetti, 1937; Hewitt--Savage, 1955).
+  \item Quantum de Finetti theorem (Størmer, 1969; Hudson--Moody, 1976):
+        a symmetric state $\hat{\rho}^{(k)}$ on $\mathcal{H}^{\otimes k}$
+        extendable to all $N$ is a mixture of product states.
+  \item Finite quantum de Finetti (Christandl--König--Mitchison--Renner, 2007):
+        quantitative bounds on the approximation error.
+  \item Applications: quantum key distribution security proofs; the quantum
+        marginal problem; quantum information theory.
+  \item Limitations: the theorem requires symmetry; not all physical states are symmetric.
+\end{enumerate}
+
+\medskip\textbf{Key references:} Størmer (1969); Hudson \& Moody (1976);
+Christandl et al.\ (2007); Harrow (2013 arXiv). See L01 bibliography.
+\end{tcolorbox}
+
+\bigskip
+\begin{tcolorbox}[rubricbox, title={SPJG / CPJG Global Rubric}]
+\begin{tabular}{lll}
+\toprule
+Component & SPJG weight & CPJG weight\\
+\midrule
+Technical correctness (derivations, proofs)     & 35\% & 30\%\\
+Depth of analysis / research engagement         & 20\% & 30\%\\
+Implementation / computation (where applicable) & 20\% & 15\%\\
+Written communication and structure             & 15\% & 15\%\\
+Citation and bibliography accuracy              & 10\% & 10\%\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

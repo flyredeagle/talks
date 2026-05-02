@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- CCQU --- Complex Concept Questions (UG)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 2--3 $\cdot$ 25--35 minutes $\cdot$ 20 points total}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=midblue,pdftitle={L01-CCQU}}
+
+\begin{document}
+
+\section*{CCQU --- Complex Concept Questions, Undergraduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier2col}{T2 BegUG}\quad\tiertag{tier3col}{T3 AdvUG}
+  \qquad Duration: 25--35 min (tutorial/homework)\qquad Total: 20 pts
+\end{center}
+
+\instructornote{T2 students are expected to trace through arguments and identify
+consequences of definitions. T3 students should also construct counterexamples
+and identify logical gaps.}
+
+\bigskip
+
+%--- Explain why (4) -----------------------------------------
+\begin{tcolorbox}[ugconceptbox, title={Part I --- ``Explain Why'' \hfill\normalfont 4 $\times$ 2 pts = 8 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=14pt]
+
+\item \tiertag{tier2col}{T2}
+  \textbf{Explain why} the two states
+  $|\psi_1\rangle=\tfrac{1}{\sqrt{2}}(|\uparrow\rangle+|\downarrow\rangle)$
+  (superposition) and
+  $\hat{\rho}_{mix}=\tfrac{1}{2}|\uparrow\rangle\langle\uparrow|+\tfrac{1}{2}|\downarrow\rangle\langle\downarrow|$
+  (mixture) give the same probability $P(\uparrow)=P(\downarrow)=1/2$ for a
+  $\hat{\sigma}_z$ measurement, yet are physically distinct.
+  Give a measurement that distinguishes them.
+
+  \vspace{3cm}
+
+\item \tiertag{tier2col}{T2}
+  \textbf{Explain why} the density operator $\hat{\rho}$ is independent of which
+  set of states $\{|\psi_i\rangle\}$ and probabilities $\{p_i\}$ you use to
+  represent it, as long as the operator itself is the same.
+  (Hint: two ensembles can yield the same $\hat{\rho}$.)
+
+  \vspace{3cm}
+
+\item \tiertag{tier3col}{T3}
+  \textbf{Explain why} $\hat{\rho}\ge 0$ (positive semi-definite) is a physical,
+  not merely mathematical, requirement.
+  What would go wrong if $\hat{\rho}$ had a negative eigenvalue?
+
+  \vspace{3cm}
+
+\item \tiertag{tier3col}{T3}
+  \textbf{Explain why} the purity $\gamma=\operatorname{Tr}(\hat{\rho}^2)$
+  cannot exceed~1, starting from the spectral decomposition of $\hat{\rho}$.
+  When is $\gamma=1$ achieved?
+
+  \vspace{3cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- What would change if... (3) -----------------------------
+\begin{tcolorbox}[ugconceptbox, title={Part II --- ``What Would Change If\ldots'' \hfill\normalfont 3 $\times$ 2 pts = 6 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=14pt, start=5]
+
+\item \tiertag{tier2col}{T2}
+  \textbf{What would change} if the trace of $\hat{\rho}$ were allowed to be
+  less than~1? How would the formula $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$
+  need to be modified to still give correct probabilities?
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier2col}{T2}
+  \textbf{What would change} in the partial trace
+  $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$
+  if the composite state were a product state
+  $\hat{\rho}_{AB}=\hat{\rho}_A\otimes\hat{\rho}_B$
+  rather than an entangled state?
+  What happens to the von Neumann entropy $S(\hat{\rho}_A)$?
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier3col}{T3}
+  \textbf{What would change} if the Hilbert space were defined over the
+  real numbers $\mathbb{R}$ rather than $\mathbb{C}$?
+  Which physical phenomenon would the density matrix fail to capture?
+  (Hint: think about coherences and relative phases.)
+
+  \vspace{2.5cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Identify the flaw (3) -----------------------------------
+\begin{tcolorbox}[ugconceptbox, title={Part III --- ``Identify the Flaw'' \hfill\normalfont 3 $\times$ 2 pts = 6 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=14pt, start=8]
+
+\item \tiertag{tier2col}{T2}
+  A student writes:
+  ``The density operator of a pure state is $\hat{\rho}=|\psi\rangle\langle\psi|$,
+  so its eigenvalues are all~$1$.''
+  \textbf{Identify and correct the flaw.}
+
+  \vspace{2.5cm}
+
+\item \tiertag{tier3col}{T3}
+  A student argues:
+  ``Since $\hat{\rho}$ and $\hat{\rho}^2$ are both positive semi-definite
+  and have the same trace, they must be equal: $\hat{\rho}^2=\hat{\rho}$.
+  Therefore every density operator describes a pure state.''
+  \textbf{Identify every error in this argument.}
+
+  \vspace{3cm}
+
+\item \tiertag{tier3col}{T3}
+  A student claims:
+  ``Measuring qubit $A$ in the Bell state
+  $|\Phi^+\rangle=\tfrac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$
+  and finding $|0\rangle_A$ immediately gives qubit $B$ the state $|0\rangle_B$;
+  therefore qubit $B$ was always in $|0\rangle_B$, contradicting the partial trace
+  result $\hat{\rho}_B=\tfrac{1}{2}\hat{\mathbb{1}}$.''
+  \textbf{Resolve the apparent contradiction.}
+
+  \vspace{3cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CCQU Rubric}]
+\begin{tabular}{lll}
+\toprule
+Part & Scoring & Total\\
+\midrule
+I (Explain why, Q1--Q4)        & 1.0 pt key conceptual point + 1.0 pt coherent argument & 8 pts\\
+II (What would change, Q5--Q7) & 1.0 pt correct identification + 1.0 pt physical consequence & 6 pts\\
+III (Identify flaw, Q8--Q10)   & 1.0 pt locating the error + 1.0 pt correct repair/resolution & 6 pts\\
+\midrule
+\textbf{Total} & & \textbf{20 pts}\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

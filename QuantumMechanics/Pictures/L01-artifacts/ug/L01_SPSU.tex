@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- SPSU --- Simple Problem Set (UG)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 1--3 $\cdot$ 10 problems $\cdot$ Rubric: Result 60\% / Method 30\% / Interpretation 10\%}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=uggreen,pdftitle={L01-SPSU}}
+
+\begin{document}
+
+\section*{SPSU --- Simple Problem Set, Undergraduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier1col}{T1 HS}\quad\tiertag{tier2col}{T2 BegUG}\quad\tiertag{tier3col}{T3 AdvUG}
+\end{center}
+
+\instructornote{Part A (mechanics) is accessible to all tiers. T1 students work
+numerically; T2 students write bra-ket expressions; T3 students also verify
+basis-independence. Parts B and C are primarily T2--T3.}
+
+\bigskip
+
+%--- Part A: Mechanics (4) -----------------------------------
+\begin{tcolorbox}[ugprobbox, title={Part A --- Mechanics \hfill\normalfont 4 problems}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{A\arabic*.}, itemsep=12pt]
+
+\item \tiertag{tier1col}{T1}\tiertag{tier2col}{T2}
+  A spin-$\tfrac{1}{2}$ source emits $|{+}z\rangle=|\uparrow\rangle$ with probability
+  $p=2/3$ and $|{-}z\rangle=|\downarrow\rangle$ with probability $1-p=1/3$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Write the $2\times 2$ density matrix $\hat{\rho}$ in the $\{|\uparrow\rangle,|\downarrow\rangle\}$ basis.
+    \item Verify that $\operatorname{Tr}(\hat{\rho})=1$.
+    \item Compute the purity $\gamma=\operatorname{Tr}(\hat{\rho}^2)$.
+  \end{enumerate}
+
+\item \tiertag{tier2col}{T2}
+  The pure state $|\psi\rangle=\tfrac{3}{5}|\uparrow\rangle+\tfrac{4}{5}i|\downarrow\rangle$
+  is prepared.
+  \begin{enumerate}[label=(\alph*)]
+    \item Write $\hat{\rho}=|\psi\rangle\langle\psi|$ as an explicit $2\times 2$ matrix.
+    \item Verify $\hat{\rho}^2=\hat{\rho}$ and $\gamma=1$.
+    \item Compute $\langle\hat{\sigma}_z\rangle=\operatorname{Tr}(\hat{\rho}\hat{\sigma}_z)$.
+  \end{enumerate}
+
+\item \tiertag{tier2col}{T2}
+  A qutrit ($d=3$) density operator is given by
+  \[
+    \hat{\rho}=\begin{pmatrix}1/2&0&0\\0&1/3&0\\0&0&1/6\end{pmatrix}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Verify all three defining properties of a density operator.
+    \item Compute the purity $\gamma$ and the von~Neumann entropy $S=-\operatorname{Tr}(\hat{\rho}\ln\hat{\rho})$.
+    \item What are the diagonal entries, and what do they represent physically?
+  \end{enumerate}
+
+\item \tiertag{tier3col}{T3}
+  Let $\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+r_z\hat{\sigma}_z)$ for $r_z\in[-1,1]$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Find the eigenvalues of $\hat{\rho}$ in terms of $r_z$.
+    \item Find the purity $\gamma(r_z)$ and verify $\gamma=1$ iff $|r_z|=1$.
+    \item Compute $\langle\hat{\sigma}_x\rangle$, $\langle\hat{\sigma}_y\rangle$,
+          $\langle\hat{\sigma}_z\rangle$ for this state.
+  \end{enumerate}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Part B: Interpretation (3) -----------------------------
+\begin{tcolorbox}[ugprobbox, title={Part B --- Interpretation \hfill\normalfont 3 problems}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{B\arabic*.}, itemsep=12pt]
+
+\item \tiertag{tier2col}{T2}
+  A qubit is in state $\hat{\rho}=\begin{pmatrix}0.9&0.1\\0.1&0.1\end{pmatrix}$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Is this a valid density operator? Check all three properties.
+    \item If valid: compute purity and classify as pure, near-pure, or highly mixed.
+    \item If not valid: identify which property fails and by how much.
+  \end{enumerate}
+
+\item \tiertag{tier2col}{T2}
+  Two preparation procedures yield the following density matrices on a qubit:
+  \[
+    \hat{\rho}_1=\begin{pmatrix}1/2&1/2\\1/2&1/2\end{pmatrix},\qquad
+    \hat{\rho}_2=\begin{pmatrix}1/2&0\\0&1/2\end{pmatrix}.
+  \]
+  \begin{enumerate}[label=(\alph*)]
+    \item Which is pure and which is mixed? How do you know?
+    \item For each, compute $\langle\hat{\sigma}_x\rangle$, $\langle\hat{\sigma}_z\rangle$.
+    \item Describe a measurement that distinguishes $\hat{\rho}_1$ from $\hat{\rho}_2$.
+  \end{enumerate}
+
+\item \tiertag{tier3col}{T3}
+  The Bloch vector of a qubit state is $\mathbf{r}=(1/\sqrt{2},0,1/\sqrt{2})$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Is $|\mathbf{r}|\le 1$? What does this tell you about the state?
+    \item Write $\hat{\rho}$ explicitly using $\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+\mathbf{r}\cdot\hat{\boldsymbol{\sigma}})$.
+    \item Compute the purity and von~Neumann entropy $S(\hat{\rho})$.
+  \end{enumerate}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Part C: Translation (3) --------------------------------
+\begin{tcolorbox}[ugprobbox, title={Part C --- Translation \hfill\normalfont 3 problems}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{C\arabic*.}, itemsep=12pt]
+
+\item \tiertag{tier2col}{T2}
+  Two qubits are prepared in the product state
+  $|\Psi\rangle=|\uparrow\rangle_A\otimes\tfrac{1}{\sqrt{2}}(|\uparrow\rangle+|\downarrow\rangle)_B$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Write the full density matrix $\hat{\rho}_{AB}=|\Psi\rangle\langle\Psi|$
+          as a $4\times 4$ matrix in the basis $\{|{\uparrow\uparrow}\rangle,|{\uparrow\downarrow}\rangle,|{\downarrow\uparrow}\rangle,|{\downarrow\downarrow}\rangle\}$.
+    \item Compute $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$.
+    \item Verify that $\hat{\rho}_A$ equals the density operator of qubit $A$ alone.
+  \end{enumerate}
+
+\item \tiertag{tier2col}{T2}
+  The Bell state $|\Phi^-\rangle=\tfrac{1}{\sqrt{2}}(|00\rangle-|11\rangle)$
+  is prepared.
+  \begin{enumerate}[label=(\alph*)]
+    \item Compute $\hat{\rho}_{AB}=|\Phi^-\rangle\langle\Phi^-|$ explicitly.
+    \item Compute $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$ and $\hat{\rho}_B=\operatorname{Tr}_A(\hat{\rho}_{AB})$.
+    \item What do these results tell you about the entanglement in $|\Phi^-\rangle$?
+  \end{enumerate}
+
+\item \tiertag{tier3col}{T3}
+  Let $|\psi\rangle$ be an arbitrary normalised qubit state and
+  $\hat{\rho}=|\psi\rangle\langle\psi|$ its density operator.
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove that $\operatorname{Tr}(\hat{\rho}\hat{A})=\langle\psi|\hat{A}|\psi\rangle$
+          for any operator $\hat{A}$, using an arbitrary orthonormal basis $\{|n\rangle\}$.
+    \item Verify that the result is basis-independent (does not depend on which ONB you choose).
+    \item State what additional step is needed to extend this proof to mixed states.
+  \end{enumerate}
+
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={SPSU Rubric (per problem)}]
+\begin{tabular}{ll}
+Correct final result  & 60\%\\
+Correct method / notation & 30\%\\
+One-sentence interpretation & 10\%\\
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- CCQG --- Complex Concept Questions (Graduate)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 4--5 $\cdot$ 35--50 minutes $\cdot$ 20 points total}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=gradred,pdftitle={L01-CCQG}}
+
+\begin{document}
+
+\section*{CCQG --- Complex Concept Questions, Graduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier4col}{T4 MSc}\quad\tiertag{tier5col}{T5 PhD}
+  \qquad Duration: 35--50 min (seminar or take-home)\qquad Total: 20 pts
+\end{center}
+
+\instructornote{T4 students are expected to give complete arguments grounded in
+linear algebra and elementary functional analysis. T5 students must work in
+infinite dimensions wherever the question demands it, and flag where
+finite-dimensional arguments break down.}
+
+\bigskip
+
+%--- Explain why (4) -----------------------------------------
+\begin{tcolorbox}[gradconceptbox, title={Part I --- ``Explain Why'' \hfill\normalfont 4 $\times$ 2 pts = 8 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=14pt]
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Explain why} the decomposition of a mixed state into pure states is
+  not unique, but the density operator itself is unique.
+  Give an example with $\hat{\rho}=\tfrac{1}{2}\hat{\mathbb{1}}$ showing two
+  physically distinct ensembles that lead to the same $\hat{\rho}$.
+  What does this say about the operational status of the preparation procedure?
+
+  \vspace{3cm}
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Explain why} the partial trace, not any other marginalisation, is the
+  correct operation for obtaining the reduced state of a subsystem.
+  In particular, explain why $\hat{\rho}_A$ defined by
+  $\operatorname{Tr}(\hat{\rho}_A\hat{A})=\operatorname{Tr}(\hat{\rho}_{AB}(\hat{A}\otimes\hat{\mathbb{1}}_B))$
+  is the \emph{unique} operator satisfying this requirement.
+
+  \vspace{3cm}
+
+\item \tiertag{tier5col}{T5}
+  \textbf{Explain why} complete positivity is a stronger requirement than
+  positivity, and why the transposition map $T:\hat{\rho}\mapsto\hat{\rho}^T$
+  is positive but not completely positive.
+  (Hint: consider the action of $T\otimes\mathrm{id}$ on a maximally entangled state.)
+
+  \vspace{3cm}
+
+\item \tiertag{tier5col}{T5}
+  \textbf{Explain why} the von~Neumann entropy $S(\hat{\rho})=-\operatorname{Tr}(\hat{\rho}\ln\hat{\rho})$
+  can diverge for a density operator on an infinite-dimensional Hilbert space,
+  even though $\hat{\rho}$ satisfies all three defining conditions.
+  Give a concrete example of such a state.
+
+  \vspace{3cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Comparison and contrast (3) -----------------------------
+\begin{tcolorbox}[gradconceptbox, title={Part II --- Compare and Contrast \hfill\normalfont 3 $\times$ 3 pts = 9 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=14pt, start=5]
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Compare and contrast} the von~Neumann entropy $S(\hat{\rho})=-\operatorname{Tr}(\hat{\rho}\ln\hat{\rho})$
+  with the classical Shannon entropy $H(p)=-\sum_k p_k\ln p_k$.
+  Specifically address:
+  (a)~when they coincide;
+  (b)~concavity and mixing properties;
+  (c)~what makes von~Neumann entropy ``more quantum'' (hint: basis dependence of Shannon
+  vs.\ basis independence of von~Neumann).
+
+  \vspace{3.5cm}
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Compare and contrast} the Schr\"odinger and Heisenberg pictures
+  at the level of density operators:
+  (a)~how does $\hat{\rho}$ transform in each picture?
+  (b)~show both give the same $\langle\hat{A}\rangle(t)$;
+  (c)~which picture is more natural for the Lindblad master equation, and why?
+
+  \vspace{3.5cm}
+
+\item \tiertag{tier5col}{T5}
+  \textbf{Compare and contrast} the Kraus representation
+  $\mathcal{E}(\hat{\rho})=\sum_k\hat{K}_k\hat{\rho}\hat{K}_k^\dagger$
+  and the Stinespring dilation
+  $\mathcal{E}(\hat{\rho})=\operatorname{Tr}_E(\hat{V}\hat{\rho}\hat{V}^\dagger)$.
+  \begin{enumerate}[label=(\alph*), itemsep=4pt]
+    \item Show the two representations are equivalent.
+    \item State how many Kraus operators are required (minimum and maximum).
+    \item Identify the physical interpretation of each Kraus operator.
+  \end{enumerate}
+
+  \vspace{3.5cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Identify and resolve (1) --------------------------------
+\begin{tcolorbox}[gradconceptbox, title={Part III --- Identify and Resolve \hfill\normalfont 1 $\times$ 3 pts = 3 pts}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{Q\arabic*.}, itemsep=14pt, start=8]
+
+\item \tiertag{tier5col}{T5}
+  A student argues:
+  \begin{quote}
+  ``The entropy of an entangled bipartite pure state $|\Psi\rangle_{AB}$ is zero
+  by definition (it is a pure state). The reduced state $\hat{\rho}_A$ has entropy
+  $S(\hat{\rho}_A)>0$. But since $\hat{\rho}_A=\operatorname{Tr}_B(|\Psi\rangle\langle\Psi|)$,
+  the partial trace must increase entropy. This contradicts the fact that the
+  partial trace is a quantum channel and channels can only increase entropy.''
+  \end{quote}
+  \textbf{Identify every error} in this argument, state the correct result
+  (data-processing inequality), and resolve the apparent paradox.
+
+  \vspace{4cm}
+
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={CCQG Rubric}]
+\begin{tabular}{lll}
+\toprule
+Part & Scoring & Total\\
+\midrule
+I (Explain why, Q1--Q4)      & 1.5 pts argument + 0.5 pts precision & 8 pts\\
+II (Compare/contrast, Q5--Q7) & 2.0 pts key distinctions + 1.0 pt synthesis & 9 pts\\
+III (Resolve, Q8)             & 1.5 pts error identification + 1.5 pts correct argument & 3 pts\\
+\midrule
+\textbf{Total} & & \textbf{20 pts}\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

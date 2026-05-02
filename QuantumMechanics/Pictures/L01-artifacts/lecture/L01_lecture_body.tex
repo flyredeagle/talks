@@ -1,0 +1,673 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{QM Programme --- Module I.3 --- L01}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Pure/Mixed States and the Density Matrix}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{colorlinks=true,linkcolor=midblue,urlcolor=midblue,
+  pdftitle={L01 — Pure/Mixed States and the Density Matrix}}
+
+\begin{document}
+
+%=============================================================
+\section*{L01 --- Pure/Mixed States and the Density Matrix}
+\label{sec:L01.header}
+%=============================================================
+
+%-------------------------------------------------------------
+\subsection*{Lecture Metadata}
+%-------------------------------------------------------------
+
+\begin{tcolorbox}[goldbox]
+\begin{tabularx}{\textwidth}{lX}
+\textbf{Programme}    & Quantum Mechanics \& Quantum Chemistry\\
+\textbf{Hierarchy}    & Series I $>$ Module I.3 $>$ Lecture L01\\
+\textbf{Series}       & Series I --- Introductory Quantum Mechanics\\
+\textbf{Module}       & Module I.3 --- Quantum Dynamics, Perturbation Theory \& Physical Systems\\
+\textbf{Lecture}      & L01 --- Pure/Mixed States and the Density Matrix\\
+\textbf{Duration}     & 90 minutes\\
+\textbf{Active tracks}& \tiertag{ugblue}{UG} \tiertag{gradred}{Grad} \tiertag{respath}{Research}\\
+\textbf{Active tiers} & \tiertag{tier1col}{T1 HS}\ \tiertag{tier2col}{T2 BegUG}\ \tiertag{tier3col}{T3 AdvUG}\ \tiertag{tier4col}{T4 MSc}\ \tiertag{tier5col}{T5 PhD}\\
+\textbf{Prerequisites}& Module I.2 (L01--L12): bra-ket notation, operators, spectral decomposition,\\
+                      & tensor products; basic linear algebra (eigenvalues, matrix exponential)\\
+\textbf{Preceding}    & I.2--L12: Tensor Products, Spin \& Density Operators (introduction)\\
+\textbf{Following}    & L02: Bases --- Discrete and Continuous (wavefunctions, Fourier transform)\\
+\end{tabularx}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[notebox]
+\textbf{Lecture summary.}
+This lecture introduces the density operator $\hat{\rho}$ as the fundamental
+descriptor of quantum states --- pure, mixed, and reduced --- replacing the
+single-ket picture that fails for open systems and statistical ensembles.
+Students learn to construct $\hat{\rho}$, verify its defining properties
+(Hermiticity, unit trace, positive semi-definiteness), compute expectation
+values via the trace, quantify mixedness via purity, and extract subsystem
+states via the partial trace.
+The density matrix unifies the entire Module~I.3 treatment of dynamics and
+perturbation theory, and is the gateway to the open-system content of L10.
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[goldbox]
+\textbf{Track routing.}
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt]
+  \item \tiertag{ugblue}{UG} Tiers~1--3 receive: SCQU, CCQU, SPSU, CPSU, SPJU, CPJU
+  \item \tiertag{gradred}{Grad} Tiers~4--5 receive: SCQG, CCQG, SPSG, CPSG, SPJG, CPJG
+  \item \tiertag{respath}{Research} Tiers~4--5 receive: WRQ$\times$5, ORQ$\times$5
+  \item All artifact files are separate from this lecture body document.
+\end{itemize}
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\section{Learning Objectives}
+\label{sec:L01.1}
+%=============================================================
+
+\begin{tcolorbox}[ugconceptbox,title={Tier 1 (HS) --- By the end of this lecture, you should be able to\ldots}]
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+  \item \textbf{Identify} why a single arrow (ket) is sometimes not enough to
+        describe a quantum system, and give a physical example (e.g.\ a coin-flip
+        mixture of spin-up and spin-down).
+  \item \textbf{Describe} the Bloch sphere picture: pure states sit on the surface
+        ($|\mathbf{r}|=1$) and mixed states live inside the sphere.
+  \item \textbf{Interpret} the diagonal entries of the density matrix as
+        occupation probabilities, and the off-diagonal entries as coherences.
+  \item \textbf{Compute} (simple): given $p_1,p_2$ with $p_1+p_2=1$, write down
+        the density matrix for a classical mixture of two spin states.
+\end{enumerate}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[ugconceptbox,title={Tier 2 (BegUG) --- By the end of this lecture, you should be able to\ldots}]
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+  \item \textbf{Apply} the density-operator formula $\hat{\rho}=|\psi\rangle\langle\psi|$
+        for pure states and $\hat{\rho}=\sum_i p_i|\psi_i\rangle\langle\psi_i|$ for
+        mixtures to concrete 2-level examples.
+  \item \textbf{Calculate} expectation values via $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$
+        and verify agreement with the ket formula for pure states.
+  \item \textbf{Apply} the purity formula $\gamma=\operatorname{Tr}(\hat{\rho}^2)$ and classify a
+        state as pure ($\gamma=1$) or mixed ($\gamma<1$).
+  \item \textbf{Translate} between the abstract ket description and its density-matrix
+        representation in a chosen orthonormal basis.
+  \item \textbf{Calculate} the partial trace $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$
+        for simple $2\otimes 2$ product states.
+\end{enumerate}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[ugconceptbox,title={Tier 3 (AdvUG) --- By the end of this lecture, you should be able to\ldots}]
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+  \item \textbf{Prove} that $\operatorname{Tr}(\hat{\rho}^2)\le 1$ using the spectral
+        decomposition of $\hat{\rho}$, with equality if and only if $\hat{\rho}$ is rank-1.
+  \item \textbf{Derive} the Bloch-vector parameterisation
+        $\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+\mathbf{r}\cdot\hat{\boldsymbol{\sigma}})$
+        and verify all three defining properties.
+  \item \textbf{Construct} the partial trace from the tensor-product structure and
+        verify it yields a valid density operator.
+  \item \textbf{Verify} that $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$
+        is basis-independent (trace cyclic property).
+  \item \textbf{Prove} global-phase invariance: $\hat{\rho}$ is unchanged by
+        $|\psi\rangle\to e^{i\theta}|\psi\rangle$.
+\end{enumerate}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[gradconceptbox,title={Tier 4 (MSc) --- By the end of this lecture, you should be able to\ldots}]
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+  \item \textbf{Analyse} the purification of a mixed state: given $\hat{\rho}_A$,
+        construct $|\Psi\rangle_{AB}$ such that $\operatorname{Tr}_B(|\Psi\rangle\langle\Psi|)=\hat{\rho}_A$.
+  \item \textbf{Connect} the Schmidt decomposition to the eigenstructure of
+        reduced density matrices and to entanglement entropy.
+  \item \textbf{Generalise} the purity inequality to the sub-additivity of von~Neumann
+        entropy: $S(\hat{\rho}_{AB})\le S(\hat{\rho}_A)+S(\hat{\rho}_B)$.
+  \item \textbf{Reformulate} the partial trace in the Kraus-operator language and
+        identify it as a special completely positive map.
+\end{enumerate}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[researchbox,title={Tier 5 (PhD) --- By the end of this lecture, you should be able to\ldots}]
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+  \item \textbf{Formalise} density operators on infinite-dimensional Hilbert spaces
+        as trace-class, positive, unit-trace operators in $\mathcal{T}_1(\mathcal{H})$.
+  \item \textbf{Classify} the convex set of density operators rigorously: extreme
+        points are rank-1 projectors; the set is not a simplex for $d\ge 2$.
+  \item \textbf{Extend} the von~Neumann entropy to the infinite-dimensional setting
+        and state conditions for its finiteness.
+  \item \textbf{Critique} the Kraus representation theorem: state the GKSL theorem
+        precisely and identify when a quantum channel is a partial trace.
+  \item \textbf{Classify} completely positive trace-preserving (CPTP) maps and their
+        relationship to the Stinespring dilation theorem.
+\end{enumerate}
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\section{90-Minute Pacing Plan}
+\label{sec:L01.2}
+%=============================================================
+
+\begin{center}
+\begin{tabularx}{\textwidth}{p{2.2cm}Xp{3.8cm}}
+\toprule
+\textbf{Time} & \textbf{Topic / Activity} & \textbf{Tier depth note}\\
+\midrule
+0--15 min
+& \textbf{Motivation: why $|\psi\rangle$ is not always enough.}
+  Warm-up: Stern--Gerlach ensemble thought experiment. Distinguish
+  (i)~pure state, (ii)~classical mixture, (iii)~open-system subsystem.
+  Introduce $\hat{\rho}$ as the unified descriptor.
+& T1: coin-flip analogy; T2: ket notation review; T3--T5: ray argument
+  (global phase already absorbed)\\
+\midrule
+15--40 min
+& \textbf{L01.3 Constructing $\hat{\rho}$.}
+  Definitions: pure state $\hat{\rho}=|\psi\rangle\langle\psi|$; mixture
+  $\hat{\rho}=\sum_i p_i|\psi_i\rangle\langle\psi_i|$.
+  Three properties: (i)~Hermitian, (ii)~unit trace, (iii)~positive
+  semi-definite. Worked example: spin-$\tfrac{1}{2}$ mixture.
+& T2: matrix computation; T3: prove properties; T4: convexity of
+  density operators; T5: trace-class operators\\
+\midrule
+40--60 min
+& \textbf{L01.4 Expectation values and purity.}
+  $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$; basis independence.
+  Purity $\gamma=\operatorname{Tr}(\hat{\rho}^2)\in[1/d,1]$; Bloch-sphere picture
+  for $d=2$. Worked example: compute $\langle\hat{\sigma}_z\rangle$ for a
+  mixed qubit.
+& T1: Bloch sphere visual; T2--T3: purity calculation; T4: linear
+  entropy $S_L=1-\gamma$; T5: von~Neumann entropy preview\\
+\midrule
+60--80 min
+& \textbf{L01.5 Partial trace and reduced density matrices.}
+  Bipartite Hilbert space $\mathcal{H}_{AB}=\mathcal{H}_A\otimes\mathcal{H}_B$.
+  Definition and computation of $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$.
+  Worked example: Bell state $|\Phi^+\rangle$; partial trace is maximally
+  mixed.
+& T2--T3: $2\!\times\!2$ computation; T4: Schmidt decomposition; T5:
+  CPTP map interpretation\\
+\midrule
+80--90 min
+& \textbf{Synthesis and connections.}
+  Forward link to L02 (bases), L05 (time evolution preserves $\hat{\rho}$),
+  L10 (Lindblad for open systems). Summary: the density operator is the
+  object that time-evolves under the von~Neumann equation
+  $i\hbar\,\partial_t\hat{\rho}=[\hat{H},\hat{\rho}]$.
+  Q\&A and tier-split problem preview.
+& All tiers: unifying picture; T4--T5: Liouville--von~Neumann equation\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+%=============================================================
+\section{Lecture Body}
+\label{sec:L01.3}
+%=============================================================
+
+%-------------------------------------------------------------
+\subsection{L01.3 --- Motivation: When Is a Ket Not Enough?}
+\label{sec:L01.3.1}
+%-------------------------------------------------------------
+
+\begin{tcolorbox}[goldbox]
+\textbf{Main result.}
+A single ket $|\psi\rangle\in\mathcal{H}$ describes only \emph{pure} quantum
+states. Three physically distinct situations require a more general description:
+(i)~statistical ensembles of preparation procedures, (ii)~quantum subsystems of
+entangled composite systems, and (iii)~open systems coupled to unobserved environments.
+The density operator $\hat{\rho}$ handles all three cases uniformly.
+\end{tcolorbox}
+
+\subsubsection*{Three Motivating Scenarios}
+
+\textbf{Scenario 1: Statistical ensemble.}
+A preparation machine selects $|\uparrow\rangle$ with probability $p$ and
+$|\downarrow\rangle$ with probability $1-p$.
+No single ket encodes this classical uncertainty, yet all predictions follow
+from $\hat{\rho}=p|\uparrow\rangle\langle\uparrow|+(1-p)|\downarrow\rangle\langle\downarrow|$.
+
+\textbf{Scenario 2: Subsystem of entangled pair.}
+Consider two qubits in the Bell state
+$|\Phi^+\rangle=\tfrac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$.
+Qubit $A$ alone has no valid ket description: its predictions are captured only
+by $\hat{\rho}_A=\operatorname{Tr}_B(|\Phi^+\rangle\langle\Phi^+|)=\tfrac{1}{2}\hat{\mathbb{1}}$.
+
+\textbf{Scenario 3: Open system.}
+An atom interacts with a photon field. After tracing over field degrees of
+freedom, the atom's state is mixed, and its evolution is generated not by the
+Schr\"odinger equation but by a master equation for $\hat{\rho}$ (see L10).
+
+\instructornote{Draw the Bloch sphere on the board: T1 students focus on the
+sphere picture; T2--T3 on computing $\hat{\rho}$; T4--T5 on the convex geometry
+of the state space.}
+
+%-------------------------------------------------------------
+\subsection{L01.4 --- Constructing the Density Operator}
+\label{sec:L01.3.2}
+%-------------------------------------------------------------
+
+\begin{tcolorbox}[goldbox]
+\textbf{Main result.}
+Any valid quantum state is described by a \emph{density operator} $\hat{\rho}$
+satisfying three conditions: (i)~$\hat{\rho}^\dagger=\hat{\rho}$ (Hermitian),
+(ii)~$\operatorname{Tr}(\hat{\rho})=1$ (unit trace), (iii)~$\hat{\rho}\ge 0$
+(positive semi-definite). Conversely, any operator satisfying these three conditions
+is a valid density operator.
+\end{tcolorbox}
+
+\subsubsection*{Definitions}
+
+\begin{description}[leftmargin=1.5em]
+  \item[\textbf{Pure state:}]
+    $\hat{\rho}=|\psi\rangle\langle\psi|$\quad (rank-1 projector; $\hat{\rho}^2=\hat{\rho}$)
+
+  \item[\textbf{Statistical mixture:}]
+    $\hat{\rho}=\displaystyle\sum_i p_i\,|\psi_i\rangle\langle\psi_i|$,\quad
+    $p_i\ge 0$,\quad $\displaystyle\sum_i p_i=1$
+
+  \item[\textbf{Reduced density operator:}]
+    $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})
+     =\displaystyle\sum_j\bigl(\hat{\mathbb{1}}_A\otimes\langle j|_B\bigr)
+     \hat{\rho}_{AB}
+     \bigl(\hat{\mathbb{1}}_A\otimes|j\rangle_B\bigr)$
+
+  \item[\textbf{Expectation value:}]
+    $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A})$
+    \quad (basis-independent by cyclicity of trace)
+\end{description}
+
+\subsubsection*{Core Derivation: Proof of the Three Properties}
+\label{sec:L01.3.2.proof}
+
+\tiertag{tier3col}{Tier 3} \tiertag{tier4col}{Tier 4} \tiertag{tier5col}{Tier 5}
+
+\medskip\noindent
+For the mixture $\hat{\rho}=\sum_i p_i|\psi_i\rangle\langle\psi_i|$
+with $p_i\ge 0$, $\sum_i p_i=1$:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Hermitian:}
+    $\hat{\rho}^\dagger=\sum_i p_i(|\psi_i\rangle\langle\psi_i|)^\dagger
+     =\sum_i p_i|\psi_i\rangle\langle\psi_i|=\hat{\rho}$.
+    \hfill$\checkmark$
+
+  \item \textbf{Unit trace:}
+    $\operatorname{Tr}(\hat{\rho})=\sum_i p_i\,\operatorname{Tr}(|\psi_i\rangle\langle\psi_i|)
+     =\sum_i p_i\langle\psi_i|\psi_i\rangle=\sum_i p_i=1$.
+    \hfill$\checkmark$
+
+  \item \textbf{Positive semi-definite:}
+    For any $|\phi\rangle$,
+    $\langle\phi|\hat{\rho}|\phi\rangle
+     =\sum_i p_i|\langle\phi|\psi_i\rangle|^2\ge 0$,
+    since each $p_i\ge 0$ and $|\langle\phi|\psi_i\rangle|^2\ge 0$.
+    \hfill$\checkmark$
+\end{enumerate}
+
+\begin{tcolorbox}[goldbox]
+\textbf{Worked Example 1: Spin-$\tfrac{1}{2}$ mixture.}\\
+A source produces $|\uparrow\rangle$ with probability $\tfrac{3}{4}$ and
+$|\downarrow\rangle$ with probability $\tfrac{1}{4}$.
+
+\medskip
+In the $\{|\uparrow\rangle,|\downarrow\rangle\}$ basis:
+\begin{equation}
+\hat{\rho}=\frac{3}{4}\begin{pmatrix}1&0\\0&0\end{pmatrix}
++\frac{1}{4}\begin{pmatrix}0&0\\0&1\end{pmatrix}
+=\begin{pmatrix}3/4&0\\0&1/4\end{pmatrix}.
+\label{eq:L01.1}
+\end{equation}
+
+\textit{Check:} $\operatorname{Tr}(\hat{\rho})=1$\checkmark;\quad
+$\hat{\rho}\ge 0$ (both eigenvalues positive)\checkmark;\quad
+$\hat{\rho}^\dagger=\hat{\rho}$\checkmark.
+\end{tcolorbox}
+
+%-------------------------------------------------------------
+\subsection{L01.5 --- Purity and the Bloch Sphere}
+\label{sec:L01.3.3}
+%-------------------------------------------------------------
+
+\begin{tcolorbox}[goldbox]
+\textbf{Main result.}
+The \emph{purity} $\gamma=\operatorname{Tr}(\hat{\rho}^2)$ lies in $[1/d,1]$
+for a $d$-dimensional Hilbert space.
+$\gamma=1$ if and only if $\hat{\rho}$ is a pure state;
+$\gamma=1/d$ for the maximally mixed state $\hat{\rho}=\hat{\mathbb{1}}/d$.
+\end{tcolorbox}
+
+\subsubsection*{Proof: $\operatorname{Tr}(\hat{\rho}^2)\le 1$}
+
+\tiertag{tier3col}{Tier 3}
+
+\medskip\noindent
+By spectral decomposition, $\hat{\rho}=\sum_k \lambda_k|k\rangle\langle k|$
+with $\lambda_k\ge 0$, $\sum_k\lambda_k=1$.
+Then $\operatorname{Tr}(\hat{\rho}^2)=\sum_k\lambda_k^2$.
+By the Cauchy--Schwarz inequality (or by convexity of $t\mapsto t^2$):
+\begin{equation}
+\sum_k\lambda_k^2\le\Bigl(\sum_k\lambda_k\Bigr)^2=1.
+\label{eq:L01.2}
+\end{equation}
+Equality holds iff all probability is concentrated on one eigenvalue,
+i.e.\ $\hat{\rho}=|k_0\rangle\langle k_0|$ is rank-1 (pure state).
+
+\subsubsection*{Bloch Sphere (qubit, $d=2$)}
+
+\tiertag{tier2col}{Tier 2} \tiertag{tier3col}{Tier 3}
+
+\medskip\noindent
+Any qubit density operator can be written
+\begin{equation}
+\hat{\rho}=\tfrac{1}{2}(\hat{\mathbb{1}}+\mathbf{r}\cdot\hat{\boldsymbol{\sigma}}),
+\quad \mathbf{r}=(r_x,r_y,r_z)\in\mathbb{R}^3,
+\label{eq:L01.3}
+\end{equation}
+where $\hat{\boldsymbol{\sigma}}=(\hat{\sigma}_x,\hat{\sigma}_y,\hat{\sigma}_z)$
+are the Pauli matrices.
+The conditions $\hat{\rho}\ge 0$ and $\operatorname{Tr}(\hat{\rho})=1$ are
+equivalent to $|\mathbf{r}|\le 1$.
+Purity: $\gamma=\tfrac{1}{2}(1+|\mathbf{r}|^2)$.
+Pure states: $|\mathbf{r}|=1$ (Bloch sphere surface).
+Maximally mixed state: $\mathbf{r}=0$, $\gamma=\tfrac{1}{2}$.
+
+\begin{tcolorbox}[goldbox]
+\textbf{Worked Example 2: Expectation value via trace.}\\
+For the state in Example~1 and $\hat{A}=\hat{\sigma}_z=\text{diag}(1,-1)$:
+\begin{align}
+\langle\hat{\sigma}_z\rangle
+&=\operatorname{Tr}(\hat{\rho}\hat{\sigma}_z)
+ =\operatorname{Tr}\!\begin{pmatrix}3/4&0\\0&1/4\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+ =\operatorname{Tr}\!\begin{pmatrix}3/4&0\\0&-1/4\end{pmatrix}\notag\\
+&=\tfrac{3}{4}-\tfrac{1}{4}=\tfrac{1}{2}.
+\label{eq:L01.4}
+\end{align}
+Purity: $\gamma=\operatorname{Tr}(\hat{\rho}^2)=(3/4)^2+(1/4)^2=9/16+1/16=10/16=5/8<1$\quad (mixed).
+\end{tcolorbox}
+
+%-------------------------------------------------------------
+\subsection{L01.6 --- Partial Trace and Reduced Density Operators}
+\label{sec:L01.3.4}
+%-------------------------------------------------------------
+
+\begin{tcolorbox}[goldbox]
+\textbf{Main result.}
+For a composite system $AB$ with state $\hat{\rho}_{AB}\in\mathcal{B}(\mathcal{H}_A\otimes\mathcal{H}_B)$,
+the \emph{reduced density operator} of subsystem $A$ is
+$\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$.
+This is the unique operator such that
+$\operatorname{Tr}(\hat{\rho}_A\hat{A})=\operatorname{Tr}(\hat{\rho}_{AB}(\hat{A}\otimes\hat{\mathbb{1}}_B))$
+for all $\hat{A}$ on $\mathcal{H}_A$.
+\end{tcolorbox}
+
+\subsubsection*{Computation}
+
+Choose an orthonormal basis $\{|j\rangle_B\}$ for $\mathcal{H}_B$.
+Then:
+\begin{equation}
+\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})
+=\sum_j\bigl(\hat{\mathbb{1}}_A\otimes{}_B\langle j|\bigr)\,
+\hat{\rho}_{AB}\,
+\bigl(\hat{\mathbb{1}}_A\otimes|j\rangle_B\bigr).
+\label{eq:L01.5}
+\end{equation}
+
+\begin{tcolorbox}[goldbox]
+\textbf{Worked Example 3: Bell state partial trace.}\\
+$|\Phi^+\rangle=\tfrac{1}{\sqrt{2}}(|00\rangle+|11\rangle)$.
+Full state: $\hat{\rho}_{AB}=|\Phi^+\rangle\langle\Phi^+|$.
+
+Using basis $\{|0\rangle_B,|1\rangle_B\}$:
+\begin{align}
+\hat{\rho}_A
+&={}_B\langle 0|\hat{\rho}_{AB}|0\rangle_B+{}_B\langle 1|\hat{\rho}_{AB}|1\rangle_B\notag\\
+&=\tfrac{1}{2}|0\rangle_A\langle 0|+\tfrac{1}{2}|1\rangle_A\langle 1|
+ =\tfrac{1}{2}\hat{\mathbb{1}}_A.
+\label{eq:L01.6}
+\end{align}
+\textit{Interpretation:} Qubit $A$ is maximally mixed ($\gamma_A=1/2$) even though
+the global two-qubit state is pure --- a signature of entanglement.
+\end{tcolorbox}
+
+\subsubsection*{von Neumann Entropy and Entanglement}
+
+\tiertag{tier4col}{Tier 4} \tiertag{tier5col}{Tier 5}
+
+\begin{equation}
+S(\hat{\rho}_A)=-\operatorname{Tr}(\hat{\rho}_A\ln\hat{\rho}_A)
+=-\sum_k\lambda_k\ln\lambda_k\ge 0.
+\label{eq:L01.7}
+\end{equation}
+For the Bell state: $S(\hat{\rho}_A)=\ln 2$ (maximum for a qubit).
+For a product state $\hat{\rho}_{AB}=\hat{\rho}_A\otimes\hat{\rho}_B$:
+$S(\hat{\rho}_A)$ is the entropy of $\hat{\rho}_A$ alone (no entanglement contribution).
+
+\subsubsection*{Purification}
+\tiertag{tier4col}{Tier 4}
+
+\medskip\noindent
+Given any $\hat{\rho}_A$ on $\mathcal{H}_A$ with spectral decomposition
+$\hat{\rho}_A=\sum_k\lambda_k|k\rangle_A\langle k|$, define the purification
+\begin{equation}
+|\Psi\rangle_{AB}=\sum_k\sqrt{\lambda_k}|k\rangle_A|k\rangle_B\in\mathcal{H}_A\otimes\mathcal{H}_B.
+\label{eq:L01.8}
+\end{equation}
+Then $\operatorname{Tr}_B(|\Psi\rangle\langle\Psi|)=\hat{\rho}_A$ by construction.
+This is the Schmidt decomposition of $|\Psi\rangle$.
+
+\newpage
+%=============================================================
+\section{Connections}
+\label{sec:L01.4}
+%=============================================================
+
+\begin{tcolorbox}[goldbox]
+\textbf{Backward connections.}
+\begin{itemize}[leftmargin=1.5em,itemsep=3pt]
+  \item \textbf{I.2--L12 (Tensor Products \& Density Operators intro):}
+    The present lecture fully develops the density matrix formalism
+    introduced in the final lecture of Module~I.2.
+  \item \textbf{I.2--L04 (Eigenkets \& Spectral Decomposition):}
+    The spectral decomposition $\hat{\rho}=\sum_k\lambda_k|k\rangle\langle k|$
+    requires fluency with eigenket expansions.
+  \item \textbf{I.2--L01 (Why Dirac Notation):}
+    The ray picture established there (states as equivalence classes
+    $|\psi\rangle\sim e^{i\theta}|\psi\rangle$) motivates the density operator
+    as the object that absorbs the global phase.
+\end{itemize}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[goldbox]
+\textbf{Forward connections within Module I.3.}
+\begin{itemize}[leftmargin=1.5em,itemsep=3pt]
+  \item \textbf{L02 (Bases):}
+    The partial trace and expectation values are computed in specific
+    bases; continuous-basis analogues appear there.
+  \item \textbf{L05 (Time Evolution I):}
+    The Liouville--von~Neumann equation $i\hbar\,\partial_t\hat{\rho}=[\hat{H},\hat{\rho}]$
+    shows how $\hat{\rho}$ time-evolves under a unitary; purity is conserved.
+  \item \textbf{L07 (Heisenberg Picture):}
+    $\langle\hat{A}\rangle=\operatorname{Tr}(\hat{\rho}\hat{A}_H(t))$ works in
+    either picture; the density operator remains the state descriptor.
+  \item \textbf{L10 (Open Systems, Lindblad):}
+    The Lindblad master equation governs $\hat{\rho}$ for open systems;
+    purity decreases with time as a signature of decoherence.
+\end{itemize}
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[goldbox]
+\textbf{Cross-module connections.}
+\begin{itemize}[leftmargin=1.5em,itemsep=3pt]
+  \item \textbf{Series II (Many-Body):}
+    The one-body reduced density matrix $\hat{\gamma}^{(1)}$ in Module~II.4
+    is the many-body analogue; its eigenvalues are natural occupation numbers.
+  \item \textbf{Series III (Quantum Chemistry):}
+    The electron density $\rho(\mathbf{r})=\operatorname{Tr}(\hat{\rho}\,\hat{n}(\mathbf{r}))$
+    underpins DFT (Module~III.3); the density matrix is the quantum-chemical
+    tool for open-shell and excited states.
+\end{itemize}
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\section{Reading and Resources}
+\label{sec:L01.5}
+%=============================================================
+
+\begin{tcolorbox}[trackheaderUG]
+UNDERGRADUATE TRACK --- Reading (Tiers 1--3)
+\end{tcolorbox}
+
+\bigskip
+\begin{enumerate}[leftmargin=2em,label={\textbf{[\arabic*]}},itemsep=6pt]
+
+  \item \tiertag{tier1col}{T1}\
+    \textbf{Penrose, R.}
+    \textit{The Emperor's New Mind}, Ch.~5--6.
+    Oxford University Press, 1989. \useful\\
+    Philosophical and pictorial introduction to quantum state description.
+    Good pre-lecture reading for T1 students; connects wave-function
+    collapse intuition to the density-matrix picture before formalism.
+
+  \item \tiertag{tier2col}{T2}\
+    \textbf{Griffiths, D.~J.\ \& Schroeter, D.~F.}
+    \textit{Introduction to Quantum Mechanics}, 3rd ed., \S\,3.5--3.6.
+    Cambridge University Press, 2018. \essential\\
+    Section~3.5 introduces the density matrix in the wave-mechanics language;
+    Section~3.6 covers measurement and mixed states. Directly supports
+    SPSU Part~A problems on purity and expectation values.
+
+  \item \tiertag{tier2col}{T2}\
+    \textbf{Townsend, J.~S.}
+    \textit{A Modern Approach to Quantum Mechanics}, 2nd ed., Ch.~7.
+    University Science Books, 2012. \recommended\\
+    Chapter~7 develops density matrices for spin systems using
+    the bra-ket formalism from Chapter~1 --- a natural continuation
+    of the Module~I.2 reading. Supports SPSU Part~B interpretation problems.
+
+  \item \tiertag{tier3col}{T3}\
+    \textbf{Sakurai, J.~J.\ \& Napolitano, J.}
+    \textit{Modern Quantum Mechanics}, 3rd ed., \S\,3.4--3.6.
+    Cambridge University Press, 2020. \essential\\
+    The primary T3 reference. Section~3.4 (density operator), 3.5
+    (ensembles), 3.6 (time evolution of $\hat{\rho}$). Read alongside
+    the CPSU proof problems on purity and the Bloch-vector derivation.
+
+  \item \tiertag{tier3col}{T3}\
+    \textbf{von Neumann, J.}
+    \textit{Mathematical Foundations of Quantum Mechanics}, Ch.~IV.
+    Princeton University Press, 1955. \recommended\ [\textbf{M}]\\
+    The original introduction of the density matrix (``statistical operator'').
+    Chapter~IV is accessible at T3; provides historical context for WRQ~2.
+
+  \item \tiertag{tier3col}{T3}\
+    \textbf{Fano, U.}
+    Description of states in quantum mechanics by density matrix and operator techniques.
+    \textit{Rev.~Mod.~Phys.}~\textbf{29}, 74--93 (1957). \recommended\ [\textbf{P}]\\
+    Classic pedagogical review introducing the density matrix for atomic
+    and optical systems. Directly relevant to CPSU~Problem~4 (ensemble
+    representation) and WRQ~1.
+
+\end{enumerate}
+
+\bigskip
+\begin{tcolorbox}[trackheaderGRAD]
+GRADUATE TRACK --- Reading (Tiers 4--5)
+\end{tcolorbox}
+
+\bigskip
+\begin{enumerate}[leftmargin=2em,label={\textbf{[\arabic*]}},itemsep=6pt,resume]
+
+  \item \tiertag{tier4col}{T4}\
+    \textbf{Weinberg, S.}
+    \textit{Lectures on Quantum Mechanics}, 2nd ed., Ch.~3.
+    Cambridge University Press, 2015. \essential\\
+    Chapter~3 provides the cleanest graduate treatment of the density
+    operator including mixed states, measurement, and decoherence.
+    Supports CPSG~Problem~1 (trace-class conditions) and SPJG~Project~2.
+
+  \item \tiertag{tier4col}{T4}\
+    \textbf{Ballentine, L.~E.}
+    \textit{Quantum Mechanics: A Modern Development}, 2nd ed., Ch.~2.
+    World Scientific, 2014. \essential\\
+    Statistical interpretation of the density matrix and ensemble theory;
+    detailed treatment of the relationship between mixed states and
+    measurement. Supports CCQG and WRQ~3--4.
+
+  \item \tiertag{tier4col}{T4}\
+    \textbf{Nielsen, M.~A.\ \& Chuang, I.~L.}
+    \textit{Quantum Computation and Quantum Information}, Ch.~2.
+    Cambridge University Press, 2010. \essential\\
+    Sections~2.4 (density operators) and~2.5 (Schmidt decomposition
+    and purification) are the clearest modern treatment at the T4 level.
+    Directly supports CPSG~2--3, SPJG~2--3, and WRQ~5.
+
+  \item \tiertag{tier5col}{T5}\
+    \textbf{Reed, M.\ \& Simon, B.}
+    \textit{Methods of Modern Mathematical Physics}, Vol.~I, Ch.~VI.
+    Academic Press, 1972. \essential\ [\textbf{M}]\\
+    Trace-class operators ($\mathcal{T}_1(\mathcal{H})$), their norms,
+    and density operators as positive trace-class operators with unit trace.
+    Essential for CPSG~Problem~5 and CPJG~Projects~1,~4.
+
+  \item \tiertag{tier5col}{T5}\
+    \textbf{Kraus, K.}
+    \textit{States, Effects, and Operations}, Springer Lecture Notes~190, 1983.
+    \recommended\ [\textbf{M}]\\
+    The Kraus representation theorem and CPTP maps; shows the partial trace
+    as the prototypical quantum channel. Supports CPJG~Projects~3,~5
+    and ORQ~3.
+
+  \item \tiertag{tier5col}{T5}\
+    \textbf{Lindblad, G.}
+    On the generators of quantum dynamical semigroups.
+    \textit{Commun.\ Math.\ Phys.}~\textbf{48}, 119--130 (1976). \essential\ [\textbf{P}]\\
+    The GKSL master equation derived from complete positivity.
+    The T5 anchor for ORQ~4--5. Preview for L10.
+
+  \item \tiertag{tier5col}{T5}\
+    \textbf{Gorini, V., Kossakowski, A.\ \& Sudarshan, E.~C.~G.}
+    Completely positive dynamical semigroups of $n$-level systems.
+    \textit{J.\ Math.\ Phys.}~\textbf{17}, 821--825 (1976). \essential\ [\textbf{P}]\\
+    Independent derivation of the Lindblad form (GKSL).
+    Complements Lindblad (1976); both papers together are the definitive
+    reference for CPJG~Project~5 and ORQ~4.
+
+\end{enumerate}
+
+\bigskip
+\begin{tcolorbox}[trackheaderRES]
+RESEARCH TRACK --- Reading (Tiers 4--5)
+\end{tcolorbox}
+
+\bigskip
+\begin{enumerate}[leftmargin=2em,label={\textbf{[\arabic*]}},itemsep=6pt,resume]
+
+  \item \tiertag{tier5col}{T5}\
+    \textbf{Holevo, A.~S.}
+    \textit{Quantum Systems, Channels, Information}.
+    De Gruyter, 2012. \recommended\ [\textbf{M}]\\
+    Information-theoretic approach to quantum channels and density operators.
+    Background for ORQ~2--3 and CPJG~Projects~3,~5.
+
+  \item \tiertag{tier5col}{T5}\
+    \textbf{Wilde, M.~M.}
+    \textit{Quantum Information Theory}, 2nd ed., Ch.~3--5.
+    Cambridge University Press, 2017. \recommended\\
+    Modern treatment connecting density operators, quantum channels, and
+    entropy; freely available on arXiv~(1106.1445). Background for WRQ~4--5
+    and ORQ~2.
+
+\end{enumerate}
+
+\end{document}
