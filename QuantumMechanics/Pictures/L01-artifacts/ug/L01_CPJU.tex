@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- CPJU --- Complex Projects (UG)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tier 3 primary $\cdot$ 3--4 weeks $\cdot$ 2000--3000 words or full notebook}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=uggreen,pdftitle={L01-CPJU}}
+
+\begin{document}
+
+\section*{CPJU --- Complex Projects, Undergraduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier3col}{T3 AdvUG} (parts accessible to advanced \tiertag{tier2col}{T2 BegUG})\\[6pt]
+  \textit{Choose \textbf{one} project. Submit a full written report (2000--3000 words)
+  or a comprehensive Jupyter notebook with embedded discussion.
+  These projects bridge undergraduate and graduate-level work.}
+\end{center}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Project CJ1 --- Quantum State Tomography of a Qubit}]
+
+\textbf{Overview.}
+Quantum state tomography (QST) is the experimental procedure by which the
+density matrix of an unknown state is reconstructed from measurement data.
+This project guides you through the theory, simulation, and interpretation
+of single-qubit QST.
+
+\medskip\textbf{Background reading.}
+Nielsen \& Chuang, \textit{Quantum Computation and Quantum Information}, \S\,8.4 [T4 reading,
+accessible summary at T3]. Fano (1957), Section~IV.
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=8pt]
+  \item \textbf{Theoretical foundation.}
+        Show that measuring $\langle\hat{\sigma}_x\rangle$,
+        $\langle\hat{\sigma}_y\rangle$, $\langle\hat{\sigma}_z\rangle$
+        is sufficient to reconstruct any qubit density matrix.
+        Express $\hat{\rho}$ in terms of these three expectation values.
+
+  \item \textbf{Simulation.}
+        Choose a target qubit state (a specific mixed state with $\gamma\ne 1$).
+        Simulate $N=100,500,1000$ projective measurements in each of the three
+        Pauli bases, using Python's \texttt{numpy.random}.
+        Reconstruct $\hat{\rho}_{\rm est}$ from the simulated data.
+
+  \item \textbf{Fidelity analysis.}
+        Define the fidelity $F(\hat{\rho},\hat{\rho}_{\rm est})=(\operatorname{Tr}\sqrt{\sqrt{\hat{\rho}}\hat{\rho}_{\rm est}\sqrt{\hat{\rho}}})^2$.
+        For a qubit, show this simplifies to
+        $F=\tfrac{1}{2}(1+\mathbf{r}\cdot\mathbf{r}_{\rm est})$
+        for pure target states.
+        Plot $F$ vs.\ $N$ for your simulation.
+
+  \item \textbf{Physical positivity.}
+        For small $N$, the reconstructed matrix may fail to be positive semi-definite
+        (unphysical). Implement the \emph{least-squares} post-processing step that
+        projects the estimate onto the set of valid density operators.
+
+  \item \textbf{Report discussion (800--1000 words).}
+        Discuss: (i)~the statistical uncertainty in QST and its $1/\sqrt{N}$ scaling;
+        (ii)~why three Pauli measurements suffice for one qubit but $3^n$ settings
+        are needed for $n$ qubits (curse of dimensionality);
+        (iii)~one experimental technique (optical, NMR, or superconducting) that
+        implements single-qubit QST.
+\end{enumerate}
+
+\medskip\textbf{Deliverable.}
+A full Jupyter notebook (reproducible) plus a 1000-word written report.
+
+\medskip\textbf{Assessment criteria.}
+Theoretical derivations (25\%), simulation implementation (25\%),
+fidelity analysis and positivity fix (20\%), written report quality (30\%).
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[ugprobbox, title={Project CJ2 --- Decoherence and the Pointer Basis}]
+
+\textbf{Overview.}
+When a quantum system interacts with an environment, its density matrix loses
+off-diagonal elements (coherences) in a preferred \emph{pointer basis} selected
+by the system--environment interaction.
+This project develops the theory from the density matrix and applies it to
+the spin-boson model at the level accessible to AdvUG students.
+
+\medskip\textbf{Background reading.}
+Weinberg, \textit{Lectures on Quantum Mechanics}, Ch.~3 (especially \S\,3.3--3.4).
+Zurek, W.~H. (2003), ``Decoherence, einselection, and the quantum origins of the classical,''
+\textit{Rev.\ Mod.\ Phys.}\ \textbf{75}, 715--775 (read Introduction and \S\,II only).
+
+\medskip\textbf{Tasks.}
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{\arabic*.}, itemsep=8pt]
+  \item \textbf{Two-state model.}
+        Consider a qubit (system $S$) coupled to a single ancilla qubit (environment $E$)
+        via the interaction
+        $\hat{H}_{SE}=g\,\hat{\sigma}_z^{(S)}\otimes\hat{\sigma}_z^{(E)}$.
+        The initial state is
+        $|\Psi(0)\rangle=(a|\uparrow\rangle+b|\downarrow\rangle)_S\otimes|\uparrow\rangle_E$.
+        Compute $|\Psi(t)\rangle$ and then $\hat{\rho}_S(t)=\operatorname{Tr}_E(|\Psi(t)\rangle\langle\Psi(t)|)$.
+
+  \item \textbf{Decoherence rate.}
+        Show that the off-diagonal element $(\hat{\rho}_S)_{\uparrow\downarrow}(t)$
+        oscillates at frequency $2g/\hbar$ and that in a model with many environment
+        modes this oscillation averages to zero at a decoherence rate $\Gamma$.
+
+  \item \textbf{Purity decay.}
+        Compute $\gamma(t)=\operatorname{Tr}(\hat{\rho}_S(t)^2)$ explicitly for the
+        single-ancilla model. Show purity oscillates but does not monotonically decay.
+        Explain why a many-mode environment leads to irreversible purity decay.
+
+  \item \textbf{Pointer basis.}
+        The pointer basis is the eigenbasis of $\hat{\sigma}_z^{(S)}$ in this model.
+        Explain why: in this basis, the reduced state becomes diagonal as
+        decoherence progresses. What determines the pointer basis in general?
+
+  \item \textbf{Report (800--1000 words).}
+        Discuss: (i)~why decoherence is rapid for macroscopic objects but slow for
+        carefully isolated qubits; (ii)~whether decoherence alone explains the
+        ``collapse of the wavefunction'' as understood in the Copenhagen interpretation;
+        (iii)~one experimental observation of decoherence (cite a primary source).
+\end{enumerate}
+
+\medskip\textbf{Deliverable.}
+A 2000--3000 word report combining derivations, numerical plots of $\gamma(t)$
+and off-diagonal elements, and the written discussion.
+
+\medskip\textbf{Assessment criteria.}
+Derivations (30\%), numerical results (20\%),
+pointer-basis discussion (20\%), written report quality (30\%).
+\end{tcolorbox}
+
+\bigskip
+\begin{tcolorbox}[rubricbox, title={CPJU Global Rubric}]
+\begin{tabular}{lll}
+\toprule
+Component & Weight & Notes\\
+\midrule
+Technical derivations and proofs & 30\% & Logical correctness, notation, completeness\\
+Computational implementation     & 25\% & Code quality, reproducibility, plots\\
+Physical interpretation          & 25\% & Connects formalism to experimental reality\\
+Written communication            & 20\% & Clarity, structure, citation of sources\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

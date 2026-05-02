@@ -1,0 +1,158 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- SPSG --- Simple Problem Set (Graduate)}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tiers 4--5 $\cdot$ 10 problems $\cdot$ Rubric: Setup 20\% / Structure 45\% / Algebra 20\% / Insight 15\%}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=gradred,pdftitle={L01-SPSG}}
+
+\begin{document}
+
+\section*{SPSG --- Simple Problem Set, Graduate}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier4col}{T4 MSc}\quad\tiertag{tier5col}{T5 PhD}
+\end{center}
+
+\instructornote{T4 students complete all 10 problems in finite dimensions.
+T5 students must additionally address infinite-dimensional caveats in
+problems marked \tiertag{tier5col}{T5}.}
+
+\bigskip
+
+%--- Part A: Structural proofs (4) ---------------------------
+\begin{tcolorbox}[gradprobbox, title={Part A --- Structural Proofs \hfill\normalfont 4 problems}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{A\arabic*.}, itemsep=12pt]
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Convexity of the density operator set.}
+  Let $\hat{\rho}_1,\hat{\rho}_2$ be valid density operators on $\mathcal{H}$
+  and $\lambda\in[0,1]$.
+  Prove that $\hat{\rho}=\lambda\hat{\rho}_1+(1-\lambda)\hat{\rho}_2$
+  is also a valid density operator. Identify which of the three defining
+  properties is non-trivial to verify.
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Extremality of pure states.}
+  Prove that $\hat{\rho}$ is a pure state (rank-1 projector) if and only if it
+  is an extreme point of $\mathcal{S}(\mathcal{H})$, i.e., it cannot be written
+  as a proper convex combination of two distinct density operators.
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Purity and rank.}
+  For a density operator $\hat{\rho}$ on a $d$-dimensional space with
+  spectral decomposition $\hat{\rho}=\sum_k\lambda_k|k\rangle\langle k|$:
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove $\operatorname{Tr}(\hat{\rho}^2)\le 1$ using only $\lambda_k\ge 0$, $\sum_k\lambda_k=1$.
+    \item Prove the sharper bound: $\operatorname{Tr}(\hat{\rho}^2)\le\tfrac{1}{r}$ where
+          $r=\operatorname{rank}(\hat{\rho})$, with equality iff all nonzero eigenvalues are equal.
+  \end{enumerate}
+
+\item \tiertag{tier5col}{T5}
+  \textbf{Trace-class operators.}
+  Let $\mathcal{H}$ be a separable infinite-dimensional Hilbert space.
+  An operator $\hat{T}$ is trace-class if
+  $\|\hat{T}\|_1=\operatorname{Tr}(|\hat{T}|)<\infty$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that any density operator $\hat{\rho}$ (as defined in the finite-dimensional
+          sense) is trace-class.
+    \item Show that the trace-class operators form a Banach space under $\|\cdot\|_1$.
+    \item Give an example of a positive operator with $\operatorname{Tr}(\hat{T})=1$ that
+          is \emph{not} trace-class. (Hint: consider $\mathcal{H}=\ell^2(\mathbb{N})$.)
+  \end{enumerate}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Part B: Entropy and information (3) ----------------------
+\begin{tcolorbox}[gradprobbox, title={Part B --- Entropy and Information \hfill\normalfont 3 problems}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{B\arabic*.}, itemsep=12pt]
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Sub-additivity via Klein's inequality.}
+  The quantum relative entropy satisfies Klein's inequality
+  $S(\hat{\rho}\|\hat{\sigma})\ge 0$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Apply Klein's inequality with $\hat{\sigma}=\hat{\rho}_A\otimes\hat{\rho}_B$
+          to derive sub-additivity $S(\hat{\rho}_{AB})\le S(\hat{\rho}_A)+S(\hat{\rho}_B)$.
+    \item Identify the condition for equality.
+  \end{enumerate}
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Concavity of entropy.}
+  Prove that $S(\hat{\rho})=-\operatorname{Tr}(\hat{\rho}\ln\hat{\rho})$ is concave:
+  $S(\sum_k p_k\hat{\rho}_k)\ge\sum_k p_k S(\hat{\rho}_k)$.
+  (Hint: use the joint convexity of relative entropy or the operator concavity of $-x\ln x$.)
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Purity and entropy.}
+  For a qubit with Bloch vector $\mathbf{r}$:
+  \begin{enumerate}[label=(\alph*)]
+    \item Express $S(\hat{\rho})$ in terms of $|\mathbf{r}|$.
+    \item Show $S$ is a monotonically decreasing function of purity $\gamma$.
+    \item Sketch $S$ vs.\ $|\mathbf{r}|$ for $|\mathbf{r}|\in[0,1]$,
+          marking the pure and maximally mixed limits.
+  \end{enumerate}
+
+\end{enumerate}
+\end{tcolorbox}
+
+%--- Part C: Channels and maps (3) ---------------------------
+\begin{tcolorbox}[gradprobbox, title={Part C --- Quantum Channels and Maps \hfill\normalfont 3 problems}]
+
+\begin{enumerate}[leftmargin=1.8em, label=\textbf{C\arabic*.}, itemsep=12pt]
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Depolarising channel.}
+  The depolarising channel acts as
+  $\mathcal{E}_p(\hat{\rho})=(1-p)\hat{\rho}+p\tfrac{\hat{\mathbb{1}}}{2}$
+  for $p\in[0,1]$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Find the Kraus operators of $\mathcal{E}_p$.
+    \item Compute the purity $\gamma(p)$ of the output state for an arbitrary input $\hat{\rho}$.
+    \item Compute the output Bloch vector and show the channel shrinks it by a factor $(1-p)$.
+  \end{enumerate}
+
+\item \tiertag{tier4col}{T4}
+  \textbf{Amplitude damping channel.}
+  The amplitude damping channel has Kraus operators
+  $\hat{K}_0=\begin{pmatrix}1&0\\0&\sqrt{1-\gamma}\end{pmatrix}$,
+  $\hat{K}_1=\begin{pmatrix}0&\sqrt{\gamma}\\0&0\end{pmatrix}$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Verify the completeness relation $\sum_k\hat{K}_k^\dagger\hat{K}_k=\hat{\mathbb{1}}$.
+    \item Compute $\mathcal{E}(\hat{\rho})=\sum_k\hat{K}_k\hat{\rho}\hat{K}_k^\dagger$ for
+          a general qubit state $\hat{\rho}=\begin{pmatrix}a&b\\b^*&1-a\end{pmatrix}$.
+    \item Show the fixed point of $\mathcal{E}$ (as $\gamma\to 1$) is $|0\rangle\langle 0|$.
+  \end{enumerate}
+
+\item \tiertag{tier5col}{T5}
+  \textbf{Positivity vs.\ complete positivity.}
+  The transposition map $T:\hat{\rho}\mapsto\hat{\rho}^T$ (in a fixed basis) is
+  a positive map on $\mathcal{B}(\mathcal{H})$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Show $T$ is positive: if $\hat{\rho}\ge 0$ then $\hat{\rho}^T\ge 0$.
+    \item Show $T$ is NOT completely positive by applying
+          $(T\otimes\mathrm{id})$ to the maximally entangled state
+          $\hat{\rho}^+=|\Phi^+\rangle\langle\Phi^+|$ and showing the result
+          has a negative eigenvalue.
+    \item State the Peres--Horodecki criterion and explain its connection to (b).
+  \end{enumerate}
+
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[rubricbox, title={SPSG Rubric (per problem)}]
+\begin{tabular}{ll}
+Setup and correct problem formulation & 20\%\\
+Proof / argument structure            & 45\%\\
+Algebraic correctness                 & 20\%\\
+Physical insight / interpretation     & 15\%\\
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

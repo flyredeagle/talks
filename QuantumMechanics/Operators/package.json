@@ -11,7 +11,12 @@
     "generate:all": "npm run generate && npm run generate:pdf",
     "generate:L01-extra": "node src/generate_L01_extra.js",
     "merge:L01": "python3 src/merge_L01.py",
-    "build:L01-extended": "npm run generate:L01-extra && npm run merge:L01"
+    "build:L01-extended": "npm run generate:L01-extra && npm run merge:L01",
+    "generate:L02-extra": "node src/generate_L02_extra.js",
+    "merge:L02": "python3 src/merge_L02.py",
+    "build:L02-extended": "npm run generate:L02-extra && npm run merge:L02",
+    "generate:L01-v3": "python3 src/generate_L01_v3_part3.py",
+    "build:L01-v3": "npm run generate:L01-v3"
   },
   "keywords": [
     "quantum-mechanics",

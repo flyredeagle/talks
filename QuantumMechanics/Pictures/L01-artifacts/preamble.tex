@@ -1,0 +1,132 @@
+%=============================================================
+%  QM PROGRAMME — SHARED PREAMBLE
+%  Paste \input{preamble} at the top of each artifact file,
+%  or compile standalone by wrapping in \documentclass{article}
+%=============================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+%\usepackage{microtype}  % disabled: font expansion incompatibility
+
+%--- Programme colours ----------------------------------------
+\definecolor{darkblue}{RGB}{10,40,90}
+\definecolor{midblue}{RGB}{30,80,160}
+\definecolor{lightblue}{RGB}{220,233,255}
+\definecolor{accentgold}{RGB}{180,140,20}
+\definecolor{lightgold}{RGB}{255,248,220}
+\definecolor{darkgray}{RGB}{60,60,60}
+\definecolor{tier1col}{RGB}{180,230,180}
+\definecolor{tier2col}{RGB}{150,210,240}
+\definecolor{tier3col}{RGB}{200,180,240}
+\definecolor{tier4col}{RGB}{255,210,150}
+\definecolor{tier5col}{RGB}{255,170,150}
+\definecolor{ugblue}{RGB}{25,90,170}
+\definecolor{lightugblue}{RGB}{215,230,255}
+\definecolor{uggreen}{RGB}{20,120,70}
+\definecolor{lightuggreen}{RGB}{210,245,225}
+\definecolor{gradred}{RGB}{160,30,30}
+\definecolor{lightgradred}{RGB}{255,220,215}
+\definecolor{gradorange}{RGB}{170,80,10}
+\definecolor{lightgradorange}{RGB}{255,235,210}
+\definecolor{respath}{RGB}{90,20,130}
+\definecolor{lightrespath}{RGB}{240,220,255}
+\definecolor{artpurple}{RGB}{100,30,130}
+\definecolor{lightartpurple}{RGB}{235,215,245}
+
+%--- tcolorbox styles -----------------------------------------
+\tcbset{
+  ugconceptbox/.style={enhanced,breakable,
+    colback=lightugblue,colframe=ugblue,
+    fonttitle=\bfseries\color{white},coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=ugblue,sharp corners,boxrule=0.5pt},
+    sharp corners=south,boxrule=0.8pt,
+    left=6pt,right=6pt,top=8pt,bottom=6pt},
+  ugprobbox/.style={enhanced,breakable,
+    colback=lightuggreen,colframe=uggreen,
+    fonttitle=\bfseries\color{white},coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=uggreen,sharp corners,boxrule=0.5pt},
+    sharp corners=south,boxrule=0.8pt,
+    left=6pt,right=6pt,top=8pt,bottom=6pt},
+  gradconceptbox/.style={enhanced,breakable,
+    colback=lightgradred,colframe=gradred,
+    fonttitle=\bfseries\color{white},coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=gradred,sharp corners,boxrule=0.5pt},
+    sharp corners=south,boxrule=0.8pt,
+    left=6pt,right=6pt,top=8pt,bottom=6pt},
+  gradprobbox/.style={enhanced,breakable,
+    colback=lightgradorange,colframe=gradorange,
+    fonttitle=\bfseries\color{white},coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=gradorange,sharp corners,boxrule=0.5pt},
+    sharp corners=south,boxrule=0.8pt,
+    left=6pt,right=6pt,top=8pt,bottom=6pt},
+  researchbox/.style={enhanced,breakable,
+    colback=lightrespath,colframe=respath,
+    fonttitle=\bfseries\color{white},coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=respath,sharp corners,boxrule=0.5pt},
+    sharp corners=south,boxrule=0.8pt,
+    left=6pt,right=6pt,top=8pt,bottom=6pt},
+  rubricbox/.style={enhanced,
+    colback=lightartpurple,colframe=artpurple,
+    fonttitle=\bfseries\color{white},coltitle=white,
+    attach boxed title to top left={yshift=-2mm,xshift=4mm},
+    boxed title style={colback=artpurple,sharp corners,boxrule=0.5pt},
+    sharp corners=south,boxrule=0.7pt,
+    left=5pt,right=5pt,top=6pt,bottom=5pt},
+  goldbox/.style={enhanced,breakable,
+    colback=lightgold,colframe=accentgold,
+    boxrule=0.8pt,left=6pt,right=6pt,top=6pt,bottom=6pt,
+    fontupper=\small},
+  notebox/.style={enhanced,
+    colback=lightblue,colframe=midblue,
+    boxrule=0.6pt,rounded corners,
+    left=5pt,right=5pt,top=4pt,bottom=4pt,
+    fontupper=\small\itshape},
+  trackheaderUG/.style={enhanced,
+    colback=ugblue!12!white,colframe=ugblue,
+    boxrule=1.2pt,sharp corners,
+    left=6pt,right=6pt,top=5pt,bottom=5pt,
+    fontupper=\bfseries\large\color{ugblue}},
+  trackheaderGRAD/.style={enhanced,
+    colback=gradred!12!white,colframe=gradred,
+    boxrule=1.2pt,sharp corners,
+    left=6pt,right=6pt,top=5pt,bottom=5pt,
+    fontupper=\bfseries\large\color{gradred}},
+  trackheaderRES/.style={enhanced,
+    colback=respath!12!white,colframe=respath,
+    boxrule=1.2pt,sharp corners,
+    left=6pt,right=6pt,top=5pt,bottom=5pt,
+    fontupper=\bfseries\large\color{respath}},
+}
+
+%--- Programme macros -----------------------------------------
+\newcommand{\instructornote}[1]{%
+  \begin{tcolorbox}[notebox]\textbf{Instructor note:} #1\end{tcolorbox}}
+\newcommand{\tiertag}[2]{%
+  \colorbox{#1}{\small\bfseries\color{darkblue}\ #2\ }}
+\newcommand{\essential}{$\bigstar\bigstar\bigstar$}
+\newcommand{\recommended}{$\bigstar\bigstar$}
+\newcommand{\useful}{$\bigstar$}
+\newcommand{\rhat}{\hat{\rho}}
+\newcommand{\Ahat}{\hat{A}}
+\newcommand{\Hhat}{\hat{H}}
+\newcommand{\Uhat}{\hat{U}}
+\newcommand{\Ihat}{\hat{\mathbb{1}}}
+\newcommand{\TrB}{\operatorname{Tr}_B}
+\newcommand{\psiket}{\ket{\psi}}
+\newcommand{\phiket}{\ket{\phi}}

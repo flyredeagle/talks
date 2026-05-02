@@ -1,0 +1,297 @@
+\documentclass[11pt,a4paper]{article}
+\input{../preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- WRQ / ORQ --- Written \& Oral Research Questions}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Tier 5 (PhD) $\cdot$ WRQ: 1000--1500 words each $\cdot$ ORQ: 15-min viva format}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=respath,pdftitle={L01-WRQ-ORQ}}
+
+\begin{document}
+
+%=============================================================
+\section*{WRQ --- Written Research Questions}
+\begin{center}
+  \textit{Module I.3, Lecture L01 --- Pure/Mixed States and the Density Matrix}\\[4pt]
+  \tiertag{tier5col}{T5 PhD} (accessible to advanced \tiertag{tier4col}{T4 MSc})\\[6pt]
+  \textit{Five questions. Answer \textbf{two} in 1000--1500 words each,
+  with full citations. These are extended written examinations of research-level
+  comprehension, not problem sets.}
+\end{center}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={WRQ 1 --- Historical and Conceptual: von Neumann's Statistical Operator}]
+
+\textbf{Question.}
+The density matrix was introduced by John von Neumann in 1927
+(published in \textit{Mathematische Annalen}) and independently by Lev Landau in 1927.
+\begin{enumerate}[leftmargin=1.8em, label=(\alph*), itemsep=6pt]
+  \item Describe the physical motivation von Neumann gave for introducing the
+        ``statistical operator'' (density matrix). What problem was he trying to solve
+        that the wave-function alone could not?
+  \item Fano (1957) later extended and applied the formalism to atomic and optical
+        physics. What was Fano's principal contribution, and how did he connect
+        the density matrix to experimentally measurable cross-sections?
+  \item The density matrix has been described as ``the most important object in
+        quantum mechanics that nobody taught you about.''
+        Critically assess this characterisation: in what sense is it more
+        fundamental than the wave-function?
+\end{enumerate}
+
+\medskip\textbf{Key sources:} von~Neumann (1927; translated in 1955 [M]);
+Landau (1927); Fano (1957) [P]; Sakurai \& Napolitano (2020), \S\,3.4 [T3].
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={WRQ 2 --- Foundational: Density Matrix and the Measurement Problem}]
+
+\textbf{Question.}
+The density matrix is sometimes invoked in discussions of wave-function collapse
+and the quantum measurement problem.
+
+\begin{enumerate}[leftmargin=1.8em, label=(\alph*), itemsep=6pt]
+  \item Explain carefully the distinction between a \emph{proper} mixture
+        (arising from genuine classical ignorance) and an \emph{improper} mixture
+        (arising as the reduced state of an entangled pure state).
+        Does the density matrix distinguish these cases?
+  \item The decoherence programme argues that environment-induced superselection
+        (``einselection'') explains the emergence of classicality.
+        Describe the role of the density matrix and partial trace in this programme.
+  \item Critically assess: does decoherence \emph{solve} the measurement problem,
+        or does it merely shift it? Reference at least two philosophical perspectives.
+\end{enumerate}
+
+\medskip\textbf{Key sources:} Zurek (2003) [P]; Ballentine (2014), Ch.~9 [T4];
+Joos et al.\ \textit{Decoherence and the Appearance of a Classical World} (2003);
+d'Espagnat (1971).
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={WRQ 3 --- Mathematical: Quantum Channels and the Kraus Representation}]
+
+\textbf{Question.}
+The Kraus representation theorem characterises all physically allowed
+transformations of density matrices.
+
+\begin{enumerate}[leftmargin=1.8em, label=(\alph*), itemsep=6pt]
+  \item State the Kraus representation theorem precisely.
+        Prove that any Kraus-representable map is CPTP.
+  \item Explain the operational significance of the Kraus operators $\{K_k\}$:
+        what do they represent physically? Under what conditions is the
+        Kraus decomposition unique?
+  \item The Stinespring dilation provides an alternative representation.
+        Prove the equivalence of Kraus and Stinespring representations,
+        and identify the physical content of the dilation (``ancilla'') space.
+  \item Give three physically distinct examples of quantum channels (depolarising,
+        amplitude damping, dephasing) and write their Kraus operators.
+        Discuss how they transform the Bloch ball.
+\end{enumerate}
+
+\medskip\textbf{Key sources:} Kraus (1983) [M]; Nielsen \& Chuang (2010), \S\,8.2--8.3 [T4];
+Holevo (2012) [M].
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={WRQ 4 --- Information-Theoretic: Entropy, Information, and the Second Law}]
+
+\textbf{Question.}
+The von~Neumann entropy connects quantum mechanics to thermodynamics and information theory.
+
+\begin{enumerate}[leftmargin=1.8em, label=(\alph*), itemsep=6pt]
+  \item Prove the following properties of $S(\hat{\rho})=-\operatorname{Tr}(\hat{\rho}\ln\hat{\rho})$:
+        (i)~non-negativity; (ii)~concavity; (iii)~unitary invariance.
+  \item State and prove Klein's inequality.
+        Derive the quantum relative entropy $S(\hat{\rho}\|\hat{\sigma})\ge 0$
+        and use it to establish sub-additivity.
+  \item Discuss Bekenstein's black-hole entropy and the connection to von~Neumann
+        entropy via the Ryu--Takayanagi formula in holography.
+        What does the entanglement entropy of a spatial region mean
+        in a quantum field theory?
+  \item Is the von~Neumann entropy a good measure of entanglement for mixed states?
+        Compare with the entanglement of formation and negativity.
+\end{enumerate}
+
+\medskip\textbf{Key sources:} Wilde (2017), Ch.~11 [T4]; Plenio \& Virmani (2007);
+Nielsen \& Chuang (2010), Ch.~11 [T4]; Nishioka (2018) [arXiv].
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={WRQ 5 --- Applications: Density Matrices in Condensed Matter and Quantum Chemistry}]
+
+\textbf{Question.}
+The density matrix is central to both many-body physics and quantum chemistry.
+
+\begin{enumerate}[leftmargin=1.8em, label=(\alph*), itemsep=6pt]
+  \item In quantum chemistry, the one-body reduced density matrix (1-RDM)
+        $\hat{\gamma}^{(1)}(\mathbf{r};\mathbf{r}')=N\int d\mathbf{r}_2\cdots d\mathbf{r}_N\,
+        \Psi^*(\mathbf{r}',\mathbf{r}_2,\ldots)\Psi(\mathbf{r},\mathbf{r}_2,\ldots)$
+        underpins density-matrix functional theory.
+        Explain the $N$-representability problem and the Pauli constraints on the
+        natural occupation numbers.
+  \item In condensed matter, the density matrix renormalisation group (DMRG)
+        selects the most important eigenstates of the reduced density matrix.
+        Describe the key idea (keeping the ``most probable'' environment states)
+        and explain why $S(\hat{\rho}_{\rm block})$ being small is crucial for DMRG's
+        efficiency in one dimension.
+  \item Topological phases of matter are characterised by their entanglement structure.
+        Describe the entanglement spectrum (eigenvalues of $-\ln\hat{\rho}_A$)
+        and state what it reveals about a topological phase that simple
+        thermodynamic observables cannot.
+  \item Connect these three applications: what is the unifying role of the
+        reduced density matrix across them?
+\end{enumerate}
+
+\medskip\textbf{Key sources:} Löwdin (1955); White (1992) [DMRG original paper];
+Li \& Haldane (2008) [entanglement spectrum]; Mazziotti (2007) [2-RDM].
+\end{tcolorbox}
+
+\newpage
+%=============================================================
+\section*{ORQ --- Oral Research Questions}
+\begin{center}
+  \tiertag{tier5col}{T5 PhD}\qquad 15-minute viva format\\[6pt]
+  \textit{Five questions presented below. The examiner selects two at random.
+  The candidate has 5 minutes to think, then 10 minutes to respond.
+  Follow-up probing is included in the 10 minutes.}
+\end{center}
+
+\instructornote{These questions are designed to test deep conceptual understanding
+and the ability to think on one's feet. Model answers are given in the ORQ solutions
+file. The examiner should probe: definitions, examples, counterexamples, connections.}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={ORQ 1 --- Foundations}]
+
+\textbf{Opening:}
+``I give you a $d\times d$ positive semi-definite Hermitian matrix with unit trace.
+Is this a density operator? Is it the \emph{unique} density operator for some
+quantum system? What additional information would you need?''
+
+\medskip\textbf{Probe directions:}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Ensemble ambiguity: the same $\hat{\rho}$ can arise from infinitely many
+        distinct preparation procedures.
+  \item Operational content: $\hat{\rho}$ contains all information relevant to
+        predictions, but not about the preparation.
+  \item Extreme points: when is $\hat{\rho}$ the unique density operator for a system?
+        (Only if it is a pure state and the system is closed.)
+\end{itemize}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={ORQ 2 --- Partial Trace}]
+
+\textbf{Opening:}
+``I perform a projective measurement on subsystem $B$ of a bipartite state
+$\hat{\rho}_{AB}$ and get outcome $j$. The post-measurement state of $A$ is
+$\hat{\rho}_A^{(j)}$. Is this the same as the partial trace $\operatorname{Tr}_B(\hat{\rho}_{AB})$?
+When are they the same, and when do they differ?''
+
+\medskip\textbf{Probe directions:}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Conditional state vs.\ marginal: $\hat{\rho}_A^{(j)}$ is conditioned on
+        outcome $j$; $\hat{\rho}_A=\operatorname{Tr}_B(\hat{\rho}_{AB})$ is the average
+        over all outcomes.
+  \item Connection to no-signalling: $\hat{\rho}_A$ cannot depend on whether
+        a measurement was performed on $B$ (otherwise FTL communication).
+  \item The partial trace is the unique operation consistent with no-signalling
+        and linearity.
+\end{itemize}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={ORQ 3 --- Complete Positivity}]
+
+\textbf{Opening:}
+``The transposition map $T:\hat{\rho}\mapsto\hat{\rho}^T$ is a positive map
+but not a physical quantum operation. Why not? And what does this have to do
+with entanglement?''
+
+\medskip\textbf{Probe directions:}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Positive but not CP: $(T\otimes\mathrm{id})(|\Phi^+\rangle\langle\Phi^+|)$
+        has a negative eigenvalue.
+  \item Peres--Horodecki criterion: if $\hat{\rho}_{AB}$ is separable,
+        $(T_A\otimes\mathrm{id}_B)(\hat{\rho}_{AB})\ge 0$.
+  \item Physical interpretation: transposition reverses time; applying it to
+        one subsystem of an entangled pair generates an unphysical state.
+\end{itemize}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={ORQ 4 --- GKSL and Irreversibility}]
+
+\textbf{Opening:}
+``The von~Neumann equation $\partial_t\hat{\rho}=-\tfrac{i}{\hbar}[\hat{H},\hat{\rho}]$
+is reversible. The Lindblad master equation is not. What is the origin of
+irreversibility in the Lindblad equation, and what approximations are needed
+to derive it?''
+
+\medskip\textbf{Probe directions:}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Born--Markov approximation: weak system--environment coupling;
+        environment correlation time much shorter than system relaxation time.
+  \item Rotating wave approximation (secular approximation): drops rapidly oscillating terms.
+  \item The semigroup property $\mathcal{E}_{t+s}=\mathcal{E}_t\circ\mathcal{E}_s$
+        encodes Markovianity; non-Markovian generalisations exist.
+\end{itemize}
+\end{tcolorbox}
+
+\bigskip
+
+%------------------------------------------------------------
+\begin{tcolorbox}[researchbox, title={ORQ 5 --- Entropy and Holography}]
+
+\textbf{Opening:}
+``The Ryu--Takayanagi formula says the entanglement entropy of a region $A$
+in a CFT equals $|\gamma_A|/4G_N$ where $\gamma_A$ is a minimal surface in
+the bulk AdS. What is the density matrix whose entropy appears in this formula,
+and why should it equal an area?''
+
+\medskip\textbf{Probe directions:}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The density matrix is $\hat{\rho}_A=\operatorname{Tr}_{\bar{A}}(|\Psi\rangle\langle\Psi|)$
+        for the CFT vacuum restricted to region $A$.
+  \item Area-law of entanglement entropy in gapped systems:
+        $S(\hat{\rho}_A)\propto|\partial A|$ in $d\ge 2$.
+  \item The RT formula generalises Bekenstein--Hawking entropy;
+        suggests geometry is encoded in entanglement structure.
+\end{itemize}
+\end{tcolorbox}
+
+\bigskip
+\begin{tcolorbox}[rubricbox, title={WRQ / ORQ Assessment Criteria}]
+\begin{tabular}{lll}
+\toprule
+Component & WRQ weight & ORQ weight\\
+\midrule
+Technical accuracy of statements      & 30\% & 35\%\\
+Depth of argument / proof             & 30\% & 25\%\\
+Breadth: connections to other topics  & 20\% & 20\%\\
+Citation / source engagement (WRQ only) & 15\% & ---\\
+Communication clarity                 &  5\% & 20\%\\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}

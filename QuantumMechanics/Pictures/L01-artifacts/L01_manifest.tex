@@ -1,0 +1,276 @@
+%=============================================================
+%  L01 ARTIFACT SUITE — MASTER MANIFEST
+%  Module I.3, Lecture L01: Pure/Mixed States and the Density Matrix
+%  QM Programme
+%=============================================================
+\documentclass[11pt,a4paper]{article}
+\input{preamble}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{L01 --- Master Manifest}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{L01 Artifact Suite --- Pure/Mixed States and the Density Matrix}}
+\renewcommand{\headrulewidth}{0.4pt}
+\hypersetup{colorlinks=true,linkcolor=midblue,pdftitle={L01-Manifest}}
+
+\begin{document}
+
+\begin{tcolorbox}[trackheaderUG]
+L01 ARTIFACT SUITE --- Pure/Mixed States and the Density Matrix\\
+\normalsize Module I.3 $\cdot$ QM Programme $\cdot$
+Generated following \texttt{lecture\_generation\_prompt\_v3}
+\end{tcolorbox}
+
+\bigskip
+
+%=============================================================
+\section*{File Inventory}
+%=============================================================
+
+\subsection*{Lecture Body}
+
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{File} & \textbf{Tiers} & \textbf{Contents}\\
+\midrule
+\texttt{lecture/L01\_lecture\_body.tex}
+& All
+& Metadata, pacing plan, full lecture exposition (Sections 3.1--3.4),
+  connections (backward, forward, cross-module), and reading list
+  with tier-tagged annotations.\\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Undergraduate Artifacts (UG Track)}
+
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{File} & \textbf{Code} & \textbf{Contents / Scope}\\
+\midrule
+\texttt{ug/L01\_SCQU.tex}
+& SCQU
+& Simple Concept Questions UG. 10 questions: multiple choice (Q1--Q4),
+  True/False + justify (Q5--Q8), short answer (Q9--Q10).
+  Tiers 1--3. 15--20 min. 20 pts. Full rubric and model answers included.\\
+\addlinespace
+\texttt{ug/L01\_CCQU.tex}
+& CCQU
+& Complex Concept Questions UG. 8 questions:
+  ``Explain why'' (Q1--Q4), ``What would change if'' (Q5--Q7),
+  ``Identify the flaw'' (Q8--Q10). Tiers 2--3. 25--35 min. 20 pts.\\
+\addlinespace
+\texttt{ug/L01\_SPSU.tex}
+& SPSU
+& Simple Problem Set UG. 10 problems in three parts:
+  Mechanics (A1--A4), Interpretation (B1--B3), Translation (C1--C3).
+  Tiers 1--3. Rubric: Result 60\% / Method 30\% / Interpretation 10\%.\\
+\addlinespace
+\texttt{ug/L01\_CPSU.tex}
+& CPSU
+& Complex Problem Set UG. 5 multi-part extended proofs:
+  (1) purity bounds and linear entropy; (2) Bloch-vector parameterisation;
+  (3) partial trace and entanglement family; (4) ensemble ambiguity;
+  (5) time evolution and purity conservation.
+  Tier 3 primary. 3--6 hrs. 4-layer delivery system.\\
+\addlinespace
+\texttt{ug/L01\_SPJU.tex}
+& SPJU
+& Simple Projects UG. Three projects (choose one):
+  (J1) Bloch sphere derivation and visualisation;
+  (J2) numerical partial-trace explorer in Python;
+  (J3) primary-source reading (Fano 1957) + NMR thermal state.
+  Tiers 2--3. 1--2 weeks. 500--800 words or notebook.\\
+\addlinespace
+\texttt{ug/L01\_CPJU.tex}
+& CPJU
+& Complex Projects UG. Two projects (choose one):
+  (CJ1) single-qubit quantum state tomography (theory + simulation);
+  (CJ2) decoherence, pointer states, and the spin-boson model.
+  Tier 3. 3--4 weeks. 2000--3000 words.\\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Graduate Artifacts (Grad Track)}
+
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{File} & \textbf{Code} & \textbf{Contents / Scope}\\
+\midrule
+\texttt{grad/L01\_SCQG.tex}
+& SCQG
+& Simple Concept Questions Graduate. 10 questions:
+  Structural probes (Q1--Q5: convexity, partial trace, relative entropy,
+  sub-additivity) and functional-analytic probes (Q6--Q10: Uhlmann,
+  Hilbert--Schmidt, trace-class, CP maps, Stinespring).
+  Tiers 4--5. 20--30 min. 20 pts.\\
+\addlinespace
+\texttt{grad/L01\_CCQG.tex}
+& CCQG
+& Complex Concept Questions Graduate. 8 questions:
+  ``Explain why'' (Q1--Q4: ensemble ambiguity, partial trace uniqueness,
+  complete positivity, infinite-dimensional entropy);
+  ``Compare and contrast'' (Q5--Q7: Shannon vs.\ von Neumann, pictures,
+  Kraus vs.\ Stinespring); ``Identify and resolve'' (Q8: data-processing paradox).
+  Tiers 4--5. 35--50 min.\\
+\addlinespace
+\texttt{grad/L01\_SPSG.tex}
+& SPSG
+& Simple Problem Set Graduate. 10 problems:
+  Structural proofs (A1--A4: convexity, extremality, purity--rank, trace-class);
+  Entropy and information (B1--B3: sub-additivity, concavity, purity--entropy);
+  Channels and maps (C1--C3: depolarising, amplitude damping, positivity vs.\ CP).
+  Tiers 4--5.\\
+\addlinespace
+\texttt{grad/L01\_CPSG.tex}
+& CPSG
+& Complex Problem Set Graduate. 5 extended proofs:
+  (1) Uhlmann fidelity; (2) Schmidt decomposition and entanglement;
+  (3) data-processing inequality; (4) GKSL derivation outline;
+  (5) trace-class operators in $\ell^2(\mathbb{N})$.
+  T4 Problems 1--3, T5 Problems 4--5.\\
+\addlinespace
+\texttt{grad/L01\_SPJG\_CPJG.tex}
+& SPJG / CPJG
+& Graduate Projects (simple and complex in one file).
+  SPJG: three projects (SG1: SIC-POVM tomography; SG2: entanglement measures;
+  SG3: Wigner function). 2--3 weeks.
+  CPJG: five research-level projects (CG1: infinite-dim density operators;
+  CG2: CPTP maps and GKSL; CG3: Petz recovery map; CG4: many-body RDMs;
+  CG5: quantum de Finetti theorem). 4--6 weeks.
+  Tiers 4--5.\\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Research Track Artifacts}
+
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{File} & \textbf{Code} & \textbf{Contents / Scope}\\
+\midrule
+\texttt{research/L01\_WRQ\_ORQ.tex}
+& WRQ / ORQ
+& Written Research Questions (5, answer 2): (WRQ1) historical/conceptual:
+  von Neumann's statistical operator; (WRQ2) foundational: density matrix
+  and the measurement problem; (WRQ3) mathematical: Kraus representation;
+  (WRQ4) information-theoretic: entropy and the second law;
+  (WRQ5) applications: condensed matter and quantum chemistry.
+  1000--1500 words each.\\
+  & & Oral Research Questions (5, examiner selects 2): (ORQ1) density operator
+  uniqueness; (ORQ2) partial trace vs.\ measurement; (ORQ3) complete positivity
+  and entanglement; (ORQ4) GKSL and irreversibility; (ORQ5) entropy and holography.
+  15-min viva format. Tier 5.\\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Bibliography}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{File} & \textbf{Contents}\\
+\midrule
+\texttt{bibliography/L01\_bibliography\_additions.tex}
+& Full annotated bibliography for the L01 artifact suite.
+  All references tier-tagged and cross-referenced to master bibliography
+  (\texttt{qm\_bibliography.tex}). Six new entries identified for addition
+  to the master bibliography (Zurek 2003; Breuer \& Petruccione 2002;
+  Plenio \& Virmani 2007; Fawzi \& Renner 2015; Li \& Haldane 2008;
+  White 1992).\\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Shared Infrastructure}
+
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{File} & \textbf{Contents}\\
+\midrule
+\texttt{preamble.tex}
+& Shared \LaTeX\ preamble: packages, colour definitions,
+  tcolorbox styles, programme macros.
+  Input by all artifact files via \texttt{\textbackslash input\{../preamble\}}.\\
+\texttt{L01\_manifest.tex}
+& This file. Complete inventory of the L01 artifact suite.\\
+\bottomrule
+\end{tabularx}
+
+\bigskip
+%=============================================================
+\section*{Artifact Count and Coverage}
+%=============================================================
+
+\begin{center}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Code} & \textbf{Full name} & \textbf{Tiers} & \textbf{Delivered}\\
+\midrule
+SCQU & Simple Concept Questions UG      & 1--3 & \checkmark\\
+CCQU & Complex Concept Questions UG     & 2--3 & \checkmark\\
+SPSU & Simple Problem Set UG            & 1--3 & \checkmark\\
+CPSU & Complex Problem Set UG           & 3    & \checkmark\\
+SPJU & Simple Projects UG               & 2--3 & \checkmark\\
+CPJU & Complex Projects UG              & 3    & \checkmark\\
+\midrule
+SCQG & Simple Concept Questions Grad    & 4--5 & \checkmark\\
+CCQG & Complex Concept Questions Grad   & 4--5 & \checkmark\\
+SPSG & Simple Problem Set Grad          & 4--5 & \checkmark\\
+CPSG & Complex Problem Set Grad         & 4--5 & \checkmark\\
+SPJG & Simple Projects Grad             & 4--5 & \checkmark\\
+CPJG & Complex Projects Grad            & 5    & \checkmark\\
+\midrule
+WRQ  & Written Research Questions       & 4--5 & \checkmark\\
+ORQ  & Oral Research Questions          & 5    & \checkmark\\
+\midrule
+\textbf{Total} & & & \textbf{14 / 14}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+%=============================================================
+\section*{Compilation Instructions}
+%=============================================================
+
+\begin{tcolorbox}[goldbox]
+\textbf{To compile any artifact file:}
+\begin{verbatim}
+  cd L01-artifacts/
+  pdflatex ug/L01_SCQU.tex
+  pdflatex ug/L01_CCQU.tex
+  pdflatex ug/L01_SPSU.tex
+  pdflatex ug/L01_CPSU.tex
+  pdflatex ug/L01_SPJU.tex
+  pdflatex ug/L01_CPJU.tex
+  pdflatex grad/L01_SCQG.tex
+  pdflatex grad/L01_CCQG.tex
+  pdflatex grad/L01_SPSG.tex
+  pdflatex grad/L01_CPSG.tex
+  pdflatex grad/L01_SPJG_CPJG.tex
+  pdflatex research/L01_WRQ_ORQ.tex
+  pdflatex bibliography/L01_bibliography_additions.tex
+  pdflatex lecture/L01_lecture_body.tex
+  pdflatex L01_manifest.tex
+\end{verbatim}
+All files \texttt{\textbackslash input\{../preamble\}} so must be compiled from
+their subdirectory, or the \texttt{\textbackslash input} path adjusted.
+Run \texttt{pdflatex} twice for correct cross-references.
+\end{tcolorbox}
+
+\bigskip
+%=============================================================
+\section*{Relationship to Slide Deck}
+%=============================================================
+
+\begin{tcolorbox}[notebox]
+\textbf{Important.}
+All 14 artifact files in this suite are \textbf{separate from the slide deck}.
+The slide deck (\texttt{slides/L01\_expanded\_Pure\_Mixed\_States\_and\_the\_Density\_Matrix.pptx})
+covers the lecture content in 28 slides with diagrams for each learning objective,
+formula, concept question, and tier. The artifacts are standalone documents
+distributed to students separately according to their tier track.
+
+The slide deck was generated by \texttt{src/builder-L01.js} and contains no
+problem sets, reading lists, or assessment rubrics --- only lecture content diagrams.
+\end{tcolorbox}
+
+\end{document}

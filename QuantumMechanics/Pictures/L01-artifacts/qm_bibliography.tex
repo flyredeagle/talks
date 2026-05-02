@@ -1,0 +1,1152 @@
+%=============================================================
+%  TIERED BIBLIOGRAPHY
+%  Quantum Mechanics & Quantum Chemistry Programme
+%  One section per learning tier (HS → PhD) + Full Catalogue
+%=============================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fix-cm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{mdframed}
+
+%--- Colours -------------------------------------------------
+\definecolor{darkblue}{RGB}{10,40,90}
+\definecolor{midblue}{RGB}{30,80,160}
+\definecolor{lightblue}{RGB}{220,233,255}
+\definecolor{accentgold}{RGB}{180,140,20}
+\definecolor{lightgold}{RGB}{255,248,220}
+\definecolor{darkgray}{RGB}{60,60,60}
+% Tier colours
+\definecolor{t1green}{RGB}{30,120,50}
+\definecolor{t1light}{RGB}{212,242,220}
+\definecolor{t2blue}{RGB}{25,90,170}
+\definecolor{t2light}{RGB}{215,232,255}
+\definecolor{t3purple}{RGB}{110,35,160}
+\definecolor{t3light}{RGB}{238,218,255}
+\definecolor{t4orange}{RGB}{165,70,10}
+\definecolor{t4light}{RGB}{255,232,208}
+\definecolor{t5red}{RGB}{140,15,15}
+\definecolor{t5light}{RGB}{255,215,215}
+\definecolor{catgray}{RGB}{80,80,80}
+\definecolor{catlight}{RGB}{240,240,240}
+
+%--- Section fonts -------------------------------------------
+\sectionfont{\Large\bfseries\color{darkblue}\sectionrule{0ex}{0pt}{-1ex}{1.5pt}}
+\subsectionfont{\large\bfseries\color{midblue}}
+\subsubsectionfont{\normalsize\bfseries\color{darkgray}}
+
+%--- Hyperref ------------------------------------------------
+\hypersetup{
+  colorlinks=true, linkcolor=midblue, urlcolor=midblue,
+  pdftitle={QM Programme --- Tiered Bibliography},
+}
+
+%--- Header / Footer -----------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{darkgray}\textit{QM \& QC Programme --- Tiered Bibliography}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\fancyfoot[C]{\small\color{darkgray}\textit{Companion to the Pedagogical Support Material}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%--- tcolorbox styles ----------------------------------------
+\tcbset{
+  tierheader/.style={
+    enhanced, colback=#1, colframe=#1!80!black,
+    boxrule=0pt, arc=0pt, sharp corners,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    fontupper=\bfseries\large\color{white},
+  },
+  entrybox/.style={
+    enhanced, breakable,
+    colback=#1, colframe=#1!60!black,
+    boxrule=0.5pt, sharp corners,
+    left=8pt, right=8pt, top=5pt, bottom=5pt,
+  },
+  annotbox/.style={
+    enhanced, breakable,
+    colback=lightgold, colframe=accentgold,
+    boxrule=0.6pt, sharp corners,
+    left=5pt, right=5pt, top=3pt, bottom=3pt,
+    fontupper=\small\itshape\color{darkgray},
+  },
+  keybox/.style={
+    enhanced,
+    colback=lightblue, colframe=midblue,
+    boxrule=0.5pt, rounded corners,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    fontupper=\small,
+  },
+  catbox/.style={
+    enhanced, breakable,
+    colback=catlight, colframe=catgray,
+    boxrule=0.6pt, sharp corners,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+  },
+}
+
+% Tier badge command
+\newcommand{\tierbadge}[2]{%
+  \colorbox{#1}{\small\bfseries\color{white}\strut\ #2\ }%
+}
+
+% Star rating
+\newcommand{\essential}{$\bigstar\bigstar\bigstar$}
+\newcommand{\recommended}{$\bigstar\bigstar$}
+\newcommand{\useful}{$\bigstar$}
+
+% Entry formatting
+\newenvironment{bibentry}[1]{%
+  \begin{tcolorbox}[entrybox=#1, top=4pt, bottom=4pt]%
+}{%
+  \end{tcolorbox}\smallskip%
+}
+
+%=============================================================
+\begin{document}
+%=============================================================
+
+%--- Title Page ----------------------------------------------
+\begin{titlepage}
+\pagecolor{darkblue}
+\color{white}
+\vspace*{3cm}
+\begin{center}
+  {\fontsize{28}{34}\selectfont\bfseries Tiered Bibliography}\\[0.5cm]
+  {\fontsize{17}{22}\selectfont Quantum Mechanics \& Quantum Chemistry Programme}\\[0.6cm]
+  {\color{accentgold}\rule{10cm}{2pt}}\\[0.6cm]
+  {\large\itshape Reading Lists Stratified by Learning Tier}\\[2.5cm]
+  \begin{tabular}{@{}cl@{}}
+    \colorbox{t1green}{\color{white}\bfseries Tier 1} & High School --- Popular Science \& First Introductions\\[4pt]
+    \colorbox{t2blue}{\color{white}\bfseries Tier 2}  & Beginning Undergraduate --- Core Textbooks\\[4pt]
+    \colorbox{t3purple}{\color{white}\bfseries Tier 3} & Advanced Undergraduate --- Rigorous \& Bridge Texts\\[4pt]
+    \colorbox{t4orange}{\color{white}\bfseries Tier 4} & Master's --- Graduate Textbooks \& Key Papers\\[4pt]
+    \colorbox{t5red}{\color{white}\bfseries Tier 5}   & PhD --- Monographs, Reviews \& Primary Literature\\[8pt]
+    \colorbox{catgray}{\color{white}\bfseries Cat.~A--F} & Full Alphabetical Catalogue (all tiers)\\
+  \end{tabular}\\[2.5cm]
+  {\color{accentgold}\rule{10cm}{1pt}}\\[0.5cm]
+  {\small\itshape Companion document to the Pedagogical Support Material.\\
+  \textbf{Annotation key:}
+  \essential\ Essential \quad
+  \recommended\ Strongly recommended \quad
+  \useful\ Useful supplement\\[4pt]
+  \textbf{[P]} Primary paper \quad
+  \textbf{[R]} Review \quad
+  \textbf{[M]} Monograph \quad
+  \textbf{[N]} Popular/narrative}
+\end{center}
+\vfill
+\end{titlepage}
+\nopagecolor
+
+\tableofcontents
+\newpage
+
+%=============================================================
+\section*{How to Use This Bibliography}
+\addcontentsline{toc}{section}{How to Use This Bibliography}
+%=============================================================
+
+\begin{tcolorbox}[keybox]
+This bibliography is a companion to the \textbf{Pedagogical Support Material} (PSM),
+which describes the five-tier learning system and the 14-type assessment artifact set.
+Each tier corresponds to a defined competency level; the reading lists here feed
+directly into the PSM's learning objectives, concept questions, and research tracks.
+\end{tcolorbox}
+
+\medskip
+\begin{center}
+\begin{tabular}{clp{3.5cm}p{5.5cm}}
+\toprule
+\textbf{Tier} & \textbf{Label} & \textbf{PSM track} & \textbf{Reading strategy}\\
+\midrule
+1 & HS       & Undergrad & Popular books cover-to-cover first\\
+2 & BegUG    & Undergrad & One textbook chapter per lecture\\
+3 & AdvUG    & Undergrad & Textbook + primary paper abstracts\\
+4 & MSc      & Graduate  & Primary papers as main reading\\
+5 & PhD      & Graduate + Research & Monographs + arXiv preprints\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\noindent The tiers are \textbf{cumulative}: all Tier~$k$ reading is recommended as
+background for Tier~$k{+}1$. Each entry carries:
+\begin{itemize}[leftmargin=1.8em,itemsep=1pt]
+  \item A \textbf{star rating} (\essential\ / \recommended\ / \useful)
+  \item A \textbf{type tag} ([P] [R] [M] [N])
+  \item A \textbf{short annotation} linking the work to specific programme modules
+\end{itemize}
+
+\medskip
+\noindent\textbf{Quantum Mechanics} entries are always primary; cross-references to
+\textbf{Nonlinear Dynamics \& Chaos} (the logistic map course) are included at each
+tier to illustrate how the same tier architecture transfers across disciplines.
+
+\newpage
+
+%#############################################################
+\section{Tier 1 (HS) --- Popular Science \& First Introductions}
+\label{sec:t1}
+%#############################################################
+
+\begin{tcolorbox}[tierheader=t1green]
+Tier 1 --- High School (HS)
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[keybox]
+\textbf{Goal:} Build vivid physical intuition and historical awareness before
+encountering any formalism. All books in this tier require only high-school mathematics.
+Read these \emph{before} any formal course. They provide the mental pictures that make
+the formalism of Tiers~2--5 meaningful.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection{Quantum Mechanics}
+%------------------------------------------------------------
+
+\begin{bibentry}{t1light}
+\textbf{Feynman, R.~P.}\\
+\textit{QED: The Strange Theory of Light and Matter}\\
+Princeton University Press, 1985.\\[4pt]
+\essential\ \ [\textbf{N}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The finest popular account of quantum amplitudes and interference. Feynman derives
+the Born rule from ``arrows'' that rotate and add --- precisely the Tier~1 picture
+of the bra-ket formalism. The ``photon bouncing off glass'' chapters are a perfect
+pre-reading for Module~I.2, Lectures~L01--L02. Read before any formal course.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t1light}
+\textbf{Feynman, R.~P., Leighton, R.~B.\ \& Sands, M.}\\
+\textit{The Feynman Lectures on Physics, Vol.~III: Quantum Mechanics}\\
+Addison-Wesley, 1965. Freely available at \texttt{feynmanlectures.caltech.edu}\\[4pt]
+\essential\ \ [\textbf{N/pedagogical}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Volume~III opens with two-slit interference and amplitudes; the first four chapters
+are fully accessible at Tier~1 and map directly onto the Tier~1 engagement activities
+for Module~I.2 Lectures L01 and L02. An essential free resource.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t1light}
+\textbf{Cox, B.\ \& Forshaw, J.}\\
+\textit{The Quantum Universe: Everything That Can Happen Does Happen}\\
+Da Capo Press, 2011.\\[4pt]
+\recommended\ \ [\textbf{N}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Readable narrative covering superposition, entanglement, and the Pauli exclusion
+principle with minimal formalism. Good companion for Module~I.2 Lectures L09--L10
+(tensor products, spin). Can be read in a weekend.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t1light}
+\textbf{Kumar, M.}\\
+\textit{Quantum: Einstein, Bohr, and the Great Debate about the Nature of Reality}\\
+Norton, 2008.\\[4pt]
+\recommended\ \ [\textbf{N}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Historical narrative of the foundational debates about measurement and probability.
+Essential context for understanding why Born's rule (1926) was controversial. Prepares
+the historical framing for Module~I.2 Lectures L04 and L07.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t1light}
+\textbf{Penrose, R.}\\
+\textit{The Emperor's New Mind}, Chapters~5--6\\
+Oxford University Press, 1989.\\[4pt]
+\useful\ \ [\textbf{N}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Philosophical context for quantum mechanics. Chapters~5--6 discuss wave functions and
+measurement in an accessible way. Useful philosophical background before Module~I.3
+Lectures L05 and L07.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Nonlinear Dynamics \& Chaos (Cross-reference)}
+%------------------------------------------------------------
+
+\begin{bibentry}{t1light}
+\textbf{Gleick, J.}\\
+\textit{Chaos: Making a New Science}\\
+Penguin Books, 1987.\\[4pt]
+\essential\ \ [\textbf{N}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Narrative history of May, Feigenbaum, and the logistic map's role in the chaos
+revolution. No mathematics required. The exact Tier~1 equivalent of Feynman's QED
+for nonlinear dynamics. Standard first reading for any dynamical systems course.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t1light}
+\textbf{Stewart, I.}\\
+\textit{Does God Play Dice? The New Mathematics of Chaos}\\
+Blackwell, 1989.\\[4pt]
+\recommended\ \ [\textbf{N}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Gentle narrative; introduces bifurcation and sensitive dependence at high-school level.
+\end{tcolorbox}
+\end{bibentry}
+
+\newpage
+%#############################################################
+\section{Tier 2 (BegUG) --- Core Undergraduate Textbooks}
+\label{sec:t2}
+%#############################################################
+
+\begin{tcolorbox}[tierheader=t2blue]
+Tier 2 --- Beginning Undergraduate (BegUG)
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[keybox]
+\textbf{Goal:} Develop working fluency in the notation and methods of quantum mechanics.
+All books assume first-year linear algebra and calculus. Work through one chapter per
+lecture, solving end-of-chapter exercises alongside SPSU problem sets from the PSM.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection{Quantum Mechanics}
+%------------------------------------------------------------
+
+\begin{bibentry}{t2light}
+\textbf{Griffiths, D.~J.\ \& Schroeter, D.~F.}\\
+\textit{Introduction to Quantum Mechanics} (3rd ed.)\\
+Cambridge University Press, 2018.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The standard first course. Develops wave mechanics before bra-ket notation.
+Chapters~1--3 (wavefunction, Schr\"odinger equation, infinite square well) parallel
+Module~I.3 Lectures L02--L05; Chapter~3 introduces Hilbert space and Dirac notation,
+paralleling Module~I.2 Lectures L01--L05. Excellent problem sets map to SPSU format.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t2light}
+\textbf{Shankar, R.}\\
+\textit{Principles of Quantum Mechanics} (2nd ed.)\\
+Springer, 1994.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Begins with a self-contained linear algebra review in Chapter~1 --- ideal for
+students bridging Tier~1 to Tier~2. More algebraic than Griffiths; a natural
+bridge to Sakurai. Chapter~1 pairs with Module~I.1; Chapters~4--9 support
+Module~I.2 Lectures L03--L08.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t2light}
+\textbf{Townsend, J.~S.}\\
+\textit{A Modern Approach to Quantum Mechanics} (2nd ed.)\\
+University Science Books, 2012.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Starts from spin-$\tfrac{1}{2}$ and Dirac notation from the very first chapter
+(Sakurai-style). Excellent for building bra-ket fluency early. Module~I.2
+can use this as the parallel text for Lectures L01--L04 and L10.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t2light}
+\textbf{Binney, J.\ \& Skinner, D.}\\
+\textit{The Physics of Quantum Mechanics}\\
+Oxford University Press, 2014. Freely available at \texttt{www-thphys.physics.ox.ac.uk}\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+British undergraduate style; uses bra-ket from Chapter~1. Excellent treatment of
+measurement and operators. Good companion for Module~I.2 Lectures L03--L07.
+Free access makes it especially attractive.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Mathematics Support}
+%------------------------------------------------------------
+
+\begin{bibentry}{t2light}
+\textbf{Strang, G.}\\
+\textit{Introduction to Linear Algebra} (5th ed.)\\
+Wellesley--Cambridge Press, 2016.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The prerequisite linear algebra text. Chapters~5--6 (eigenvalues, orthogonality) are
+directly needed for quantum mechanics. Work through before or alongside Module~I.1.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t2light}
+\textbf{Byron, F.~W.\ \& Fuller, R.~W.}\\
+\textit{Mathematics of Classical and Quantum Physics}\\
+Dover, 1992.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Covers Hilbert spaces, operators, and distributions at a level accessible to advanced
+Tier~2 students. A useful mathematical supplement for Module~I.2 Lectures L06 and L12.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Quantum Chemistry Introduction}
+%------------------------------------------------------------
+
+\begin{bibentry}{t2light}
+\textbf{Jensen, F.}\\
+\textit{Introduction to Computational Chemistry} (3rd ed.)\\
+Wiley, 2017.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Accessible entry to computational quantum chemistry. Chapters~1--3 provide the Tier~2
+background for Series~III. Students should read alongside Module~III.1.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Nonlinear Dynamics Cross-reference}
+%------------------------------------------------------------
+
+\begin{bibentry}{t2light}
+\textbf{Strogatz, S.~H.}\\
+\textit{Nonlinear Dynamics and Chaos} (2nd ed.)\\
+Westview Press, 2015.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The standard first course in nonlinear dynamics. Chapters~10--12 cover 1D maps,
+period-doubling, and chaos with clear physical motivation. Exact Tier~2 analogue
+of Griffiths.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t2light}
+\textbf{Alligood, K.~T., Sauer, T.~D.\ \& Yorke, J.~A.}\\
+\textit{Chaos: An Introduction to Dynamical Systems}\\
+Springer, 1996.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Chapter~1 develops the logistic map from scratch with full proofs accessible to
+beginning undergraduates.
+\end{tcolorbox}
+\end{bibentry}
+
+\newpage
+%#############################################################
+\section{Tier 3 (AdvUG) --- Rigorous Undergraduate \& Bridge Texts}
+\label{sec:t3}
+%#############################################################
+
+\begin{tcolorbox}[tierheader=t3purple]
+Tier 3 --- Advanced Undergraduate (AdvUG)
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[keybox]
+\textbf{Goal:} Understand why the formalism is internally consistent and geometric.
+Assumes confidence with analysis and linear algebra. Start reading primary papers
+at the abstract and introduction level. Use alongside CPSU problem sets from the PSM.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection{Quantum Mechanics --- Core}
+%------------------------------------------------------------
+
+\begin{bibentry}{t3light}
+\textbf{Sakurai, J.~J.\ \& Napolitano, J.}\\
+\textit{Modern Quantum Mechanics} (3rd ed.)\\
+Cambridge University Press, 2020.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The primary text for Module~I.2. Begins immediately with bra-ket notation and the
+Stern--Gerlach experiment. Chapters~1--3 (state vectors, dynamics, angular momentum)
+are the core of Series~I. The Sakurai ``operational'' approach is one of the two tracks
+in the Module~I.2 dual pedagogy (Sakurai + Dirac). Essential reading at Tier~3.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t3light}
+\textbf{Dirac, P.~A.~M.}\\
+\textit{The Principles of Quantum Mechanics} (4th ed.)\\
+Oxford University Press, 1958 (reprinted 1981).\\[4pt]
+\essential\ \ [\textbf{P/pedagogical}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The original source for bra-ket notation. Not a modern textbook but an indispensable
+primary reference. Chapter~I (``The Principle of Superposition'') and Chapter~II
+(``Dynamical Variables and Observables'') should be read in full alongside
+Module~I.2. This is the ``Dirac track'' of the dual pedagogy.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t3light}
+\textbf{Isham, C.~J.}\\
+\textit{Lectures on Quantum Theory: Mathematical and Structural Foundations}\\
+Imperial College Press, 1995.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Bridges undergraduate and graduate levels. Rigorous treatment of Hilbert spaces,
+operators, and measurement without full functional analysis. Ideal for Tier~3
+students aiming at Tier~4; directly supports Module~I.2 Lectures L11--L12.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t3light}
+\textbf{Hannabuss, K.}\\
+\textit{An Introduction to Quantum Theory}\\
+Oxford University Press, 1997.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Mathematically precise undergraduate text. Good treatment of spectral theory,
+uncertainty, and density operators without measure theory. Supports Module~I.2
+Lectures L04, L07, and L11.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Primary Papers --- First Encounters}
+%------------------------------------------------------------
+
+\begin{bibentry}{t3light}
+\textbf{Born, M.}\\
+\textit{Zur Quantenmechanik der Sto\ss vorg\"ange}\\
+Z.~Phys.~\textbf{37}, 863--867 (1926). English translation in Wheeler \& Zurek,
+\textit{Quantum Theory and Measurement} (Princeton, 1983).\\[4pt]
+\recommended\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The Born rule. Two pages; the probability interpretation of $|\psi|^2$. Should be
+read (in translation) by all Tier~3 students. Directly relevant to Module~I.2
+Lecture L01 (``why probabilities are squared amplitudes'') and the WRQ prompt
+``How did Born's interpretation change the meaning of the wavefunction?''
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t3light}
+\textbf{von Neumann, J.}\\
+\textit{Mathematische Grundlagen der Quantenmechanik}\\
+Springer, 1932. English: \textit{Mathematical Foundations of Quantum Mechanics},
+Princeton University Press, 1955.\\[4pt]
+\recommended\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The mathematical foundation of quantum mechanics. Chapters~I--II (abstract Hilbert
+space, operators) are accessible at Tier~3; Chapters~III--VI require Tier~5
+preparation. Supports Module~I.2 Lecture L12 and Module~I.3 Lecture L07.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t3light}
+\textbf{Wigner, E.~P.}\\
+\textit{On unitary representations of the inhomogeneous Lorentz group}\\
+Ann.~Math.~\textbf{40}, 149--204 (1939).\\[4pt]
+\useful\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Original source for Wigner's theorem and unitary/antiunitary symmetries. Abstract is
+accessible at Tier~3; full proof requires Tier~5 preparation. Relevant to Module~I.2
+Lectures L01 and L03 (``symmetries of physical states'').
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Nonlinear Dynamics Cross-reference}
+%------------------------------------------------------------
+
+\begin{bibentry}{t3light}
+\textbf{Devaney, R.~L.}\\
+\textit{An Introduction to Chaotic Dynamical Systems} (2nd ed.)\\
+Addison-Wesley, 1989.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Mathematically precise. Introduces Devaney's three conditions for chaos. Bridge text
+to graduate level; exact Tier~3 analogue of Sakurai for QM.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t3light}
+\textbf{May, R.~M.}\\
+\textit{Simple mathematical models with very complicated dynamics}\\
+Nature \textbf{261}, 459--467 (1976).\\[4pt]
+\essential\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The landmark logistic map paper. Eight pages; entirely accessible at Tier~3.
+The QM analogue for this tier is Born (1926). Should be read at Tier~3 in the
+nonlinear dynamics course as the first primary paper encounter.
+\end{tcolorbox}
+\end{bibentry}
+
+\newpage
+%#############################################################
+\section{Tier 4 (MSc) --- Graduate Textbooks \& Key Papers}
+\label{sec:t4}
+%#############################################################
+
+\begin{tcolorbox}[tierheader=t4orange]
+Tier 4 --- Master's (MSc)
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[keybox]
+\textbf{Goal:} Command the full formalism; reproduce key derivations; situate results
+in the broader literature. Primary papers become the main reading; textbooks serve
+as reference. Functional analysis background assumed. Use alongside CPSG, SPJG,
+and WRQ artifact types from the PSM.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection{Quantum Mechanics --- Graduate Texts}
+%------------------------------------------------------------
+
+\begin{bibentry}{t4light}
+\textbf{Weinberg, S.}\\
+\textit{Lectures on Quantum Mechanics} (2nd ed.)\\
+Cambridge University Press, 2015.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Covers foundations (postulates, measurement, entanglement), symmetries, and
+perturbation theory at graduate level. Chapter~3 (``Mathematical Tools'') is the
+cleanest graduate treatment of the bra-ket formalism including rigged Hilbert spaces.
+Supports Module~I.2 Lectures L11--L12 and Module~I.3 Lectures L01--L04.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Galindo, A.\ \& Pascual, P.}\\
+\textit{Quantum Mechanics} (2 vols.)\\
+Springer, 1990--1991.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The most mathematically complete standard graduate text. Volume~I develops Hilbert
+space rigorously; Volume~II covers scattering, relativistic QM, and second
+quantisation. Recommended for Tier~4 students aiming at mathematical physics.
+Supports all of Series~I and II.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Ballentine, L.~E.}\\
+\textit{Quantum Mechanics: A Modern Development} (2nd ed.)\\
+World Scientific, 2014.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Statistical interpretation; detailed treatment of measurement, density operators,
+and the ensemble interpretation. Excellent for the foundational content of Module~I.2
+Lectures L07 and L11, and Module~I.3 Lecture L10.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Cohen-Tannoudji, C., Diu, B.\ \& Lalo\"e, F.}\\
+\textit{Quantum Mechanics} (2 vols.)\\
+Wiley, 2019 (new edition).\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Encyclopaedic reference. The ``Complements'' to each chapter are especially valuable
+for Tier~4 students who need worked examples alongside theory. Supports
+Modules~II.3 (angular momentum) and~II.6 (spectroscopy).
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Many-Body Theory \& Advanced Topics}
+%------------------------------------------------------------
+
+\begin{bibentry}{t4light}
+\textbf{Fetter, A.~L.\ \& Walecka, J.~D.}\\
+\textit{Quantum Theory of Many-Particle Systems}\\
+McGraw-Hill, 1971 (Dover reprint 2003).\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The standard graduate text for Series~II Modules~II.4--II.5. Second quantisation,
+Green's functions, and Feynman diagrams developed from scratch. Chapter~1 pairs
+with Module~II.4 Lecture L01.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Bruus, H.\ \& Flensberg, K.}\\
+\textit{Introduction to Many-Body Quantum Theory in Condensed Matter Physics}\\
+Oxford University Press, 2004. Freely available at \texttt{community.dur.ac.uk}\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+More accessible than Fetter--Walecka. Excellent treatment of second quantisation,
+diagrammatics, and Green's functions. Primary reading for Module~II.4.
+Free access is a strong advantage.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Stefanucci, G.\ \& van Leeuwen, R.}\\
+\textit{Nonequilibrium Many-Body Theory of Quantum Systems}\\
+Cambridge University Press, 2013.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The definitive text for Module~II.5 (NEGF). Develops the Keldysh formalism
+rigorously from first principles. Chapters~4--6 are the primary reading for
+Module~II.5 Lectures L02--L06.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Quantum Chemistry (Series III)}
+%------------------------------------------------------------
+
+\begin{bibentry}{t4light}
+\textbf{Szabo, A.\ \& Ostlund, N.~S.}\\
+\textit{Modern Quantum Chemistry: Introduction to Advanced Electronic Structure Theory}\\
+McGraw-Hill, 1989 (Dover reprint 1996).\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The standard entry-level graduate text for Series~III. Covers HF theory, CI, MP2,
+and basic DFT concisely with full derivations. Chapters~1--3 support
+Module~III.1; Chapters~4--6 support Module~III.2 Lectures L05--L11.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Helgaker, T., J\o rgensen, P.\ \& Olsen, J.}\\
+\textit{Molecular Electronic-Structure Theory}\\
+Wiley, 2000.\\[4pt]
+\essential\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The definitive graduate reference for Modules~III.2--III.3. 900 pages covering
+basis sets, HF, CC, MCSCF, and response theory. Use as the reference text alongside
+Module~III.2 from Lecture L07 onward.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Koch, W.\ \& Holthausen, M.~C.}\\
+\textit{A Chemist's Guide to Density Functional Theory} (2nd ed.)\\
+Wiley-VCH, 2001.\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Accessible DFT text for Tier~4 chemistry students. Good companion for
+Module~III.3, Lectures L01--L05.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Key Tier 4 Papers}
+%------------------------------------------------------------
+
+\begin{bibentry}{t4light}
+\textbf{Hohenberg, P.\ \& Kohn, W.}\\
+\textit{Inhomogeneous electron gas}\\
+Phys.~Rev.~\textbf{136}, B864 (1964).\\[4pt]
+\essential\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Proves the two Hohenberg--Kohn theorems. Primary reading for Module~III.3 Lecture~L01.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Kohn, W.\ \& Sham, L.~J.}\\
+\textit{Self-consistent equations including exchange and correlation effects}\\
+Phys.~Rev.~\textbf{140}, A1133 (1965).\\[4pt]
+\essential\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+The Kohn--Sham DFT paper. Primary reading for Module~III.3. Nobel lecture (1998)
+provides accessible context. Essential for any Tier~4 quantum chemistry student.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Feigenbaum, M.~J.}\\
+\textit{Quantitative universality for a class of nonlinear transformations}\\
+J.~Stat.~Phys.~\textbf{19}, 25--52 (1978). [\textbf{P}]\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Original discovery of $\delta\approx 4.6692$ and $\alpha$. Cross-reference for
+Tier~4 nonlinear dynamics students. The QM programme analogue is Kohn \& Sham (1965).
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t4light}
+\textbf{Li, T.-Y.\ \& Yorke, J.~A.}\\
+\textit{Period three implies chaos}\\
+Am.~Math.~Monthly \textbf{82}, 985--992 (1975). [\textbf{P}]\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Coined the word ``chaos''. Cross-reference Tier~4 example for illustrating how
+short landmark papers can reshape a field (analogous to Born 1926 in QM).
+\end{tcolorbox}
+\end{bibentry}
+
+\newpage
+%#############################################################
+\section{Tier 5 (PhD) --- Monographs, Reviews \& Primary Literature}
+\label{sec:t5}
+%#############################################################
+
+\begin{tcolorbox}[tierheader=t5red]
+Tier 5 --- PhD
+\end{tcolorbox}
+
+\medskip
+\begin{tcolorbox}[keybox]
+\textbf{Goal:} Achieve research-level mastery; read primary literature directly;
+identify open problems; connect the programme to current research fronts.
+Primary papers and monographs are the main reading; textbooks serve as reference.
+Use alongside CPJG, WRQ, and ORQ artifact types from the PSM.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection{Functional Analysis \& Mathematical Foundations}
+%------------------------------------------------------------
+
+\begin{bibentry}{t5light}
+\textbf{Reed, M.\ \& Simon, B.}\\
+\textit{Methods of Modern Mathematical Physics} (4 vols.)\\
+Academic Press, 1972--1979.\\[4pt]
+\essential\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Vol.~I (\textit{Functional Analysis}): Hilbert spaces, operators, spectral theory.
+Vol.~II (\textit{Fourier Analysis, Self-Adjointness}): self-adjoint extensions,
+deficiency indices, Gel'fand triple. The mathematical foundation for Module~I.2
+Lecture~L12. Essential for Tier~5. Every PhD student should own these volumes.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Rudin, W.}\\
+\textit{Functional Analysis} (2nd ed.)\\
+McGraw-Hill, 1991.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Banach and Hilbert spaces, the spectral theorem for bounded operators. Chapter~12
+(unbounded operators) is directly relevant to the self-adjoint extension problem
+for $\hat{p}$, directly supporting Module~I.2 Lecture~L12 at PhD level.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Blank, J., Exner, P.\ \& Havl\'{\i}\v{c}ek, M.}\\
+\textit{Hilbert Space Operators in Quantum Physics} (2nd ed.)\\
+Springer, 2008.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The most physics-oriented rigorous treatment. Covers spectral measures, rigged
+Hilbert spaces, and quantum dynamics at the PhD level. Directly supports
+Module~I.2 Lectures L11--L12 and Module~I.3 Lectures L04--L08.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Gel'fand, I.~M.\ \& Vilenkin, N.~Ya.}\\
+\textit{Generalized Functions, Vol.~4: Applications of Harmonic Analysis}\\
+Academic Press, 1964.\\[4pt]
+\recommended\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Original source for the rigged Hilbert space (Gel'fand triple) framework.
+Chapter~1 is the reference for Module~I.2 Lecture~L12 (``Rigged Hilbert Spaces
+\& Mathematical Foundations'') at the PhD level.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Advanced Quantum Mechanics}
+%------------------------------------------------------------
+
+\begin{bibentry}{t5light}
+\textbf{Negele, J.~W.\ \& Orland, H.}\\
+\textit{Quantum Many-Particle Systems}\\
+Addison-Wesley, 1988 (Perseus reprint 1998).\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Path integrals and Green's functions at graduate/research level. Supports
+Modules~II.2 and~II.5.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Kadanoff, L.~P.\ \& Baym, G.}\\
+\textit{Quantum Statistical Mechanics}\\
+Benjamin, 1962 (Perseus reprint 1989).\\[4pt]
+\essential\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Original derivation of the Kadanoff--Baym equations. Primary reading for
+Module~II.5 Lecture~L05.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Martin, R.~M., Reining, L.\ \& Ceperley, D.}\\
+\textit{Interacting Electrons: Theory and Computational Approaches}\\
+Cambridge University Press, 2016.\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+The definitive modern text connecting DFT, many-body perturbation theory, and
+quantum Monte Carlo. Covers all of Series~III at research depth.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Haag, R.}\\
+\textit{Local Quantum Physics: Fields, Particles, Algebras} (2nd ed.)\\
+Springer, 1996.\\[4pt]
+\recommended\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Algebraic QFT; the deepest mathematical treatment of the measurement problem
+and locality. Background for Series~II Module~II.4.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Essential PhD-Level Papers (QM \& QC)}
+%------------------------------------------------------------
+
+\begin{bibentry}{t5light}
+\textbf{Stone, M.~H.}\\
+\textit{On one-parameter unitary groups in Hilbert space}\\
+Ann.~Math.~\textbf{33}, 643--648 (1932).\\[4pt]
+\essential\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Stone's theorem on strongly continuous unitary groups. The mathematical basis
+for $\hat{U}(t)=e^{-i\hat{H}t/\hbar}$. Primary reading for Module~I.3
+Lecture~L04 at PhD level.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Gleason, A.~M.}\\
+\textit{Measures on the closed subspaces of a Hilbert space}\\
+J.~Math.~Mech.~\textbf{6}, 885--893 (1957).\\[4pt]
+\essential\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Derives the Born rule from measure theory on closed subspaces. The deepest
+axiomatic justification of $P=|\langle a|\psi\rangle|^2$. Essential for
+Module~I.2 Lecture~L07 at PhD level and directly relevant to the ORQ prompt
+``What minimal operational axioms force complex Hilbert space?''
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Lindblad, G.}\\
+\textit{On the generators of quantum dynamical semigroups}\\
+Commun.~Math.~Phys.~\textbf{48}, 119--130 (1976).\\[4pt]
+\essential\ \ [\textbf{P}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Derives the Lindblad master equation from complete positivity. Primary reading
+for Module~I.3 Lecture~L10 (``Open Systems and Decoherence'').
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Kraus, K.}\\
+\textit{States, Effects, and Operations: Fundamental Notions of Quantum Theory}\\
+Springer Lecture Notes in Physics \textbf{190}, 1983.\\[4pt]
+\recommended\ \ [\textbf{M}]\\[4pt]
+\begin{tcolorbox}[annotbox]
+Kraus operators, CPTP maps, and the operational formulation of quantum mechanics.
+Background for Module~I.2 Lecture~L11 and Module~I.3 Lecture~L10.
+\end{tcolorbox}
+\end{bibentry}
+
+%------------------------------------------------------------
+\subsection{Nonlinear Dynamics PhD Cross-reference}
+%------------------------------------------------------------
+
+\begin{bibentry}{t5light}
+\textbf{de Melo, W.\ \& van Strien, S.}\\
+\textit{One-Dimensional Dynamics}\\
+Springer, 1993. [\textbf{M}]\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Definitive research monograph on interval maps. Proves ACIMs, renormalisation,
+Feigenbaum theory. Exact analogue of Reed \& Simon for 1D dynamics.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Lyubich, M.}\\
+\textit{Almost every real quadratic map is either regular or stochastic}\\
+Ann.~Math.~\textbf{156}, 1--78 (2002). [\textbf{P}]\\[4pt]
+\recommended\\[4pt]
+\begin{tcolorbox}[annotbox]
+Resolves the measure-theoretic dichotomy for the logistic family; one of the deepest
+results in 1D dynamics.
+\end{tcolorbox}
+\end{bibentry}
+
+\begin{bibentry}{t5light}
+\textbf{Young, L.-S.}\\
+\textit{What are SRB measures and which dynamical systems have them?}\\
+J.~Stat.~Phys.~\textbf{108}, 733--754 (2002). [\textbf{R}]\\[4pt]
+\essential\\[4pt]
+\begin{tcolorbox}[annotbox]
+Definitive survey of physical (SRB) invariant measures; directly analogous to
+density operator surveys in QM.
+\end{tcolorbox}
+\end{bibentry}
+
+\newpage
+%#############################################################
+\section{Full Alphabetical Catalogue}
+\label{sec:fullcat}
+%#############################################################
+
+\begin{tcolorbox}[keybox]
+Complete alphabetically ordered catalogue of all references across Tiers~1--5 and the
+programme syllabus, grouped by category. Each entry carries its tier badge(s) and type tag.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Category A \quad Popular Science \& Historical Narrative}
+\addcontentsline{toc}{subsection}{Category A: Popular Science}
+
+\begin{tcolorbox}[catbox]
+\begin{enumerate}[leftmargin=2.5em, label=\textbf{[A\arabic*]}, itemsep=5pt]
+  \item \tierbadge{t1green}{T1}\ Cox, B.\ \& Forshaw, J. \textit{The Quantum Universe.} Da Capo Press, 2011. [\textbf{N}]
+  \item \tierbadge{t1green}{T1}\ Feynman, R.~P. \textit{QED: The Strange Theory of Light and Matter.} Princeton University Press, 1985. [\textbf{N}] \essential
+  \item \tierbadge{t1green}{T1}\ Feynman, R.~P., Leighton, R.~B.\ \& Sands, M. \textit{The Feynman Lectures on Physics, Vol.~III.} Addison-Wesley, 1965. [\textbf{N}] \essential
+  \item \tierbadge{t1green}{T1}\ Gleick, J. \textit{Chaos: Making a New Science.} Penguin Books, 1987. [\textbf{N}] \essential
+  \item \tierbadge{t1green}{T1}\ Kumar, M. \textit{Quantum: Einstein, Bohr, and the Great Debate.} Norton, 2008. [\textbf{N}]
+  \item \tierbadge{t1green}{T1}\ Penrose, R. \textit{The Emperor's New Mind.} Oxford University Press, 1989. [\textbf{N}]
+  \item \tierbadge{t1green}{T1}\ Stewart, I. \textit{Does God Play Dice?} Blackwell, 1989. [\textbf{N}]
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Category B \quad Undergraduate Textbooks (Tiers 1--3)}
+\addcontentsline{toc}{subsection}{Category B: Undergraduate Textbooks}
+
+\begin{tcolorbox}[catbox]
+\begin{enumerate}[leftmargin=2.5em, label=\textbf{[B\arabic*]}, itemsep=5pt]
+  \item \tierbadge{t2blue}{T2}\ Alligood, K.~T., Sauer, T.~D.\ \& Yorke, J.~A. \textit{Chaos: An Introduction to Dynamical Systems.} Springer, 1996.
+  \item \tierbadge{t2blue}{T2}\ Binney, J.\ \& Skinner, D. \textit{The Physics of Quantum Mechanics.} Oxford University Press, 2014.
+  \item \tierbadge{t2blue}{T2}\ Byron, F.~W.\ \& Fuller, R.~W. \textit{Mathematics of Classical and Quantum Physics.} Dover, 1992.
+  \item \tierbadge{t3purple}{T3}\ Devaney, R.~L. \textit{An Introduction to Chaotic Dynamical Systems} (2nd ed.). Addison-Wesley, 1989.
+  \item \tierbadge{t2blue}{T2}\ Griffiths, D.~J.\ \& Schroeter, D.~F. \textit{Introduction to Quantum Mechanics} (3rd ed.). Cambridge University Press, 2018. \essential
+  \item \tierbadge{t3purple}{T3}\ Hannabuss, K. \textit{An Introduction to Quantum Theory.} Oxford University Press, 1997.
+  \item \tierbadge{t3purple}{T3}\ Isham, C.~J. \textit{Lectures on Quantum Theory.} Imperial College Press, 1995.
+  \item \tierbadge{t2blue}{T2}\ Jensen, F. \textit{Introduction to Computational Chemistry} (3rd ed.). Wiley, 2017.
+  \item \tierbadge{t2blue}{T2}\ Shankar, R. \textit{Principles of Quantum Mechanics} (2nd ed.). Springer, 1994. \essential
+  \item \tierbadge{t2blue}{T2}\ Strang, G. \textit{Introduction to Linear Algebra} (5th ed.). Wellesley--Cambridge Press, 2016. \essential
+  \item \tierbadge{t2blue}{T2}\ Strogatz, S.~H. \textit{Nonlinear Dynamics and Chaos} (2nd ed.). Westview Press, 2015. \essential
+  \item \tierbadge{t2blue}{T2}\ Townsend, J.~S. \textit{A Modern Approach to Quantum Mechanics} (2nd ed.). University Science Books, 2012.
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Category C \quad Graduate Textbooks (Tiers 4--5)}
+\addcontentsline{toc}{subsection}{Category C: Graduate Textbooks}
+
+\begin{tcolorbox}[catbox]
+\begin{enumerate}[leftmargin=2.5em, label=\textbf{[C\arabic*]}, itemsep=5pt]
+  \item \tierbadge{t4orange}{T4}\ Ballentine, L.~E. \textit{Quantum Mechanics: A Modern Development} (2nd ed.). World Scientific, 2014.
+  \item \tierbadge{t5red}{T5}\ Blank, J., Exner, P.\ \& Havl\'{\i}\v{c}ek, M. \textit{Hilbert Space Operators in Quantum Physics} (2nd ed.). Springer, 2008. \essential
+  \item \tierbadge{t4orange}{T4}\ Bruus, H.\ \& Flensberg, K. \textit{Introduction to Many-Body Quantum Theory.} Oxford University Press, 2004. \essential
+  \item \tierbadge{t4orange}{T4}\ Cohen-Tannoudji, C., Diu, B.\ \& Lalo\"e, F. \textit{Quantum Mechanics} (2 vols.). Wiley, 2019.
+  \item \tierbadge{t4orange}{T4}\ Fetter, A.~L.\ \& Walecka, J.~D. \textit{Quantum Theory of Many-Particle Systems.} Dover, 2003. \essential
+  \item \tierbadge{t4orange}{T4}\ Galindo, A.\ \& Pascual, P. \textit{Quantum Mechanics} (2 vols.). Springer, 1990--1991. \essential
+  \item \tierbadge{t4orange}{T4}\ Helgaker, T., J\o rgensen, P.\ \& Olsen, J. \textit{Molecular Electronic-Structure Theory.} Wiley, 2000. \essential
+  \item \tierbadge{t5red}{T5}\ Kadanoff, L.~P.\ \& Baym, G. \textit{Quantum Statistical Mechanics.} Perseus, 1989. [\textbf{M}] \essential
+  \item \tierbadge{t4orange}{T4}\ Koch, W.\ \& Holthausen, M.~C. \textit{A Chemist's Guide to Density Functional Theory} (2nd ed.). Wiley-VCH, 2001.
+  \item \tierbadge{t5red}{T5}\ Martin, R.~M., Reining, L.\ \& Ceperley, D. \textit{Interacting Electrons.} Cambridge University Press, 2016. \essential
+  \item \tierbadge{t5red}{T5}\ Negele, J.~W.\ \& Orland, H. \textit{Quantum Many-Particle Systems.} Perseus, 1998. \essential
+  \item \tierbadge{t5red}{T5}\ Rudin, W. \textit{Functional Analysis} (2nd ed.). McGraw-Hill, 1991. \essential
+  \item \tierbadge{t4orange}{T4}\ Stefanucci, G.\ \& van Leeuwen, R. \textit{Nonequilibrium Many-Body Theory of Quantum Systems.} Cambridge University Press, 2013. \essential
+  \item \tierbadge{t4orange}{T4}\ Szabo, A.\ \& Ostlund, N.~S. \textit{Modern Quantum Chemistry.} Dover, 1996. \essential
+  \item \tierbadge{t4orange}{T4}\ Weinberg, S. \textit{Lectures on Quantum Mechanics} (2nd ed.). Cambridge University Press, 2015. \essential
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Category D \quad Research Monographs (Tier 5 \& Research Track)}
+\addcontentsline{toc}{subsection}{Category D: Research Monographs}
+
+\begin{tcolorbox}[catbox]
+\begin{enumerate}[leftmargin=2.5em, label=\textbf{[D\arabic*]}, itemsep=5pt]
+  \item \tierbadge{t5red}{T5}\ Collet, P.\ \& Eckmann, J.-P. \textit{Iterated Maps on the Interval as Dynamical Systems.} Birkh\"auser, 1980 (reprint 2009). [\textbf{M}]
+  \item \tierbadge{t5red}{T5}\ de Melo, W.\ \& van Strien, S. \textit{One-Dimensional Dynamics.} Springer, 1993. [\textbf{M}] \essential
+  \item \tierbadge{t5red}{T5}\ Gel'fand, I.~M.\ \& Vilenkin, N.~Ya. \textit{Generalized Functions, Vol.~4.} Academic Press, 1964. [\textbf{M}]
+  \item \tierbadge{t5red}{T5}\ Haag, R. \textit{Local Quantum Physics} (2nd ed.). Springer, 1996. [\textbf{M}]
+  \item \tierbadge{t5red}{T5}\ Kraus, K. \textit{States, Effects, and Operations.} Springer, 1983. [\textbf{M}]
+  \item \tierbadge{t5red}{T5}\ Reed, M.\ \& Simon, B. \textit{Methods of Modern Mathematical Physics} (4 vols.). Academic Press, 1972--1979. [\textbf{M}] \essential
+  \item \tierbadge{t3purple}{T3}\ von Neumann, J. \textit{Mathematical Foundations of Quantum Mechanics.} Princeton University Press, 1955. [\textbf{M}]
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Category E \quad Primary Research Papers}
+\addcontentsline{toc}{subsection}{Category E: Primary Research Papers}
+
+\begin{tcolorbox}[catbox]
+\begin{enumerate}[leftmargin=2.5em, label=\textbf{[E\arabic*]}, itemsep=5pt]
+  \item \tierbadge{t3purple}{T3}\ Born, M. Zur Quantenmechanik der Sto\ss vorg\"ange. \textit{Z.~Phys.} \textbf{37}, 863--867 (1926). [\textbf{P}] \essential
+  \item \tierbadge{t5red}{T5}\ Eckmann, J.-P.\ \& Ruelle, D. Ergodic theory of chaos and strange attractors. \textit{Rev.~Mod.~Phys.} \textbf{57}, 617--656 (1985). [\textbf{R}]
+  \item \tierbadge{t4orange}{T4}\ Feigenbaum, M.~J. Quantitative universality for a class of nonlinear transformations. \textit{J.~Stat.~Phys.} \textbf{19}, 25--52 (1978). [\textbf{P}] \essential
+  \item \tierbadge{t5red}{T5}\ Gleason, A.~M. Measures on the closed subspaces of a Hilbert space. \textit{J.~Math.~Mech.} \textbf{6}, 885--893 (1957). [\textbf{P}] \essential
+  \item \tierbadge{t4orange}{T4}\ Hohenberg, P.\ \& Kohn, W. Inhomogeneous electron gas. \textit{Phys.~Rev.} \textbf{136}, B864 (1964). [\textbf{P}] \essential
+  \item \tierbadge{t4orange}{T4}\ Kohn, W.\ \& Sham, L.~J. Self-consistent equations including exchange and correlation. \textit{Phys.~Rev.} \textbf{140}, A1133 (1965). [\textbf{P}] \essential
+  \item \tierbadge{t4orange}{T4}\ Li, T.-Y.\ \& Yorke, J.~A. Period three implies chaos. \textit{Am.~Math.~Monthly} \textbf{82}, 985--992 (1975). [\textbf{P}]
+  \item \tierbadge{t5red}{T5}\ Lindblad, G. On the generators of quantum dynamical semigroups. \textit{Commun.~Math.~Phys.} \textbf{48}, 119--130 (1976). [\textbf{P}] \essential
+  \item \tierbadge{t5red}{T5}\ Lyubich, M. Almost every real quadratic map is either regular or stochastic. \textit{Ann.~Math.} \textbf{156}, 1--78 (2002). [\textbf{P}]
+  \item \tierbadge{t3purple}{T3}\ May, R.~M. Simple mathematical models with very complicated dynamics. \textit{Nature} \textbf{261}, 459--467 (1976). [\textbf{P}] \essential
+  \item \tierbadge{t5red}{T5}\ Stone, M.~H. On one-parameter unitary groups in Hilbert space. \textit{Ann.~Math.} \textbf{33}, 643--648 (1932). [\textbf{P}] \essential
+  \item \tierbadge{t3purple}{T3}\ Wigner, E.~P. On unitary representations of the inhomogeneous Lorentz group. \textit{Ann.~Math.} \textbf{40}, 149--204 (1939). [\textbf{P}]
+  \item \tierbadge{t5red}{T5}\ Young, L.-S. Statistical properties of dynamical systems with some hyperbolicity. \textit{Ann.~Math.} \textbf{147}, 585--650 (1998). [\textbf{P}]
+  \item \tierbadge{t5red}{T5}\ Young, L.-S. What are SRB measures and which dynamical systems have them? \textit{J.~Stat.~Phys.} \textbf{108}, 733--754 (2002). [\textbf{R}] \essential
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Category F \quad Review Articles \& Surveys}
+\addcontentsline{toc}{subsection}{Category F: Review Articles}
+
+\begin{tcolorbox}[catbox]
+\begin{enumerate}[leftmargin=2.5em, label=\textbf{[F\arabic*]}, itemsep=5pt]
+  \item \tierbadge{t5red}{T5}\ Eckmann, J.-P. Roads to turbulence in dissipative dynamical systems. \textit{Rev.~Mod.~Phys.} \textbf{53}, 643--654 (1981). [\textbf{R}]
+  \item \tierbadge{t5red}{T5}\ Lyubich, M. Forty years of unimodal dynamics. \textit{J.~Math.~Sci.} \textbf{170}, 680--713 (2010). [\textbf{R}]
+  \item \tierbadge{t5red}{T5}\ Viana, M. Stochastic dynamics of deterministic systems. \textit{IMPA Lecture Notes} (1997). [\textbf{R}]
+\end{enumerate}
+\end{tcolorbox}
+
+\bigskip
+%------------------------------------------------------------
+\subsection*{Tier--Category Quick-Index}
+\addcontentsline{toc}{subsection}{Tier--Category Quick-Index}
+%------------------------------------------------------------
+
+\begin{center}
+\begin{tabular}{lp{11cm}}
+\toprule
+\textbf{Tier} & \textbf{Recommended categories and key items}\\
+\midrule
+\tierbadge{t1green}{T1} HS
+  & All of Cat.~A; Cat.~B: [B3, B5, B11]; no primary papers\\[3pt]
+\tierbadge{t2blue}{T2} BegUG
+  & Cat.~B: [B2, B5, B8, B9, B10, B11, B12]; Cat.~A as context;
+    Cat.~E: [E10] (May 1976) abstract only\\[3pt]
+\tierbadge{t3purple}{T3} AdvUG
+  & Cat.~B (all); Cat.~C: [C4, C15]; Cat.~D: [D7];
+    Cat.~E: [E1, E3, E10, E12] in full\\[3pt]
+\tierbadge{t4orange}{T4} MSc
+  & Cat.~C (all); Cat.~D: [D3, D6, D7];
+    Cat.~E: [E1, E4, E5, E6, E8, E11, E12] as primary reading;
+    Cat.~F: [F1, F2]\\[3pt]
+\tierbadge{t5red}{T5} PhD
+  & Cat.~D (all); Cat.~E (complete); Cat.~F (all);
+    Cat.~C as reference; current arXiv preprints\\[3pt]
+Research track
+  & Cat.~D (all); Cat.~E (all); Cat.~F (all);
+    journal club selections; current arXiv\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%=============================================================
+\end{document}
