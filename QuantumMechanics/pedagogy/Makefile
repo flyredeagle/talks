@@ -9,8 +9,8 @@ clean:
 	rm -f *.aux
 	rm -f *.log
 	rm -f *.out
-	rm -f qm_bibliography.pdf
-	rm -f pedagogical_support.pdf
 	rm -f *.toc
 distclean: clean
 	rm -f *~
+	rm -f qm_bibliography.pdf
+	rm -f pedagogical_support.pdf
