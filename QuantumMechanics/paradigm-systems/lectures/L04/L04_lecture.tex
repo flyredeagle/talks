@@ -1,0 +1,149 @@
+%=============================================================
+%  Module I.4 / L04 — Rabi Model and Two-Level Systems
+%  Series I > Module I.4 > Lecture L04
+%  Duration: 90 minutes  |  All tiers (T1–T5)
+%=============================================================
+\renewcommand{\lectureCode}{I.4 / L04}
+
+\section*{L04 — Rabi Model and Two-Level Systems}
+\label{sec:L04}
+\addcontentsline{toc}{section}{L04 — Rabi Model and Two-Level Systems}
+
+%--- Lecture header
+\begin{tcolorbox}[lecturebox, title={Module I.4 / L04 — Metadata}]
+\begin{tabular}{@{}ll@{}}
+\textbf{Series:}    & I — Introductory Quantum Mechanics \\
+\textbf{Module:}    & I.4 — Paradigm Physical Systems \\
+\textbf{Lecture:}   & L04 — Rabi Model and Two-Level Systems \\
+\textbf{Duration:}  & 90 minutes \\
+\textbf{Tiers:}     & T1 (HS) · T2 (BegUG) · T3 (AdvUG) · T4 (MSc) · T5 (PhD) \\
+\textbf{Preceding:} & I.4 / L03 — Harmonic Oscillator \\
+\textbf{Following:} & I.4 / L05 — Minimal Coupling and Landau Levels \\
+\textbf{Prerequisites:} & Modules I.1–I.3 complete \\
+\end{tabular}
+
+\medskip
+\textbf{Key concepts:} TLS Bloch sphere, rotating wave approximation, Rabi oscillations, Jaynes–Cummings model
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{L04.0 — Learning Objectives (per tier)}
+\label{sec:L04.0}
+
+\tiertag{tier1col}{Tier 1 — HS}\quad
+Identify the main physical phenomenon studied in this lecture; describe it in
+non-mathematical terms; state one real-world application.
+
+\tiertag{tier2col}{Tier 2 — BegUG}\quad
+Apply the key equations to compute numerical results; verify consistency with
+known limits; translate between physical and mathematical descriptions.
+
+\tiertag{tier3col}{Tier 3 — AdvUG}\quad
+Derive central results from first principles; prove key identities; identify
+the mathematical structure underlying the physical phenomenon.
+
+\tiertag{tier4col}{Tier 4 — MSc}\quad
+Analyse formal extensions; connect to symmetry principles; generalise to
+related systems; identify the role of this lecture in the broader programme.
+
+\tiertag{tier5col}{Tier 5 — PhD}\quad
+Establish rigorous mathematical foundations; identify open research problems;
+connect to modern literature; critique standard textbook treatments.
+
+%--- Lecture content -----------------------------------------
+
+\subsection*{L04.1 — Two-Level System Hamiltonian}
+\begin{tcolorbox}[lecturebox, title={TLS and Bloch Sphere}]
+$\hat{H}_0 = \frac{\hbar\omega_0}{2}\hat{\sigma}_z$; general state:
+$\ket{\psi}=\cos(\theta/2)\ket{\uparrow}+e^{i\phi}\sin(\theta/2)\ket{\downarrow}$
+(point on Bloch sphere).
+\end{tcolorbox}
+
+\subsection*{L04.2 — Driven TLS and Rabi Oscillations}
+In the rotating frame with RWA, the Hamiltonian becomes:
+\begin{equation}
+  \hat{H}_{\rm rot} = \frac{\hbar\Delta}{2}\hat{\sigma}_z + \frac{\hbar\Omega_R}{2}\hat{\sigma}_x,
+  \quad \Delta = \omega - \omega_0,\quad \Omega_R = dE_0/\hbar.
+  \label{eq:L04.1}
+\end{equation}
+Population inversion: $P_\uparrow(t) = (\Omega_R/\tilde\Omega)^2\sin^2(\tilde\Omega t/2)$,
+$\tilde\Omega = \sqrt{\Delta^2+\Omega_R^2}$.
+
+\subsection*{L04.3 — Jaynes–Cummings Model}
+Full quantum treatment: TLS + single photon mode:
+\begin{equation}
+  \hat{H}_{\rm JC} = \hbar\omega_c\hat{a}^\dagger\hat{a}
+    + \tfrac{\hbar\omega_0}{2}\hat{\sigma}_z
+    + \hbar g(\hat{a}\hat{\sigma}_+ + \hat{a}^\dagger\hat{\sigma}_-).
+  \label{eq:L04.2}
+\end{equation}
+Dressed states; collapse and revival of Rabi oscillations for coherent photon states.
+
+
+%------------------------------------------------------------
+\subsection*{L04.C — Connections}
+\label{sec:L04.C}
+\textbf{Backward:} I.4/L03 — Harmonic Oscillator and Modules I.1–I.3.
+\textbf{Forward:} I.4/L05 — Minimal Coupling and Landau Levels builds directly on the formalism developed here.
+\textbf{Cross-module:} Series~II modules extend these results to many-body and
+advanced settings; Series~III applies them to molecular electronic structure.
+
+%=============================================================
+%  ASSESSMENT BUNDLE — L04
+%=============================================================
+\newpage
+\section*{L04 — Assessment Artifact Bundle}
+
+\begin{tcolorbox}[ugconceptbox, title={SCQU · L04 · Tiers 1–3 · 15–20 min}]
+\textit{Ten simple concept questions (mix MC/TF/short) targeting the core results
+of Rabi Model and Two-Level Systems. See artifact file \texttt{L04_artifacts.tex} for full questions.}
+
+\textbf{Rubric:} 2 pts each (1.5 correct + 0.5 justification). Total: 20 pts.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugconceptbox, title={CCQU · L04 · Tiers 2–3 · 25–35 min}]
+\textit{Ten complex concept questions: ``explain why,'' ``what would change if,''
+``identify the flaw.'' Full questions in \texttt{L04_artifacts.tex}.}
+
+\textbf{Rubric:} 2 pts each (1 key point + 1 argument). Total: 20 pts.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={SPSU · L04 · Tiers 1–3 · 60–90 min}]
+\textit{Ten problems (Part A: mechanics, Part B: interpretation, Part C: translation).
+Full problems in \texttt{L04_artifacts.tex}.}
+
+\textbf{Rubric:} Result 60\%, Method 30\%, Interpretation 10\%.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={CPSU · L04 · Tier 3 · 3–6 hrs (4-layer)}]
+\textit{Five multi-part derivation problems with four-layer scaffolding.
+Layers 1–4 in \texttt{L04_ex01\_problem.tex}, \texttt{hints}, \texttt{adv\_hints}, \texttt{solution}.}
+
+\textbf{Rubric:} Assumptions 15\%, Proof structure 45\%, Algebra 25\%, Insight 15\%.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={SPJU + CPJU · L04 · Tiers 2–3}]
+\textit{Simple project (2–6 hrs): structured computational/analytical task.
+Complex project (8–15 hrs): open-ended synthesis.
+Full specs in \texttt{L04_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradconceptbox, title={SCQG + CCQG · L04 · Tiers 4–5}]
+\textit{Ten simple + ten complex concept questions at graduate level (rigour, domain
+conditions, named theorems). Full questions in \texttt{L04_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradprobbox, title={SPSG + CPSG · L04 · Tiers 4–5}]
+\textit{Ten simple + five complex graduate problems.
+CPSG with four-layer format. See \texttt{L04_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradprobbox, title={SPJG (×5) + CPJG (×5) · L04 · Tiers 4–5}]
+\textit{Five simple (3–8 hrs each) and five complex (10–20 hrs each) graduate projects.
+Full specs in \texttt{L04_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[researchbox, title={WRQ (×5) + ORQ (×5) · L04 · Tiers 4–5}]
+\textit{Five well-defined research questions (5–10 hrs each) and five open-ended
+research questions (10–20 hrs each). Full prompts in \texttt{L04_artifacts.tex}.}
+\end{tcolorbox}

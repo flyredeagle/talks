@@ -1,0 +1,81 @@
+{
+  "module": "I.4",
+  "lecture": "L05",
+  "title": "Minimal Coupling & Landau Levels",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L05",
+      "subtitle": "Minimal Coupling & Landau Levels",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L05.1",
+      "title": "Minimal Coupling Hamiltonian",
+      "bullets": [
+        "H = (p\u0302 - eA)\u00b2/2m + e\u03c6",
+        "Gauge invariance",
+        "A \u2192 A + \u2207\u03c7, \u03c8 \u2192 e^(ie\u03c7/\u210f)\u03c8"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L05.2",
+      "title": "Landau Levels",
+      "bullets": [
+        "E_n = (n+1/2)\u210f\u03c9_c",
+        "Cyclotron frequency \u03c9_c = eB/m",
+        "Magnetic length l_B = \u221a(\u210f/eB)",
+        "Massive degeneracy"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L05.3",
+      "title": "QHE Preview & Filling Factor",
+      "bullets": [
+        "One state per area 2\u03c0l_B\u00b2",
+        "Filling factor \u03bd = N_e/(eBA/h)",
+        "Integer QHE from Landau levels"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L05.4",
+      "title": "Aharonov\u2013Bohm Effect",
+      "bullets": [
+        "Phase e\u03a6/\u210f around flux tube",
+        "B=0 in accessible region",
+        "Topological/Berry phase character"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L05 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

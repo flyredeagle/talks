@@ -1,0 +1,29 @@
+{
+  "name": "module-i4-paradigm-physical-systems",
+  "version": "1.0.0",
+  "description": "Slide deck generation for QM Module I.4: Paradigm Physical Systems",
+  "main": "scripts/generate_pptx.js",
+  "scripts": {
+    "slides": "node scripts/generate_pptx.js",
+    "slides:L01": "node scripts/generate_pptx.js L01",
+    "slides:L02": "node scripts/generate_pptx.js L02",
+    "slides:L03": "node scripts/generate_pptx.js L03",
+    "slides:L04": "node scripts/generate_pptx.js L04",
+    "slides:L05": "node scripts/generate_pptx.js L05",
+    "slides:L06": "node scripts/generate_pptx.js L06",
+    "slides:L07": "node scripts/generate_pptx.js L07",
+    "slides:L08": "node scripts/generate_pptx.js L08",
+    "slides:L09": "node scripts/generate_pptx.js L09",
+    "slides:L10": "node scripts/generate_pptx.js L10",
+    "slides:L11": "node scripts/generate_pptx.js L11",
+    "slides:L12": "node scripts/generate_pptx.js L12"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": ["quantum-mechanics", "education", "pptx", "slides"],
+  "license": "MIT"
+}

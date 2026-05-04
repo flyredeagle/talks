@@ -1,0 +1,80 @@
+{
+  "module": "I.4",
+  "lecture": "L11",
+  "title": "Scattering from a Potential Well",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L11",
+      "subtitle": "Scattering from a Potential Well",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L11.1",
+      "title": "Finite Square Well Bound States",
+      "bullets": [
+        "V = -V\u2080 inside, 0 outside",
+        "Even/odd solutions from parity",
+        "Graphical solution"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L11.2",
+      "title": "Transcendental Equations",
+      "bullets": [
+        "Even: k tan(ka) = \u03ba",
+        "Odd: -k cot(ka) = \u03ba",
+        "Minimum depth V\u2080_min = \u03c0\u00b2\u210f\u00b2/8ma\u00b2"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L11.3",
+      "title": "Ramsauer\u2013Townsend Effect",
+      "bullets": [
+        "T=1 at resonance energies",
+        "Historical: anomalous MFP in Xe",
+        "First evidence for electron waves"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L11.4",
+      "title": "Scattering Length & Feshbach",
+      "bullets": [
+        "a_s = -lim tan \u03b4\u2080(k)/k",
+        "Unitarity limit",
+        "Feshbach resonances in cold atoms"
+      ],
+      "tier": "T4-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L11 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

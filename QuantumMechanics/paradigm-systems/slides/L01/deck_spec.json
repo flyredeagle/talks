@@ -1,0 +1,84 @@
+{
+  "module": "I.4",
+  "lecture": "L01",
+  "title": "Free Particle & Particle in a Box",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L01",
+      "subtitle": "Free Particle & Particle in a Box",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L01.1",
+      "title": "Free Particle: Plane Waves",
+      "bullets": [
+        "Hamiltonian H = p\u00b2/2m",
+        "Plane-wave solutions \u03c8_k(x) = e^(ikx)/\u221aL",
+        "Energy E_k = \u210f\u00b2k\u00b2/2m",
+        "Continuous spectrum"
+      ],
+      "tier": "T1-T5"
+    },
+    {
+      "type": "content",
+      "section": "L01.2",
+      "title": "Gaussian Wave Packets",
+      "bullets": [
+        "Superposition of plane waves",
+        "Group velocity v_g = \u210fk\u2080/m",
+        "Phase velocity v_p = v_g/2",
+        "Spreading \u0394x(t)"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L01.3",
+      "title": "Infinite Square Well",
+      "bullets": [
+        "\u03c8_n = \u221a(2/L) sin(n\u03c0x/L)",
+        "E_n = n\u00b2\u03c0\u00b2\u210f\u00b2/2mL\u00b2",
+        "Zero-point energy E\u2081 > 0",
+        "Orthonormality & completeness"
+      ],
+      "tier": "T1-T5"
+    },
+    {
+      "type": "content",
+      "section": "L01.4",
+      "title": "Density of States",
+      "bullets": [
+        "1D: g(E) \u221d E^(-1/2)",
+        "2D: g(E) = const",
+        "3D: g(E) \u221d E^(1/2)",
+        "Van Hove singularities [T4/T5]"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L01 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

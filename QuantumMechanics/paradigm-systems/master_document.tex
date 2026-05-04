@@ -1,0 +1,81 @@
+%=============================================================
+%  MASTER DOCUMENT — Module I.4: Paradigm Physical Systems
+%  Compiles all 12 lectures + assessment bundles as one PDF
+%  Usage: pdflatex master_document.tex  (twice for ToC)
+%=============================================================
+\input{preamble.tex}
+
+\begin{document}
+
+%--- Title page
+\begin{titlepage}
+\pagecolor{darkblue}
+\color{white}
+\vspace*{2cm}
+\begin{center}
+  {\fontsize{28}{34}\selectfont\bfseries Quantum Mechanics}\\[0.4cm]
+  {\fontsize{18}{24}\selectfont\bfseries \& Quantum Chemistry Programme}\\[0.6cm]
+  {\color{accentgold}\rule{10cm}{2pt}}\\[0.6cm]
+  {\large\bfseries Series I --- Introductory Quantum Mechanics}\\[0.3cm]
+  {\LARGE\bfseries Module I.4}\\[0.3cm]
+  {\large\itshape Paradigm Physical Systems}\\[0.4cm]
+  {\color{accentgold}\rule{10cm}{1pt}}\\[0.8cm]
+  {\normalsize 12 Lectures $\times$ 90 Minutes}\\[0.2cm]
+  {\normalsize Five-Tier Pedagogy: HS $\to$ PhD}\\[0.2cm]
+  {\normalsize 14-Type Assessment Taxonomy per Lecture}\\[1.6cm]
+  \begin{tabular}{@{}cl@{}}
+    \toprule
+    \textbf{Lecture} & \textbf{Title} \\
+    \midrule
+    L01 & Free Particle and Particle in a Box \\
+    L02 & Simple Bloch Electron \\
+    L03 & Harmonic Oscillator \\
+    L04 & Rabi Model and Two-Level Systems \\
+    L05 & Minimal Coupling and Landau Levels \\
+    L06 & Zeeman Effect \\
+    L07 & Stark Effect \\
+    L08 & Spin--Orbit Coupling and Fine Structure \\
+    L09 & The Hydrogen Atom \\
+    L10 & Scattering from a Potential Barrier \\
+    L11 & Scattering from a Potential Well \\
+    L12 & Delta-Function Potential and WKB Tunnelling \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+\vfill
+{\color{accentgold}\rule{10cm}{0.8pt}}\\[0.3cm]
+{\small\itshape Prerequisites: Modules I.1 (State Space), I.2 (Bra-Ket Notation),
+I.3 (Quantum Dynamics, Symmetry, Perturbation Theory)}
+\end{titlepage}
+\nopagecolor
+\color{black}
+
+\tableofcontents
+\newpage
+
+%=============================================================
+\input{lectures/L01/L01_lecture.tex}
+\newpage
+\input{lectures/L02/L02_lecture.tex}
+\newpage
+\input{lectures/L03/L03_lecture.tex}
+\newpage
+\input{lectures/L04/L04_lecture.tex}
+\newpage
+\input{lectures/L05/L05_lecture.tex}
+\newpage
+\input{lectures/L06/L06_lecture.tex}
+\newpage
+\input{lectures/L07/L07_lecture.tex}
+\newpage
+\input{lectures/L08/L08_lecture.tex}
+\newpage
+\input{lectures/L09/L09_lecture.tex}
+\newpage
+\input{lectures/L10/L10_lecture.tex}
+\newpage
+\input{lectures/L11/L11_lecture.tex}
+\newpage
+\input{lectures/L12/L12_lecture.tex}
+
+\end{document}

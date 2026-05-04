@@ -1,0 +1,81 @@
+{
+  "module": "I.4",
+  "lecture": "L09",
+  "title": "The Hydrogen Atom",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L09",
+      "subtitle": "The Hydrogen Atom",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L09.1",
+      "title": "Separation in Spherical Coordinates",
+      "bullets": [
+        "\u03c8_{nlm} = R_{nl}(r) Y^m_l(\u03b8,\u03c6)",
+        "Radial equation for u_{nl} = rR_{nl}",
+        "Effective potential V_eff"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L09.2",
+      "title": "Energy Spectrum",
+      "bullets": [
+        "E_n = -13.6/n\u00b2 eV",
+        "n = 1,2,3,...; l = 0,...,n-1; m = -l,...,l",
+        "n\u00b2-fold degeneracy (ignoring spin)"
+      ],
+      "tier": "T1-T5"
+    },
+    {
+      "type": "content",
+      "section": "L09.3",
+      "title": "Radial Wavefunctions",
+      "bullets": [
+        "Associated Laguerre polynomials",
+        "n-l-1 radial nodes, l angular nodes",
+        "R_{10}, R_{21}, R_{32}"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L09.4",
+      "title": "Hidden SO(4) Symmetry",
+      "bullets": [
+        "Runge\u2013Lenz vector \u00c2",
+        "[\u0124, \u00c2] = 0",
+        "so(4) algebra \u2192 1/n\u00b2 spectrum",
+        "Algebraic derivation [T4/T5]"
+      ],
+      "tier": "T4-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L09 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

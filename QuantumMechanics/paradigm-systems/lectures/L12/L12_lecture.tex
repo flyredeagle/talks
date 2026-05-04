@@ -1,0 +1,151 @@
+%=============================================================
+%  Module I.4 / L12 — Delta-Function Potential and WKB Tunnelling
+%  Series I > Module I.4 > Lecture L12
+%  Duration: 90 minutes  |  All tiers (T1–T5)
+%=============================================================
+\renewcommand{\lectureCode}{I.4 / L12}
+
+\section*{L12 — Delta-Function Potential and WKB Tunnelling}
+\label{sec:L12}
+\addcontentsline{toc}{section}{L12 — Delta-Function Potential and WKB Tunnelling}
+
+%--- Lecture header
+\begin{tcolorbox}[lecturebox, title={Module I.4 / L12 — Metadata}]
+\begin{tabular}{@{}ll@{}}
+\textbf{Series:}    & I — Introductory Quantum Mechanics \\
+\textbf{Module:}    & I.4 — Paradigm Physical Systems \\
+\textbf{Lecture:}   & L12 — Delta-Function Potential and WKB Tunnelling \\
+\textbf{Duration:}  & 90 minutes \\
+\textbf{Tiers:}     & T1 (HS) · T2 (BegUG) · T3 (AdvUG) · T4 (MSc) · T5 (PhD) \\
+\textbf{Preceding:} & I.4 / L11 — Scattering from a Potential Well \\
+\textbf{Following:} & I.4 / Module I.5 — Introductory Physical Systems \\
+\textbf{Prerequisites:} & Modules I.1–I.3 complete \\
+\end{tabular}
+
+\medskip
+\textbf{Key concepts:} Delta-function bound state, double delta-function, WKB quantisation, Geiger–Nuttall law
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{L12.0 — Learning Objectives (per tier)}
+\label{sec:L12.0}
+
+\tiertag{tier1col}{Tier 1 — HS}\quad
+Identify the main physical phenomenon studied in this lecture; describe it in
+non-mathematical terms; state one real-world application.
+
+\tiertag{tier2col}{Tier 2 — BegUG}\quad
+Apply the key equations to compute numerical results; verify consistency with
+known limits; translate between physical and mathematical descriptions.
+
+\tiertag{tier3col}{Tier 3 — AdvUG}\quad
+Derive central results from first principles; prove key identities; identify
+the mathematical structure underlying the physical phenomenon.
+
+\tiertag{tier4col}{Tier 4 — MSc}\quad
+Analyse formal extensions; connect to symmetry principles; generalise to
+related systems; identify the role of this lecture in the broader programme.
+
+\tiertag{tier5col}{Tier 5 — PhD}\quad
+Establish rigorous mathematical foundations; identify open research problems;
+connect to modern literature; critique standard textbook treatments.
+
+%--- Lecture content -----------------------------------------
+
+\subsection*{L12.1 — Delta-Function Potential}
+$V(x) = -\alpha\delta(x)$; discontinuity in $\psi'$ at $x=0$:
+$\psi'(0^+)-\psi'(0^-) = -2m\alpha\psi(0)/\hbar^2$.
+
+\begin{tcolorbox}[lecturebox, title={Delta-Function Bound State}]
+$\psi = Ae^{-\kappa|x|}$, $\kappa = m\alpha/\hbar^2$;
+\begin{equation}
+  E_b = -\frac{m\alpha^2}{2\hbar^2} \quad (\text{unique, for any } \alpha>0).
+  \label{eq:L12.1}
+\end{equation}
+Scattering: $T = 1/(1+m\alpha^2/2\hbar^2 E)$.
+\end{tcolorbox}
+
+\subsection*{L12.2 — WKB Approximation}
+In classically allowed region ($E>V$):
+$\psi(x) \approx \frac{C}{\sqrt{p(x)}}\exp\!\left(\pm\frac{i}{\hbar}\int p(x)\,dx\right)$,
+$p(x)=\sqrt{2m(E-V(x))}$.
+Bohr–Sommerfeld: $\oint p\,dx = 2\pi\hbar(n+\tfrac{1}{2})$.
+
+\subsection*{L12.3 — WKB Tunnelling and Geiger–Nuttall Law}
+\begin{tcolorbox}[lecturebox, title={WKB Tunnelling Rate}]
+\begin{equation}
+  T \approx \exp\!\left(-\frac{2}{\hbar}\int_{x_1}^{x_2}\sqrt{2m(V-E)}\,dx\right).
+  \label{eq:L12.2}
+\end{equation}
+Gamow factor for Coulomb barrier: $G=\pi Z_1Z_2e^2/\hbar v$.
+Alpha decay rate: $\Gamma = \nu_0 T$; Geiger–Nuttall law $\log\Gamma \propto 1/\sqrt{E_\alpha}$.
+\end{tcolorbox}
+
+
+%------------------------------------------------------------
+\subsection*{L12.C — Connections}
+\label{sec:L12.C}
+\textbf{Backward:} I.4/L11 — Scattering from a Potential Well and Modules I.1–I.3.
+\textbf{Forward:} I.4/Module I.5 — Introductory Physical Systems builds directly on the formalism developed here.
+\textbf{Cross-module:} Series~II modules extend these results to many-body and
+advanced settings; Series~III applies them to molecular electronic structure.
+
+%=============================================================
+%  ASSESSMENT BUNDLE — L12
+%=============================================================
+\newpage
+\section*{L12 — Assessment Artifact Bundle}
+
+\begin{tcolorbox}[ugconceptbox, title={SCQU · L12 · Tiers 1–3 · 15–20 min}]
+\textit{Ten simple concept questions (mix MC/TF/short) targeting the core results
+of Delta-Function Potential and WKB Tunnelling. See artifact file \texttt{L12_artifacts.tex} for full questions.}
+
+\textbf{Rubric:} 2 pts each (1.5 correct + 0.5 justification). Total: 20 pts.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugconceptbox, title={CCQU · L12 · Tiers 2–3 · 25–35 min}]
+\textit{Ten complex concept questions: ``explain why,'' ``what would change if,''
+``identify the flaw.'' Full questions in \texttt{L12_artifacts.tex}.}
+
+\textbf{Rubric:} 2 pts each (1 key point + 1 argument). Total: 20 pts.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={SPSU · L12 · Tiers 1–3 · 60–90 min}]
+\textit{Ten problems (Part A: mechanics, Part B: interpretation, Part C: translation).
+Full problems in \texttt{L12_artifacts.tex}.}
+
+\textbf{Rubric:} Result 60\%, Method 30\%, Interpretation 10\%.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={CPSU · L12 · Tier 3 · 3–6 hrs (4-layer)}]
+\textit{Five multi-part derivation problems with four-layer scaffolding.
+Layers 1–4 in \texttt{L12_ex01\_problem.tex}, \texttt{hints}, \texttt{adv\_hints}, \texttt{solution}.}
+
+\textbf{Rubric:} Assumptions 15\%, Proof structure 45\%, Algebra 25\%, Insight 15\%.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={SPJU + CPJU · L12 · Tiers 2–3}]
+\textit{Simple project (2–6 hrs): structured computational/analytical task.
+Complex project (8–15 hrs): open-ended synthesis.
+Full specs in \texttt{L12_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradconceptbox, title={SCQG + CCQG · L12 · Tiers 4–5}]
+\textit{Ten simple + ten complex concept questions at graduate level (rigour, domain
+conditions, named theorems). Full questions in \texttt{L12_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradprobbox, title={SPSG + CPSG · L12 · Tiers 4–5}]
+\textit{Ten simple + five complex graduate problems.
+CPSG with four-layer format. See \texttt{L12_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradprobbox, title={SPJG (×5) + CPJG (×5) · L12 · Tiers 4–5}]
+\textit{Five simple (3–8 hrs each) and five complex (10–20 hrs each) graduate projects.
+Full specs in \texttt{L12_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[researchbox, title={WRQ (×5) + ORQ (×5) · L12 · Tiers 4–5}]
+\textit{Five well-defined research questions (5–10 hrs each) and five open-ended
+research questions (10–20 hrs each). Full prompts in \texttt{L12_artifacts.tex}.}
+\end{tcolorbox}

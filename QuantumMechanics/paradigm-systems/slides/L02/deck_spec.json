@@ -1,0 +1,82 @@
+{
+  "module": "I.4",
+  "lecture": "L02",
+  "title": "Simple Bloch Electron",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L02",
+      "subtitle": "Simple Bloch Electron",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L02.1",
+      "title": "Periodic Potential & Translation Symmetry",
+      "bullets": [
+        "V(x+a) = V(x)",
+        "[H, T_a] = 0",
+        "Simultaneous eigenstates"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L02.2",
+      "title": "Bloch's Theorem",
+      "bullets": [
+        "\u03c8_{nk}(x) = e^(ikx) u_{nk}(x)",
+        "Crystal momentum \u210fk",
+        "First Brillouin zone",
+        "Band index n"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L02.3",
+      "title": "Nearly-Free Electron Model",
+      "bullets": [
+        "Band gap 2|V_G|",
+        "Zone boundary degeneracy",
+        "Effective mass m*"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L02.4",
+      "title": "Tight-Binding Model",
+      "bullets": [
+        "E(k) = \u03b5\u2080 - 2t cos(ka)",
+        "Bandwidth 4t",
+        "Metals vs insulators",
+        "Berry phase [T4/T5]"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L02 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

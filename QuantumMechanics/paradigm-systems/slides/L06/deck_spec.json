@@ -1,0 +1,81 @@
+{
+  "module": "I.4",
+  "lecture": "L06",
+  "title": "Zeeman Effect",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L06",
+      "subtitle": "Zeeman Effect",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L06.1",
+      "title": "Normal Zeeman Effect",
+      "bullets": [
+        "\u03bc_L = -\u03bc_B L\u0302/\u210f",
+        "H' = \u03bc_B B L\u0302_z/\u210f",
+        "E^(1) = \u03bc_B m B",
+        "Triplet splitting \u0394E = \u03bc_B B"
+      ],
+      "tier": "T1-T5"
+    },
+    {
+      "type": "content",
+      "section": "L06.2",
+      "title": "Anomalous Zeeman & Land\u00e9 g-Factor",
+      "bullets": [
+        "Total moment \u03bc_L + g_s \u03bc_S",
+        "g_J = 1 + [j(j+1)+s(s+1)-l(l+1)]/2j(j+1)",
+        "Na D-line splitting"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L06.3",
+      "title": "Paschen\u2013Back Effect",
+      "bullets": [
+        "Strong field: \u03bc_B B \u226b SO splitting",
+        "Good QN: m_l, m_s (not j, m_j)",
+        "Energy \u221d m_l + 2m_s"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L06.4",
+      "title": "Breit\u2013Rabi & Applications",
+      "bullets": [
+        "Exact interpolation weak\u2192strong field",
+        "Magneto-optical trap",
+        "ESR/EPR spectroscopy"
+      ],
+      "tier": "T4-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L06 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "module": "I.4",
+  "lecture": "L03",
+  "title": "Harmonic Oscillator",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L03",
+      "subtitle": "Harmonic Oscillator",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L03.1",
+      "title": "Ladder Operators",
+      "bullets": [
+        "\u00e2 = \u221a(m\u03c9/2\u210f)(x\u0302 + ip\u0302/m\u03c9)",
+        "[\u00e2, \u00e2\u2020] = 1",
+        "\u0124 = \u210f\u03c9(\u00e2\u2020\u00e2 + 1/2)",
+        "E_n = (n+1/2)\u210f\u03c9"
+      ],
+      "tier": "T1-T5"
+    },
+    {
+      "type": "content",
+      "section": "L03.2",
+      "title": "Number States & Matrix Elements",
+      "bullets": [
+        "\u00e2|n\u27e9 = \u221an|n-1\u27e9",
+        "\u00e2\u2020|n\u27e9 = \u221a(n+1)|n+1\u27e9",
+        "\u27e8m|x\u0302|n\u27e9 from ladder operators",
+        "Hermite polynomials"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L03.3",
+      "title": "Coherent States",
+      "bullets": [
+        "\u00e2|\u03b1\u27e9 = \u03b1|\u03b1\u27e9",
+        "Poisson number distribution",
+        "Minimum uncertainty",
+        "Classical oscillation"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L03.4",
+      "title": "Anharmonic Perturbation",
+      "bullets": [
+        "V' = \u03bbx\u0302\u00b3 + \u03bcx\u0302\u2074",
+        "First-order energy corrections",
+        "Selection rules \u0394n = \u00b11,\u00b12,\u00b13",
+        "Morse potential"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L03 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+%=============================================================
+%  Module I.4 / L05 — Minimal Coupling Hamiltonian and Landau Levels
+%  Series I > Module I.4 > Lecture L05
+%  Duration: 90 minutes  |  All tiers (T1–T5)
+%=============================================================
+\renewcommand{\lectureCode}{I.4 / L05}
+
+\section*{L05 — Minimal Coupling Hamiltonian and Landau Levels}
+\label{sec:L05}
+\addcontentsline{toc}{section}{L05 — Minimal Coupling Hamiltonian and Landau Levels}
+
+%--- Lecture header
+\begin{tcolorbox}[lecturebox, title={Module I.4 / L05 — Metadata}]
+\begin{tabular}{@{}ll@{}}
+\textbf{Series:}    & I — Introductory Quantum Mechanics \\
+\textbf{Module:}    & I.4 — Paradigm Physical Systems \\
+\textbf{Lecture:}   & L05 — Minimal Coupling Hamiltonian and Landau Levels \\
+\textbf{Duration:}  & 90 minutes \\
+\textbf{Tiers:}     & T1 (HS) · T2 (BegUG) · T3 (AdvUG) · T4 (MSc) · T5 (PhD) \\
+\textbf{Preceding:} & I.4 / L04 — Rabi Model and Two-Level Systems \\
+\textbf{Following:} & I.4 / L06 — Zeeman Effect \\
+\textbf{Prerequisites:} & Modules I.1–I.3 complete \\
+\end{tabular}
+
+\medskip
+\textbf{Key concepts:} Minimal coupling, gauge invariance, Landau levels, magnetic length, Aharonov–Bohm effect
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{L05.0 — Learning Objectives (per tier)}
+\label{sec:L05.0}
+
+\tiertag{tier1col}{Tier 1 — HS}\quad
+Identify the main physical phenomenon studied in this lecture; describe it in
+non-mathematical terms; state one real-world application.
+
+\tiertag{tier2col}{Tier 2 — BegUG}\quad
+Apply the key equations to compute numerical results; verify consistency with
+known limits; translate between physical and mathematical descriptions.
+
+\tiertag{tier3col}{Tier 3 — AdvUG}\quad
+Derive central results from first principles; prove key identities; identify
+the mathematical structure underlying the physical phenomenon.
+
+\tiertag{tier4col}{Tier 4 — MSc}\quad
+Analyse formal extensions; connect to symmetry principles; generalise to
+related systems; identify the role of this lecture in the broader programme.
+
+\tiertag{tier5col}{Tier 5 — PhD}\quad
+Establish rigorous mathematical foundations; identify open research problems;
+connect to modern literature; critique standard textbook treatments.
+
+%--- Lecture content -----------------------------------------
+
+\subsection*{L05.1 — Minimal Coupling}
+\begin{tcolorbox}[lecturebox, title={Minimal Coupling Hamiltonian}]
+\begin{equation}
+  \hat{H} = \frac{(\hat{\mathbf{p}}-e\mathbf{A})^2}{2m} + e\phi.
+  \label{eq:L05.1}
+\end{equation}
+Gauge invariance: $\mathbf{A}\to\mathbf{A}+\nabla\chi$, $\psi\to e^{ie\chi/\hbar}\psi$.
+\end{tcolorbox}
+
+\subsection*{L05.2 — Landau Levels}
+Uniform field $\mathbf{B}=B\hat{z}$, Landau gauge $\mathbf{A}=(0,Bx,0)$:
+\begin{equation}
+  E_n = \left(n+\tfrac{1}{2}\right)\hbar\omega_c, \quad \omega_c = eB/m,
+  \quad l_B = \sqrt{\hbar/eB}\text{ (magnetic length)}.
+  \label{eq:L05.2}
+\end{equation}
+Massive degeneracy: one state per area $2\pi l_B^2$.
+Filling factor $\nu = N_e/(eBA/h)$; QHE preview.
+
+\subsection*{L05.3 — Aharonov–Bohm Effect}
+Phase $e\Phi/\hbar$ accumulated around a loop enclosing flux $\Phi$,
+even where $\mathbf{B}=0$. Topological (Berry phase) character.
+
+
+%------------------------------------------------------------
+\subsection*{L05.C — Connections}
+\label{sec:L05.C}
+\textbf{Backward:} I.4/L04 — Rabi Model and Two-Level Systems and Modules I.1–I.3.
+\textbf{Forward:} I.4/L06 — Zeeman Effect builds directly on the formalism developed here.
+\textbf{Cross-module:} Series~II modules extend these results to many-body and
+advanced settings; Series~III applies them to molecular electronic structure.
+
+%=============================================================
+%  ASSESSMENT BUNDLE — L05
+%=============================================================
+\newpage
+\section*{L05 — Assessment Artifact Bundle}
+
+\begin{tcolorbox}[ugconceptbox, title={SCQU · L05 · Tiers 1–3 · 15–20 min}]
+\textit{Ten simple concept questions (mix MC/TF/short) targeting the core results
+of Minimal Coupling Hamiltonian and Landau Levels. See artifact file \texttt{L05_artifacts.tex} for full questions.}
+
+\textbf{Rubric:} 2 pts each (1.5 correct + 0.5 justification). Total: 20 pts.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugconceptbox, title={CCQU · L05 · Tiers 2–3 · 25–35 min}]
+\textit{Ten complex concept questions: ``explain why,'' ``what would change if,''
+``identify the flaw.'' Full questions in \texttt{L05_artifacts.tex}.}
+
+\textbf{Rubric:} 2 pts each (1 key point + 1 argument). Total: 20 pts.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={SPSU · L05 · Tiers 1–3 · 60–90 min}]
+\textit{Ten problems (Part A: mechanics, Part B: interpretation, Part C: translation).
+Full problems in \texttt{L05_artifacts.tex}.}
+
+\textbf{Rubric:} Result 60\%, Method 30\%, Interpretation 10\%.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={CPSU · L05 · Tier 3 · 3–6 hrs (4-layer)}]
+\textit{Five multi-part derivation problems with four-layer scaffolding.
+Layers 1–4 in \texttt{L05_ex01\_problem.tex}, \texttt{hints}, \texttt{adv\_hints}, \texttt{solution}.}
+
+\textbf{Rubric:} Assumptions 15\%, Proof structure 45\%, Algebra 25\%, Insight 15\%.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ugprobbox, title={SPJU + CPJU · L05 · Tiers 2–3}]
+\textit{Simple project (2–6 hrs): structured computational/analytical task.
+Complex project (8–15 hrs): open-ended synthesis.
+Full specs in \texttt{L05_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradconceptbox, title={SCQG + CCQG · L05 · Tiers 4–5}]
+\textit{Ten simple + ten complex concept questions at graduate level (rigour, domain
+conditions, named theorems). Full questions in \texttt{L05_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradprobbox, title={SPSG + CPSG · L05 · Tiers 4–5}]
+\textit{Ten simple + five complex graduate problems.
+CPSG with four-layer format. See \texttt{L05_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[gradprobbox, title={SPJG (×5) + CPJG (×5) · L05 · Tiers 4–5}]
+\textit{Five simple (3–8 hrs each) and five complex (10–20 hrs each) graduate projects.
+Full specs in \texttt{L05_artifacts.tex}.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[researchbox, title={WRQ (×5) + ORQ (×5) · L05 · Tiers 4–5}]
+\textit{Five well-defined research questions (5–10 hrs each) and five open-ended
+research questions (10–20 hrs each). Full prompts in \texttt{L05_artifacts.tex}.}
+\end{tcolorbox}

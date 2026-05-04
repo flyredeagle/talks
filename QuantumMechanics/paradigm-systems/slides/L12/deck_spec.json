@@ -1,0 +1,80 @@
+{
+  "module": "I.4",
+  "lecture": "L12",
+  "title": "Delta-Function Potential & WKB",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L12",
+      "subtitle": "Delta-Function Potential & WKB",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L12.1",
+      "title": "Delta-Function Potential",
+      "bullets": [
+        "V = -\u03b1\u03b4(x)",
+        "Discontinuity: \u03c8'(0\u207a) - \u03c8'(0\u207b) = -2m\u03b1 \u03c8(0)/\u210f\u00b2",
+        "Unique bound state E_b = -m\u03b1\u00b2/2\u210f\u00b2"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L12.2",
+      "title": "Double Delta & Molecular Bonding",
+      "bullets": [
+        "Two wells at \u00b1a",
+        "Bonding (symmetric) and antibonding states",
+        "Model for H\u2082\u207a molecular bond"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L12.3",
+      "title": "WKB Approximation",
+      "bullets": [
+        "\u03c8 ~ 1/\u221ap(x) \u00b7 exp(\u00b1i\u222bp dx/\u210f)",
+        "Bohr\u2013Sommerfeld quantisation",
+        "Connection formulae at turning points"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L12.4",
+      "title": "WKB Tunnelling & Geiger\u2013Nuttall",
+      "bullets": [
+        "T \u2248 exp(-2/\u210f \u222b\u221a(2m(V-E)) dx)",
+        "Gamow factor for Coulomb barrier",
+        "Geiger\u2013Nuttall law: log \u0393 \u221d 1/\u221aE_\u03b1"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L12 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,541 @@
+%=============================================================
+%  Module I.4 / L01 — Free Particle and Particle in a Box
+%  Series I > Module I.4 > Lecture L01
+%  Duration: 90 minutes  |  All tiers (T1–T5)
+%  Input into master_document.tex OR compile standalone
+%=============================================================
+\renewcommand{\lectureCode}{I.4 / L01}
+
+\section*{L01 — Free Particle and Particle in a Box}
+\label{sec:L01}
+\addcontentsline{toc}{section}{L01 — Free Particle and Particle in a Box}
+
+%--- Lecture header ------------------------------------------
+\begin{tcolorbox}[lecturebox, title={Module I.4 / L01 — Metadata}]
+\begin{tabular}{@{}ll@{}}
+\textbf{Series:}    & I — Introductory Quantum Mechanics \\
+\textbf{Module:}    & I.4 — Paradigm Physical Systems \\
+\textbf{Lecture:}   & L01 — Free Particle and Particle in a Box \\
+\textbf{Duration:}  & 90 minutes \\
+\textbf{Tiers:}     & T1 (HS) · T2 (BegUG) · T3 (AdvUG) · T4 (MSc) · T5 (PhD) \\
+\textbf{Preceding:} & Module I.3 / L10 (Open quantum systems — last I.3 lecture) \\
+\textbf{Following:} & I.4 / L02 — Simple Bloch Electron \\
+\textbf{Prerequisites:} & Modules I.1–I.3 complete \\
+\end{tabular}
+
+\medskip
+\textbf{Summary:}
+This lecture introduces the two simplest exactly-solvable quantum systems: the free
+particle (continuous spectrum, plane waves, wave packets) and the infinite square well
+(discrete spectrum, standing waves). Together they establish the central dichotomy
+between confined and unconfined quantum motion, and provide the first encounter with
+density of states — a quantity that underpins statistical mechanics, condensed matter,
+and quantum field theory. \textit{Why it matters:} every subsequent lecture in I.4
+references one or both of these systems.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{L01.0 — Learning Objectives (per tier)}
+\label{sec:L01.0}
+
+\tiertag{tier1col}{Tier 1 — HS}\quad
+Identify that a free particle carries definite momentum (\emph{plane wave});
+describe why confining a particle in a box forces discrete energies;
+interpret zero-point energy as a consequence of the uncertainty principle.
+
+\tiertag{tier2col}{Tier 2 — BegUG}\quad
+Apply the time-independent Schrödinger equation to free and box potentials;
+compute $\psi_n$, $E_n$ for the infinite square well;
+construct and interpret a Gaussian wave packet; calculate group velocity.
+
+\tiertag{tier3col}{Tier 3 — AdvUG}\quad
+Derive the density of states $g(E)$ in 1D, 2D, and 3D from $k$-space counting;
+prove orthonormality and completeness of the square-well basis;
+derive dispersion broadening of the Gaussian wave packet exactly.
+
+\tiertag{tier4col}{Tier 4 — MSc}\quad
+Analyse the finite square well and transfer matrix;
+derive van Hove singularities from $\nabla_k E = 0$;
+solve the Airy-function problem for a linear potential (triangular well).
+
+\tiertag{tier5col}{Tier 5 — PhD}\quad
+Discuss self-adjoint extensions of $\hat{p}$ on $[0,L]$ and their physical meaning;
+formulate resonances and quasi-bound states via complex scaling;
+connect the box density of states to the spectral zeta function.
+
+%------------------------------------------------------------
+\subsection*{L01.1 — Free Particle: Spectrum and Plane Waves}
+\label{sec:L01.1}
+
+\begin{tcolorbox}[lecturebox, title={L01.1 Main result}]
+\textbf{Hamiltonian:}
+\begin{equation}
+  \hat{H} = \frac{\hat{p}^2}{2m}, \qquad
+  \hat{H}\psi_k = E_k\psi_k, \qquad
+  E_k = \frac{\hbar^2 k^2}{2m}.
+  \label{eq:L01.1}
+\end{equation}
+\textbf{Plane-wave solutions} (box normalised, length $L$, periodic BCs):
+\begin{equation}
+  \psi_k(x) = \frac{1}{\sqrt{L}}\,e^{ikx}, \qquad
+  k = \frac{2\pi n}{L},\; n\in\mathbb{Z}.
+  \label{eq:L01.2}
+\end{equation}
+Continuum limit ($L\to\infty$): $\psi_k(x) = e^{ikx}/\sqrt{2\pi}$.
+\end{tcolorbox}
+
+\textbf{Physical interpretation.}
+Plane waves carry definite momentum $p = \hbar k$ and are completely delocalised
+($|\psi_k|^2 = \mathrm{const}$). They form an improper basis — normalisable only
+in a distributional sense ($\langle k|k'\rangle = \delta(k-k')$).
+
+\tiertag{tier5col}{Tier 5} \quad
+The operator $\hat{p} = -i\hbar\partial_x$ on the half-line $[0,\infty)$ has
+\emph{no} self-adjoint extension; on $[0,L]$ it has a one-parameter family
+of self-adjoint extensions labelled by $e^{i\theta}$ (quasi-periodic BCs).
+
+%------------------------------------------------------------
+\subsection*{L01.2 — Gaussian Wave Packets}
+\label{sec:L01.2}
+
+\begin{tcolorbox}[lecturebox, title={L01.2 Main result}]
+A wave packet is a superposition of plane waves:
+\begin{equation}
+  \psi(x,t) = \int \tilde{\phi}(k)\,e^{ikx - i\omega_k t}\,\frac{dk}{\sqrt{2\pi}},
+  \qquad \omega_k = \frac{\hbar k^2}{2m}.
+  \label{eq:L01.3}
+\end{equation}
+For a Gaussian envelope centred at $k_0$ with width $\sigma_k$:
+\begin{equation}
+  \tilde{\phi}(k) = \left(\frac{1}{2\pi\sigma_k^2}\right)^{1/4}
+    e^{-(k-k_0)^2/4\sigma_k^2}.
+  \label{eq:L01.4}
+\end{equation}
+\textbf{Group velocity:} $v_g = d\omega/dk\big|_{k_0} = \hbar k_0/m$.\\
+\textbf{Phase velocity:} $v_p = \omega/k = \hbar k_0/2m = v_g/2$.\\
+\textbf{Spreading:} $\Delta x(t) = \Delta x(0)\,\sqrt{1 + (t/t_*)^2}$ with
+$t_* = 2m\Delta x(0)^2/\hbar$.
+\end{tcolorbox}
+
+\begin{example}[Electron wave packet on atomic scale]
+Take $k_0 = 1\;\mathrm{nm}^{-1}$, $\Delta x(0) = 0.5\;\mathrm{nm}$.
+Then $v_g = \hbar k_0/m_e \approx 1.15\times10^5\;\mathrm{m/s}$ and
+$t_* \approx 4.8\;\mathrm{fs}$. An electron wave packet spreads to twice its
+initial size in $\sim5$ femtoseconds — directly observable in attosecond experiments.
+\end{example}
+
+%------------------------------------------------------------
+\subsection*{L01.3 — Infinite Square Well}
+\label{sec:L01.3}
+
+\begin{tcolorbox}[lecturebox, title={L01.3 Main result}]
+Potential: $V(x) = 0$ for $0 < x < L$; $V = \infty$ otherwise.
+\begin{align}
+  \psi_n(x) &= \sqrt{\frac{2}{L}}\sin\!\left(\frac{n\pi x}{L}\right), \quad
+  n = 1, 2, 3, \ldots \label{eq:L01.5}\\
+  E_n &= \frac{n^2\pi^2\hbar^2}{2mL^2} = n^2 E_1,
+  \qquad E_1 = \frac{\pi^2\hbar^2}{2mL^2}. \label{eq:L01.6}
+\end{align}
+\textbf{Orthonormality:} $\langle\psi_m|\psi_n\rangle = \delta_{mn}$.\\
+\textbf{Completeness:} $\sum_n |\psi_n\rangle\langle\psi_n| = \hat{\mathbb{1}}$ on $[0,L]$.
+\end{tcolorbox}
+
+\textbf{Zero-point energy.}
+Even the ground state has $E_1 > 0$. Physically: confining a particle to size $L$
+gives $\Delta x \lesssim L$, so by the HUP $\Delta p \geq \hbar/2L$, and kinetic
+energy $\langle\hat{p}^2\rangle/2m \geq \hbar^2/8mL^2$. No particle can be
+\emph{at rest} inside a box.
+
+\textbf{Expectation values:}
+\begin{equation}
+  \langle x\rangle_n = \frac{L}{2}, \quad
+  \langle x^2\rangle_n = L^2\!\left(\frac{1}{3} - \frac{1}{2n^2\pi^2}\right), \quad
+  \langle p\rangle_n = 0, \quad
+  \langle p^2\rangle_n = \frac{n^2\pi^2\hbar^2}{L^2}.
+  \label{eq:L01.7}
+\end{equation}
+
+%------------------------------------------------------------
+\subsection*{L01.4 — Density of States in 1D, 2D, 3D}
+\label{sec:L01.4}
+
+\begin{tcolorbox}[lecturebox, title={L01.4 Main result}]
+Density of states $g(E)$ = number of states per unit energy per unit volume:
+\begin{align}
+  g_{1D}(E) &= \frac{1}{\pi\hbar}\sqrt{\frac{m}{2E}} \label{eq:L01.8}\\
+  g_{2D}(E) &= \frac{m}{\pi\hbar^2} \quad (\text{constant!}) \label{eq:L01.9}\\
+  g_{3D}(E) &= \frac{(2m)^{3/2}}{2\pi^2\hbar^3}\sqrt{E} \label{eq:L01.10}
+\end{align}
+\end{tcolorbox}
+
+\textbf{Derivation sketch (3D):}
+Count $k$-states in shell $[k, k+dk]$: $dn = V\cdot 4\pi k^2 dk/(2\pi)^3$.
+Use $E = \hbar^2k^2/2m$ to eliminate $k$, divide by $V$ to get $g(E)$.
+
+\tiertag{tier4col}{Tier 4}\quad
+\textbf{Van Hove singularities:} whenever $\nabla_k E = 0$, $g(E)$ diverges
+(1D: $E^{-1/2}$ divergence; 2D: logarithmic jump; 3D: saddle-point discontinuity in slope).
+These are directly observable in angle-resolved photoemission spectra.
+
+%------------------------------------------------------------
+\subsection*{L01.5 — Connections}
+\label{sec:L01.5}
+
+\textbf{Backward:} I.3/L01 (time evolution operator $\hat{U}(t) = e^{-i\hat{H}t/\hbar}$) —
+the wave packet propagation in L01.2 is a direct application.
+
+\textbf{Forward:} I.4/L02 — the Bloch electron in a periodic potential generalises
+the free particle; the free particle DOS becomes the band DOS.
+I.4/L03 — the harmonic oscillator also has equally spaced levels, but in energy, not $k$.
+
+\textbf{Cross-module:} II.4/L01 (Fock space) — the box modes become modes of the
+quantised EM field; creation/annihilation operators replace $\hat{a}$, $\hat{a}^\dagger$.
+
+%=============================================================
+%  ASSESSMENT BUNDLE — L01
+%=============================================================
+\newpage
+\section*{L01 — Assessment Artifact Bundle}
+
+%------------------------------------------------------------
+\subsection*{[A] SCQU — Simple Concept Questions (UG, ×10)}
+\begin{tcolorbox}[ugconceptbox, title={SCQU · L01 · Tiers 1–3 · 15–20 min}]
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+  \item \textit{(MC)} The group velocity of a free-particle wave packet is:
+    (a) $\hbar k/m$ \quad (b) $\hbar k/2m$ \quad (c) $\hbar k^2/2m$ \quad (d) $k/\hbar$.
+  \item \textit{(MC)} In an infinite square well of width $L$, the ground-state energy scales as:
+    (a) $L^{-1}$ \quad (b) $L^{-2}$ \quad (c) $L^{1/2}$ \quad (d) $L^{-3}$.
+  \item \textit{(T/F + justify)} The phase velocity and group velocity of a free particle are equal.
+  \item \textit{(T/F + justify)} A particle in the $n=2$ state of an infinite well has a node at $x = L/2$.
+  \item \textit{(T/F + justify)} The density of states in 2D is constant (independent of $E$).
+  \item \textit{(T/F + justify)} Zero-point energy violates conservation of energy.
+  \item \textit{(Short)} Explain physically why $\langle p \rangle = 0$ for every stationary state of the infinite well.
+  \item \textit{(Short)} What happens to the energy eigenvalues of the box if $L$ is doubled?
+  \item \textit{(MC)} A Gaussian wave packet with $\Delta x(0) = \sigma$ has uncertainty-product $\Delta x \cdot \Delta p$ at $t=0$ equal to:
+    (a) $\hbar/2$ \quad (b) $\hbar$ \quad (c) $\hbar\sigma$ \quad (d) depends on $k_0$.
+  \item \textit{(T/F + justify)} In 3D, $g(E) \propto E^{1/2}$ so states accumulate at higher energies.
+\end{enumerate}
+\textit{Rubric: 2 pts each (1.5 correct answer + 0.5 justification). Total: 20 pts.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[B] CCQU — Complex Concept Questions (UG, ×10)}
+\begin{tcolorbox}[ugconceptbox, title={CCQU · L01 · Tiers 2–3 · 25–35 min}]
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+  \item Explain why a plane wave $e^{ikx}$ cannot be normalised on $\mathbb{R}$, but can on $[0,L]$ with periodic BCs.
+  \item Why does confining a particle to a smaller box \emph{increase} its zero-point energy? Connect to the uncertainty principle.
+  \item What would change if we allowed $n=0$ as a quantum number in the infinite square well? Is $\psi_0 = 0$ physically acceptable?
+  \item Identify the flaw: ``Since $\langle p \rangle = 0$ for all box eigenstates, the particle is at rest.''
+  \item A classically confined particle bounces back and forth with constant speed. Explain how $|\psi_n|^2 \to \mathrm{const}$ for large $n$ (correspondence principle) and why this makes sense.
+  \item What would change in the density of states formula if the particle were a photon ($E = \hbar ck$, linear dispersion)?
+  \item Explain why $g_{2D}(E) = \mathrm{const}$ while $g_{1D}(E)$ diverges at $E=0$ and $g_{3D}(E) \to 0$ as $E\to0$.
+  \item ``A wave packet is just a superposition, so it should spread indefinitely.'' What is correct and what is missing in this statement?
+  \item How does the orthonormality $\langle\psi_m|\psi_n\rangle = \delta_{mn}$ follow from the boundary conditions, not just from the Hamiltonian being Hermitian?
+  \item The 3D density of states $g(E) \propto E^{1/2}$ plays a central role in Fermi–Dirac statistics. Explain intuitively why higher energies have more available states.
+\end{enumerate}
+\textit{Rubric: 2 pts each (1 key point + 1 argument). Total: 20 pts.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[C] SPSU — Simple Problem Set (UG, ×10)}
+\begin{tcolorbox}[ugprobbox, title={SPSU · L01 · Tiers 1–3 · 60–90 min}]
+
+\textbf{Part A: Mechanics (4 problems)}
+\begin{enumerate}[label=\textbf{P\arabic*.}]
+  \item For an infinite square well of width $L=1\;\mathrm{nm}$, compute $E_1$, $E_2$, $E_3$
+    in eV for an electron. What photon wavelength corresponds to the $n=1\to2$ transition?
+  \item Normalise the Gaussian wave packet $\tilde{\phi}(k) = A e^{-(k-k_0)^2/4\sigma_k^2}$ and
+    find the position-space form $\psi(x,0)$ by Fourier transform.
+  \item Compute $\langle x\rangle$, $\langle x^2\rangle$, $\langle p^2\rangle$ for the $n=3$
+    state of the infinite square well and verify $E_3 = \langle p^2\rangle/2m$.
+  \item Show that the infinite-well eigenfunctions satisfy
+    $\int_0^L \psi_m^*(x)\psi_n(x)\,dx = \delta_{mn}$ explicitly for $(m,n) = (1,2)$.
+\end{enumerate}
+
+\textbf{Part B: Interpretation (3 problems)}
+\begin{enumerate}[label=\textbf{P\arabic*.},resume]
+  \item The ground-state energy of a proton in a nucleus ($L \sim 1\;\mathrm{fm}$) is roughly
+    what fraction of its rest-mass energy $m_p c^2 = 938\;\mathrm{MeV}$?
+    Comment on whether non-relativistic QM is adequate.
+  \item A state is prepared as $\ket{\psi} = \frac{1}{\sqrt{2}}(\ket{1}+\ket{2})$ in the box.
+    Compute $\langle E\rangle$, $\langle x\rangle(t)$, and $|\langle x\rangle(t)|$.
+  \item Sketch $|\psi_n(x)|^2$ for $n=1,4,10$. Describe the approach to the classical
+    uniform distribution.
+\end{enumerate}
+
+\textbf{Part C: Translation (3 problems)}
+\begin{enumerate}[label=\textbf{P\arabic*.},resume]
+  \item The density of states in 3D is $g(E) = V(2m)^{3/2}E^{1/2}/2\pi^2\hbar^3$.
+    Derive the total number of states with energy $\leq E_F$ (Fermi energy) for $N$ free electrons.
+  \item Express the group velocity $v_g = \hbar k_0/m$ in terms of the de Broglie wavelength $\lambda$ and period $T$.
+  \item In 2D, the DOS is constant $g_{2D} = m/\pi\hbar^2$. Use this to find the number of
+    electrons per unit area at $T=0$ for a 2D electron gas with Fermi energy $E_F$.
+\end{enumerate}
+\textit{Rubric: Result 60\%, Method 30\%, Interpretation 10\%.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[D] CPSU — Complex Problem Set (UG, ×5, 4-layer format)}
+\begin{tcolorbox}[ugprobbox, title={CPSU · L01 · Tier 3 · 3–6 hrs total}]
+
+\textbf{Layer 1 — Problem Statements}
+\begin{enumerate}[label=\textbf{Ex\arabic*.}]
+  \item \textbf{Wave-packet spreading.}
+    (a) Show that for any initial state $\psi(x,0)$ in a free-particle Hilbert space,
+    $\Delta x(t)^2 = \Delta x(0)^2 + (\Delta p/m)^2 t^2 + C\cdot t$ for some constant $C$.
+    (b) For a Gaussian packet, show $C=0$ and derive $\Delta x(t)$ exactly.
+    (c) Interpret the result: what is $t_*$ physically?
+
+  \item \textbf{Completeness and Parseval.}
+    (a) Using completeness of the infinite-well basis, prove Parseval's identity:
+    $\int_0^L |\psi(x)|^2\,dx = \sum_n |c_n|^2$ where $c_n = \langle\psi_n|\psi\rangle$.
+    (b) Expand $f(x) = x(L-x)$ in the infinite-well basis and verify Parseval numerically
+    (truncate at $n=20$).
+
+  \item \textbf{3D box degeneracy.}
+    (a) For a 3D cubic box of side $L$, write the energy levels $E_{n_x,n_y,n_z}$.
+    (b) List all distinct $(n_x,n_y,n_z)$ triples with energy $E \leq 6E_1$
+    and determine the degeneracy of each level.
+    (c) Show that the level $E = 9E_1$ has degeneracy 3 but $E = 14E_1$ has degeneracy 6.
+
+  \item \textbf{Uncertainty principle from box eigenstates.}
+    (a) Compute $\Delta x \cdot \Delta p$ for the $n$-th infinite-well eigenstate.
+    (b) Show it exceeds $\hbar/2$ for all $n\geq1$.
+    (c) Find the limit as $n\to\infty$ and interpret using the correspondence principle.
+
+  \item \textbf{Finite versus infinite well preview.}
+    (a) In a finite square well of depth $V_0$ and width $a$, write the boundary conditions
+    linking the interior and exterior wave functions.
+    (b) Show that there is always at least one bound state (no matter how small $V_0 a^2$
+    is in 1D) using the graphical transcendental equation.
+    (c) Estimate the number of bound states for $V_0 = 10\;\mathrm{eV}$, $a = 1\;\mathrm{nm}$, $m = m_e$.
+\end{enumerate}
+\textit{Rubric: Assumptions 15\%, Proof structure 45\%, Algebra 25\%, Insight 15\%.}\\
+\textit{See} \texttt{ex01\_hints.tex}\textit{, }\texttt{ex01\_adv\_hints.tex}\textit{, }
+\texttt{ex01\_solution.tex} \textit{for Layers 2–4.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[E] SPJU — Simple Project (UG)}
+\begin{tcolorbox}[ugprobbox, title={SPJU · L01 · Tiers 2–3 · 2–4 hrs}]
+\textbf{Project: Gaussian Wave Packet Visualiser}
+
+\textit{Goal:} Write a Python script (or Jupyter notebook) that animates $|\psi(x,t)|^2$
+for a Gaussian wave packet in free space.
+
+\textit{Inputs:}
+\begin{itemize}[topsep=2pt]
+  \item Initial position $x_0$, width $\sigma_x$, central momentum $k_0$
+  \item Time range $[0, T_{\max}]$ and number of frames
+\end{itemize}
+
+\textit{Required output:}
+\begin{enumerate}[topsep=2pt]
+  \item Animated plot of $|\psi(x,t)|^2$ showing spreading and translation
+  \item Plot of $\Delta x(t)$ vs $t$ with theoretical curve $\Delta x(0)\sqrt{1+(t/t_*)^2}$
+  \item Numerical verification that $\int|\psi|^2\,dx = 1$ at each timestep (to $<0.1\%$ error)
+\end{enumerate}
+
+\textit{Deliverables:} Code + README + 1–2 page report explaining:
+(1) how you implemented the FFT-based propagation, (2) the physical interpretation of $t_*$,
+(3) one unexpected observation from your animation.
+
+\textit{Rubric:} Correctness 40\%, Verification tests 25\%, Clarity 25\%, Reproducibility 10\%.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[F] CPJU — Complex Project (UG)}
+\begin{tcolorbox}[ugprobbox, title={CPJU · L01 · Tier 3 · 8–15 hrs}]
+\textbf{Project: Van Hove Singularities in 1D, 2D, and 3D}
+
+\textit{Goal:} Investigate the analytical structure of $g(E)$ in 1, 2, and 3 dimensions
+for a free particle, and connect to experimental observables.
+
+\textit{Deliverables:} 5–8 page report + code appendix addressing:
+\begin{enumerate}[topsep=2pt]
+  \item Derive $g_d(E)$ for $d = 1, 2, 3$ from first principles (no looking up the formula).
+  \item Show that the 1D DOS diverges as $E^{-1/2}$ near $E=0$. Explain what this means
+    for the low-temperature heat capacity of a 1D electron gas.
+  \item In 2D, the DOS is constant: numerically verify this by computing $g(E)$ via
+    counting states in a large 2D box and plotting vs $E$.
+  \item For a 1D tight-binding chain $E(k) = -2t\cos(ka)$, compute $g(E)$ analytically
+    and show it diverges at band edges (van Hove singularities).
+  \item Compare your 1D tight-binding $g(E)$ to a real material measurement (e.g., DOS
+    of a carbon nanotube from literature) and comment on qualitative agreement.
+\end{enumerate}
+\textit{Rubric:} Technical 30\%, Synthesis 35\%, Depth 25\%, Originality 10\%.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[G] SCQG — Simple Concept Questions (Grad, ×10)}
+\begin{tcolorbox}[gradconceptbox, title={SCQG · L01 · Tiers 4–5 · 20–25 min}]
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+  \item State the domain of $\hat{p} = -i\hbar\partial_x$ as a self-adjoint operator on $L^2[0,L]$.
+  \item \textit{(T/F + proof sketch)} The operator $\hat{p}^2$ is self-adjoint on $L^2(\mathbb{R})$ with its natural domain.
+  \item Identify the precise error: ``The plane-wave states $\{e^{ikx}\}$ form an orthonormal basis of $L^2(\mathbb{R})$.''
+  \item \textit{(Short)} In what sense does $\delta(x-x_0)$ lie in the rigged Hilbert space $\Phi^* \supset L^2 \supset \Phi$?
+  \item \textit{(Short)} State the spectral theorem for $\hat{H} = -\hbar^2\partial_x^2/2m$ on $[0,L]$ with Dirichlet BCs.
+  \item \textit{(T/F + proof sketch)} The resolvent $(\hat{H}-z)^{-1}$ is a compact operator on $L^2[0,L]$ for $z\notin\sigma(\hat{H})$.
+  \item What is the precise statement of Parseval's theorem in $L^2[0,L]$ and how does it follow from the spectral theorem?
+  \item \textit{(Identify error)} ``The ground-state energy $E_1 \to 0$ as $L\to\infty$, so the particle becomes free.''
+  \item \textit{(Short)} Define the distributional derivative and explain why $\hat{p}$ acts on wave functions in $H^1[0,L]$.
+  \item \textit{(T/F + proof sketch)} Van Hove singularities in the DOS are topologically protected in the sense that they cannot be removed by small perturbations of the dispersion relation.
+\end{enumerate}
+\textit{Rubric: 2 pts each (1.5 correct answer + 0.5 justification). Total: 20 pts.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[H] CCQG — Complex Concept Questions (Grad, ×10)}
+\begin{tcolorbox}[gradconceptbox, title={CCQG · L01 · Tiers 4–5 · 35–50 min}]
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+  \item Distinguish the notions of ``Hermitian,'' ``symmetric,'' and ``self-adjoint'' for $\hat{p}$ on $[0,L]$. Which boundary conditions make $\hat{p}$ self-adjoint?
+  \item What fails in the spectral expansion $\psi = \sum_n c_n\psi_n$ if the Hamiltonian is not self-adjoint?
+  \item Connect the van Hove singularities of the DOS to the topology of the Fermi surface via Morse theory.
+  \item Explain why the density of states in 3D is $g(E)\propto E^{1/2}$ and how this changes for a relativistic dispersion $E = \hbar ck$.
+  \item ``Particle in a box is trivial.'' Argue against this by identifying three non-trivial mathematical structures it encodes.
+  \item What is the physical content of the spectral zeta function $\zeta_H(s) = \sum_n E_n^{-s}$ for the box Hamiltonian?
+  \item Distinguish the spectral theory of the box Hamiltonian on $[0,L]$ (compact, discrete spectrum) from the free Hamiltonian on $\mathbb{R}$ (non-compact, continuous spectrum).
+  \item Connect the Gaussian wave packet spreading formula to the Heisenberg time–energy uncertainty relation.
+  \item What fails in the derivation of group velocity $v_g = d\omega/dk$ for a highly non-linear dispersion relation?
+  \item How does the DOS change if we go from spinless particles to spin-$1/2$ fermions?
+\end{enumerate}
+\textit{Rubric: 2 pts each (1 key point + 1 argument). Total: 20 pts.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[I] SPSG — Simple Problem Set (Grad, ×10)}
+\begin{tcolorbox}[gradprobbox, title={SPSG · L01 · Tiers 4–5 · 60–90 min}]
+\textbf{Part A: Operator mechanics (4)}
+\begin{enumerate}[label=\textbf{P\arabic*.}]
+  \item Show that $\hat{p}$ on $H^1_0[0,L]$ (Dirichlet BCs) is \emph{symmetric} but not self-adjoint. Find its deficiency indices.
+  \item Using the spectral theorem, express the propagator $e^{-i\hat{H}t/\hbar}$ as a sum over energy eigenstates and verify it maps $L^2[0,L]$ to $L^2[0,L]$ unitarily.
+  \item The resolvent of the box Hamiltonian $G(x,y;z) = \langle x|(\hat{H}-z)^{-1}|y\rangle$ is a Green's function. Compute it explicitly for $z\notin\sigma(\hat{H})$.
+  \item For the free Hamiltonian on $\mathbb{R}$, compute the spectral measure $dE_\lambda$ (i.e., the projector onto states with energy $\leq\lambda$) explicitly in position space.
+\end{enumerate}
+\textbf{Part B: Rigorous translation (3)}
+\begin{enumerate}[label=\textbf{P\arabic*.},resume]
+  \item Prove that the heat kernel $K(x,y;t) = \sum_n \psi_n(x)\psi_n^*(y)e^{-E_nt/\hbar}$ satisfies the heat equation $-\hbar\partial_t K = \hat{H}K$ with initial condition $K(x,y;0) = \delta(x-y)$.
+  \item Show that $g(E)$ for the 3D box can be derived from the heat kernel trace $Z(\beta) = \mathrm{Tr}(e^{-\beta\hat{H}})$ via an inverse Laplace transform.
+  \item Prove Weyl's law: the eigenvalue counting function $N(E) = \#\{n: E_n\leq E\}$ for the $d$-dimensional box satisfies $N(E) \sim V(2mE)^{d/2}/(\Gamma(d/2+1)(2\pi\hbar)^d)$.
+\end{enumerate}
+\textbf{Part C: Symmetry \& invariance (3)}
+\begin{enumerate}[label=\textbf{P\arabic*.},resume]
+  \item Under the dilation $x\to\lambda x$, $L\to\lambda L$, how does $E_n$ scale? Relate this to the virial theorem $2\langle T\rangle = n\langle V\rangle$ (here $n=2$ for the kinetic energy).
+  \item Parity: the operator $\hat{\Pi}$ maps $x\to L-x$ in the shifted box $[-L/2,L/2]$. Identify the parity of each $\psi_n$ and verify $[\hat{H},\hat{\Pi}]=0$.
+  \item Time-reversal: $\hat{T}\psi(x) = \psi^*(x)$. Show that $\hat{T}$ is antiunitary, maps $\psi_n\to\psi_n^*=\psi_n$ (real), and commutes with $\hat{H}$.
+\end{enumerate}
+\textit{Rubric: Result + conditions 50\%, Method 35\%, Meaning 15\%.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[J] CPSG — Complex Problem Set (Grad, ×5)}
+\begin{tcolorbox}[gradprobbox, title={CPSG · L01 · Tiers 4–5 · 5–10 hrs}]
+\begin{enumerate}[label=\textbf{Ex\arabic*.}]
+  \item \textbf{Self-adjoint extensions of $\hat{p}$ on $[0,L]$.}
+    Classify all self-adjoint extensions of $\hat{p}$ using von Neumann's deficiency index theory. Show that each extension corresponds to a quasi-periodic boundary condition $\psi(L) = e^{i\theta}\psi(0)$, $\theta\in[0,2\pi)$. Find the spectrum for each $\theta$.
+  \item \textbf{Aharonov–Bohm ring.}
+    A particle on a ring of circumference $L$ with a magnetic flux $\Phi$ threading the ring has Hamiltonian $\hat{H} = (\hat{p}-eA)^2/2m$ with $A = \Phi/L$. (a) Find the energy spectrum. (b) Show the spectrum is periodic in $\Phi$ with period $hc/e$ (flux quantum). (c) Connect to the self-adjoint extension parameter $\theta = 2\pi\Phi/\Phi_0$.
+  \item \textbf{Weyl's law for the 3D box.}
+    Prove that the eigenvalue counting function $N(E)$ satisfies $N(E) = V(2mE)^{3/2}/(6\pi^2\hbar^3) + O(E)$ as $E\to\infty$. The $O(E)$ correction comes from surface states — estimate it.
+  \item \textbf{Spectral zeta function.}
+    For the 1D box, compute $\zeta_H(s) = \sum_{n=1}^\infty E_n^{-s}$ in closed form. Show it equals $(mL^2/\pi^2\hbar^2)^s \zeta_R(2s)$ where $\zeta_R$ is the Riemann zeta function. Find the poles and their physical meaning.
+  \item \textbf{Wave packet on a lattice.}
+    Replace the free dispersion $E(k)=\hbar^2k^2/2m$ by the tight-binding dispersion $E(k) = -2t\cos(ka)$. (a) Compute the group velocity and effective mass. (b) Show a Gaussian wave packet centred at $k_0 = \pi/2a$ eventually breaks up (Zener tunnelling analogy). (c) Quantify the spreading rate vs. the free-particle case.
+\end{enumerate}
+\textit{See} \texttt{ex\_grad01\_hints.tex} \textit{etc.\ for Layers 2–4.}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[K] SPJG — Simple Projects (Grad, ×5)}
+\begin{tcolorbox}[gradprobbox, title={SPJG · L01 · Tiers 4–5 · 3–8 hrs each}]
+\begin{enumerate}[label=\textbf{PG\arabic*.}]
+  \item \textbf{Green's function of the box.} Compute $G(x,y;E) = \langle x|(\hat{H}-E)^{-1}|y\rangle$ analytically and numerically. Plot it and identify the poles. Deliverable: code + 2-page tech note.
+  \item \textbf{Spectral measure of the free particle.} Numerically compute the spectral projector $E(\lambda) = \int_{-\infty}^\lambda |k\rangle\langle k|\,dk$ and verify it is a projection-valued measure. Deliverable: 2-page tech note + code.
+  \item \textbf{DOS from the heat kernel.} Numerically extract $g(E)$ from $Z(\beta) = \mathrm{Tr}(e^{-\beta\hat{H}})$ via numerical inverse Laplace transform and compare to the analytical formula. Deliverable: code + 2-page tech note.
+  \item \textbf{Quasi-periodic spectrum.} Implement the family of self-adjoint extensions of $\hat{p}$ on $[0,L]$, compute the spectrum as a function of $\theta$, and plot the Hofstadter-like butterfly. Deliverable: code + 2-page note.
+  \item \textbf{Wave-packet in tight-binding chain.} Simulate the time evolution of a Gaussian wave packet in a 1D tight-binding chain. Compare spreading to free-particle case. Investigate Bloch oscillations under a constant force field. Deliverable: animated figure + 3-page note.
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[L] CPJG — Complex Projects (Grad, ×5)}
+\begin{tcolorbox}[gradprobbox, title={CPJG · L01 · Tiers 4–5 · 10–20 hrs each}]
+\begin{enumerate}[label=\textbf{PG\arabic*.}]
+  \item \textbf{Casimir energy of the box.} Using the spectral zeta function, regularise the zero-point energy $E_0 = \frac{1}{2}\sum_n E_n$ of the 1D box and compute the Casimir force $F = -\partial E_0/\partial L$. Deliverable: 6–10 page report.
+  \item \textbf{Quantum chaos in the 2D box.} Numerically study the level spacing statistics of the 2D rectangular box as a function of the aspect ratio $L_x/L_y$. Compare to Poisson (integrable) statistics. Deliverable: 6–10 page report.
+  \item \textbf{Transfer matrix and photonic crystals.} Extend the transfer matrix method from 1D potential barriers to a periodic sequence of layers (photonic crystal). Compute transmission bands and gaps. Compare to Bloch's theorem. Deliverable: 6–10 page report.
+  \item \textbf{Wigner function of the infinite well.} Compute the Wigner function $W(x,p;t)$ for a superposition state in the infinite well. Visualise the non-classical interference fringes. Investigate the semiclassical limit $n\gg1$. Deliverable: 6–10 page report with figures.
+  \item \textbf{Resonances from complex scaling.} Use the method of complex scaling ($x\to xe^{i\theta}$) to compute the energy and decay rate of a quasi-bound state in a potential well with a barrier. Compare to WKB tunnelling rate. Deliverable: 6–10 page report.
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[M] WRQ — Well-Defined Research Questions (×5)}
+\begin{tcolorbox}[researchbox, title={WRQ · L01 · Tiers 4–5 · 5–10 hrs each}]
+\begin{enumerate}[label=\textbf{R\arabic*.}]
+  \item \textbf{Particle-in-a-box as a model for conjugated molecules.}
+    The free-electron model (PIB) predicts UV absorption wavelengths of linear polyenes.
+    How accurate is it for butadiene, hexatriene, and $\beta$-carotene? What corrections
+    improve the agreement? \textit{Deliverable: 2–4 pg memo with calculations and 5–10 references.}
+  \item \textbf{van Hove singularities in carbon nanotubes.}
+    Measured STM conductance spectra of single-walled carbon nanotubes show sharp peaks.
+    Identify these as 1D van Hove singularities. Quantify the agreement between the free-electron
+    model DOS and experimental data for a (10,0) nanotube.
+  \item \textbf{Casimir effect between conducting plates.}
+    Derive the Casimir force $F = -\pi^2\hbar c/(240 L^4) \cdot A$ between two parallel
+    perfectly conducting plates separated by $L$, starting from the 3D electromagnetic
+    box DOS. What is the precision of current experimental tests?
+  \item \textbf{Wave-packet spreading in Bose–Einstein condensates.}
+    After a BEC is released from a harmonic trap, it expands as a wave packet.
+    How well does the free-particle spreading formula apply? What corrections arise from
+    interactions (mean-field repulsion)? Reference at least two experiments.
+  \item \textbf{Quantum confinement in semiconductor quantum dots.}
+    The PIB model predicts that confining electrons to a nanoscale box blue-shifts the
+    optical absorption. Quantitatively compare the PIB prediction to experimental absorption
+    spectra of CdSe quantum dots of varying radius.
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{[N] ORQ — Open-Ended Research Questions (×5)}
+\begin{tcolorbox}[researchbox, title={ORQ · L01 · Tiers 4–5 · 10–20 hrs each}]
+\begin{enumerate}[label=\textbf{O\arabic*.}]
+  \item \textbf{What is the ``correct'' quantisation of a particle on a manifold?}
+    The particle-in-a-box problem on a curved manifold (e.g., a sphere, torus, or hyperbolic
+    surface) raises the ``operator-ordering ambiguity.'' What are the competing proposals
+    (Laplace–Beltrami, conformal, ...) and is there a physical way to distinguish them?
+  \item \textbf{Is there a universal lower bound on wave-packet spreading?}
+    The Gaussian wave packet saturates $\Delta x(0)\Delta p = \hbar/2$. Are there states
+    that spread slower than Gaussian in free space? What does the quantum speed limit say?
+  \item \textbf{Can the infinite square well be realised exactly?}
+    Infinite potentials are unphysical. What do real semiconductor quantum wells achieve?
+    How are energy levels modified by finite barrier height, effective mass discontinuity,
+    and band non-parabolicity?
+  \item \textbf{How does the density of states change in fractal and disordered geometries?}
+    For a particle in a Sierpinski triangle or a disordered potential, $g(E)$ no longer
+    follows power laws. What replaces the Weyl law? What are spectral dimension and fracton
+    excitations?
+  \item \textbf{What is the connection between the spectral zeta function of the box and the Riemann hypothesis?}
+    Propose a physical system whose energy spectrum encodes the zeros of the Riemann zeta
+    function (Berry–Keating conjecture). Summarise current mathematical and physical
+    progress toward a proof.
+\end{enumerate}
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\subsection*{Reading and Resources — L01}
+\begin{tcolorbox}[goldbox]
+\textbf{Primary (all tiers):}
+Griffiths, \textit{Introduction to Quantum Mechanics}, Ch.~2 (\S2.1--2.3).
+Sakurai \& Napolitano, \textit{Modern QM}, Ch.~2.4 (wave packets), Appendix~A.
+
+\textbf{Core (Tiers 2–3):}
+Cohen-Tannoudji et al., \textit{QM} Vol.~I, Complement~C$_\mathrm{I}$ (density of states).
+
+\textbf{Graduate (Tiers 4–5):}
+Reed \& Simon, \textit{Methods of Mathematical Physics}, Vol.~II (self-adjoint extensions).
+Ashcroft \& Mermin, \textit{Solid State Physics}, Ch.~2 (Fermi sphere, DOS).
+
+\textbf{Research:}
+M.V.\ Berry \& M.\ Tabor, ``Level clustering in the regular spectrum,'' \textit{Proc.\ R.\ Soc.\ A} 356 (1977) — for ORQ Q2 on spectral statistics.
+\end{tcolorbox}

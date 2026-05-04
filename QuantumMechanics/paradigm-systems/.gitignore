@@ -1,0 +1,30 @@
+# Build artifacts
+build/
+*.pdf
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.blg
+*.bbl
+
+# Node
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Generated pptx (keep specs, ignore binaries)
+slides/**/*.pptx
+
+# OS
+.DS_Store
+Thumbs.db
+*~

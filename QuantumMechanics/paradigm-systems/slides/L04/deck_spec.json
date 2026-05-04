@@ -1,0 +1,82 @@
+{
+  "module": "I.4",
+  "lecture": "L04",
+  "title": "Rabi Model & Two-Level Systems",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L04",
+      "subtitle": "Rabi Model & Two-Level Systems",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L04.1",
+      "title": "Two-Level System & Bloch Sphere",
+      "bullets": [
+        "H\u2080 = (\u210f\u03c9\u2080/2)\u03c3_z",
+        "General state on Bloch sphere",
+        "Energy splitting \u210f\u03c9\u2080"
+      ],
+      "tier": "T1-T5"
+    },
+    {
+      "type": "content",
+      "section": "L04.2",
+      "title": "Rotating Wave Approximation",
+      "bullets": [
+        "Rotating frame transformation",
+        "Drop counter-rotating term",
+        "H_rot = (\u210f\u0394/2)\u03c3_z + (\u210f\u03a9_R/2)\u03c3_x",
+        "Resonance \u0394=0"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L04.3",
+      "title": "Rabi Oscillations",
+      "bullets": [
+        "Generalised Rabi frequency \u03a9\u0303 = \u221a(\u0394\u00b2+\u03a9_R\u00b2)",
+        "P\u2191(t) = (\u03a9_R/\u03a9\u0303)\u00b2 sin\u00b2(\u03a9\u0303t/2)",
+        "\u03c0-pulse: complete inversion",
+        "\u03c0/2-pulse: superposition"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L04.4",
+      "title": "Jaynes\u2013Cummings Model",
+      "bullets": [
+        "H_JC = \u210f\u03c9_c \u00e2\u2020\u00e2 + (\u210f\u03c9\u2080/2)\u03c3_z + \u210fg(\u00e2\u03c3\u208a + \u00e2\u2020\u03c3\u208b)",
+        "Dressed states",
+        "Collapse and revival"
+      ],
+      "tier": "T4-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L04 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

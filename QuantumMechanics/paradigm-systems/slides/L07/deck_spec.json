@@ -1,0 +1,80 @@
+{
+  "module": "I.4",
+  "lecture": "L07",
+  "title": "Stark Effect",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L07",
+      "subtitle": "Stark Effect",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L07.1",
+      "title": "Parity Argument",
+      "bullets": [
+        "H' = -eEz",
+        "\u27e8nlm|z|nlm\u27e9 = 0 by parity",
+        "First order vanishes for parity eigenstates"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L07.2",
+      "title": "Linear Stark Effect (H, n=2)",
+      "bullets": [
+        "4-fold degenerate: 2s, 2p\u208b\u2081, 2p\u2080, 2p\u2081",
+        "\u27e82s|H'|2p\u2080\u27e9 = -3eEa\u2080",
+        "Eigenvalues: \u00b13eEa\u2080, 0, 0"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L07.3",
+      "title": "Quadratic Stark & Polarisability",
+      "bullets": [
+        "E^(2)\u2080 = -9a\u2080\u00b3E\u00b2/4",
+        "Polarisability \u03b1 = 9a\u2080\u00b3/2",
+        "Sum-rule approach"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L07.4",
+      "title": "Parabolic Coordinates",
+      "bullets": [
+        "Exact separation in (\u03be,\u03b7,\u03c6)",
+        "Quantum numbers n\u2081, n\u2082, m",
+        "Strong-field ionisation preview"
+      ],
+      "tier": "T4-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L07 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

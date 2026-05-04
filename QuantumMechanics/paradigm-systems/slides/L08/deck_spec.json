@@ -1,0 +1,81 @@
+{
+  "module": "I.4",
+  "lecture": "L08",
+  "title": "Spin\u2013Orbit & Fine Structure",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L08",
+      "subtitle": "Spin\u2013Orbit & Fine Structure",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L08.1",
+      "title": "Spin\u2013Orbit Hamiltonian",
+      "bullets": [
+        "Electron in rest frame sees nuclear orbit",
+        "H_SO = \u03be(r) L\u0302\u00b7\u015c",
+        "Thomas factor 1/2",
+        "\u03be(r) = 1/2m\u00b2c\u00b2 \u00b7 (1/r)(dV/dr)"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L08.2",
+      "title": "L\u00b7S in j-Basis",
+      "bullets": [
+        "L\u0302\u00b7\u015c = (\u0134\u00b2 - L\u0302\u00b2 - \u015c\u00b2)/2",
+        "Eigenvalue \u210f\u00b2[j(j+1)-l(l+1)-s(s+1)]/2",
+        "\u27e8r\u207b\u00b3\u27e9 via Kramers\u2013Pasternack"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L08.3",
+      "title": "Complete Fine Structure",
+      "bullets": [
+        "SO + relativistic KE + Darwin",
+        "E^FS_nj = -(\u03b1\u00b2E_n/2n\u00b2)[4n/(j+1/2)-3]",
+        "Energy level diagram n=1,2,3"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "content",
+      "section": "L08.4",
+      "title": "Lamb Shift & Beyond",
+      "bullets": [
+        "2s\u2081/\u2082 and 2p\u2081/\u2082 degenerate in Dirac",
+        "Lamb shift from QED",
+        "jj coupling in heavy atoms [T4/T5]"
+      ],
+      "tier": "T4-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L08 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}

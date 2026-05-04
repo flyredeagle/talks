@@ -1,0 +1,80 @@
+{
+  "module": "I.4",
+  "lecture": "L10",
+  "title": "Scattering from a Potential Barrier",
+  "series": "Series I \u2014 Introductory Quantum Mechanics",
+  "colors": {
+    "primary": "1E3A5F",
+    "secondary": "2E6DA4",
+    "accent": "F5A623",
+    "dark": "0D1F35",
+    "light": "EBF2FA",
+    "text": "1A1A2E"
+  },
+  "slides": [
+    {
+      "type": "title",
+      "title": "QM \u2014 Module I.4 \u2014 L10",
+      "subtitle": "Scattering from a Potential Barrier",
+      "meta": "Series I \u00b7 Five-Tier Pedagogy \u00b7 Full Assessment Bundle"
+    },
+    {
+      "type": "content",
+      "section": "L10.1",
+      "title": "Setup & Wavevectors",
+      "bullets": [
+        "Rectangular barrier V\u2080, width a",
+        "k\u2081 = \u221a(2mE)/\u210f, k\u2082 = \u221a(2m|E-V\u2080|)/\u210f",
+        "Above barrier (E>V\u2080) and tunnelling (E<V\u2080)"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L10.2",
+      "title": "Transfer Matrix & T,R",
+      "bullets": [
+        "Match \u03c8 and \u03c8' at boundaries",
+        "T = |t|\u00b2, R = |r|\u00b2",
+        "T + R = 1 (probability current)"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L10.3",
+      "title": "Tunnelling & Gamow Factor",
+      "bullets": [
+        "T \u2248 e^(-2\u03baa) (thin barrier)",
+        "\u03ba = \u221a(2m(V\u2080-E))/\u210f",
+        "Applications: STM, alpha decay"
+      ],
+      "tier": "T2-T5"
+    },
+    {
+      "type": "content",
+      "section": "L10.4",
+      "title": "Resonances & Step Potential",
+      "bullets": [
+        "Resonance T=1 at k\u2082a = n\u03c0",
+        "Above-barrier reflection (quantum effect)",
+        "Hartman effect [T4/T5]"
+      ],
+      "tier": "T3-T5"
+    },
+    {
+      "type": "assessment",
+      "title": "L10 \u2014 Assessment Bundle",
+      "items": [
+        "SCQU (\u00d710) + CCQU (\u00d710) \u2014 concept questions",
+        "SPSU (\u00d710) + CPSU (\u00d75) \u2014 problem sets",
+        "SPJU (\u00d71) + CPJU (\u00d71) \u2014 projects (UG)",
+        "SCQG (\u00d710) + CCQG (\u00d710) \u2014 grad concept questions",
+        "SPSG (\u00d710) + CPSG (\u00d75) \u2014 grad problem sets",
+        "SPJG (\u00d75) + CPJG (\u00d75) \u2014 grad projects",
+        "WRQ (\u00d75) + ORQ (\u00d75) \u2014 research questions",
+        "Total: 92 items across 14 types"
+      ]
+    }
+  ]
+}
